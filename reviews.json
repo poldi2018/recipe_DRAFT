@@ -1,0 +1,7 @@
+[{
+    "_id": "<ObjectId>",
+    "rated_by": "<string>", 
+    "stars": "<array>",
+    "comment": "<string>"
+}]
+

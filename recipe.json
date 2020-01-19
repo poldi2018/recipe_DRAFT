@@ -1,0 +1,24 @@
+[{
+    "title": "<string>",
+    "dish_type": "<string>", 
+    "added_by": "<string>",
+    "added_date": "<Date>",
+    "edited_date": "<Date>",
+    "level": "<string>",
+    "view_count": "<integer>",
+    "prep_time": "<Time>",
+    "cooking_time": "<Time>",
+    "total_time": "<Time>",
+    "directions": "<string>",
+    "allergens": "<array>",
+    "ingredients": "<Object>",
+    "origin": "<string>",
+    "reviews": {
+        "_id": "<ObjectId>",
+        "rated_by": "<string>", 
+        "stars": "<array>",
+        "comment": "<string>"
+    },
+    "img_path":""
+}]
+

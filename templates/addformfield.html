@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<h3>Add a field</h3>
+<div class="row">
+    <div class="addfield" onclick="addField">click to add field to form</div>
+    <form action="{{ url_for('insertformfield') }}" method="POST" class="col s12" id="testform">
+        <div class="row">
+            <div class="input-field col s12 testdiv">
+                <i class="material-icons prefix">poll</i>
+                <input id="category_name" name="category_name" type="text" class="validate">
+                <label for="category_name">Category Name</label>
+            </div>
+        </div>
+        <div class="row">
+            <button class="btn waves-effect waves-light" type="submit" name="action">Send
+                <i class="material-icons right">playlist</i>
+             </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
