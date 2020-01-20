@@ -12,13 +12,9 @@ app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'bookbaseDRAFT'
 app.config["MONGO_URI"] = os.getenv('MONGO_URI_BOOKBASE_DRAFT', 'mongodb://localhost')
 #IMGBB_CLIENT_API_KEY retrieval 
-IMGBB_CLIENT_API_KEY = os.getenv('IMGBB_CLIENT_API_KEY')
+imgbb_upload_url="https://api.imgbb.com/1/upload?key="+os.getenv('IMGBB_CLIENT_API_KEY')
 #creating instance of Pymongo with app object to connect to MongoDB
 mongo = PyMongo(app)
-
-#def upload_image(img_path):
-  #  curl --location --request POST "https://api.imgbb.com/1/upload?key={{IMGBB_CLIENT_API_KEY}}" --form "image=R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-
 
 
 # routes and views
@@ -35,25 +31,18 @@ response = requests.post('https://api.imgbb.com/1/upload', key=IMGBB_CLIENT_API_
 @app.route('/fileselector')
 def fileselector(): 
     """
-    #image = open('static/images/labor.jpg', 'rb')
-    #image = open('static/images/eisberg.jpg', 'rb')
-    image_read = image.read() 
-    #image_64_encode = base64.encodebytes(image_read)
-    #image_64_encode = base64.encodebytes(image_read)    
-    #response = requests.post('https://api.imgbb.com/1/upload?key={{IMGBB_CLIENT_API_KEY}}', data=image_64_encode)
-    #print(response)
+   
     """
     return render_template('fileselector.html')
 
 @app.route('/file_uploader', methods=["POST"])
 def file_uploader():
-    base64_image = request.form.get("base64file")
-    print(base64_image)
-    response = requests.post('https://api.imgbb.com/1/upload?key=44a47b2e80665b461c141f86770a7396', data={"image": base64_image})
-    logg=response.text
-    print(logg)
-    return render_template("done.html", response=response)
-
+    # build upload URL string for imgbb with base url and API Key
+    response = requests.post(imgbb_upload_url, data={"image": request.form.get("base64file")})
+    print(response.text)
+    url_img_src=response.json()
+    url_img_src=url_img_src["data"]["url"]
+    return render_template("done.html", url_img_src=url_img_src)
 
 
 @app.route('/add_recipe')

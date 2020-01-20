@@ -4,11 +4,19 @@ body {
 
 h3 {
     color: green;
-    
+
 }
 
 
 
 .recipe_head_wrapper {
     width: 8vw;
+}
+
+
+.popupCheckImagename {
+    opacity: 0.0;
+    z-index: -1;
+    transform: translateZ(-10px);
+    transition: opacity .8s ease-in-out;
 }
