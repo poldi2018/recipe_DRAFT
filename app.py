@@ -12,6 +12,8 @@ app = Flask(__name__)
 #setting name of db, read and assign system env variable
 app.config["MONGO_DBNAME"] = 'bookbaseDRAFT'
 app.config["MONGO_URI"] = os.getenv('MONGO_URI_BOOKBASE_DRAFT', 'mongodb://localhost')
+app.secret_key = os.getenv("COOKBOOK_SECRET_KEY")
+
 #IMGBB_CLIENT_API_KEY retrieval 
 imgbb_upload_url="https://api.imgbb.com/1/upload?key="+os.getenv('IMGBB_CLIENT_API_KEY')
 #creating instance of Pymongo with app object to connect to MongoDB

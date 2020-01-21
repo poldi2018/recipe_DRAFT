@@ -1,5 +1,7 @@
 {% extends 'base.html'%}
-
+{% block header %}
+<div id="logoutBtn" onclick="{{ url_for('login_page') }}">Logout</div>
+{% endblock %}
 {% block content %}
 <div class="row">
     <h3>Login</h3>
