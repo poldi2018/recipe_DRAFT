@@ -4,6 +4,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 import base64
 import requests
+from werkzeug import security
 
 
 #creating instance of Flask to have an app object
@@ -30,23 +31,72 @@ response = requests.post('https://api.imgbb.com/1/upload', key=IMGBB_CLIENT_API_
 
 @app.route('/fileselector')
 def fileselector(): 
-    """
-   
-    """
     return render_template('fileselector.html')
 
 @app.route('/file_uploader', methods=["POST"])
 def file_uploader():
     # build upload URL string for imgbb with base url and API Key
-    response = requests.post(imgbb_upload_url, data={"image": request.form.get("base64file")})
+    response = requests.post(imgbb_upload_url, data={"image": request.form.get("base64file"),"album":"test"})
     print(response.text)
     url_img_src=response.json()
     url_img_src=url_img_src["data"]["url"]
     return render_template("done.html", url_img_src=url_img_src)
 
+#registeration
+@app.route('/register')
+def register():
+    userbase = mongo.db.users.find()
+    return render_template('register.html', userbase=userbase)
+
+@app.route('/insert_user', methods=["POST"])
+def insert_user():
+    users= mongo.db.users
+    new_user = {
+    "username": request.form.get('username'), 
+    "email_address": request.form.get('email_address'),
+    "password": request.form.get('password')
+    }
+    users.insert_one(new_user)
+    return redirect(url_for('register'))
+
+
+
+
+@app.route('/login_page')
+def login_page():
+    return render_template("loginpage.html")
+"""
+@app.route('/check_login')
+def check_login():
+    users= mongo.db.recipes
+    entered_email_address=request.form.get("email_address")
+    entered_password=request.form.get("password")
+"""
+    
+
+@app.route('/check_user', methods=["POST"])
+def check_user():
+    user_to_query= mongo.db.users.find_one({"email_address": request.form.get("email_address")})
+    print(user_to_query)
+    if user_to_query:
+        return render_template('userfound.html', user_to_query=user_to_query)
+    else:
+        return redirect(url_for('register'))
+ 
+
+
+
+def add_blank_recipe():
+    recipes= mongo.db.recipes
+    blank_recipe = {
+
+    }
+    recipes.insert_one(blank_recipe)
+
 
 @app.route('/add_recipe')
 def add_recipe():
+    #recipe_id = add_blank_recipe()
     return render_template('addrecipe.html')
 
 #one route for inserting recipe into db
@@ -100,7 +150,7 @@ def update_recipe(recipe_id):
 #Delete recipe in database
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
-    mongo.db.categories.remove({'_id': ObjectId(recipe_id)})
+    mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
     return redirect(url_for('get_recipes'))
 
 @app.route('/rate_recipe/<recipe_id>')
