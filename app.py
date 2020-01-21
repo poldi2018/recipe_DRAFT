@@ -1,10 +1,10 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 import base64
 import requests
-from werkzeug import security
+from werkzeug.security import check_password_hash, generate_password_hash
 
 
 #creating instance of Flask to have an app object
@@ -22,12 +22,6 @@ mongo = PyMongo(app)
 #Create recipe
 # one route to addrecipe dialog 
 
-"""
-response = requests.post('https://www.googleapis.com/qpxExpress/v1/trips/search', headers=headers, params=params, data=data)
-response = requests.post('https://api.imgbb.com/1/upload', key=IMGBB_CLIENT_API_KEY, )
-
-
-"""
 
 @app.route('/fileselector')
 def fileselector(): 
@@ -36,8 +30,9 @@ def fileselector():
 @app.route('/file_uploader', methods=["POST"])
 def file_uploader():
     # build upload URL string for imgbb with base url and API Key
-    response = requests.post(imgbb_upload_url, data={"image": request.form.get("base64file"),"album":"test"})
+    response = requests.post(imgbb_upload_url, data={"image": request.form.get("base64file")})
     print(response.text)
+
     url_img_src=response.json()
     url_img_src=url_img_src["data"]["url"]
     return render_template("done.html", url_img_src=url_img_src)
@@ -48,40 +43,38 @@ def register():
     userbase = mongo.db.users.find()
     return render_template('register.html', userbase=userbase)
 
+@app.route
+
 @app.route('/insert_user', methods=["POST"])
 def insert_user():
     users= mongo.db.users
     new_user = {
     "username": request.form.get('username'), 
     "email_address": request.form.get('email_address'),
-    "password": request.form.get('password')
+    "password": generate_password_hash(request.form.get('password'))
     }
     users.insert_one(new_user)
-    return redirect(url_for('register'))
+    return redirect(url_for('failed_to_register', message="Provided email or username was not found!"))
 
 
 
 
 @app.route('/login_page')
 def login_page():
-    return render_template("loginpage.html")
-"""
-@app.route('/check_login')
-def check_login():
-    users= mongo.db.recipes
-    entered_email_address=request.form.get("email_address")
-    entered_password=request.form.get("password")
-"""
+    return render_template("loginpage.html", message="Please login with your username and password. Thanks!")
+
     
 
 @app.route('/check_user', methods=["POST"])
 def check_user():
-    user_to_query= mongo.db.users.find_one({"email_address": request.form.get("email_address")})
-    print(user_to_query)
-    if user_to_query:
-        return render_template('userfound.html', user_to_query=user_to_query)
+    #user_to_query= mongo.db.users.find_one({"email_address": request.form.get("email_address")})
+    user_to_query= mongo.db.users.find_one( { '$or': [{"email_address": request.form.get("email_address")}, {"username": request.form.get("username")}]})
+    password_response=check_password_hash(user_to_query['password'], request.form.get('password'))
+    if user_to_query and password_response:
+        session['user']=user_to_query['username']
+        return render_template('userfound.html', user_to_query=user_to_query, message="Username and password correct!")
     else:
-        return redirect(url_for('register'))
+        return render_template('loginpage.html', message="Username or password incorrect. Please try again.")
  
 
 

@@ -10,8 +10,8 @@
 <body>
   <form action="{{ url_for('file_uploader') }}" method="POST" class="col s12">
 
-    <input type="file" name="file" id="fileinputfield" onchange="encodeImgtoBase64(this)">
-    <textarea id="base64file" name="base64file"></textarea>
+    <input type="file" name="file" id="fileinputfield" onchange="encodeImgtoBase64(this)" enctype="multipart/form-data">
+    <textarea id="base64file" name="base64file" hidden></textarea>
     <button type="submit">Submit</button>
 
 
