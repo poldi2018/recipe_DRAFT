@@ -39,20 +39,12 @@
 
 </div>
 
-<div><img src="{{recipe.img_path}}" alt="picture_of_dish"></div>
+<div><img src="{{recipe.img_src}}" alt="picture_of_dish"></div>
 {% endfor %}
 <div class="row">
     <a href="{{url_for('add_recipe')}}">To add recipe dialog</a>
 </div>
 
-
-
-{
-    "title": request.form.get('recipe_title'), 
-    "dish_type": request.form.get('dish_type'),
-    "added_by:": session["username"],
-    "user_email": session["email_address"]
-}
 
 
 <div class="row"><a href="{{ url_for('add_recipe') }}">Add recipe</a></div>

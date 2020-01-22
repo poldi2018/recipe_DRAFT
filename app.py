@@ -5,6 +5,7 @@ from bson.objectid import ObjectId
 import base64
 import requests
 from werkzeug.security import check_password_hash, generate_password_hash
+from aux_methods import add_blank_recipe, upload_to_imgbb
 
 #creating instance of Flask to have an app object
 app = Flask(__name__)
@@ -18,29 +19,12 @@ imgbb_upload_url="https://api.imgbb.com/1/upload?key="+os.getenv('IMGBB_CLIENT_A
 #creating instance of Pymongo with app object to connect to MongoDB
 mongo = PyMongo(app)
 
-
-def add_blank_recipe(session):
-    if not mongo.db.recipes.find_one({"username": session["username"], "title": "dummy"}):
-        recipes= mongo.db.recipes
-        recipe = {
-            "title": "dummy",
-            "username": session["username"]
-        }
-        recipes.insert_one(recipe)
-        recipe_id=mongo.db.recipes.find_one({"username": session["username"], "title": "dummy"})
-        return recipe_id
-    else:
-        recipe_id=mongo.db.recipes.find_one({"username": session["username"], "title": "dummy"})
-    return recipe_id
-
-
 # ROUTES AND VIEWS
 #HEADER
 @app.route('/reviews')
 def reviews():
     reviews=mongo.db.reviews.find()
     return render_template("reviews.html", reviews=reviews)
-
 
 @app.route('/advanced_search')
 def advanced_search():
@@ -49,15 +33,6 @@ def advanced_search():
 @app.route('/results', methods=["POST"])
 def results():
     return render_template("results.html")
-
-
-
-
-
-#Create recipe
-# one route to addrecipe dialog 
-
-
 
 #registeration
 @app.route('/register')
@@ -84,7 +59,6 @@ def insert_user():
 def login_page():
     return render_template("loginpage.html", message="Please login with your username and password. Thanks!")
 
-    
 # check on provided credentials
 @app.route('/check_credentials', methods=["POST"])
 def check_credentials():
@@ -111,6 +85,8 @@ def logout():
     print(session["email_address"])
     return render_template('latest_added.html', username=session["username"])
 
+
+#Add A Recipe
 @app.route('/add_recipe')
 def add_recipe():
     #check if user has been logged in and hence a session object has been created
@@ -119,53 +95,34 @@ def add_recipe():
     else:
         return render_template('addrecipe.html', recipe_id=add_blank_recipe(session))
 
-
-
-
-#one route for inserting recipe into db
+#Inserting recipe into db
 @app.route('/insert_recipe/<recipe_id>', methods=["POST"])
 def insert_recipe(recipe_id):
     recipes= mongo.db.recipes
+    url_img_src=upload_to_imgbb(request.form.get("base64file"))
+    #response = requests.post(imgbb_upload_url, data={"image": request.form.get("base64file")})
+    #url_img_src=response.json()
+    #url_img_src=url_img_src["data"]["url"]
     recipes.update( {'_id': ObjectId(recipe_id)},
     {
         "title": request.form.get('recipe_title'), 
         "dish_type": request.form.get('dish_type'),
         "added_by:": session["username"],
-        "user_email": session["email_address"]
+        "user_email": session["email_address"],
+        "img_src": url_img_src
     })
     return redirect(url_for('latest_added'))
 
-@app.route('/fileselector')
-def fileselector(): 
-    return render_template('fileselector.html')
-
-@app.route('/file_uploader', methods=["POST"])
-def file_uploader():
-    response = requests.post(imgbb_upload_url, data={"image": request.form.get("base64file"), "album": "hFMN1F"})
-    print(response.text)
-
-    url_img_src=response.json()
-    url_img_src=url_img_src["data"]["url"]
-    return render_template("done.html", url_img_src=url_img_src)
-
-
-
-
-#Read from databse
+#Route to indexpage
 @app.route('/')
 def index():
     return render_template("index.html")
 
-@app.route('/get_recipes')
-def get_recipes():
-    recipes= mongo.db.recipes.find()
-    return render_template('getrecipes.html', recipes=recipes)
-
+#show latest recipes
 @app.route('/latest_added')
 def latest_added():
     recipes=mongo.db.recipes.find()
     return render_template("latest_added.html", recipes=recipes)
-
 
 #Update database
 @app.route('/edit_recipe/<recipe_id>')
@@ -173,22 +130,23 @@ def edit_recipe(recipe_id):
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     return render_template('editrecipe.html', recipe=recipe)
 
-
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
     recipes=mongo.db.recipes
+    """
     new_rating = { 
         "rated_by": "her", 
         "stars": "99",
         "comment": "phenomenal"
     }
+    """
     recipes.update( {'_id': ObjectId(recipe_id)},
     {
         "title": request.form.get('recipe_title'), 
         "reviews": [{
         "rated_by": "me", 
         "stars": request.form.get('stars'),
-        "comment": "good"}, new_rating]
+        "comment": "good"}]
     })
     return redirect(url_for('get_recipes'))
 
@@ -196,13 +154,15 @@ def update_recipe(recipe_id):
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
     mongo.db.recipes.delete_one({'_id': ObjectId(recipe_id)})
-    return redirect(url_for('get_recipes'))
+    return redirect(url_for('latest_added'))
 
+#Rate recipe
 @app.route('/rate_recipe/<recipe_id>')
 def rate_recipe(recipe_id):
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     return render_template('raterecipe.html', recipe=recipe)
 
+#insert rating
 @app.route('/insert_rating/<recipe_id>', methods=["POST"])
 def insert_rating(recipe_id):
     recipe_to_rate = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
@@ -211,10 +171,6 @@ def insert_rating(recipe_id):
         "stars": request.form.get('stars'),
         "comment": request.form.get('comment')
     }
-    
-    #recipe_to_rate["reviews"].update(new_rating)
-    #recipe_to_rate["reviews"].update(new_rating2)
-    #print(recipe_to_rate["reviews"])
     recipe_to_rate.update(new_rating)
     return redirect(url_for('get_recipes'))
 
@@ -230,8 +186,7 @@ def insertformfield():
     print(testfield)
     return render_template("test.html", testfield=testfield, categoryfield=categoryfield)
 
-
-# execution of app
+# run app
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT', 5000)),
