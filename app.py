@@ -22,16 +22,16 @@ mongo = PyMongo(app)
 def add_blank_recipe(session):
     if not mongo.db.recipes.find_one({"username": session["username"], "title": "dummy"}):
         recipes= mongo.db.recipes
-        blank_recipe = {
+        recipe = {
             "title": "dummy",
             "username": session["username"]
         }
-        recipes.insert_one(blank_recipe)
-        dummy_recipe_id=mongo.db.recipes.find_one({"username": session["username"], "title": "dummy"})
-        return dummy_recipe_id
+        recipes.insert_one(recipe)
+        recipe_id=mongo.db.recipes.find_one({"username": session["username"], "title": "dummy"})
+        return recipe_id
     else:
-        dummy_recipe_id=mongo.db.recipes.find_one({"username": session["username"], "title": "dummy"})
-    return dummy_recipe_id
+        recipe_id=mongo.db.recipes.find_one({"username": session["username"], "title": "dummy"})
+    return recipe_id
 
 
 # ROUTES AND VIEWS
@@ -64,7 +64,7 @@ def results():
 def register():
     return render_template('register.html', message='Please fill in the registration form.')
 
-
+# check on registration request
 @app.route('/insert_user', methods=["POST"])
 def insert_user():
     users= mongo.db.users
@@ -79,13 +79,13 @@ def insert_user():
     else:
         return render_template('register.html', message="Provided email has already been registered. Please choose another one.")
 
-
+#login page
 @app.route('/login_page')
 def login_page():
     return render_template("loginpage.html", message="Please login with your username and password. Thanks!")
 
     
-
+# check on provided credentials
 @app.route('/check_credentials', methods=["POST"])
 def check_credentials():
     user_to_query= mongo.db.users.find_one( { '$or': [{"email_address": request.form.get("email_address")}, {"username": request.form.get("username")}]}) 
@@ -93,36 +93,57 @@ def check_credentials():
     if user_to_query and password_response:
         session['username']=user_to_query['username']
         session['email_address']=user_to_query['email_address']
-        return redirect(url_for('user', username=session["username"]))
+        return redirect(url_for("latest_added", username=session["username"]))
     else:
         return render_template('loginpage.html', message="Username or password incorrect. Please try again.")
 
-
+# route to user's homepage
 @app.route('/<username>')
 def user(username):
     return render_template("homepage.html")
 
-@app.route('/logout/<username>')
-def logout(username):
-    username_to_log_out=username
+
+@app.route('/logout') #### exception!!
+def logout():
     print(session["username"])
     session["username"]=""
     print(session["username"])
     print(session["email_address"])
-
-    return render_template("loggedout.html", username_to_log_out=username_to_log_out)
-
-
-
-
+    return render_template('latest_added.html', username=session["username"])
 
 @app.route('/add_recipe')
 def add_recipe():
-    #check if a session object has been created
+    #check if user has been logged in and hence a session object has been created
     if not session['username']:
         return render_template("loginpage.html", message="Please login first in order to be able to post recipes. Thanks!")
     else:
-        return render_template('addrecipe.html', dummy_recipe_id=add_blank_recipe(session))
+        return render_template('addrecipe.html', recipe_id=add_blank_recipe(session))
+
+
+
+
+#one route for inserting recipe into db
+@app.route('/insert_recipe/<recipe_id>', methods=["POST"])
+def insert_recipe(recipe_id):
+    print(recipe_id)
+    recipes= mongo.db.recipes
+    """
+    recipes.update( {'_id': ObjectId(recipe_id)},
+    {
+        "title": request.form.get('recipe_title'), 
+        
+    })
+    
+    """
+    recipes.update( {'_id': ObjectId(recipe_id)},
+    {
+        "title": request.form.get('recipe_title'), 
+        "reviews": [{
+        "rated_by": "me", 
+        "stars": request.form.get('stars'),
+        "comment": "good"}]
+    })
+    return redirect(url_for('latest_added'))
 
 @app.route('/fileselector')
 def fileselector(): 
@@ -140,21 +161,6 @@ def file_uploader():
 
 
 
-#one route for inserting recipe into db
-@app.route('/insert_recipe', methods=["POST"])
-def insert_recipe():
-    recipes= mongo.db.recipes
-    recipe = {
-    "title": request.form.get('recipe_title'), 
-    "reviews": [{
-        "rated_by": "me", 
-        "stars": request.form.get('stars'),
-        "comment": "good"
-    }]}
-    recipes.insert_one(recipe)
-    return redirect(url_for('get_recipes'))
-
-
 #Read from databse
 @app.route('/')
 def index():
@@ -167,7 +173,8 @@ def get_recipes():
 
 @app.route('/latest_added')
 def latest_added():
-    return render_template("latest_added.html")
+    recipes=mongo.db.recipes.find()
+    return render_template("latest_added.html", recipes=recipes)
 
 
 #Update database
