@@ -5,7 +5,7 @@ from bson.objectid import ObjectId
 import base64
 import requests
 from werkzeug.security import check_password_hash, generate_password_hash
-from aux_methods import add_blank_recipe, upload_to_imgbb
+
 
 #creating instance of Flask to have an app object
 app = Flask(__name__)
@@ -18,6 +18,27 @@ app.secret_key = os.getenv("COOKBOOK_SECRET_KEY")
 imgbb_upload_url="https://api.imgbb.com/1/upload?key="+os.getenv('IMGBB_CLIENT_API_KEY')
 #creating instance of Pymongo with app object to connect to MongoDB
 mongo = PyMongo(app)
+
+def add_blank_recipe(session):
+    if not mongo.db.recipes.find_one({"username": session["username"], "title": "dummy"}):
+        recipes= mongo.db.recipes
+        recipe = {
+            "title": "dummy",
+            "username": session["username"]
+        }
+        recipes.insert_one(recipe)
+        recipe_id=mongo.db.recipes.find_one({"username": session["username"], "title": "dummy"})
+        return recipe_id
+    else:
+        recipe_id=mongo.db.recipes.find_one({"username": session["username"], "title": "dummy"})
+    return recipe_id
+
+def upload_to_imgbb(base64file):
+    response = requests.post(imgbb_upload_url, data={"image": base64file})
+    url_img_src=response.json()
+    url_img_src=url_img_src["data"]["url"]
+    return url_img_src
+
 
 # ROUTES AND VIEWS
 #HEADER
