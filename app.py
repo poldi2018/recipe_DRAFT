@@ -5,8 +5,6 @@ from bson.objectid import ObjectId
 import base64
 import requests
 from werkzeug.security import check_password_hash, generate_password_hash
-# from aux_methods import add_blank_recipe
-
 
 #creating instance of Flask to have an app object
 app = Flask(__name__)
@@ -64,8 +62,7 @@ def results():
 #registeration
 @app.route('/register')
 def register():
-    userbase = mongo.db.users.find()
-    return render_template('register.html', userbase=userbase)
+    return render_template('register.html', message='Please fill in the registration form.')
 
 
 @app.route('/insert_user', methods=["POST"])
@@ -76,8 +73,11 @@ def insert_user():
     "email_address": request.form.get('email_address'),
     "password": generate_password_hash(request.form.get('password'))
     }
-    users.insert_one(new_user)
-    return redirect(url_for('failed_to_register', message="Provided email or username was not found!"))
+    if not mongo.db.users.find_one({"email_address": request.form.get("email_address")}): 
+        users.insert_one(new_user)
+        return render_template("loginpage.html", message="Account created! Please login with your username and password. Thanks!") 
+    else:
+        return render_template('register.html', message="Provided email has already been registered. Please choose another one.")
 
 
 @app.route('/login_page')
@@ -86,15 +86,13 @@ def login_page():
 
     
 
-@app.route('/check_user', methods=["POST"])
-def check_user():
-    #user_to_query= mongo.db.users.find_one({"email_address": request.form.get("email_address")})
-    user_to_query= mongo.db.users.find_one( { '$or': [{"email_address": request.form.get("email_address")}, {"username": request.form.get("username")}]})
+@app.route('/check_credentials', methods=["POST"])
+def check_credentials():
+    user_to_query= mongo.db.users.find_one( { '$or': [{"email_address": request.form.get("email_address")}, {"username": request.form.get("username")}]}) 
     password_response=check_password_hash(user_to_query['password'], request.form.get('password'))
     if user_to_query and password_response:
         session['username']=user_to_query['username']
         session['email_address']=user_to_query['email_address']
-        print(session)
         return redirect(url_for('user', username=session["username"]))
     else:
         return render_template('loginpage.html', message="Username or password incorrect. Please try again.")
@@ -102,7 +100,7 @@ def check_user():
 
 @app.route('/<username>')
 def user(username):
-    return render_template("homepage.html", username=username)
+    return render_template("homepage.html")
 
 @app.route('/logout/<username>')
 def logout(username):
@@ -132,8 +130,6 @@ def fileselector():
 
 @app.route('/file_uploader', methods=["POST"])
 def file_uploader():
-    # build upload URL string for imgbb with base url and API Key
-    #https://ibb.co/album/hFMN1F
     response = requests.post(imgbb_upload_url, data={"image": request.form.get("base64file"), "album": "hFMN1F"})
     print(response.text)
 
