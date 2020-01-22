@@ -19,26 +19,21 @@ app.secret_key = os.getenv("COOKBOOK_SECRET_KEY")
 imgbb_upload_url="https://api.imgbb.com/1/upload?key="+os.getenv('IMGBB_CLIENT_API_KEY')
 #creating instance of Pymongo with app object to connect to MongoDB
 mongo = PyMongo(app)
-currently_logged_on_user=""
 
-
-def removedummy():
-    dummy_recipe=mongo.db.recipes.find_one({"username": session["username"], "title": "dummy"})
-    mongo.db.recipes.delete_one({"_id": ObjectId(dummy_recipe)})
 
 def add_blank_recipe(session):
-    removedummy()
-    recipes= mongo.db.recipes
-    blank_recipe = {
-        "title": "dummy",
-        "username": session["username"]
-    }
-    recipes.insert_one(blank_recipe)
-    dummy_recipe_id=mongo.db.recipes.find_one({"username": session["username"], "title": "dummy"})
+    if not mongo.db.recipes.find_one({"username": session["username"], "title": "dummy"}):
+        recipes= mongo.db.recipes
+        blank_recipe = {
+            "title": "dummy",
+            "username": session["username"]
+        }
+        recipes.insert_one(blank_recipe)
+        dummy_recipe_id=mongo.db.recipes.find_one({"username": session["username"], "title": "dummy"})
+        return dummy_recipe_id
+    else:
+        dummy_recipe_id=mongo.db.recipes.find_one({"username": session["username"], "title": "dummy"})
     return dummy_recipe_id
-
-
-
 
 
 # routes and views
@@ -94,6 +89,7 @@ def check_user():
     if user_to_query and password_response:
         session['username']=user_to_query['username']
         session['email_address']=user_to_query['email_address']
+        print(session)
         return redirect(url_for('user', username=session["username"]))
     else:
         return render_template('loginpage.html', message="Username or password incorrect. Please try again.")
