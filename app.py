@@ -40,7 +40,7 @@ def upload_to_imgbb(base64file):
     return url_img_src
 
 
-# ROUTES AND VIEWS
+#ROUTES AND VIEWS
 #HEADER
 @app.route('/reviews')
 def reviews():
@@ -97,7 +97,6 @@ def check_credentials():
 def user(username):
     return render_template("homepage.html")
 
-
 @app.route('/logout') #### exception!!
 def logout():
     print(session["username"])
@@ -105,7 +104,6 @@ def logout():
     print(session["username"])
     print(session["email_address"])
     return render_template('latest_added.html', username=session["username"])
-
 
 #Add A Recipe
 @app.route('/add_recipe')
