@@ -1,0 +1,14 @@
+{% extends 'base.html'%}
+{% block header %}
+
+<div id="logoutBtn" >User {{username}} has been logged out</div>
+
+{% endblock %}
+{% block content %}
+<div class="row">
+    <h3>loggedout</h3>
+</div>
+
+<a href="{{ url_for('login_page') }}">Back to loginpage</a>
+</div>
+{% endblock %}
