@@ -36,25 +36,30 @@ def add_blank_recipe(session):
     return dummy_recipe_id
 
 
-# routes and views
+# ROUTES AND VIEWS
+#HEADER
+@app.route('/reviews')
+def reviews():
+    reviews=mongo.db.reviews.find()
+    return render_template("reviews.html", reviews=reviews)
+
+
+@app.route('/advanced_search')
+def advanced_search():
+    return render_template("search.html")
+
+@app.route('/results', methods=["POST"])
+def results():
+    return render_template("results.html")
+
+
+
+
+
 #Create recipe
 # one route to addrecipe dialog 
 
 
-@app.route('/fileselector')
-def fileselector(): 
-    return render_template('fileselector.html')
-
-@app.route('/file_uploader', methods=["POST"])
-def file_uploader():
-    # build upload URL string for imgbb with base url and API Key
-    #https://ibb.co/album/hFMN1F
-    response = requests.post(imgbb_upload_url, data={"image": request.form.get("base64file"), "album": "hFMN1F"})
-    print(response.text)
-
-    url_img_src=response.json()
-    url_img_src=url_img_src["data"]["url"]
-    return render_template("done.html", url_img_src=url_img_src)
 
 #registeration
 @app.route('/register')
@@ -112,6 +117,7 @@ def logout(username):
 
 
 
+
 @app.route('/add_recipe')
 def add_recipe():
     #check if a session object has been created
@@ -119,6 +125,22 @@ def add_recipe():
         return render_template("loginpage.html", message="Please login first in order to be able to post recipes. Thanks!")
     else:
         return render_template('addrecipe.html', dummy_recipe_id=add_blank_recipe(session))
+
+@app.route('/fileselector')
+def fileselector(): 
+    return render_template('fileselector.html')
+
+@app.route('/file_uploader', methods=["POST"])
+def file_uploader():
+    # build upload URL string for imgbb with base url and API Key
+    #https://ibb.co/album/hFMN1F
+    response = requests.post(imgbb_upload_url, data={"image": request.form.get("base64file"), "album": "hFMN1F"})
+    print(response.text)
+
+    url_img_src=response.json()
+    url_img_src=url_img_src["data"]["url"]
+    return render_template("done.html", url_img_src=url_img_src)
+
 
 
 
@@ -139,10 +161,17 @@ def insert_recipe():
 
 #Read from databse
 @app.route('/')
+def index():
+    return render_template("index.html")
+
 @app.route('/get_recipes')
 def get_recipes():
     recipes= mongo.db.recipes.find()
     return render_template('getrecipes.html', recipes=recipes)
+
+@app.route('/latest_added')
+def latest_added():
+    return render_template("latest_added.html")
 
 
 #Update database

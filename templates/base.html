@@ -13,10 +13,17 @@
 </head>
 
 <body>
+    <div class="container">
+        <header>
+            {% block header %} {% endblock %}
+        </header>
+
+    </div>
 
     <div class="container">
-        {% block header %} {% endblock %}
-        {% block content %} {% endblock %}
+        <main>
+            {% block content %} {% endblock %}
+        </main>
     </div>
 
 
