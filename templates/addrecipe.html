@@ -4,7 +4,7 @@
 <h3>Add a recipe</h3>
 <div class="row">
     <div class="addfield">click to add field to form</div>
-    <form action="{{ url_for('insert_recipe', recipe_id=recipe._id) }}" method="POST" class="col s12" enctype="multipart/form-data">
+    <form action="{{ url_for('insert_recipe', recipe_id=recipe_id._id) }}" method="POST" class="col s12" enctype="multipart/form-data">
         <div class="row">
             <div class="input-field col s12 testdiv">
                 <i class="material-icons prefix">playlist_add</i>

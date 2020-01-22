@@ -125,23 +125,13 @@ def add_recipe():
 #one route for inserting recipe into db
 @app.route('/insert_recipe/<recipe_id>', methods=["POST"])
 def insert_recipe(recipe_id):
-    print(recipe_id)
     recipes= mongo.db.recipes
-    """
     recipes.update( {'_id': ObjectId(recipe_id)},
     {
         "title": request.form.get('recipe_title'), 
-        
-    })
-    
-    """
-    recipes.update( {'_id': ObjectId(recipe_id)},
-    {
-        "title": request.form.get('recipe_title'), 
-        "reviews": [{
-        "rated_by": "me", 
-        "stars": request.form.get('stars'),
-        "comment": "good"}]
+        "dish_type": request.form.get('dish_type'),
+        "added_by:": session["username"],
+        "user_email": session["email_address"]
     })
     return redirect(url_for('latest_added'))
 
