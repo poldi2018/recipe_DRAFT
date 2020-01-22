@@ -1,3 +1,5 @@
+// variables
+var add_recipe_Btn_Active=False;
 var fieldcount=1;
 function increase_ingredientfield()
 { 
@@ -18,28 +20,20 @@ fieldcount++;}
 */
 
 function encodeImgtoBase64(element) {
-
     var file = element.files[0];
     var reader = new FileReader();
     reader.onloadend = function () {
-
-      //$("#base64file").attr("href",reader.result);
-
-      // $("#convertImg").text(reader.result);
-      // $("#base64file").text(reader.result.split(',')[1]);
-      $("#base64file").text(reader.result.split(',')[1]);
-
-
+    $("#base64file").text(reader.result.split(',')[1]);
     }
-    // $("#base64div").text();
     reader.readAsDataURL(file);
-    console.log(file);
   }
 
 
   function checkForValidImage() {
     var enteredFilename = $('#fileinputfield').val();
-
+    if (enteredFilename=="true") {
+        add_recipe_Btn_Active=True
+    }
     if ($('#fileinputfield').val().length == 0) {
       $('.popupCheckImagename').html(`Please select an JPEG or JPG.`);
       popupCheckImagename();

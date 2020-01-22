@@ -2,9 +2,19 @@
 {% block header %}
 <div>{{session["username"]}}</div>
 <div>{{session["email_address"]}}</div>
-<a href="{{ url_for('logout', username=username) }}">Logout</a>
+<a href="{{ url_for('logout') }}">Logout</a>
 {% endblock %}
 {% block content %}
+
+<div class="row">
+
+{% for recipe in recipes_by_current_user %}
+
+<!-- -->
+
+{% endfor %}
+</div>
+
 <div class="row"><a href="{{ url_for('add_recipe') }}">Add recipe</a></div>
 <div class="row">
     <h3>Login</h3>

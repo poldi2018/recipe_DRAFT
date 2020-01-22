@@ -17,9 +17,9 @@
     <li>
         <div id="login"></div>
     </li>
-    {% if not username=="" %}
+    {% if session["username"]!="" %}
     <li>
-        <div class="div">{{username}}</div>
+        <div class="div"><a href="{{url_for('user')}}">{{session["username"]}}'s Homepage</a></div>
         <div id="logout"><a href="{{url_for('logout')}}">Logout</a></div>
     </li>
     {% endif %}
@@ -27,7 +27,7 @@
 {% endblock %}
 {% block content %}
 
-<h3>recipes in our database</h3>
+<h3>Latest recipes in our database</h3>
 {% for recipe in recipes %}
 <div class="row">
     <div class="col s6">
