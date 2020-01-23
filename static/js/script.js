@@ -29,14 +29,14 @@ function encodeImgtoBase64(element) {
   }
 
 
-  function checkForValidImage() {
+  function ImageValidator() {
     var enteredFilename = $('#fileinputfield').val();
-    if (enteredFilename=="true") {
+    if (enteredFilename.length!=0) {
         add_recipe_Btn_Active=True
     }
     if ($('#fileinputfield').val().length == 0) {
-      $('.popupCheckImagename').html(`Please select an JPEG or JPG.`);
-      popupCheckImagename();
+      $('.popupImageValidator').html(`Please select an JPEG or JPG.`);
+      ImageValidator();
 
     }
 

@@ -20,20 +20,6 @@ imgbb_upload_url="https://api.imgbb.com/1/upload?key="+os.getenv('IMGBB_CLIENT_A
 #creating instance of Pymongo with app object to connect to MongoDB
 mongo = PyMongo(app)
 
-def add_blank_recipe(session):
-    if not mongo.db.recipes.find_one({"username": session["username"], "title": "dummy"}):
-        recipes= mongo.db.recipes
-        recipe = {
-            "title": "dummy",
-            "username": session["username"]
-        }
-        recipes.insert_one(recipe)
-        recipe_id=mongo.db.recipes.find_one({"username": session["username"], "title": "dummy"})
-        return recipe_id
-    else:
-        recipe_id=mongo.db.recipes.find_one({"username": session["username"], "title": "dummy"})
-    return recipe_id
-
 def upload_to_imgbb(base64file):
     response = requests.post(imgbb_upload_url, data={"image": base64file})
     url_img_src=response.json()
@@ -44,7 +30,6 @@ def logout_user(session):
     session["username"]=""    
     session["user"]=""
     session["email_address"]=""
-
 
 #ROUTES AND VIEWS
 #HEADER
@@ -59,7 +44,10 @@ def advanced_search():
 
 @app.route('/results', methods=["POST"])
 def results():
-    return render_template("results.html")
+    search_term=request.form.get("search_term")
+    mongo.db.recipes.createIndex( { "title": "text", "directions": "text" } )
+    recipes=mongo.db.recipes.find({"$text":{"$search": "Worschtsupp"}})
+    return render_template("results.html", recipes=recipes, search_term=search_term)
 
 #registeration of user CHECKED 
 @app.route('/register')
@@ -94,15 +82,15 @@ def check_credentials():
     if user_to_query and password_response:
         session['username']=user_to_query['username']
         session['email_address']=user_to_query['email_address']
-        return redirect(url_for("latest_added", session=session))
+        return redirect(url_for("latest_added", session=session["username"]))
     else:
         return render_template('loginpage.html', message="Username or password incorrect. Please try again.")
 
-# route to user's homepage
+# route to user's homepage CHECKED
 @app.route('/user')
 def user():
     recipes_by_current_user= mongo.db.recipes.find({"email_address": session["email_address"]}) 
-    return render_template("homepage.html", session=session, recipes_by_current_user=recipes_by_current_user)
+    return render_template("homepage.html", session=session["username"], recipes_by_current_user=recipes_by_current_user)
 
 # logout page CHECKED
 @app.route('/logout')
@@ -144,9 +132,9 @@ def insert_recipe():
         "origin": request.form.get("origin"),
         "img_src": url_img_src
     })
-    return redirect(url_for('latest_added', session=session))
+    return redirect(url_for('latest_added', session=session["username"]))
 
-#Route to indexpage
+#Route to indexpage CHECKED
 @app.route('/')
 def index():
     return render_template("index.html")

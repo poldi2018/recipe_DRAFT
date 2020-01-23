@@ -1,33 +1,9 @@
 {% extends 'base.html'%}
-{% block header %}
-<div class="div">{{username}}</div>
-<ul>
-    <li><img src="" alt=""></li>
-    <li><a href="{{url_for('add_recipe')}}">Add A Recipe</a></li>
-    <li><a href="{{url_for('reviews')}}">Reviews</a></li>
-    <li><a href="{{url_for('advanced_search')}}">Advanced Search</a></li>
-    <li>
-        <form action="">
-            <input type="text">
-            <button class="btn waves-effect waves-light" type="submit" name="action">Send
-                <i class="material-icons right">playlist</i>
-            </button>
-        </form>
-    </li>
-    <li>
-        <div id="login"></div>
-    </li>
-    {% if session["username"]!="" %}
-    <li>
-        <div class="div"><a href="{{url_for('user')}}">{{session["username"]}}'s Homepage</a></div>
-        <div id="logout"><a href="{{url_for('logout')}}">Logout</a></div>
-    </li>
-    {% endif %}
-</ul>
-{% endblock %}
-{% block content %}
 
-<h3>Latest recipes in our database</h3>
+{% block content %}
+<div class="row">
+    <h3>Latest recipes in our database</h3>
+</div>
 {% for recipe in recipes %}
 <div class="row">
     <div class="col s6">
@@ -36,18 +12,16 @@
     <div class="col s1"><a href="{{url_for('edit_recipe', recipe_id=recipe._id) }}">Edit</a></div>
     <div class="col s1"><a href="{{url_for('delete_recipe', recipe_id=recipe._id) }}">Delete</a></div>
     <div class="col s1"><a href="{{url_for('rate_recipe', recipe_id=recipe._id) }}">Rate</a></div>
-
 </div>
 
-<div><img src="{{recipe.img_src}}" alt="picture_of_dish"></div>
-{% endfor %}
 <div class="row">
-    <a href="{{url_for('add_recipe')}}">To add recipe dialog</a>
+    <img src="{{recipe.img_src}}" alt="picture_of_dish"></div>
 </div>
+{% endfor %}
 
-
-
-<div class="row"><a href="{{ url_for('add_recipe') }}">Add recipe</a></div>
+<div class="row">
+    <a href="{{ url_for('add_recipe') }}">Add recipe</a>
+</div>
 
 
 <a href="{{ url_for('login_page') }}">Back to loginpage</a>

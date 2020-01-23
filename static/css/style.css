@@ -1,5 +1,11 @@
 body {
-    background-color: antiquewhite;
+    background-color:#EAE7DC;
+}
+
+
+
+header {
+    position: fixed;
 }
 
 h3 {
@@ -7,28 +13,47 @@ h3 {
 
 }
 
+#nav-mobile li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+}
+
+#searchform{
+    display: flex;
+    align-items: center;
+}
+
+#searchBtn{
+    width: 30%;
+}
+
+
+#search_wrapper{
+    width:60%;
+}
 
 .recipe_head_wrapper {
     width: 8vw;
 }
 
-
-.popupCheckImagename {
+.popupImageValidator {
     opacity: 0.0;
     z-index: -1;
     transform: translateZ(-10px);
     transition: opacity .8s ease-in-out;
 }
 
-.row-logo-big {
-font-family: 'Times New Roman', Times, serif;
-}
-
-#logo-big{
+.wrapper_logo_big{
+    width: 95vw;
     height: 95vh;
     display: flex;
     justify-content: center;
     align-items: center;
+}
 
+
+img {
+    width: 100px;
 }
