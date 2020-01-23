@@ -20,7 +20,7 @@ imgbb_upload_url="https://api.imgbb.com/1/upload?key="+os.getenv('IMGBB_CLIENT_A
 #creating instance of Pymongo with app object to connect to MongoDB
 mongo = PyMongo(app)
 
-def upload_to_imgbb(base64file):
+def upload_image(base64file):
     response = requests.post(imgbb_upload_url, data={"image": base64file})
     url_img_src=response.json()
     url_img_src=url_img_src["data"]["url"]
@@ -32,6 +32,12 @@ def logout_user(session):
     session["email_address"]=""
 
 #ROUTES AND VIEWS
+
+#Route to indexpage CHECKED
+@app.route('/')
+def index():
+    return render_template("index.html")
+
 #HEADER
 @app.route('/reviews')
 def reviews():
@@ -58,16 +64,17 @@ def register():
 @app.route('/insert_user', methods=["POST"])
 def insert_user():
     users= mongo.db.users
-    new_user = {
-    "username": request.form.get('username'), 
-    "email_address": request.form.get('email_address'),
-    "password": generate_password_hash(request.form.get('password'))
-    }
-    if not mongo.db.users.find_one({"email_address": request.form.get("email_address")}): 
+    if not mongo.db.users.find_one({"email_address_hash": generate_password_hash(request.form.get('email_address'))}): 
+        new_user = {
+            "username": request.form.get('username'), 
+            "email_address": request.form.get('email_address'),
+            "email_address_hash": generate_password_hash(request.form.get('email_address')),
+            "password": generate_password_hash(request.form.get('password'))
+        }
         users.insert_one(new_user)
         return render_template("loginpage.html", message="Account created! Please login with your username and password. Thanks!") 
     else:
-        return render_template('register.html', message="Provided email has already been registered. Please choose another one.")
+        return render_template('register.html', message="Provided email has already been registered. Please choose a different one.")
 
 #login page CHECKED
 @app.route('/login_page')
@@ -77,12 +84,12 @@ def login_page():
 # check on provided credentials CHECKED
 @app.route('/check_credentials', methods=["POST"])
 def check_credentials():
-    user_to_query= mongo.db.users.find_one( { '$or': [{"email_address": request.form.get("email_address")}, {"username": request.form.get("username")}]}) 
+    user_to_query= mongo.db.users.find_one( { '$or': [{"email_address_hash": generate_password_hash(request.form.get('email_address'))}, {"username": request.form.get("username")}]}) 
     password_response=check_password_hash(user_to_query['password'], request.form.get('password'))
     if user_to_query and password_response:
         session['username']=user_to_query['username']
-        session['email_address']=user_to_query['email_address']
-        return redirect(url_for("latest_added", session=session["username"]))
+        session['email_address']=user_to_query['email_address_hash']
+        return redirect(url_for("latest_added", session=session))
     else:
         return render_template('loginpage.html', message="Username or password incorrect. Please try again.")
 
@@ -90,7 +97,7 @@ def check_credentials():
 @app.route('/user')
 def user():
     recipes_by_current_user= mongo.db.recipes.find({"email_address": session["email_address"]}) 
-    return render_template("homepage.html", session=session["username"], recipes_by_current_user=recipes_by_current_user)
+    return render_template("homepage.html", session=session, recipes_by_current_user=recipes_by_current_user)
 
 # logout page CHECKED
 @app.route('/logout')
@@ -103,7 +110,7 @@ def logout():
 def add_recipe():
     #check if user has been logged in and hence a session object has been created
     if not session['username']:
-        return render_template("loginpage.html", message="Please login first in order to be able to post recipes. Thanks!")
+        return render_template("loginpage.html", message="Please login first to be able to post recipes. Thanks!")
     else:
         return render_template('addrecipe.html')
 
@@ -111,13 +118,13 @@ def add_recipe():
 @app.route('/insert_recipe', methods=["POST"])
 def insert_recipe():
     recipes= mongo.db.recipes
-    url_img_src=upload_to_imgbb(request.form.get("base64file"))
+    url_img_src=upload_image(request.form.get("base64file"))
     recipes.insert_one(
     {
         "title": request.form.get('recipe_title'), 
         "dish_type": request.form.get('dish_type'),
         "added_by:": session["username"],
-        "user_email": session["email_address"],
+        "user_email_hash": session["email_address"],
         "added_on": "ADDEDON",
         "edited_on": "EDITEDON",
         "level": request.form.get("level"),
@@ -132,12 +139,8 @@ def insert_recipe():
         "origin": request.form.get("origin"),
         "img_src": url_img_src
     })
-    return redirect(url_for('latest_added', session=session["username"]))
+    return redirect(url_for('latest_added', session=session))
 
-#Route to indexpage CHECKED
-@app.route('/')
-def index():
-    return render_template("index.html")
 
 #show latest recipes
 @app.route('/latest_added')
