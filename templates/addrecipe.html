@@ -3,7 +3,9 @@
 {% block content %}
 <h3>Add a recipe</h3>
 <div class="row">
-    <div class="addfield">click to add field to form</div>
+    <div class="addIngredientField">click to add ingredient field</div>
+    <div class="removeIngredientField">click to remove ingredient field</div>
+
     <form action="{{ url_for('insert_recipe')}}" method="POST" class="col s12" enctype="multipart/form-data">
         <div class="row">
             <div class="input-field col s12 testdiv">
@@ -59,15 +61,15 @@
                 <label for="allergens">Allergens</label>
             </div>
         </div>
-
-        <div class="row">
-            <div class="input-field col s12 testdiv">
-                <i class="material-icons prefix">playlist_add</i>
-                <textarea id="ingredients" name="ingredients"></textarea>
-                <label for="ingredients">Ingredients</label>
+        <div id="ingredientWrapper">
+            <div class="row">
+                <div class="input-field col s12 testdiv">
+                    <i class="material-icons prefix">playlist_add</i>
+                    <input id="ingredient1" name="ingredient1" type="text" class="validate">
+                    <label for="ingredient1">Ingredient</label>
+                </div>
             </div>
         </div>
-
         <div class="row">
             <div class="input-field col s12 testdiv">
                 <i class="material-icons prefix">playlist_add</i>

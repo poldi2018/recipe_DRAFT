@@ -7,7 +7,6 @@ import base64
 import requests
 from werkzeug.security import check_password_hash, generate_password_hash
 
-
 #creating instance of Flask to have an app object
 app = Flask(__name__)
 #setting name of db, parse and assign system env variable
@@ -44,6 +43,7 @@ def reviews():
     reviews=mongo.db.reviews.find()
     return render_template("reviews.html", reviews=reviews)
 
+# search dialog CHECKED
 @app.route('/advanced_search')
 def advanced_search():
     return render_template("search.html")
@@ -141,7 +141,6 @@ def insert_recipe():
     })
     return redirect(url_for('latest_added', session=session))
 
-
 #show latest recipes
 @app.route('/latest_added')
 def latest_added():
@@ -152,8 +151,6 @@ def latest_added():
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    print(recipe_id)
-    print(recipe)
     return render_template('editrecipe.html', recipe=recipe)
 
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
@@ -196,28 +193,17 @@ def rate_recipe(recipe_id):
     return render_template('raterecipe.html', recipe_id=recipe_id, recipe_title=recipe['title'], added_by=recipe['added_by'])
 
 #insert rating
-@app.route('/insert_rating/<recipe_id>', methods=["POST"])
-def insert_rating(recipe_id):
+@app.route('/insert_rating/<recipe_id>/<recipe_title>', methods=["POST"])
+def insert_rating(recipe_id, recipe_title):
     reviews = mongo.db.reviews
     reviews.insert_one(
     {   "review_title": request.form.get('review_title'),
-        "review_for": request.form.get('review_for'), 
+        "review_for": recipe_title,
+        "recipe_id":  recipe_id,
         "rating": request.form.get('rating'),
         "comment": request.form.get('comment')
     })
     return redirect(url_for('latest_added', session=session))
-
-@app.route('/addformfield')
-def addformfield():
-    return render_template("addformfield.html")
-
-@app.route('/insertformfield', methods=["POST"])
-def insertformfield():
-    testfield=request.form.get('formtestfield')
-    categoryfield=request.form.get('category_name')
-    print(categoryfield)
-    print(testfield)
-    return render_template("test.html", testfield=testfield, categoryfield=categoryfield)
 
 # run app
 if __name__ == '__main__':

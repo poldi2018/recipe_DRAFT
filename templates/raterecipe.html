@@ -4,7 +4,7 @@
 <h3>Rate recipe for {{recipe_title}}, created by {{added_by}}</h3>
 <div class="row">
     <div class="addfield">click to add field to form</div>
-    <form action="{{ url_for('insert_rating', recipe_id=recipe_id) }}" method="POST" class="col s12" id="testform">
+    <form action="{{ url_for('insert_rating', recipe_id=recipe_id, recipe_title=recipe_title) }}" method="POST" class="col s12" id="testform">
         <div class="row">
             <i class="material-icons prefix">playlist_add</i>
             <input id="review_title" name="review_title" type="text" class="validate">
