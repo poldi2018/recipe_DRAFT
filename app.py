@@ -123,7 +123,7 @@ def insert_recipe():
     {
         "title": request.form.get('recipe_title'), 
         "dish_type": request.form.get('dish_type'),
-        "added_by:": session["username"],
+        "added_by": session["username"],
         "user_email_hash": session["email_address"],
         "added_on": "ADDEDON",
         "edited_on": "EDITEDON",
@@ -164,7 +164,7 @@ def update_recipe(recipe_id):
     {
         "title": request.form.get('recipe_title'), 
         "dish_type": request.form.get('dish_type'),
-        "added_by:": session["username"],
+        "added_by": session["username"],
         "user_email_hash": session["email_address"],
         "added_on": "ADDEDON",
         "edited_on": "EDITEDON",
@@ -193,7 +193,7 @@ def delete_recipe(recipe_id):
 @app.route('/rate_recipe/<recipe_id>')
 def rate_recipe(recipe_id):
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    return render_template('raterecipe.html', recipe_id=recipe._id, recipe_title=recipe.title, added_by=recipe.added_by)
+    return render_template('raterecipe.html', recipe_id=recipe_id, recipe_title=recipe['title'], added_by=recipe['added_by'])
 
 #insert rating
 @app.route('/insert_rating/<recipe_id>', methods=["POST"])
