@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"
         type="text/css" />
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
-    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
-    <link rel="icon" href="favicon.png" type="image/x-icon">
     <title>Poldi's Cookbook</title>
 
 </head>
@@ -42,15 +40,21 @@
                             </form>
                         </div>
                     </li>
+
+                    {% block current_user %}
+                    {% if session["username"]=="" %}
                     <li>
                         <div id="login"><a href="{{url_for('login_page')}}">Login</a></div>
                     </li>
+                    {% endif %}
 
-                    {% block current_user %}
                     {% if session["username"]!="" %}
                     <li>
-                        <div class="div"><a href="{{url_for('user')}}">{{session["username"]}}'s Homepage</a></div>
                         <div id="logout"><a href="{{url_for('logout')}}">Logout</a></div>
+                    </li>
+                    <li>
+                        <div id="userHome"><a href="{{url_for('user')}}">{{session["username"]}}'s Homepage</a></div>
+
                     </li>
                     {% endif %}
                     {% endblock %}
@@ -73,7 +77,7 @@
                         </form>
                     </li>
                     <li>
-                        <div id="login"><a href="{{url_for('login_page')}}">Logout</a></div>
+                        <div id="login"><a href="{{url_for('login_page')}}">Login</a></div>
                     </li>
                     <!--
                         {% block current_user2 %} 

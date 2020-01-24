@@ -96,7 +96,7 @@ def check_credentials():
 # route to user's homepage CHECKED
 @app.route('/user')
 def user():
-    recipes_by_current_user= mongo.db.recipes.find({"email_address": session["email_address"]}) 
+    recipes_by_current_user= mongo.db.recipes.find({"email_address_hash": session["email_address"]}) 
     return render_template("homepage.html", session=session, recipes_by_current_user=recipes_by_current_user)
 
 # logout page CHECKED
@@ -148,49 +148,64 @@ def latest_added():
     recipes=mongo.db.recipes.find()
     return render_template("latest_added.html", recipes=recipes)
 
-#Update database
+#Update database CHECKED
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    print(recipe_id)
+    print(recipe)
     return render_template('editrecipe.html', recipe=recipe)
 
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
-    recipes=mongo.db.recipes
-    
-    recipes.update( {'_id': ObjectId(recipe_id)},
+    url_img_src=upload_image(request.form.get("base64file"))
+    recipe = mongo.db.recipes
+    recipe.update({"_id": ObjectId(recipe_id)},
     {
         "title": request.form.get('recipe_title'), 
-        "reviews": [{
-        "rated_by": "me", 
-        "stars": request.form.get('stars'),
-        "comment": "good"}]
+        "dish_type": request.form.get('dish_type'),
+        "added_by:": session["username"],
+        "user_email_hash": session["email_address"],
+        "added_on": "ADDEDON",
+        "edited_on": "EDITEDON",
+        "level": request.form.get("level"),
+        "review_count": "0",
+        "view_count": "0",
+        "prep_time": request.form.get("prep_time"),
+        "cooking_time": request.form.get("cooking_time"),
+        "total_time": request.form.get("prep_time")+request.form.get("cooking_time"),
+        "directions": request.form.get("directions"),
+        "allergens": request.form.get("allergens"),
+        "ingredients": request.form.get("ingredients"),
+        "origin": request.form.get("origin"),
+        "img_src": url_img_src
     })
-    return redirect(url_for('get_recipes'))
+    return redirect(url_for('latest_added', session=session))
 
-#Delete recipe in database
+#Delete recipe in database CHECKED
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
     mongo.db.recipes.delete_one({'_id': ObjectId(recipe_id)})
-    return redirect(url_for('latest_added'))
+    return redirect(url_for('latest_added', session=session))
+
 
 #Rate recipe
 @app.route('/rate_recipe/<recipe_id>')
 def rate_recipe(recipe_id):
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    return render_template('raterecipe.html', recipe=recipe)
+    return render_template('raterecipe.html', recipe_id=recipe._id, recipe_title=recipe.title, added_by=recipe.added_by)
 
 #insert rating
 @app.route('/insert_rating/<recipe_id>', methods=["POST"])
 def insert_rating(recipe_id):
-    recipe_to_rate = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    new_rating = { 
-        "rated_by": "me", 
-        "stars": request.form.get('stars'),
+    reviews = mongo.db.reviews
+    reviews.insert_one(
+    {   "review_title": request.form.get('review_title'),
+        "review_for": request.form.get('review_for'), 
+        "rating": request.form.get('rating'),
         "comment": request.form.get('comment')
-    }
-    recipe_to_rate.update(new_rating)
-    return redirect(url_for('get_recipes'))
+    })
+    return redirect(url_for('latest_added', session=session))
 
 @app.route('/addformfield')
 def addformfield():

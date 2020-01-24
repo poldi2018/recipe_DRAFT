@@ -1,25 +1,41 @@
 {% extends 'base.html'%}
 
 {% block content %}
-<h3>Rate recipe for {{recipe.title}}</h3>
+<h3>Rate recipe for {{recipe_title}}, created by {{added_by}}</h3>
 <div class="row">
     <div class="addfield">click to add field to form</div>
-    <form action="{{ url_for('insert_rating', recipe_id=recipe._id) }}" method="POST" class="col s12" id="testform">
+    <form action="{{ url_for('insert_rating', recipe_id=recipe_id) }}" method="POST" class="col s12" id="testform">
         <div class="row">
             <i class="material-icons prefix">playlist_add</i>
-                <input id="stars" name="stars" type="text" class="validate" value="{{recipe.reviews.stars}}">
-                <label for="stars">stars</label>
+            <input id="review_title" name="review_title" type="text" class="validate">
+            <label for="review_title">stars</label>
         </div>
         <div class="row">
             <i class="material-icons prefix">playlist_add</i>
-                <input id="comment" name="comment" type="text" class="validate">
-                <label for="comment">comment:</label>
+            <div id="review_for" name="review_for">{{recipe_title}}</div>
+            <label for="review_for">{{recipe_title}}</label>
+        </div>
+        <div class="row">
+            <i class="material-icons prefix">playlist_add</i>
+            <input id="rating" name="rating" type="text" class="validate">
+            <label for="review_title">rating</label>
+        </div>
+        <div class="row">
+            <i class="material-icons prefix">playlist_add</i>
+            <input id="comment" name="comment" type="text" class="validate">
+            <label for="comment">Comment:</label>
         </div>
         <div class="row">
             <button class="btn waves-effect waves-light" type="submit" name="action">Send
                 <i class="material-icons right">playlist</i>
-             </button>
+            </button>
         </div>
     </form>
 </div>
 {% endblock %}
+
+review_title: <string> FORMFIELDNAME review_title
+    review_for: <ObjectId of recipe_id>
+        reviewed_by: <ObjectId of user_id>
+            rating: <integer> FORMFIELDNAME rating
+                rating_comment: <string> FORMFIELDNAME rating_comment
