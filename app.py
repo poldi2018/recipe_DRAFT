@@ -64,7 +64,10 @@ def register():
 @app.route('/insert_user', methods=["POST"])
 def insert_user():
     users= mongo.db.users
-    if not mongo.db.users.find_one({"email_address_hash": generate_password_hash(request.form.get('email_address'))}): 
+    user_email_to_check = mongo.db.users.find_one({"email_address": request.form.get('email_address')}) 
+    username_to_check = mongo.db.users.find_one({"username": request.form.get('username')}) 
+
+    if not user_email_to_check and not username_to_check: 
         new_user = {
             "username": request.form.get('username'), 
             "email_address": request.form.get('email_address'),
@@ -72,9 +75,15 @@ def insert_user():
             "password": generate_password_hash(request.form.get('password'))
         }
         users.insert_one(new_user)
-        return render_template("loginpage.html", message="Account created! Please login with your username and password. Thanks!") 
-    else:
-        return render_template('register.html', message="Provided email has already been registered. Please choose a different one.")
+        return render_template("loginpage.html", message="Account created! Please login with your username or email and password. Thanks!") 
+    elif user_email_to_check:
+            return render_template('register.html', message="Provided email has already been registered. Please choose a different one.")
+
+    elif username_to_check:
+            return render_template('register.html', message="Provided username has already been registered. Please choose a different one.")
+    
+    elif user_email_to_check and username_to_check:
+            return render_template('register.html', message="Provided email and username already have been registered.")
 
 #login page CHECKED
 @app.route('/login_page')
@@ -84,15 +93,57 @@ def login_page():
 # check on provided credentials CHECKED
 @app.route('/check_credentials', methods=["POST"])
 def check_credentials():
-    user_to_query= mongo.db.users.find_one( { '$or': [{"email_address_hash": generate_password_hash(request.form.get('email_address'))}, {"username": request.form.get("username")}]}) 
-    password_response=check_password_hash(user_to_query['password'], request.form.get('password'))
-    if user_to_query and password_response:
-        session['username']=user_to_query['username']
-        session['email_address']=user_to_query['email_address_hash']
-        return redirect(url_for("latest_added", session=session))
+    user_email_to_check = mongo.db.users.find_one({"email_address": request.form.get('email_address')}) 
+    username_to_check = mongo.db.users.find_one({"username": request.form.get('username')}) 
+    #user_to_query= mongo.db.users.find_one( { '$or': [{"email_address_hash": generate_password_hash(request.form.get('email_address'))}, {"username": request.form.get("username")}]}) 
+    if user_email_to_check:
+        password_response=check_password_hash(user_email_to_check['password'], request.form.get('password'))
+        if user_email_to_check and password_response:
+            session['username']=user_email_to_check['username']
+            session['email_address']=user_email_to_check['email_address_hash']
+            return redirect(url_for("latest_added", session=session))
+        else:
+            return render_template('loginpage.html', message="Username or password incorrect. Please try again.")
+
+    elif username_to_check:
+        password_response=check_password_hash(username_to_check['password'], request.form.get('password'))
+        if username_to_check and password_response:
+            session['username']=username_to_check['username']
+            session['email_address']=username_to_check['email_address_hash']
+            return redirect(url_for("latest_added", session=session))
+        else:
+            return render_template('loginpage.html', message="Username or password incorrect. Please try again.")
+
+    
+    #user_to_query= mongo.db.users.find_one( { '$or': [{"email_address_hash": generate_password_hash(request.form.get('email_address'))}, {"username": request.form.get("username")}]}) 
+
+    """
+    print(user_to_query)
+    if user_to_query:
+        password_response=check_password_hash(user_to_query['password'], request.form.get('password'))
+        if password_response:
+            session['username']=user_to_query['username']
+            session['email_address']=user_to_query['email_address_hash']
+            return redirect(url_for("latest_added", session=session))
+    
     else:
         return render_template('loginpage.html', message="Username or password incorrect. Please try again.")
 
+    
+    
+    
+    elif username_to_check:
+        password_response=check_password_hash(username_to_check['password'], request.form.get('password'))
+        if password_response:
+            session['username']=username_to_check['username']
+            session['email_address']=username_to_check['email_address_hash']
+            return redirect(url_for("latest_added", session=session))
+    #user_to_query= mongo.db.users.find_one( { '$or': [{"email_address_hash": generate_password_hash(request.form.get('email_address'))}, {"username": request.form.get("username")}]}) 
+
+    """
+
+    
+    
 # route to user's homepage CHECKED
 @app.route('/user')
 def user():
