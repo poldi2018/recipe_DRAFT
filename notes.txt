@@ -1,0 +1,232 @@
+DB schema:
+
+Referenced Data of
+Key db identifier
+Datatype
+
+
+collection ‘recipes’:
+_id: <ObjectId>
+title: <string> FORMFIELDNAME recipe_title
+dish_type: <string> FORMFIELDNAME dish_type
+added_by: <string> ###
+user_email: <string> ###
+added_on: <Date> ###
+edited_on: <Date> ###
+level: <integer> FORMFIELDNAME level
+review_count: <integer> ###
+view_count: <integer> ####
+prep_time: <Time> FORMFIELDNAME prep_time
+cooking_time: <Time> FORMFIELDNAME cooking_time
+total_time: <Time> ###
+directions: <string> FORMFIELDNAME directions
+allergens: <array> FORMFIELDNAME allergens
+ingredients: <array of ingredients> FORMFIELDNAME ingredients
+origin: <string> FORMFIELDNAME origin
+img_src: <string> RETURNED BY METHOD
+
+collection ‘users’:
+_id: <ObjectId>
+username: <string>
+user_email: <string>
+password: <string>
+
+collection ‘reviews’:
+_id: <ObjectId>
+review_title: <string> FORMFIELDNAME review_title
+review_for: <ObjectId of recipe_id>
+reviewed_by: <ObjectId of user_id> 
+rating: <integer> FORMFIELDNAME rating
+rating_comment: <string> FORMFIELDNAME rating_comment
+
+
+
+Object ‘ingredients’:
+amount_ingredient: <string>
+ingredient: <string>
+
+
+
+
+
+
+
+
+
+drop down menu dish_type options:
+breakfast
+soup
+salads
+lunch
+dinner
+dessert
+chicken
+fish
+meat
+cake
+### ADD NEW
+
+
+
+
+
+
+
+
+
+
+MOCKUPS:
+header:
+#icon
+#menu bar:
+#Add A Recipe (C)
+#Reviews
+#Advanced Search
+#Rate This One
+#Edit This Recipe (U)
+#Delete This Recipe(D)
+#Quick Search
+
+main content block:
+#recipe title  and Btn#UPDATE , Btn#DEL
+#upper stats panel:
+container:
+added_By:
+date_Added:
+level:
+stars:
+likes:
+
+#upper right pic
+#lower left ingredients panel:
+<amount> ingredient
+<amount> ingredient
+<amount> ingredient
+<amount> ingredient
+
+#lower right directions panel:
+stats div:
+container:
+prep time
+cook time
+total time to make
+directions div:
+Lorem ipsum ….
+
+# carousel newly added
+# carousel top rated
+
+footer:
+C
+contact
+gh
+
+
+VIEWS:
+add recipe ADDED
+reviews ADDED
+advance search ADDED
+search results ADDED
+rate this one <modal> ADDED
+delete this recipe ADDED
+edit this recipe ADDED
+read recipe details DONE
+
+ROUTES AND VIEWS:
+
+ENTRYPAGE:
+(‘/‘): enter.html  -> linked TO (‘/latest_added’) 
+############
+(‘/latest_added’): show last 20 latest added
+############
+(‘/add_recipe’): add a recipe -> TO (‘/current_added’)
+############
+(‘/read_recipe<recipe_id>’): show recipe details
+############
+(‘/reviews’): show first 20 of reviews  TO (‘/read_recipe<recipe_id>’)
+############
+(‘/advanced_search’): enter search parameters ->TO (‘/search_results’)
+############
+(‘/search_results’): display results -> TO (‘/read_recipe<recipe_id>’)
+############
+('/rate_recipe/<recipe_id>’): modal rate this one -> TO (‘/read_recipe<recipe_id>’)
+############
+(‘/edit_recipe/<recipe_id>’): edit view(same as read_recipe view with pop fields) -> TO (‘/read_recipe<recipe_id>’)
+############
+(‘/delete_recipe/<recipe_id>’): modal delete this one -> TO (‘/latest_added’)
+############
+
+FEATURES:
+- Creation of recipes and ratings are bound to user acounts
+image upload illustrating the prepared dish
+for security reasons email addresses are treated like passwords and have been hashed as well, to omit.
+
+
+
+README.MD
+# markup language!
+# flash message!
+
+
+ACKNOWLEDGEMENT:
+
+tutsmake for converting image into base64  and using the FileReader Object
+  "https://www.tutsmake.com/convert-image-to-base64-string-jquery/"
+
+
+CURRENT ISSUES:
+uploading images to imgbb database works, but I could not figure out how to address specific album. Passing a key-value pair like {“album”: “test”} inside the data dictionary did not succeed, nor throwed an error. 
+
+
+
+ANTHONY:
+repo link
+mockups
+schema
+
+
+COMPLIANCE
+CSS
+HTML
+JShint
+Jasmine
+PEP
+test py code
+
+
+
+REQUIREMENTS
+
+MSP4:
+
+In this project, you’ll be building a data-driven web application using the technologies that you have learned throughout Data Centric Development. You can either choose to to follow the example brief below, or you can use your own idea for the website.
+CREATE AN ONLINE COOKBOOK:
+Create a web application that allows users to store and easily access cooking recipes
+Put some effort into designing a database schema based on recipes, and any other related properties and entities (e.g. views, upvotes, ingredients, recipe authors, allergens, author’s country of origin, cuisine etc…). Make sure to put some thought into the relationships between them, and use either foreign keys (in the case of a relational database) or nesting (in the case of a document store) to connect these pieces of data
+Create the backend code and frontend form to allow users to add new recipes to the site (at least a basic one, if you haven’t taken the frontend course)
+Create the backend code to group and summarise the recipes on the site, based on their attributes such as cuisine, country of origin, allergens, ingredients, etc. and a frontend page to show this summary, and make the categories clickable to drill down into a filtered view based on that category. This frontend page can be as simple or as complex as you’d like; you can use a Python library such as matplotlib, or a JS library such as d3/dc (that you learned about if you took the frontend modules) for visualisation
+Create the backend code to retrieve a list of recipes, filtered based on various criteria (e.g. allergens, cuisine, etc…) and order them based on some reasonable aspect (e.g. number of views or upvotes). Create a frontend page to display these, and to show some summary statistics around the list (e.g. number of matching recipes, number of new recipes. Optionally, add support for pagination, when the number of results is large
+Create a detailed view for each recipes, that would just show all attributes for that recipe, and the full preparation instructions
+Allow for editing and deleting of the recipe records, either on separate pages, or built into the list/detail pages
+Optionally, you may choose to add basic user registration and authentication to the site. This can as simple as adding a username field to the recipe creation form, without a password (for this project only, this is not expected to be secure)
+
+
+GUIDELINES:
+
+Use the following guidelines when developing your project:
+Logic must be written in Python. HTML, CSS, and JavaScript can be used to enhance the look and feel of the project.
+Whenever possible, strive to use semantic HTML5 elements to structure your HTML code better.
+The website must be data-driven and can rely on structured data, unstructured data or a mix of structured and unstructured data. 
+CRUD operations can be carried out using either SQL (e.g. MySQL/Postgres) or NoSQL (e.g. MongoDB). Note that while SQLite can be useful for the development phase, it is not suitable for deployment to Heroku.
+Use Flask, a micro-framework, to run your application. Provide instructions on how to run your project locally in your README.
+Make sure your site is as responsive as possible. You can test this by checking the site on different screen sizes and browsers.
+Share details of how you created your database schema in your README. Consider sharing working drafts or finalised versions of your database schema in a 'Database Schema' folder in your repo. Provide a link to this folder in your README.
+We advise that you write down user stories and create wireframes/mockups before embarking on full-blown development.
+The site can also make use of CSS frameworks such as Bootstrap, just make sure you maintain a clear separation between the library code and your code.
+Write a README.md file for your project that explains what the project does and the need that it fulfills. It should also describe the functionality of the project, as well as the technologies used. If some of the work was based on other code, explain what was kept and how it was changed to fit your need. A project submitted without a README.md file will FAIL.
+Use Git & GitHub for version control. Each new piece of functionality should be in a separate commit.
+Deploy the final version of your code to a hosting platform such as Heroku.
+Non-requirements for this project:
+Secure user authentication (e.g. via passwords) is not required for this particular project. Having each user just choose a username is sufficient. Secure authentication will be introduced in the Django module.
+
+
