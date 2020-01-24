@@ -2,7 +2,7 @@ import os
 from flask import Flask, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-import datetime
+from datetime import datetime
 import base64
 import requests
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -119,13 +119,14 @@ def add_recipe():
 def insert_recipe():
     recipes= mongo.db.recipes
     url_img_src=upload_image(request.form.get("base64file"))
+    now = datetime.now().strftime("%H:%M:%S")
     recipes.insert_one(
     {
         "title": request.form.get('recipe_title'), 
         "dish_type": request.form.get('dish_type'),
         "added_by": session["username"],
         "user_email_hash": session["email_address"],
-        "added_on": "ADDEDON",
+        "added_on": now,
         "edited_on": "EDITEDON",
         "level": request.form.get("level"),
         "review_count": "0",
@@ -156,6 +157,7 @@ def edit_recipe(recipe_id):
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
     url_img_src=upload_image(request.form.get("base64file"))
+    now = datetime.now().strftime("%H:%M:%S")
     recipe = mongo.db.recipes
     recipe.update({"_id": ObjectId(recipe_id)},
     {
@@ -163,8 +165,7 @@ def update_recipe(recipe_id):
         "dish_type": request.form.get('dish_type'),
         "added_by": session["username"],
         "user_email_hash": session["email_address"],
-        "added_on": "ADDEDON",
-        "edited_on": "EDITEDON",
+        "edited_on": now,
         "level": request.form.get("level"),
         "review_count": "0",
         "view_count": "0",
