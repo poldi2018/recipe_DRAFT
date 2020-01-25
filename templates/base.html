@@ -15,84 +15,42 @@
 
 <body>
     <header>
-        <nav>
-            <div class="nav-wrapper">
-                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><img id="logoSmall " src="{{url_for('static', filename='images/logo_small.jpeg')}}"
-                            alt="small_logo"></li>
-                    <li><a href="{{url_for('add_recipe')}}">Add A Recipe</a></li>
-                    <li><a href="{{url_for('reviews')}}">Reviews</a></li>
-                    <li><a href="{{url_for('advanced_search')}}">Advanced Search</a></li>
-                    <li>
-                        <div id="searchbar">
-                            <form id="searchform" action="{{ url_for('results')}}" method="POST" class="col s12">
-                                <div id="search_wrapper" class="input-field col s6">
-                                    <i class="material-icons prefix">search</i>
-                                    <input id="search_term" name="search_term" type="text" class="validate">
-                                    <label for="search_term">Search for:</label>
-                                </div>
-                                <button id="searchBtn" class="btn waves-effect waves-light" type="submit"
-                                    name="action">Send
-                                    <i class="material-icons right">playlist</i>
-                                </button>
+        <ul id="menulist">
+            <li class=""><a class="hyperlinks" href="{{url_for('latest_added')}}" class="brand-logo">
+                    <img id="logo_small" src="{{url_for('static', filename='images/logo_small.jpeg')}}"
+                        alt="logo_small"></a></li>
+            <li class="menulistitem"><a class="hyperlinks" href="{{url_for('add_recipe')}}">Add A Recipe</a></li>
+            <li class="menulistitem"><a class="hyperlinks" href="{{url_for('reviews')}}">Top Reviews</a></li>
+            <li class="menulistitem"><a class="hyperlinks" href="{{url_for('advanced_search')}}">Advanced Search</a>
+            </li>
+            <li class="menulistitem">
+                <form action="{{ url_for('results')}}" method="POST" class="col s12">
+                    <i class="material-icons">search</i>
+                    <input id="search" type="search" required>
+                    <label class="label-icon" for="search"></label>
+                </form>
+            </li>
+            {% block current_user %}
+            {% if session["username"]=="" %}
+            <li class="menulistitem">
+                <a class="hyperlinks" href="{{url_for('login_page')}}">Login</a>
+            </li>
+            {% endif %}
 
-                            </form>
-                        </div>
-                    </li>
+            {% if session["username"]!="" %}
+            <li class="menulistitem">
+                <a class="hyperlinks" href="{{url_for('logout')}}">Logout</a>
+            </li>
+            <li class="menulistitem">
+                <a class="hyperlinks" href="{{url_for('home')}}">{{session["username"]}}'s Homepage</a>
+            </li>
+            {% endif %}
+            {% endblock %}
+        </ul>
 
-                    {% block current_user %}
-                    {% if session["username"]=="" %}
-                    <li>
-                        <div id="login"><a href="{{url_for('login_page')}}">Login</a></div>
-                    </li>
-                    {% endif %}
-
-                    {% if session["username"]!="" %}
-                    <li>
-                        <div id="logout"><a href="{{url_for('logout')}}">Logout</a></div>
-                    </li>
-                    <li>
-                        <div id="userHome"><a href="{{url_for('user')}}">{{session["username"]}}'s Homepage</a></div>
-                    </li>
-                    {% endif %}
-                    {% endblock %}
-                </ul>
-                <ul class="side-nav" id="mobile-demo">
-                    <li><img src="{{url_for('static', filename='images/logo_small.jpeg')}}" alt="small_logo"></li>
-                    <li><a href="{{url_for('add_recipe')}}">Add A Recipe</a></li>
-                    <li><a href="{{url_for('reviews')}}">Reviews</a></li>
-                    <li><a href="{{url_for('advanced_search')}}">Advanced Search</a></li>
-                    <li>
-                        <form action="{{ url_for('results')}}" method="POST" class="col s12">
-                            <div class="input-field col s12 testdiv">
-                                <i class="material-icons prefix">playlist_add</i>
-                                <input id="search_term2" name="search_term2" type="text" class="validate">
-                                <label for="search_term2">Search for:</label>
-                            </div>
-                            <button class="btn waves-effect waves-light" type="submit" name="action">Send
-                                <i class="material-icons right">playlist</i>
-                            </button>
-                        </form>
-                    </li>
-                    <li>
-                        <div id="login"><a href="{{url_for('login_page')}}">Login</a></div>
-                    </li>
-                    <!--
-                        {% block current_user2 %} 
-                        {% if session["username"]!="" %}
-                        <li>
-                            <div class="div"><a href="{{url_for('user')}}">{{session["username"]}}'s Homepage</a></div>
-                            <div id="logout"><a href="{{url_for('logout')}}">Logout</a></div>
-                        </li>
-                        {% endif %}
-                        {% endblock %}
-
-                        -->
-                </ul>
-            </div>
-        </nav>
     </header>
+
+
 
     <div class="container">
 

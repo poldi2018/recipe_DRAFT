@@ -2,7 +2,7 @@ import os
 from flask import Flask, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from datetime import datetime
+import datetime
 import base64
 import requests
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -114,41 +114,15 @@ def check_credentials():
         else:
             return render_template('loginpage.html', message="Username or password incorrect. Please try again.")
 
-    
-    #user_to_query= mongo.db.users.find_one( { '$or': [{"email_address_hash": generate_password_hash(request.form.get('email_address'))}, {"username": request.form.get("username")}]}) 
 
-    """
-    print(user_to_query)
-    if user_to_query:
-        password_response=check_password_hash(user_to_query['password'], request.form.get('password'))
-        if password_response:
-            session['username']=user_to_query['username']
-            session['email_address']=user_to_query['email_address_hash']
-            return redirect(url_for("latest_added", session=session))
-    
-    else:
-        return render_template('loginpage.html', message="Username or password incorrect. Please try again.")
-
-    
-    
-    
-    elif username_to_check:
-        password_response=check_password_hash(username_to_check['password'], request.form.get('password'))
-        if password_response:
-            session['username']=username_to_check['username']
-            session['email_address']=username_to_check['email_address_hash']
-            return redirect(url_for("latest_added", session=session))
-    #user_to_query= mongo.db.users.find_one( { '$or': [{"email_address_hash": generate_password_hash(request.form.get('email_address'))}, {"username": request.form.get("username")}]}) 
-
-    """
-
-    
-    
 # route to user's homepage CHECKED
-@app.route('/user')
-def user():
-    recipes_by_current_user= mongo.db.recipes.find({"email_address_hash": session["email_address"]}) 
-    return render_template("homepage.html", session=session, recipes_by_current_user=recipes_by_current_user)
+@app.route('/home')
+def home():
+    recipes = mongo.db.recipes.find({"email_address_hash": session["email_address"]})
+    print(session["email_address"])
+    print(recipes)
+    print(session["username"]) 
+    return render_template('user.html', session=session, recipes=recipes)
 
 # logout page CHECKED
 @app.route('/logout')
@@ -170,15 +144,18 @@ def add_recipe():
 def insert_recipe():
     recipes= mongo.db.recipes
     url_img_src=upload_image(request.form.get("base64file"))
-    now = datetime.now().strftime("%H:%M:%S")
+    today = datetime.datetime.now()
+    now = datetime.datetime.now().strftime("%H:%M:%S")
     recipes.insert_one(
     {
         "title": request.form.get('recipe_title'), 
         "dish_type": request.form.get('dish_type'),
         "added_by": session["username"],
         "user_email_hash": session["email_address"],
-        "added_on": now,
-        "edited_on": "EDITEDON",
+        "added_on_date": today,
+        "added_on_time": now,
+        "edited_on_date": today,
+        "edited_on_time": now,
         "level": request.form.get("level"),
         "review_count": "0",
         "view_count": "0",
@@ -208,7 +185,8 @@ def edit_recipe(recipe_id):
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
     url_img_src=upload_image(request.form.get("base64file"))
-    now = datetime.now().strftime("%H:%M:%S")
+    today = datetime.datetime.now()
+    now = datetime.datetime.now().strftime("%H:%M:%S")
     recipe = mongo.db.recipes
     recipe.update({"_id": ObjectId(recipe_id)},
     {
@@ -216,7 +194,8 @@ def update_recipe(recipe_id):
         "dish_type": request.form.get('dish_type'),
         "added_by": session["username"],
         "user_email_hash": session["email_address"],
-        "edited_on": now,
+        "edited_on_date": today,
+        "edited_on_time": now,
         "level": request.form.get("level"),
         "review_count": "0",
         "view_count": "0",
