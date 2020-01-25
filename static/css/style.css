@@ -4,19 +4,23 @@ body {
     justify-content: center;
 }
 
+/* 
+header bar stylings
+*/
+
 header {
+    background-color:#EAE7DC;
     position: fixed;
     display: flex;
     align-items: center;
-    border: 1px solid green;
+    border: 2px solid green;
     border-radius: 10px;
     z-index: 99;
     height: 10vh;
 }
 
-.container{
-    transform: translateY(70px);
-    margin-top: 10px;
+#logo_small {
+    width: 100px;
 }
 
 #menulist {
@@ -25,22 +29,25 @@ header {
     padding: 0;
     display: flex;
     align-items: center;
+    justify-content: space-evenly;
 }
 
 .menulistitem{
-    display: inline-block;
+    display: flex;
+    justify-content: center;
     padding-left: 20px;
     padding-right: 18px;
     border: 2px solid darkgreen;
     border-radius: 18px;
+    font-size: 20px;
 }
 
 .menulistitem form {
-    display: inline-block;
-    width: 30vw;
+    display: flex;
+    align-items: center;
+    width: 20vw;
     height: 70px;
 }
-
 
 .menulistitem .hyperlinks {
     color:#8D8D8A;
@@ -54,7 +61,10 @@ header {
     color: red;
 }
 
-
+.container{
+    transform: translateY(70px);
+    margin-top: 10px;
+}
 
 
 .recipe_head_wrapper {
@@ -76,7 +86,3 @@ header {
     align-items: center;
 }
 
-
-#logo_small {
-    width: 100px;
-}

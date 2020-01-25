@@ -1,0 +1,20 @@
+
+
+
+@media screen and (orientation:portrait) {}
+
+
+@media screen and (orientation:landscape) {}
+
+// special breakpoint for 1.33 ratio, ipad
+@media screen and (width: 768px) and (height: 1024px) {}
+
+// special breakpoint for 1.33 ratio ipad pro
+@media screen and (width: 1024px) and (height: 1366px) {}
+
+// special breakpoint for 1.33 ratio ipad pro
+@media screen and (width: 1024px) and (height: 768px) {}
+
+// special breakpoint for 1.33 ratio ipad pro
+@media screen and (width: 1366px) and (height: 1024px) {}
+
