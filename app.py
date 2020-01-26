@@ -177,13 +177,14 @@ def insert_recipe():
 #Read recipe
 @app.route('/read_recipe/<recipe_id>')
 def read_recipe(recipe_id):
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    reviews_of_recipe = mongo.db.reviews.find({"recipe_id": recipe_id})    
+    #update view count
     recipes = mongo.db.recipes
     recipes.update_one({"_id": ObjectId(recipe_id)},
     {
         "$inc": {"view_count": 1 }
     })
-    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    reviews_of_recipe = mongo.db.reviews.find({"_id": ObjectId(recipe_id)})
     return render_template('readrecipe.html', recipe=recipe, reviews_of_recipe=reviews_of_recipe)
 
 #show latest recipes
@@ -244,12 +245,12 @@ def rate_recipe(recipe_id):
     return render_template('raterecipe.html', recipe_id=recipe_id, recipe_title=recipe['title'], added_by=recipe['added_by'])
 
 #insert rating
-@app.route('/insert_rating/<recipe_id>', methods=["POST"])
-def insert_rating(recipe_id):
+@app.route('/insert_rating/<recipe_id>/<recipe_title>', methods=["POST"])
+def insert_rating(recipe_id, recipe_title):
     reviews = mongo.db.reviews
     reviews.insert_one(
     {   "review_title": request.form.get('review_title'),
-        "review_for": request.form.get('recipe_title'),
+        "review_for": recipe_title,
         "recipe_id":  recipe_id,
         "rating": request.form.get('rating'),
         "comment": request.form.get('comment')
