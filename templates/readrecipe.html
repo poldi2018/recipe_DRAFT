@@ -1,11 +1,7 @@
 {% extends 'base.html'%}
 
 {% block content %}
-<h3>{{recipe.title}}</h3>
-
-<div id="recipeWrapper">
-
-
+<div id="baseWrapper">
     <div class="recipe_head_wrapper">
         <div id="recipeTitle">{{recipe.title}}</div>
         <div class="dishType">{{recipe.dish_type}}</div>
@@ -18,105 +14,111 @@
         <div class="deleteThisOne"><a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}">Delete!</a>
         </div>
     </div>
-    <div class="row"></div>
+
+    <div id="statsWrapper">
+        Stats
+    </div>
 
 
-    
+    <div id="dishImage">
+        <img src="{{recipe.img_src}}" alt="">
+    </div>
+
 
     <div class="row">
         <a href="{{ url_for('latest_added') }}">Back to latest recipes</a>
     </div>
-</div>
 
-<div class="row">
-    <div class="input-field col s12 testdiv">
-        <i class="material-icons prefix">playlist_add</i>
-        <input id="recipe_title" name="recipe_title" type="text" class="validate" value="{{recipe.title}}">
-        <label for="recipe_title">Recipe Title</label>
+
+    <div class="row">
+        <div class="input-field col s12 testdiv">
+            <i class="material-icons prefix">playlist_add</i>
+            <input id="recipe_title" name="recipe_title" type="text" class="validate" value="{{recipe.title}}">
+            <label for="recipe_title">Recipe Title</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12 testdiv">
+            <i class="material-icons prefix">playlist_add</i>
+            <input id="dish_type" name="dish_type" type="text" class="validate" value="{{recipe.dish_type}}">
+            <label for="dish_type">Dish Type:</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="input-field col s12 testdiv">
+            <i class="material-icons prefix">playlist_add</i>
+            <input id="level" name="level" type="text" class="validate" value="{{recipe.level}}">
+            <label for="level">Sofistication</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="input-field col s12 testdiv">
+            <i class="material-icons prefix">playlist_add</i>
+            <input id="prep_time" name="prep_time" type="text" class="validate" value="{{recipe.prep_time}}">
+            <label for="prep_time">Preparation time</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="input-field col s12 testdiv">
+            <i class="material-icons prefix">playlist_add</i>
+            <input id="cooking_time" name="cooking_time" type="text" class="validate" value="{{recipe.cooking_time}}">
+            <label for="cooking_time">Cooking time</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="input-field col s12 testdiv">
+            <i class="material-icons prefix">playlist_add</i>
+            <textarea id="directions" name="directions" value="{{recipe.directions}}"></textarea>
+            <label for="directions">Directions</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="input-field col s12 testdiv">
+            <i class="material-icons prefix">playlist_add</i>
+            <textarea id="allergens" name="allergens" value="{{recipe.allergens}}"></textarea>
+            <label for="allergens">Allergens</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="input-field col s12 testdiv">
+            <i class="material-icons prefix">playlist_add</i>
+            <textarea id="ingredients" name="ingredients" value="{{recipe.ingredients}}"></textarea>
+            <label for="ingredients">Ingredients</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="input-field col s12 testdiv">
+            <i class="material-icons prefix">playlist_add</i>
+            <input id="origin" name="origin" type="text" class="validate" value="{{recipe.origin}}">
+            <label for="origin">Origin Country</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <input type="file" name="file" id="fileinputfield" onchange="encodeImgtoBase64(this)"
+            enctype="multipart/form-data">
+        <textarea id="base64file" name="base64file" hidden></textarea>
+    </div>
+
+
+
+    <div id="reviewsPopup">
+        <div id="reviewsWrapper">
+            {% for review in reviews_of_recipe %}
+            <div class="row">{{reviews_of_recipe.review_for}}</div>
+            <div class="row">{{reviews_of_recipe.review_title}}</div>
+            <div class="row">{{reviews_of_recipe.rating}}</div>
+            <div class="row">{{reviews_of_recipe.comment}}</div>
+            {% endfor %}
+            <div id="closeReviewsPopupBtn">Close</div>
+        </div>
     </div>
 </div>
-<div class="row">
-    <div class="input-field col s12 testdiv">
-        <i class="material-icons prefix">playlist_add</i>
-        <input id="dish_type" name="dish_type" type="text" class="validate" value="{{recipe.dish_type}}">
-        <label for="dish_type">Dish Type:</label>
-    </div>
-</div>
-
-<div class="row">
-    <div class="input-field col s12 testdiv">
-        <i class="material-icons prefix">playlist_add</i>
-        <input id="level" name="level" type="text" class="validate" value="{{recipe.level}}">
-        <label for="level">Sofistication</label>
-    </div>
-</div>
-
-<div class="row">
-    <div class="input-field col s12 testdiv">
-        <i class="material-icons prefix">playlist_add</i>
-        <input id="prep_time" name="prep_time" type="text" class="validate" value="{{recipe.prep_time}}">
-        <label for="prep_time">Preparation time</label>
-    </div>
-</div>
-
-<div class="row">
-    <div class="input-field col s12 testdiv">
-        <i class="material-icons prefix">playlist_add</i>
-        <input id="cooking_time" name="cooking_time" type="text" class="validate" value="{{recipe.cooking_time}}">
-        <label for="cooking_time">Cooking time</label>
-    </div>
-</div>
-
-<div class="row">
-    <div class="input-field col s12 testdiv">
-        <i class="material-icons prefix">playlist_add</i>
-        <textarea id="directions" name="directions" value="{{recipe.directions}}"></textarea>
-        <label for="directions">Directions</label>
-    </div>
-</div>
-
-<div class="row">
-    <div class="input-field col s12 testdiv">
-        <i class="material-icons prefix">playlist_add</i>
-        <textarea id="allergens" name="allergens" value="{{recipe.allergens}}"></textarea>
-        <label for="allergens">Allergens</label>
-    </div>
-</div>
-
-<div class="row">
-    <div class="input-field col s12 testdiv">
-        <i class="material-icons prefix">playlist_add</i>
-        <textarea id="ingredients" name="ingredients" value="{{recipe.ingredients}}"></textarea>
-        <label for="ingredients">Ingredients</label>
-    </div>
-</div>
-
-<div class="row">
-    <div class="input-field col s12 testdiv">
-        <i class="material-icons prefix">playlist_add</i>
-        <input id="origin" name="origin" type="text" class="validate" value="{{recipe.origin}}">
-        <label for="origin">Origin Country</label>
-    </div>
-</div>
-
-<div class="row">
-    <input type="file" name="file" id="fileinputfield" onchange="encodeImgtoBase64(this)"
-        enctype="multipart/form-data">
-    <textarea id="base64file" name="base64file" hidden></textarea>
-</div>
-
-
-
-<div id="reviewsPopup">
-    <div id="reviewsWrapper">
-        {% for review in reviews_of_recipe %}
-        <div class="row">{{reviews_of_recipe.review_for}}</div>
-        <div class="row">{{reviews_of_recipe.review_title}}</div>
-        <div class="row">{{reviews_of_recipe.rating}}</div>
-        <div class="row">{{reviews_of_recipe.comment}}</div>
-        {% endfor %}
-        <div id="closeReviewsPopupBtn">Close</div>
-    </div>
-</div>
-
 {% endblock %}

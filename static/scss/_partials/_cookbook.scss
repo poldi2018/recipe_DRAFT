@@ -1,10 +1,219 @@
+@media screen and (orientation:portrait) {
+
+    header {
+        background-color: #EAE7DC;
+        position: fixed;
+        display: flex;
+        align-items: center;
+        border: 2px solid green;
+        border-radius: 1vw;
+        z-index: 99;
+        height: 5vw;
+    }
+
+    body {
+        background-color: #EAE7DC;
+        display: flex;
+        justify-content: center;
+    }
+
+    #menulistDesktop {
+        display: none;
+    }
+
+    #menulistMobile {
+        width: 80vw;
+        height: 5vw;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+    }
+
+    #menulistMobileShowBtn {}
+
+    #sideMobileMenu {
+        position: absolute;
+        left: -100vw;
+        width: 80vw;
+        height: 20vw;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        transform: translateX(50vw);
+        transition: transform;
+
+    }
+
+}
+
+
+@media screen and (orientation:landscape) {
+
+    body {
+        background-color: #EAE7DC;
+        display: flex;
+        justify-content: center;
+    }
+
+    header {
+        background-color: #EAE7DC;
+        position: fixed;
+        display: flex;
+        align-items: center;
+        border: 2px solid green;
+        border-radius: 1vw;
+        z-index: 99;
+    }
+
+    #menulistDesktop {
+        width: 95vw;
+        height: 4vw;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    #menulistMobile,
+    #sideMobileMenu {
+        display: none;
+    }
+
+    .logoMenuListItem {
+        display: flex;
+        justify-content: center;
+        padding-left: 1vw;
+        padding-right: 1vw;
+    }
+
+    .logoMenuListItem .hyperlinks {
+        display: flex;
+        align-items: center;
+    }
+
+    .logo_small {
+        width: 8vw;
+    }
+
+    .menulistitem {
+        display: flex;
+        justify-content: center;
+        padding-left: 1vw;
+        padding-right: 1vw;
+        border: 2px solid darkgreen;
+        border-radius: 1vw;
+        font-size: 1vw;
+
+    }
+
+    .menulistitem form {
+        display: flex;
+        align-items: center;
+        width: 20vw;
+        height: 2vw;
+    }
+
+    .menulistitem .hyperlinks {
+        display: flex;
+        align-items: center;
+        color: #8D8D8A;
+        text-decoration: none;
+        -webkit-transition: color .6s ease-in-out;
+        -o-transition: color .6s ease-in-out;
+        transition: color .6s ease-in-out;
+    }
+
+    .menulistitem:hover .hyperlinks {
+        color: red;
+    }
+
+    #baseWrapper {
+        border: 2px solid grey;
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        width: 95vw;
+        transform: translateY(4vw);
+        margin-top: 2.5vw;
+        border-radius: 1vw;
+    }
+
+
+    .recipe_head_wrapper div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 2.5vw;
+        border: 2px solid grey;
+        border-radius: .5vw;
+        margin-top: .5vw;
+    }
+
+    .recipe_head_wrapper {
+        display: flex;
+        justify-content: space-evenly;
+        width: 95vw;
+    }
+
+    #recipeTitle {
+        width: 60vw;
+    }
+
+    #statsWrapper {
+        width: 60vw;
+    }
+
+    #dishImage {
+        width: 35vw;
+    }
+
+    #reviewsPopup {
+        background-color: #8E8D8A;
+        position: absolute;
+        opacity: 0.0;
+        transition: opacity .5s ease-in-out;
+        transform: translateZ(-10px);
+        z-index: -1;
+    }
+
+    #reviewsWrapper {
+        display: flex;
+        justify-content: center;
+    }
+
+    #showReviewsPopupBtn {
+        width: 10vw;
+    }
+
+    #closeReviewsPopupBtn {
+        width: 10vw;
+        height: 5vw;
+    }
 
 
 
-@media screen and (orientation:portrait) {}
+
+    .popupImageValidator {
+        opacity: 0.0;
+        z-index: -1;
+        transform: translateZ(-10px);
+        transition: opacity .8s ease-in-out;
+    }
+
+    .wrapper_logo_big {
+        width: 95vw;
+        height: 95vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
 
-@media screen and (orientation:landscape) {}
+
+}
 
 // special breakpoint for 1.33 ratio, ipad
 @media screen and (width: 768px) and (height: 1024px) {}
@@ -17,4 +226,3 @@
 
 // special breakpoint for 1.33 ratio ipad pro
 @media screen and (width: 1366px) and (height: 1024px) {}
-

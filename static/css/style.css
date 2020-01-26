@@ -1,0 +1,261 @@
+@media screen and (orientation: portrait) {
+  header {
+    background-color: #EAE7DC;
+    position: fixed;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    border: 2px solid green;
+    border-radius: 1vw;
+    z-index: 99;
+    height: 5vw;
+  }
+  body {
+    background-color: #EAE7DC;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  #menulistDesktop {
+    display: none;
+  }
+  #menulistMobile {
+    width: 80vw;
+    height: 5vw;
+    padding: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  #sideMobileMenu {
+    position: absolute;
+    left: -100vw;
+    width: 80vw;
+    height: 20vw;
+    padding: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    -webkit-transform: translateX(50vw);
+            transform: translateX(50vw);
+    -webkit-transition: -webkit-transform;
+    transition: -webkit-transform;
+    transition: transform;
+    transition: transform, -webkit-transform;
+  }
+}
+
+@media screen and (orientation: landscape) {
+  body {
+    background-color: #EAE7DC;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  header {
+    background-color: #EAE7DC;
+    position: fixed;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    border: 2px solid green;
+    border-radius: 1vw;
+    z-index: 99;
+  }
+  #menulistDesktop {
+    width: 95vw;
+    height: 4vw;
+    padding: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
+  #menulistMobile,
+  #sideMobileMenu {
+    display: none;
+  }
+  .logoMenuListItem {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding-left: 1vw;
+    padding-right: 1vw;
+  }
+  .logoMenuListItem .hyperlinks {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .logo_small {
+    width: 8vw;
+  }
+  .menulistitem {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    border: 2px solid darkgreen;
+    border-radius: 1vw;
+    font-size: 1vw;
+  }
+  .menulistitem form {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 20vw;
+    height: 2vw;
+  }
+  .menulistitem .hyperlinks {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    color: #8D8D8A;
+    text-decoration: none;
+    -webkit-transition: color .6s ease-in-out;
+    transition: color .6s ease-in-out;
+  }
+  .menulistitem:hover .hyperlinks {
+    color: red;
+  }
+  #baseWrapper {
+    border: 2px solid grey;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    width: 95vw;
+    -webkit-transform: translateY(4vw);
+            transform: translateY(4vw);
+    margin-top: 2.5vw;
+    border-radius: 1vw;
+  }
+  .recipe_head_wrapper div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    height: 2.5vw;
+    border: 2px solid grey;
+    border-radius: .5vw;
+    margin-top: .5vw;
+  }
+  .recipe_head_wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    width: 95vw;
+  }
+  #recipeTitle {
+    width: 60vw;
+  }
+  #statsWrapper {
+    width: 60vw;
+  }
+  #dishImage {
+    width: 35vw;
+  }
+  #reviewsPopup {
+    background-color: #8E8D8A;
+    position: absolute;
+    opacity: 0.0;
+    -webkit-transition: opacity .5s ease-in-out;
+    transition: opacity .5s ease-in-out;
+    -webkit-transform: translateZ(-10px);
+            transform: translateZ(-10px);
+    z-index: -1;
+  }
+  #reviewsWrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  #showReviewsPopupBtn {
+    width: 10vw;
+  }
+  #closeReviewsPopupBtn {
+    width: 10vw;
+    height: 5vw;
+  }
+  .popupImageValidator {
+    opacity: 0.0;
+    z-index: -1;
+    -webkit-transform: translateZ(-10px);
+            transform: translateZ(-10px);
+    -webkit-transition: opacity .8s ease-in-out;
+    transition: opacity .8s ease-in-out;
+  }
+  .wrapper_logo_big {
+    width: 95vw;
+    height: 95vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+/*# sourceMappingURL=style.css.map */

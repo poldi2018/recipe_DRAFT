@@ -8,14 +8,59 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"
         type="text/css" />
-    <link rel="stylesheet" href="{{url_for('static', filename='css/styleTMP.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
+
     <title>Poldi's Cookbook</title>
 
 </head>
 
 <body>
     <header>
-        <ul id="menulist">
+        <ul id="menulistDesktop">
+            <li class="logoMenuListItem"><a class="hyperlinks" href="{{url_for('latest_added')}}" class="brand-logo">
+                    <img class="logo_small" src="{{url_for('static', filename='images/logo_small.jpeg')}}"
+                        alt="logo_small"></a></li>
+            <li class="menulistitem"><a class="hyperlinks" href="{{url_for('add_recipe')}}">Add A Recipe</a></li>
+            <li class="menulistitem"><a class="hyperlinks" href="{{url_for('reviews')}}">Top Reviews</a></li>
+            <li class="menulistitem"><a class="hyperlinks" href="{{url_for('advanced_search')}}">Advanced Search</a>
+            </li>
+            <li class="menulistitem">
+                <form action="{{ url_for('results')}}" method="POST" class="">
+                    <i class="material-icons">search</i>
+                    <input id="search" type="search" required>
+                    <label class="label-icon" for="search"></label>
+                </form>
+            </li>
+
+            {% if session["username"]=="" %}
+            <li class="menulistitem">
+                <a class="hyperlinks" href="{{url_for('login_page')}}">Login</a>
+            </li>
+            {% endif %}
+
+            {% if session["username"]!="" %}
+            <li class="menulistitem">
+                <a class="hyperlinks" href="{{url_for('logout')}}">Logout</a>
+            </li>
+            <li class="menulistitem">
+                <a class="hyperlinks" href="{{url_for('home')}}">{{session["username"]}}'s Homepage</a>
+            </li>
+            {% endif %}
+        </ul>
+        <ul id="menulistMobile">
+            <li id="menulistMobileShowBtn">
+                <i class="material-icons">menu</i>
+            </li>
+            <li>
+                <img class="logo_small" src="{{url_for('static', filename='images/logo_small.jpeg')}}"
+                    alt="logo_small"></a></li>
+            </li>
+        </ul>
+
+        <ul id="sideMobileMenu">
+            <li id="menulistMobileCloseBtn">
+                <i class="material-icons">menu</i>
+            </li>
             <li class=""><a class="hyperlinks" href="{{url_for('latest_added')}}" class="brand-logo">
                     <img id="logo_small" src="{{url_for('static', filename='images/logo_small.jpeg')}}"
                         alt="logo_small"></a></li>
@@ -30,7 +75,7 @@
                     <label class="label-icon" for="search"></label>
                 </form>
             </li>
-           
+
             {% if session["username"]=="" %}
             <li class="menulistitem">
                 <a class="hyperlinks" href="{{url_for('login_page')}}">Login</a>
@@ -51,13 +96,19 @@
 
 
 
-    <div class="container">
 
-        {% block content %}
 
-        {% endblock %}
+    {% block content %}
 
-    </div>
+    {% endblock %}
+
+
+</div> 
+
+
+    
+
+    
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>

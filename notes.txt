@@ -1,8 +1,8 @@
 DB schema:
 
 TODO:
-lowercase user reg
-view and review count
+
+
 calculation of total time 
 dish type dropdown
 
@@ -30,8 +30,8 @@ collection ‘recipes’:
 "edited_on_date": today,
 "edited_on_time": now,
 "level": request.form.get("level"),
-"review_count": "0",
-"view_count": "0",
+"review_count": 0,
+"view_count": 0,
 "prep_time": request.form.get("prep_time"),
 "cooking_time": request.form.get("cooking_time"),
 "total_time": request.form.get("prep_time")+request.form.get("cooking_time"),
