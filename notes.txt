@@ -1,56 +1,66 @@
 DB schema:
 
+TODO:
+lowercase user reg
+view and review count
+calculation of total time 
+dish type dropdown
+
+
 Referenced Data of
 Key db identifier
 Datatype
 
+search:
+- dish type
+- country
+- ingredients
+
+
+####
+
 
 collection ‘recipes’:
-_id: <ObjectId>
-title: <string> FORMFIELDNAME recipe_title
-dish_type: <string> FORMFIELDNAME dish_type
-added_by: <string> ###
-user_email: <string> ###
-added_on: <Date> ###
-edited_on: <Date> ###
-level: <integer> FORMFIELDNAME level
-review_count: <integer> ###
-view_count: <integer> ####
-prep_time: <Time> FORMFIELDNAME prep_time
-cooking_time: <Time> FORMFIELDNAME cooking_time
-total_time: <Time> ###
-directions: <string> FORMFIELDNAME directions
-allergens: <array> FORMFIELDNAME allergens
-ingredients: <array of ingredients> FORMFIELDNAME ingredients
-origin: <string> FORMFIELDNAME origin
-img_src: <string> RETURNED BY METHOD
+"title": request.form.get('recipe_title'), 
+"dish_type": request.form.get('dish_type'),
+"added_by": session["username"],
+"user_email_hash": session["email_address"],
+"added_on_date": today,
+"added_on_time": now,
+"edited_on_date": today,
+"edited_on_time": now,
+"level": request.form.get("level"),
+"review_count": "0",
+"view_count": "0",
+"prep_time": request.form.get("prep_time"),
+"cooking_time": request.form.get("cooking_time"),
+"total_time": request.form.get("prep_time")+request.form.get("cooking_time"),
+"directions": request.form.get("directions"),
+"allergens": request.form.get("allergens"),
+"ingredients": request.form.get("ingredients"),
+"origin": request.form.get("origin"),
+"img_src": url_img_src
+
 
 collection ‘users’:
 _id: <ObjectId>
 username: <string>
-user_email: <string>
+email_address: <string>,
+email_address_hash: <string>,
 password: <string>
 
 collection ‘reviews’:
 _id: <ObjectId>
-review_title: <string> FORMFIELDNAME review_title
-review_for: <ObjectId of recipe_id>
-reviewed_by: <ObjectId of user_id> 
-rating: <integer> FORMFIELDNAME rating
-rating_comment: <string> FORMFIELDNAME rating_comment
-
-
+"review_title": request.form.get('review_title'),
+"review_for": recipe_title,
+"recipe_id":  recipe_id,
+"rating": request.form.get('rating'),
+"comment": request.form.get('comment')
+ 
 
 Object ‘ingredients’:
 amount_ingredient: <string>
 ingredient: <string>
-
-
-
-
-
-
-
 
 
 drop down menu dish_type options:
@@ -68,19 +78,12 @@ cake
 
 
 
-
-
-
-
-
-
-
 MOCKUPS:
 header:
 #icon
 #menu bar:
 #Add A Recipe (C)
-#Reviews
+#Top Rated
 #Advanced Search
 #Rate This One
 #Edit This Recipe (U)
@@ -174,8 +177,9 @@ tutsmake for converting image into base64  and using the FileReader Object
   "https://www.tutsmake.com/convert-image-to-base64-string-jquery/"
 
 
-CURRENT ISSUES:
-uploading images to imgbb database works, but I could not figure out how to address specific album. Passing a key-value pair like {“album”: “test”} inside the data dictionary did not succeed, nor throwed an error. 
+CURRENT ISSUES, FUTURE FEATURES:
+- uploading images to imgbb database works, but I could not figure out how to address specific album. Passing a key-value pair like {“album”: “test”} inside the data dictionary did not succeed, nor throwed an error. 
+- check on collection file size to prevent exceeding 16MB
 
 
 

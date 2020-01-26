@@ -5,7 +5,7 @@
 </div>
 {% for recipe in recipes %}
 <div class="row">
-    <h4 class="">{{recipe.title}}</h4>
+    <h4 class=""><a href="{{url_for('read_recipe', recipe_id=recipe._id, view_count=recipe.view_count)}}">{{recipe.title}}</a></h4>
     {% if session["username"]!="" %}
     <div class="col s1"><a href="{{url_for('rate_recipe', recipe_id=recipe._id)}}">Rate</a></div>
     {% endif %}

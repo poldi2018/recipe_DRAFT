@@ -30,9 +30,15 @@ def logout_user(session):
     session["user"]=""
     session["email_address"]=""
 
+def set_session(user):
+    session['username']=user['username']
+    session['email_address']=user['email_address_hash']
+    return session
+
+
 #ROUTES AND VIEWS
 
-#Route to indexpage CHECKED
+#Indexpage CHECKED
 @app.route('/')
 def index():
     return render_template("index.html")
@@ -43,7 +49,7 @@ def reviews():
     reviews=mongo.db.reviews.find()
     return render_template("reviews.html", reviews=reviews)
 
-# search dialog CHECKED
+#Search dialog CHECKED
 @app.route('/advanced_search')
 def advanced_search():
     return render_template("search.html")
@@ -69,59 +75,57 @@ def insert_user():
 
     if not user_email_to_check and not username_to_check: 
         new_user = {
-            "username": request.form.get('username'), 
+            "username": request.form.get('username').casefold(), 
             "email_address": request.form.get('email_address'),
             "email_address_hash": generate_password_hash(request.form.get('email_address')),
             "password": generate_password_hash(request.form.get('password'))
         }
         users.insert_one(new_user)
-        return render_template("loginpage.html", message="Account created! Please login with your username or email and password. Thanks!") 
+        message="Account created! Please login with your username or email and password. Thanks!"
+        return render_template("loginpage.html", message=message) 
+
     elif user_email_to_check:
-            return render_template('register.html', message="Provided email has already been registered. Please choose a different one.")
+        message="Provided email has already been registered. Please choose a different one."
+        return render_template('register.html', message=message)
 
     elif username_to_check:
-            return render_template('register.html', message="Provided username has already been registered. Please choose a different one.")
+        message="Provided username has already been registered. Please choose a different one."
+        return render_template('register.html', message=message)
     
     elif user_email_to_check and username_to_check:
-            return render_template('register.html', message="Provided email and username already have been registered.")
+        message="Provided email and username already have been registered."
+        return render_template('register.html', message=message)
 
 #login page CHECKED
 @app.route('/login_page')
 def login_page():
-    return render_template("loginpage.html", message="Please login with your username and password. Thanks!")
+    message="Please login with your username and password. Thanks!"
+    return render_template("loginpage.html", message=message)
 
 # check on provided credentials CHECKED
 @app.route('/check_credentials', methods=["POST"])
 def check_credentials():
     user_email_to_check = mongo.db.users.find_one({"email_address": request.form.get('email_address')}) 
-    username_to_check = mongo.db.users.find_one({"username": request.form.get('username')}) 
+    username_to_check = mongo.db.users.find_one({"username": request.form.get('username').casefold()})
     #user_to_query= mongo.db.users.find_one( { '$or': [{"email_address_hash": generate_password_hash(request.form.get('email_address'))}, {"username": request.form.get("username")}]}) 
     if user_email_to_check:
         password_response=check_password_hash(user_email_to_check['password'], request.form.get('password'))
-        if user_email_to_check and password_response:
-            session['username']=user_email_to_check['username']
-            session['email_address']=user_email_to_check['email_address_hash']
+        if password_response:
+            session=set_session(user_email_to_check) 
             return redirect(url_for("latest_added", session=session))
-        else:
-            return render_template('loginpage.html', message="Username or password incorrect. Please try again.")
 
     elif username_to_check:
         password_response=check_password_hash(username_to_check['password'], request.form.get('password'))
-        if username_to_check and password_response:
-            session['username']=username_to_check['username']
-            session['email_address']=username_to_check['email_address_hash']
+        if password_response:
+            session=set_session(username_to_check)
             return redirect(url_for("latest_added", session=session))
-        else:
-            return render_template('loginpage.html', message="Username or password incorrect. Please try again.")
 
+    return render_template('loginpage.html', message="Username or password incorrect. Please try again.")
 
 # route to user's homepage CHECKED
 @app.route('/home')
 def home():
-    recipes = mongo.db.recipes.find({"email_address_hash": session["email_address"]})
-    print(session["email_address"])
-    print(recipes)
-    print(session["username"]) 
+    recipes = mongo.db.recipes.find({"email_address_hash": session["email_address"]}) 
     return render_template('user.html', session=session, recipes=recipes)
 
 # logout page CHECKED
@@ -144,7 +148,7 @@ def add_recipe():
 def insert_recipe():
     recipes= mongo.db.recipes
     url_img_src=upload_image(request.form.get("base64file"))
-    today = datetime.datetime.now()
+    today = datetime.datetime.today()
     now = datetime.datetime.now().strftime("%H:%M:%S")
     recipes.insert_one(
     {
@@ -157,8 +161,8 @@ def insert_recipe():
         "edited_on_date": today,
         "edited_on_time": now,
         "level": request.form.get("level"),
-        "review_count": "0",
-        "view_count": "0",
+        "review_count": 0,
+        "view_count": 0,
         "prep_time": request.form.get("prep_time"),
         "cooking_time": request.form.get("cooking_time"),
         "total_time": request.form.get("prep_time")+request.form.get("cooking_time"),
@@ -170,11 +174,22 @@ def insert_recipe():
     })
     return redirect(url_for('latest_added', session=session))
 
+#Read recipe
+@app.route('/read_recipe/<recipe_id>/<view_count>')
+def read_recipe(recipe_id, view_count):
+    recipes = mongo.db.recipes
+    recipes.update({"_id": ObjectId(recipe_id)},
+    {
+        "$inc": {"view_count": 1 }
+    })
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    return render_template('readrecipe.html', recipe=recipe)
+
 #show latest recipes
 @app.route('/latest_added')
 def latest_added():
     recipes=mongo.db.recipes.find()
-    return render_template("latest_added.html", recipes=recipes)
+    return render_template("latest_added.html", session=session, recipes=recipes)
 
 #Update database CHECKED
 @app.route('/edit_recipe/<recipe_id>')
@@ -187,8 +202,9 @@ def update_recipe(recipe_id):
     url_img_src=upload_image(request.form.get("base64file"))
     today = datetime.datetime.now()
     now = datetime.datetime.now().strftime("%H:%M:%S")
-    recipe = mongo.db.recipes
-    recipe.update({"_id": ObjectId(recipe_id)},
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    recipes = mongo.db.recipes
+    recipes.update({"_id": ObjectId(recipe_id)},
     {
         "title": request.form.get('recipe_title'), 
         "dish_type": request.form.get('dish_type'),
@@ -197,8 +213,8 @@ def update_recipe(recipe_id):
         "edited_on_date": today,
         "edited_on_time": now,
         "level": request.form.get("level"),
-        "review_count": "0",
-        "view_count": "0",
+        "review_count": recipe.review_count,
+        "view_count": recipe.review_count,
         "prep_time": request.form.get("prep_time"),
         "cooking_time": request.form.get("cooking_time"),
         "total_time": request.form.get("prep_time")+request.form.get("cooking_time"),
@@ -208,7 +224,7 @@ def update_recipe(recipe_id):
         "origin": request.form.get("origin"),
         "img_src": url_img_src
     })
-    return redirect(url_for('latest_added', session=session))
+    return redirect(url_for('latest_added'))
 
 #Delete recipe in database CHECKED
 @app.route('/delete_recipe/<recipe_id>')
@@ -224,15 +240,20 @@ def rate_recipe(recipe_id):
     return render_template('raterecipe.html', recipe_id=recipe_id, recipe_title=recipe['title'], added_by=recipe['added_by'])
 
 #insert rating
-@app.route('/insert_rating/<recipe_id>/<recipe_title>', methods=["POST"])
-def insert_rating(recipe_id, recipe_title):
+@app.route('/insert_rating/<recipe_id>', methods=["POST"])
+def insert_rating(recipe_id):
     reviews = mongo.db.reviews
     reviews.insert_one(
     {   "review_title": request.form.get('review_title'),
-        "review_for": recipe_title,
+        "review_for": request.form.get('recipe_title'),
         "recipe_id":  recipe_id,
         "rating": request.form.get('rating'),
         "comment": request.form.get('comment')
+    })
+    recipes = mongo.db.recipes
+    recipes.update({"_id": ObjectId(recipe_id)},
+    {
+        "$inc": {"review_count": 1 }
     })
     return redirect(url_for('latest_added', session=session))
 
