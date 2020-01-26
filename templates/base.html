@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"
         type="text/css" />
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styleTMP.css')}}" type="text/css" />
     <title>Poldi's Cookbook</title>
 
 </head>
@@ -30,7 +30,7 @@
                     <label class="label-icon" for="search"></label>
                 </form>
             </li>
-            {% block current_user %}
+           
             {% if session["username"]=="" %}
             <li class="menulistitem">
                 <a class="hyperlinks" href="{{url_for('login_page')}}">Login</a>
@@ -45,7 +45,6 @@
                 <a class="hyperlinks" href="{{url_for('home')}}">{{session["username"]}}'s Homepage</a>
             </li>
             {% endif %}
-            {% endblock %}
         </ul>
 
     </header>

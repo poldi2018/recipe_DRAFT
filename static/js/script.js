@@ -26,10 +26,10 @@ function addIngredientField() {
 }
 
 function removeIngredientField() {
-    var tmpfield="";
+    var tmpfield = "";
     $(currentIngredientFieldId).remove();
     fieldcount--;
-    currentIngredientFieldId="#ingredient"+fieldcount;
+    currentIngredientFieldId = "#ingredient" + fieldcount;
 }
 
 $('.addIngredientField').on('touchstart click', function () {
@@ -107,10 +107,29 @@ $('#addRecipeBtn').on('touchstart click', function () {
     validateImageName();
 });
 
-$( document ).ready(function(){
-    $(".button-collapse").sideNav();
+$(document).ready(function () {
+
 });
 
+$('#showReviewsPopupBtn').on('touchstart click', function () {
+    showReviewsPopup();
+});
 
-    
-        
+$('#closeReviewsPopupBtn').on('touchstart click', function () {
+    closeReviewsPopup();
+});
+
+function showReviewsPopup (){
+    $('#reviewsPopup').css("transform", "translateZ(500px)").css("z-index", "500");
+    setTimeout(function () {
+        $('#reviewsPopup').css("opacity", "1.0");
+    }, 200);
+}
+
+function closeReviewsPopup (){
+    $('#reviewsPopup').css("opacity", "0.0");
+    setTimeout(function () {
+            $('#reviewsPopup').css("transform", "translateZ(-10px)").css("z-index", "-1");
+        }
+        , 200);
+}

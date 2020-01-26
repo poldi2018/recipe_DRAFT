@@ -5,7 +5,8 @@
 </div>
 {% for recipe in recipes %}
 <div class="row">
-    <h4 class=""><a href="{{url_for('read_recipe', recipe_id=recipe._id, view_count=recipe.view_count)}}">{{recipe.title}}</a></h4>
+    <h4 class=""><a href="{{url_for('read_recipe', recipe_id=recipe._id)}}">{{recipe.title}}</a></h4>
+    <div class="col s1 reviewsPopupBtn">Show ratings!</div>
     {% if session["username"]!="" %}
     <div class="col s1"><a href="{{url_for('rate_recipe', recipe_id=recipe._id)}}">Rate</a></div>
     {% endif %}
@@ -16,7 +17,8 @@
 </div>
 
 <div class="row">
-    <img src="{{recipe.img_src}}" alt="picture_of_dish">
+    <a href="{{url_for('read_recipe', recipe_id=recipe._id)}}"><img src="{{recipe.img_src}}" alt="picture_of_dish"></a></h4>
+    
 </div>
 
 {% endfor %}

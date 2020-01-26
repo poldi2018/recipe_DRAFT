@@ -148,7 +148,7 @@ def add_recipe():
 def insert_recipe():
     recipes= mongo.db.recipes
     url_img_src=upload_image(request.form.get("base64file"))
-    today = datetime.datetime.today()
+    today = datetime.datetime.now().strftime("%d. %B %Y")
     now = datetime.datetime.now().strftime("%H:%M:%S")
     recipes.insert_one(
     {
@@ -175,15 +175,16 @@ def insert_recipe():
     return redirect(url_for('latest_added', session=session))
 
 #Read recipe
-@app.route('/read_recipe/<recipe_id>/<view_count>')
-def read_recipe(recipe_id, view_count):
+@app.route('/read_recipe/<recipe_id>')
+def read_recipe(recipe_id):
     recipes = mongo.db.recipes
-    recipes.update({"_id": ObjectId(recipe_id)},
+    recipes.update_one({"_id": ObjectId(recipe_id)},
     {
         "$inc": {"view_count": 1 }
     })
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    return render_template('readrecipe.html', recipe=recipe)
+    reviews_of_recipe = mongo.db.reviews.find({"_id": ObjectId(recipe_id)})
+    return render_template('readrecipe.html', recipe=recipe, reviews_of_recipe=reviews_of_recipe)
 
 #show latest recipes
 @app.route('/latest_added')
@@ -204,8 +205,9 @@ def update_recipe(recipe_id):
     now = datetime.datetime.now().strftime("%H:%M:%S")
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     recipes = mongo.db.recipes
-    recipes.update({"_id": ObjectId(recipe_id)},
+    recipes.update_one({"_id": ObjectId(recipe_id)},
     {
+        "$set":{ 
         "title": request.form.get('recipe_title'), 
         "dish_type": request.form.get('dish_type'),
         "added_by": session["username"],
@@ -213,8 +215,8 @@ def update_recipe(recipe_id):
         "edited_on_date": today,
         "edited_on_time": now,
         "level": request.form.get("level"),
-        "review_count": recipe.review_count,
-        "view_count": recipe.review_count,
+        "review_count": recipe["review_count"],
+        "view_count": recipe["review_count"],
         "prep_time": request.form.get("prep_time"),
         "cooking_time": request.form.get("cooking_time"),
         "total_time": request.form.get("prep_time")+request.form.get("cooking_time"),
@@ -223,6 +225,7 @@ def update_recipe(recipe_id):
         "ingredients": request.form.get("ingredients"),
         "origin": request.form.get("origin"),
         "img_src": url_img_src
+        }
     })
     return redirect(url_for('latest_added'))
 
@@ -230,6 +233,7 @@ def update_recipe(recipe_id):
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
     mongo.db.recipes.delete_one({'_id': ObjectId(recipe_id)})
+    #delete id from reviews!!
     return redirect(url_for('latest_added', session=session))
 
 
@@ -251,7 +255,7 @@ def insert_rating(recipe_id):
         "comment": request.form.get('comment')
     })
     recipes = mongo.db.recipes
-    recipes.update({"_id": ObjectId(recipe_id)},
+    recipes.update_one({"_id": ObjectId(recipe_id)},
     {
         "$inc": {"review_count": 1 }
     })
@@ -262,3 +266,26 @@ if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT', 5000)),
             debug=True)
+
+
+"""
+    {
+        "title": request.form.get('recipe_title'), 
+        "dish_type": request.form.get('dish_type'),
+        "added_by": session["username"],
+        "user_email_hash": session["email_address"],
+        "edited_on_date": today,
+        "edited_on_time": now,
+        "level": request.form.get("level"),
+        "review_count": recipe["review_count"],
+        "view_count": recipe["review_count"],
+        "prep_time": request.form.get("prep_time"),
+        "cooking_time": request.form.get("cooking_time"),
+        "total_time": request.form.get("prep_time")+request.form.get("cooking_time"),
+        "directions": request.form.get("directions"),
+        "allergens": request.form.get("allergens"),
+        "ingredients": request.form.get("ingredients"),
+        "origin": request.form.get("origin"),
+        "img_src": url_img_src
+    }
+"""

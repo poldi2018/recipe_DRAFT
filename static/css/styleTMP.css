@@ -1,5 +1,5 @@
 body {
-    background-color:#EAE7DC;
+    background-color: #EAE7DC;
     display: flex;
     justify-content: center;
 }
@@ -9,7 +9,7 @@ header bar stylings
 */
 
 header {
-    background-color:#EAE7DC;
+    background-color: #EAE7DC;
     position: fixed;
     display: flex;
     align-items: center;
@@ -32,7 +32,7 @@ header {
     justify-content: space-evenly;
 }
 
-.menulistitem{
+.menulistitem {
     display: flex;
     justify-content: center;
     padding-left: 20px;
@@ -50,7 +50,7 @@ header {
 }
 
 .menulistitem .hyperlinks {
-    color:#8D8D8A;
+    color: #8D8D8A;
     text-decoration: none;
     -webkit-transition: color .6s ease-in-out;
     -o-transition: color .6s ease-in-out;
@@ -61,15 +61,58 @@ header {
     color: red;
 }
 
-.container{
+#recipeWrapper {
+    border: 2px solid grey;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.recipe_head_wrapper div {
+    height: 50px;
+    border: 2px solid grey;
+    border-radius: 5px;
+}
+
+.recipe_head_wrapper {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#recipeTitle {
+    width: 60%;
+}
+
+#reviewsPopup {
+    background-color: #8E8D8A;
+    position: absolute;
+    opacity: 0.0;
+    transition: opacity .5s ease-in-out;
+    transform: translateZ(-10px);
+    z-index: -1;
+}
+
+#reviewsWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+#showReviewsPopupBtn {
+    width: 10vw;
+}
+
+#closeReviewsPopupBtn {
+    width: 10vw;
+    height: 5vw;
+}
+
+
+.container {
+    width: 95vw;
     transform: translateY(70px);
     margin-top: 10px;
 }
 
 
-.recipe_head_wrapper {
-    width: 8vw;
-}
 
 .popupImageValidator {
     opacity: 0.0;
@@ -78,11 +121,10 @@ header {
     transition: opacity .8s ease-in-out;
 }
 
-.wrapper_logo_big{
+.wrapper_logo_big {
     width: 95vw;
     height: 95vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
