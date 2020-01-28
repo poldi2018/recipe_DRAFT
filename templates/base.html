@@ -26,9 +26,11 @@
             </li>
             <li class="menulistitem">
                 <form action="{{ url_for('results')}}" method="POST" class="">
-                    <i class="material-icons">search</i>
-                    <input id="search_term" name="search_term" type="search" required>
-                    <label class="label-icon" for="search"></label>
+                    <div class="input-field col s12">
+                        <i class="material-icons">search</i>
+                        <input id="search_term" name="search_term" type="search" required>
+                        <label class="label-icon" for="search"></label>
+                    </div>
                 </form>
             </li>
 

@@ -36,7 +36,7 @@ def logout_user(session):
 
 def set_session(user):
     session['username']=user['username']
-    session['email_address']=user['email_address_hash']
+    session['email_address']=user['user_email_hash']
     return session
 
 
@@ -65,7 +65,6 @@ def results():
     search_term=request.form.get("search_term")
     recipes=mongo.db.recipes.find({"$text":{"$search": search_term}})
     reviews=mongo.db.reviews.find({"$text":{"$search": search_term}})
-
     return render_template("results.html", recipes=recipes, reviews=reviews, search_term=search_term)
 
 #registeration of user CHECKED 
@@ -84,7 +83,7 @@ def insert_user():
         new_user = {
             "username": request.form.get('username').casefold(), 
             "email_address": request.form.get('email_address'),
-            "email_address_hash": generate_password_hash(request.form.get('email_address')),
+            "user_email_hash": generate_password_hash(request.form.get('email_address')),
             "password": generate_password_hash(request.form.get('password'))
         }
         users.insert_one(new_user)
@@ -118,22 +117,24 @@ def check_credentials():
     if user_email_to_check:
         password_response=check_password_hash(user_email_to_check['password'], request.form.get('password'))
         if password_response:
-            session=set_session(user_email_to_check) 
-            return redirect(url_for("latest_added", session=session))
+            set_session(user_email_to_check) 
+            return redirect(url_for("latest_added"))
 
     elif username_to_check:
         password_response=check_password_hash(username_to_check['password'], request.form.get('password'))
         if password_response:
-            session=set_session(username_to_check)
-            return redirect(url_for("latest_added", session=session))
+            set_session(username_to_check)
+            return redirect(url_for("latest_added"))
 
     return render_template('loginpage.html', message="Username or password incorrect. Please try again.")
 
 # route to user's homepage CHECKED
 @app.route('/home')
 def home():
-    recipes = mongo.db.recipes.find({"email_address_hash": session["email_address"]}) 
-    return render_template('user.html', session=session, recipes=recipes)
+    print(session['email_address'])
+    recipes = mongo.db.recipes.find({"user_email_hash": session["email_address"]})
+    reviews = mongo.db.reviews.find({"user_email_hash": session["email_address"]}) 
+    return render_template('user.html', recipes=recipes, reviews=reviews)
 
 # logout page CHECKED
 @app.route('/logout')
@@ -179,7 +180,7 @@ def insert_recipe():
         "origin": request.form.get("origin"),
         "img_src": url_img_src
     })
-    return redirect(url_for('latest_added', session=session))
+    return redirect(url_for('latest_added'))
 
 #Read recipe
 @app.route('/read_recipe/<recipe_id>')
@@ -198,7 +199,7 @@ def read_recipe(recipe_id):
 @app.route('/latest_added')
 def latest_added():
     recipes=mongo.db.recipes.find()
-    return render_template("latest_added.html", session=session, recipes=recipes)
+    return render_template("latest_added.html", recipes=recipes)
 
 #Update database CHECKED
 @app.route('/edit_recipe/<recipe_id>')
@@ -209,7 +210,7 @@ def edit_recipe(recipe_id):
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
     url_img_src=upload_image(request.form.get("base64file"))
-    today = datetime.datetime.now()
+    today = datetime.datetime.now().strftime("%d. %B %Y")
     now = datetime.datetime.now().strftime("%H:%M:%S")
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     recipes = mongo.db.recipes
@@ -242,25 +243,25 @@ def update_recipe(recipe_id):
 def delete_recipe(recipe_id):
     mongo.db.recipes.delete_one({'_id': ObjectId(recipe_id)})
     #delete id from reviews!!
-    return redirect(url_for('latest_added', session=session))
+    return redirect(url_for('latest_added'))
 
-
-#Rate recipe
-@app.route('/rate_recipe/<recipe_id>')
-def rate_recipe(recipe_id):
-    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    return render_template('raterecipe.html', recipe_id=recipe_id, recipe_title=recipe['title'], added_by=recipe['added_by'])
 
 #insert rating
 @app.route('/insert_rating/<recipe_id>/<recipe_title>', methods=["POST"])
 def insert_rating(recipe_id, recipe_title):
+    today = datetime.datetime.now().strftime("%d. %B %Y")
+    now = datetime.datetime.now().strftime("%H:%M:%S")
     reviews = mongo.db.reviews
     reviews.insert_one(
     {   "review_title": request.form.get('review_title'),
         "review_for": recipe_title,
         "recipe_id":  recipe_id,
         "rating": request.form.get('rating'),
-        "comment": request.form.get('comment')
+        "comment": request.form.get('comment'),
+        "added_on_date": today,
+        "added_on_time": now,
+        "rated_by": session['username'],
+        "user_email_hash": session['email_address']
     })
     #incrementing review counter
     recipes = mongo.db.recipes
@@ -268,7 +269,7 @@ def insert_rating(recipe_id, recipe_title):
     {
         "$inc": {"review_count": 1 }
     })
-    return redirect(url_for('latest_added', session=session))
+    return redirect(url_for('read_recipe', recipe_id=recipe_id))
 
 # run app
 if __name__ == '__main__':
@@ -276,25 +277,3 @@ if __name__ == '__main__':
             port=int(os.environ.get('PORT', 5000)),
             debug=True)
 
-
-"""
-    {
-        "title": request.form.get('recipe_title'), 
-        "dish_type": request.form.get('dish_type'),
-        "added_by": session["username"],
-        "user_email_hash": session["email_address"],
-        "edited_on_date": today,
-        "edited_on_time": now,
-        "level": request.form.get("level"),
-        "review_count": recipe["review_count"],
-        "view_count": recipe["review_count"],
-        "prep_time": request.form.get("prep_time"),
-        "cooking_time": request.form.get("cooking_time"),
-        "total_time": request.form.get("prep_time")+request.form.get("cooking_time"),
-        "directions": request.form.get("directions"),
-        "allergens": request.form.get("allergens"),
-        "ingredients": request.form.get("ingredients"),
-        "origin": request.form.get("origin"),
-        "img_src": url_img_src
-    }
-"""

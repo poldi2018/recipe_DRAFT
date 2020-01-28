@@ -171,9 +171,10 @@ README.MD
 
 ACKNOWLEDGEMENT:
 
-tutsmake for converting image into base64  and using the FileReader Object
+- tutsmake for converting image into base64  and using the FileReader Object
   "https://www.tutsmake.com/convert-image-to-base64-string-jquery/"
-
+- mongoDB documentation for additional information on CRUD operations and indexing.
+ 
 
 CURRENT ISSUES, FUTURE FEATURES:
 - uploading images to imgbb database works, but I could not figure out how to address specific album. Passing a key-value pair like {“album”: “test”} inside the data dictionary did not succeed, nor throwed an error. 

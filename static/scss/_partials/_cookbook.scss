@@ -147,7 +147,7 @@
         width: 95vw;
     }
 
-    .recipe_head_wrapper div {
+    .recipeHeadWrapper div {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -184,7 +184,7 @@
         width: 35vw;
     }
 
-    #reviewsPopup {
+    #reviewsPopup, #ratePopup {
         background-color: #8E8D8A;
         position: absolute;
         opacity: 0.0;
@@ -195,7 +195,7 @@
         border-radius: 5px;
     }
 
-    #reviewsWrapper {
+    #reviewsWrapper, #rateWrapper {
         width: 60vw;
         display: flex;
         flex-wrap: wrap;
@@ -204,7 +204,7 @@
         
     }
 
-    .reviewContainer {
+    .reviewContainer, .rateContainer {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
@@ -215,7 +215,7 @@
         width: 100%;
     }
 
-    .reviewlines{
+    .reviewlines, .ratelines{
         width: 100%;    }
     
 
@@ -223,13 +223,10 @@
         width: 10vw;
     }
 
-    #closeReviewsPopupBtn {
+    #closeReviewsPopupBtn, #closeRatePopupBtn {
         width: 10vw;
         height: 5vw;
     }
-
-
-
 
     .popupImageValidator {
         opacity: 0.0;

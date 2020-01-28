@@ -185,7 +185,7 @@
         flex-wrap: wrap;
     width: 95vw;
   }
-  .recipe_head_wrapper div {
+  .recipeHeadWrapper div {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -235,7 +235,7 @@
   #dishImage {
     width: 35vw;
   }
-  #reviewsPopup {
+  #reviewsPopup, #ratePopup {
     background-color: #8E8D8A;
     position: absolute;
     opacity: 0.0;
@@ -247,7 +247,7 @@
     border: 2px white;
     border-radius: 5px;
   }
-  #reviewsWrapper {
+  #reviewsWrapper, #rateWrapper {
     width: 60vw;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -258,7 +258,7 @@
         -ms-flex-pack: center;
             justify-content: center;
   }
-  .reviewContainer {
+  .reviewContainer, .rateContainer {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -272,13 +272,13 @@
   hr {
     width: 100%;
   }
-  .reviewlines {
+  .reviewlines, .ratelines {
     width: 100%;
   }
   #showReviewsPopupBtn {
     width: 10vw;
   }
-  #closeReviewsPopupBtn {
+  #closeReviewsPopupBtn, #closeRatePopupBtn {
     width: 10vw;
     height: 5vw;
   }

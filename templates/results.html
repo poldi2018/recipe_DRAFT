@@ -4,17 +4,20 @@
     <h3>Search results for {{search_term}}</h3>
 </div>
 
+
 {% for recipe in recipes %}
-<div class="row">
-    results for recipes
-</div>
+
 <div class="row">
     <div class="col s6">
         <h4 class="">{{recipe.title}}</h4>
     </div>
-    <div class="col s1"><a href="{{url_for('edit_recipe', recipe_id=recipe._id) }}">Edit</a></div>
-    <div class="col s1"><a href="{{url_for('delete_recipe', recipe_id=recipe._id) }}">Delete</a></div>
-    <div class="col s1"><a href="{{url_for('rate_recipe', recipe_id=recipe._id) }}">Rate</a></div>
+    {% if recipe.user_email_hash==session["email_address"] %}
+        <div class="col s1"><a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}">Edit</a></div>
+        <div class="col s1"><a href="{{url_for('delete_recipe', recipe_id=recipe._id)}}">Delete</a></div>
+        {% endif %}
+    {% if session["username"]!="" %}
+    <div id="showRatePopupBtn">Rate This One!</div>
+    {% endif %}
 </div>
 
 <div class="row">
@@ -22,10 +25,6 @@
 </div>
 {% endfor %}
 
-
-<div class="row">
-    results for recipes
-</div>
 
 {% for review in reviews %}
 
@@ -44,79 +43,18 @@
 <div class="row">
     <div class="col s12">{{review.comment}}</div>
 </div>
+
+<div class="row">
+    <div class="col s12">{{review.added_on_date}}</div>
+</div>
+
+<div class="row">
+    <div class="col s12">{{review.added_on_time}}</div>
+</div>
+
+<div class="row">
+    <div class="col s12">{{review.rated_by}}</div>
+</div>
 {% endfor %}
 
-
-<!--
-<div class="row">
-    <div class="input-field col s12 testdiv">
-        <i class="material-icons prefix">playlist_add</i>
-        <input id="recipe_title" name="recipe_title" type="text" class="validate">
-        <label for="recipe_title">Recipe Title</label>
-    </div>
-</div>
-<div class="row">
-    <div class="input-field col s12 testdiv">
-        <i class="material-icons prefix">playlist_add</i>
-        <input id="dish_type" name="dish_type" type="text" class="validate">
-        <label for="dish_type">Dish Type:</label>
-    </div>
-</div>
-
-<div class="row">
-    <div class="input-field col s12 testdiv">
-        <i class="material-icons prefix">playlist_add</i>
-        <input id="level" name="level" type="text" class="validate">
-        <label for="level">Sofistication</label>
-    </div>
-</div>
-
-<div class="row">
-    <div class="input-field col s12 testdiv">
-        <i class="material-icons prefix">playlist_add</i>
-        <input id="prep_time" name="prep_time" type="text" class="validate">
-        <label for="prep_time">Preparation time</label>
-    </div>
-</div>
-
-<div class="row">
-    <div class="input-field col s12 testdiv">
-        <i class="material-icons prefix">playlist_add</i>
-        <input id="cooking_time" name="cooking_time" type="text" class="validate">
-        <label for="cooking_time">Cooking time</label>
-    </div>
-</div>
-
-<div class="row">
-    <div class="input-field col s12 testdiv">
-        <i class="material-icons prefix">playlist_add</i>
-        <textarea id="directions" name="directions"></textarea>
-        <label for="directions">Directions</label>
-    </div>
-</div>
-
-<div class="row">
-    <div class="input-field col s12 testdiv">
-        <i class="material-icons prefix">playlist_add</i>
-        <textarea id="allergens" name="allergens"></textarea>
-        <label for="allergens">Allergens</label>
-    </div>
-</div>
-
-<div class="row">
-    <div class="input-field col s12 testdiv">
-        <i class="material-icons prefix">playlist_add</i>
-        <textarea id="ingredients" name="ingredients"></textarea>
-        <label for="ingredients">Ingredients</label>
-    </div>
-</div>
-
-<div class="row">
-    <div class="input-field col s12 testdiv">
-        <i class="material-icons prefix">playlist_add</i>
-        <input id="origin" name="origin" type="text" class="validate">
-        <label for="origin">Origin Country</label>
-    </div>
-</div>
--->
 {% endblock %}
