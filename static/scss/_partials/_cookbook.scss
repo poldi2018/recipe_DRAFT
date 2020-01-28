@@ -31,7 +31,9 @@
 
     }
 
-    #menulistMobileShowBtn {}
+    #menulistMobileShowBtn {
+        font-size: large;
+    }
 
     #sideMobileMenu {
         position: absolute;
@@ -166,7 +168,16 @@
     }
 
     #statsWrapper {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
         width: 60vw;
+    }
+
+    .statsfield {
+        display: flex;
+        justify-content: center;
+        width: 16%;
     }
 
     #dishImage {
@@ -180,18 +191,33 @@
         transition: opacity .5s ease-in-out;
         transform: translateZ(-10px);
         z-index: -1;
+        border: 2px white;
+        border-radius: 5px;
     }
 
     #reviewsWrapper {
-        width: 90vw;
-        height: 90vh;
+        width: 60vw;
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
+        
+        
     }
 
-    .reviewContainer{
+    .reviewContainer {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
         width: 100%;
     }
+
+    hr {
+        width: 100%;
+    }
+
+    .reviewlines{
+        width: 100%;    }
+    
 
     #showReviewsPopupBtn {
         width: 10vw;

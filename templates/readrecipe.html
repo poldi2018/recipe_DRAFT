@@ -17,12 +17,23 @@
     </div>
 
     <div id="statsWrapper">
-        Stats
+        <div class="statsfield">Added By:</div>
+        <div class="statsfield">Date added:</div>
+        <div class="statsfield">Time added:</div>
+        <div class="statsfield">Level:</div>
+        <div class="statsfield">Reviews:</div>
+        <div class="statsfield">Viewed:</div>
+        <div class="statsfield">{{recipe.added_by}}</div>
+        <div class="statsfield">{{recipe.added_on_date}}</div>
+        <div class="statsfield">{{recipe.added_on_time}}</div>
+        <div class="statsfield">{{recipe.level}}</div>
+        <div class="statsfield">{{recipe.review_count}}</div>
+        <div class="statsfield">{{recipe.view_count}}</div>
     </div>
 
 
     <div id="dishImage">
-        <img src="{{recipe.img_src}}" alt="">
+        <img src="{{recipe.img_src}}" alt="image of dish">
     </div>
 
 
@@ -102,11 +113,6 @@
         </div>
     </div>
 
-    <div class="row">
-        <input type="file" name="file" id="fileinputfield" onchange="encodeImgtoBase64(this)"
-            enctype="multipart/form-data">
-        <textarea id="base64file" name="base64file" hidden></textarea>
-    </div>
 
 
 
@@ -114,10 +120,10 @@
         <div id="reviewsWrapper">
             {% for review in reviews_of_recipe %}
             <div class="reviewContainer">
-                <div class="">{{review.review_for}}</div>
-                <div class="">{{review.review_title}}</div>
-                <div class="">{{review.rating}}</div>
-                <div class="">{{review.comment}}</div>
+                <div class="reviewlines">{{review.review_for}}</div>
+                <div class="reviewlines">{{review.review_title}}</div>
+                <div class="reviewlines">{{review.rating}}</div>
+                <div class="reviewlines">{{review.comment}}</div>
                 <hr>
             </div>
             {% endfor %}

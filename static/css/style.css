@@ -38,6 +38,9 @@
     -ms-flex-pack: distribute;
         justify-content: space-around;
   }
+  #menulistMobileShowBtn {
+    font-size: large;
+  }
   #sideMobileMenu {
     position: absolute;
     left: -100vw;
@@ -210,7 +213,24 @@
     width: 60vw;
   }
   #statsWrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
     width: 60vw;
+  }
+  .statsfield {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 16%;
   }
   #dishImage {
     width: 35vw;
@@ -224,18 +244,35 @@
     -webkit-transform: translateZ(-10px);
             transform: translateZ(-10px);
     z-index: -1;
+    border: 2px white;
+    border-radius: 5px;
   }
   #reviewsWrapper {
-    width: 90vw;
-    height: 90vh;
+    width: 60vw;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .reviewContainer {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    width: 100%;
   }
-  .reviewContainer {
+  hr {
+    width: 100%;
+  }
+  .reviewlines {
     width: 100%;
   }
   #showReviewsPopupBtn {

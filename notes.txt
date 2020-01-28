@@ -1,15 +1,9 @@
 DB schema:
 
 TODO:
-
-
 calculation of total time 
 dish type dropdown
-
-
-Referenced Data of
-Key db identifier
-Datatype
+raise Exception("this is a test") 
 
 search:
 - dish type
@@ -18,6 +12,10 @@ search:
 
 
 ####
+Referenced Data of
+Key db identifier
+Datatype
+
 
 
 collection ‘recipes’:

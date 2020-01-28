@@ -19,6 +19,10 @@ imgbb_upload_url="https://api.imgbb.com/1/upload?key="+os.getenv('IMGBB_CLIENT_A
 #creating instance of Pymongo with app object to connect to MongoDB
 mongo = PyMongo(app)
 
+mongo.db.recipes.create_index([("title", "text"), ("dish_type", "text"), ("level", "text"), ("directions", "text"), ("allergens", "text"), ("ingredients", "text"), ("origin", "text")])
+mongo.db.reviews.create_index([("review_title", "text"), ("review_for", "text"), ("rating", "text"), ("comment", "text")])
+
+
 def upload_image(base64file):
     response = requests.post(imgbb_upload_url, data={"image": base64file})
     url_img_src=response.json()
@@ -47,6 +51,8 @@ def index():
 @app.route('/reviews')
 def reviews():
     reviews=mongo.db.reviews.find()
+    if not reviews:
+        raise Exception("No reviews found")
     return render_template("reviews.html", reviews=reviews)
 
 #Search dialog CHECKED
@@ -57,9 +63,10 @@ def advanced_search():
 @app.route('/results', methods=["POST"])
 def results():
     search_term=request.form.get("search_term")
-    mongo.db.recipes.createIndex( { "title": "text", "directions": "text" } )
-    recipes=mongo.db.recipes.find({"$text":{"$search": "Worschtsupp"}})
-    return render_template("results.html", recipes=recipes, search_term=search_term)
+    recipes=mongo.db.recipes.find({"$text":{"$search": search_term}})
+    reviews=mongo.db.reviews.find({"$text":{"$search": search_term}})
+
+    return render_template("results.html", recipes=recipes, reviews=reviews, search_term=search_term)
 
 #registeration of user CHECKED 
 @app.route('/register')
@@ -179,7 +186,7 @@ def insert_recipe():
 def read_recipe(recipe_id):
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     reviews_of_recipe = mongo.db.reviews.find({"recipe_id": recipe_id})    
-    #update view count
+    #increment view counter
     recipes = mongo.db.recipes
     recipes.update_one({"_id": ObjectId(recipe_id)},
     {
@@ -255,6 +262,7 @@ def insert_rating(recipe_id, recipe_title):
         "rating": request.form.get('rating'),
         "comment": request.form.get('comment')
     })
+    #incrementing review counter
     recipes = mongo.db.recipes
     recipes.update_one({"_id": ObjectId(recipe_id)},
     {
