@@ -109,13 +109,13 @@ $('#addRecipeBtn').on('touchstart click', function () {
 
 $(document).ready(function () {
 
+
+
 });
 
 $('#showReviewsPopupBtn').on('touchstart click', function () {
     $('#reviewsPopup').css("transform", "translateZ(500px)").css("z-index", "500");
-    setTimeout(function () {
-        $('#reviewsPopup').css("opacity", "1.0");
-    }, 200);
+    $('#reviewsPopup').css("opacity", "1.0");
 });
 
 $('#closeReviewsPopupBtn').on('touchstart click', function () {
@@ -125,17 +125,15 @@ $('#closeReviewsPopupBtn').on('touchstart click', function () {
     }, 200);
 });
 
-
 $('#showRatePopupBtn').on('touchstart click', function () {
     $('#ratePopup').css("transform", "translateZ(500px)").css("z-index", "500");
-    setTimeout(function () {
-        $('#ratePopup').css("opacity", "1.0");
-    }, 200);
+    $('#ratePopup').css("opacity", "1.0");
 });
 
 $('#closeRatePopupBtn').on('touchstart click', function () {
     $('#ratePopup').css("opacity", "0.0");
     setTimeout(function () {
         $('#ratePopup').css("transform", "translateZ(-10px)").css("z-index", "-1");
-    }, 200);
+    }, 200);   
 });
+

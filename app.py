@@ -63,8 +63,12 @@ def advanced_search():
 @app.route('/results', methods=["POST"])
 def results():
     search_term=request.form.get("search_term")
-    recipes=mongo.db.recipes.find({"$text":{"$search": search_term}})
-    reviews=mongo.db.reviews.find({"$text":{"$search": search_term}})
+    if search_term=="":
+        recipes=mongo.db.recipes.find()
+        reviews=mongo.db.reviews.find()
+    else:
+        recipes=mongo.db.recipes.find({"$text":{"$search": search_term}})
+        reviews=mongo.db.reviews.find({"$text":{"$search": search_term}})
     return render_template("results.html", recipes=recipes, reviews=reviews, search_term=search_term)
 
 #registeration of user CHECKED 
@@ -171,8 +175,8 @@ def insert_recipe():
         "level": request.form.get("level"),
         "review_count": 0,
         "view_count": 0,
-        "prep_time": request.form.get("prep_time"),
-        "cooking_time": request.form.get("cooking_time"),
+        "prep_time": int(request.form.get("prep_time")),
+        "cooking_time": int(request.form.get("cooking_time")),
         "total_time": request.form.get("prep_time")+request.form.get("cooking_time"),
         "directions": request.form.get("directions"),
         "allergens": request.form.get("allergens"),

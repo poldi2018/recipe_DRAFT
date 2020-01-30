@@ -1,176 +1,138 @@
 {% extends 'base.html'%}
-
 {% block content %}
-
-<div id="recipeWrapper">
-    <div class="recipeHeadWrapper">
-        <div id="recipeTitle">{{recipe.title}}</div>
-        <div class="dishType">{{recipe.dish_type}}</div>
+<div class="recipeWrapper">
+    <div class="recipeHeader">
+        <div id="recipeTitle" class="recipeHeaderItem">{{recipe.title}}</div>
+        <div id="dishType" class="recipeHeaderItem">{{recipe.dish_type}}</div>
+        <div id="showReviewsPopupBtn" class="recipeHeaderItem">Reviews</div>
         {% if session["username"]!="" %}
-        <div id="showRatePopupBtn">Rate This One!</div>
+        <div id="showRatePopupBtn" class="recipeHeaderItem">Rate This One!</div>
         {% endif %}
-        <div id="showReviewsPopupBtn">Reviews</div>
-        {% if recipe.user_email_hash==session["email_address"] %}
-        <div class="col s1"><a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}">Edit</a></div>
-        <div class="col s1"><a href="{{url_for('delete_recipe', recipe_id=recipe._id)}}">Delete</a></div>
+        {% if session["username"]!="" and recipe.user_email_hash==session["email_address"] %}
+        <div class="recipeHeaderItem"><a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}">Edit</a></div>
+        <div class="recipeHeaderItem"><a href="{{url_for('delete_recipe', recipe_id=recipe._id)}}">Delete</a></div>
         {% endif %}
     </div>
 
-    <div id="statsWrapper">
-        <div class="statsfield">Added By:</div>
-        <div class="statsfield">Date added:</div>
-        <div class="statsfield">Time added:</div>
-        <div class="statsfield">Level:</div>
-        <div class="statsfield">Reviews:</div>
-        <div class="statsfield">Viewed:</div>
-        <div class="statsfield">{{recipe.added_by}}</div>
-        <div class="statsfield">{{recipe.added_on_date}}</div>
-        <div class="statsfield">{{recipe.added_on_time}}</div>
-        <div class="statsfield">{{recipe.level}}</div>
-        <div class="statsfield">{{recipe.review_count}}</div>
-        <div class="statsfield">{{recipe.view_count}}</div>
-    </div>
+    <div id="outerStatsWrapper">
+        <div class="statsWrapper">
+            <div class="statsfield">Added By:</div>
+            <div class="statsfield">{{recipe.added_by}}</div>
+        </div>
 
+        <div class="statsWrapper">
+            <div class="statsfield">Date added:</div>
+            <div class="statsfield">{{recipe.added_on_date}}</div>
+        </div>
+
+        <div class="statsWrapper">
+            <div class="statsfield">Time added:</div>
+            <div class="statsfield">{{recipe.added_on_time}}</div>
+        </div>
+
+        <div class="statsWrapper">
+            <div class="statsfield">Level:</div>
+            <div class="statsfield">{{recipe.level}}</div>
+        </div>
+
+        <div class="statsWrapper">
+            <div class="statsfield">Reviews:</div>
+            <div class="statsfield">{{recipe.review_count}}</div>
+        </div>
+
+        <div class="statsWrapper">
+            <div class="statsfield">Viewed:</div>
+            <div class="statsfield">{{recipe.view_count}}</div>
+        </div>
+    </div>
 
     <div id="dishImage">
+        <div class="origin">
+            {{recipe.origin}}
+        </div>
         <img src="{{recipe.img_src}}" alt="image of dish">
     </div>
 
 
-    <div class="row">
-        <a href="{{ url_for('latest_added') }}">Back to latest recipes</a>
+    <div id="outerIngredientsWrapper">
+        <div class="amount">100g</div>
+        <div class="ingredient">Spinat</div>
     </div>
 
-
-    <div class="row">
-        <div class="input-field col s12 testdiv">
-            <i class="material-icons prefix">playlist_add</i>
-            <input id="recipe_title" name="recipe_title" type="text" class="validate" value="{{recipe.title}}">
-            <label for="recipe_title">Recipe Title</label>
+    <div id="outerDirectionsWrapper">
+        <div class="directionsWrapper">
+            <div class="directionsLabel">Prep Time:</div>
+            <div class="prepTime">{{recipe.prep_time}}</div>
         </div>
-    </div>
-    <div class="row">
-        <div class="input-field col s12 testdiv">
-            <i class="material-icons prefix">playlist_add</i>
-            <input id="dish_type" name="dish_type" type="text" class="validate" value="{{recipe.dish_type}}">
-            <label for="dish_type">Dish Type:</label>
+        <div class="directionsWrapper">
+            <div class="directionsLabel">Cooking Time:</div>
+            <div class="cookingTime">{{recipe.cooking_time}}</div>
         </div>
-    </div>
-
-    <div class="row">
-        <div class="input-field col s12 testdiv">
-            <i class="material-icons prefix">playlist_add</i>
-            <input id="level" name="level" type="text" class="validate" value="{{recipe.level}}">
-            <label for="level">Sofistication</label>
+        <div class="directionsWrapper">
+            <div class="directionsLabel">Total Time:</div>
+            <div class="totalTime">{{recipe.total_time}}</div>
+        </div>
+        <div class="directions">
+            text text text text
         </div>
     </div>
 
-    <div class="row">
-        <div class="input-field col s12 testdiv">
-            <i class="material-icons prefix">playlist_add</i>
-            <input id="prep_time" name="prep_time" type="text" class="validate" value="{{recipe.prep_time}}">
-            <label for="prep_time">Preparation time</label>
-        </div>
-    </div>
+    
+</div>
 
-    <div class="row">
-        <div class="input-field col s12 testdiv">
-            <i class="material-icons prefix">playlist_add</i>
-            <input id="cooking_time" name="cooking_time" type="text" class="validate" value="{{recipe.cooking_time}}">
-            <label for="cooking_time">Cooking time</label>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="input-field col s12 testdiv">
-            <i class="material-icons prefix">playlist_add</i>
-            <textarea id="directions" name="directions" value="{{recipe.directions}}"></textarea>
-            <label for="directions">Directions</label>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="input-field col s12 testdiv">
-            <i class="material-icons prefix">playlist_add</i>
-            <textarea id="allergens" name="allergens" value="{{recipe.allergens}}"></textarea>
-            <label for="allergens">Allergens</label>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="input-field col s12 testdiv">
-            <i class="material-icons prefix">playlist_add</i>
-            <textarea id="ingredients" name="ingredients" value="{{recipe.ingredients}}"></textarea>
-            <label for="ingredients">Ingredients</label>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="input-field col s12 testdiv">
-            <i class="material-icons prefix">playlist_add</i>
-            <input id="origin" name="origin" type="text" class="validate" value="{{recipe.origin}}">
-            <label for="origin">Origin Country</label>
-        </div>
-    </div>
-
-
-
-    <div id="ratePopup">
-        <div id="rateWrapper">
-            <h3>Rate recipe for {{recipe.recipe_title}}, created by {{recipe.added_by}}</h3>
-            <div class="row">
-                <div class="addfield">click to add field to form</div>
-                <form action="{{ url_for('insert_rating', recipe_id=recipe._id, recipe_title=recipe.title) }}"
-                    method="POST" class="col s12">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">playlist_add</i>
-                            <input id="review_title" name="review_title" type="text" class="validate" required>
-                            <label for="review_title">review title</label>
-                        </div>
+<div id="ratePopup">
+    <div id="rateWrapper">
+        <h3>Rate recipe for {{recipe.recipe_title}}, created by {{recipe.added_by}}</h3>
+        <div class="row">
+            <div class="addfield">click to add field to form</div>
+            <form action="{{ url_for('insert_rating', recipe_id=recipe._id, recipe_title=recipe.title) }}" method="POST"
+                class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">playlist_add</i>
+                        <input id="review_title" name="review_title" type="text" class="validate" required>
+                        <label for="review_title">review title</label>
                     </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">playlist_add</i>
-                            <input id="rating" name="rating" type="text" class="validate" required>
-                            <label for="rating">rating</label>
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">playlist_add</i>
+                        <input id="rating" name="rating" type="text" class="validate" required>
+                        <label for="rating">rating</label>
                     </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">playlist_add</i>
-                            <input id="comment" name="comment" type="text" class="validate">
-                            <label for="comment">Comment:</label>
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">playlist_add</i>
+                        <input id="comment" name="comment" type="text" class="validate">
+                        <label for="comment">Comment:</label>
                     </div>
-                    <div class="row">
-                        <button id="closeRatePopupBtn" class="btn waves-effect waves-light" type="submit" name="action">Send
-                            <i class="material-icons right">playlist</i>
-                        </button>
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div class="row">
+                    <button id="closeRatePopupBtn" class="btn waves-effect waves-light" type="submit" name="action">Send
+                        <i class="material-icons right">playlist</i>
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 
-
-
-    <div id="reviewsPopup">
-        <div id="reviewsWrapper">
-            {% for review in reviews_of_recipe %}
-            <div class="reviewContainer">
-                <div class="reviewlines">{{review.review_title}}</div>
-                <div class="reviewlines">{{review.review_for}}</div>
-                <div class="reviewlines">{{review.rating}}</div>
-                <div class="reviewlines">{{review.comment}}</div>
-                <div class="reviewlines">{{review.added_on_date}}</div>
-                <div class="reviewlines">{{review.added_on_time}}</div>
-                <div class="reviewlines">{{review.rated_by}}</div>
-                <hr>
-            </div>
-            {% endfor %}
-            <div id="closeReviewsPopupBtn">Close</div>
+<div id="reviewsPopup">
+    <div id="reviewsWrapper">
+        {% for review in reviews_of_recipe %}
+        <div class="reviewContainer">
+            <div class="reviewlines">{{review.review_title}}</div>
+            <div class="reviewlines">{{review.review_for}}</div>
+            <div class="reviewlines">{{review.rating}}</div>
+            <div class="reviewlines">{{review.comment}}</div>
+            <div class="reviewlines">{{review.added_on_date}}</div>
+            <div class="reviewlines">{{review.added_on_time}}</div>
+            <div class="reviewlines">{{review.rated_by}}</div>
+            <hr>
         </div>
+        {% endfor %}
+        <div id="closeReviewsPopupBtn">Close</div>
     </div>
 </div>
 {% endblock %}

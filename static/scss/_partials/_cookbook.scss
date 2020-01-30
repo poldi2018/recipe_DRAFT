@@ -112,7 +112,14 @@
         display: flex;
         align-items: center;
         width: 20vw;
-        height: 2vw;
+        height: 1.5vw;
+        background-color: #EAE7DC;
+
+    }
+    #search_term {
+        background-color: transparent important!;
+        margin: 0;
+        height: 80%;
     }
 
     .menulistitem .hyperlinks {
@@ -140,51 +147,92 @@
         border-radius: 1vw;
     }
 
-    #recipeWrapper {
+    .recipeWrapper {
+        width: 60vw;
         display: flex;
-        justify-content: center;
         flex-wrap: wrap;
-        width: 95vw;
     }
 
-    .recipeHeadWrapper div {
+    .recipeHeader {
+        border: 2px solid lightblue;
+        display: flex;
+        justify-content: space-evenly;
+        height: 2vw;
+        width: 100%;
+
+    }
+
+    .recipeHeaderItem {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 2.5vw;
-        border: 2px solid grey;
-        border-radius: .5vw;
-        margin-top: .5vw;
-    }
-
-    .recipe_head_wrapper {
-        display: flex;
-        justify-content: space-evenly;
-        width: 95vw;
     }
 
     #recipeTitle {
-        width: 60vw;
+        width: 50%;
+        display: flex;
+        justify-content: center;
     }
 
-    #statsWrapper {
+    #outerStatsWrapper,
+    #outerIngredientsWrapper {
+        width: 60%;
+    }
+
+    #outerStatsWrapper,
+    #outerDirectionsWrapper {
         display: flex;
-        justify-content: space-evenly;
         flex-wrap: wrap;
-        width: 60vw;
+    }
+
+    .statsWrapper {
+        border: 2px solid lightblue;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-wrap: wrap;
+        width: 16.66%;
     }
 
     .statsfield {
+        width: 100%;
         display: flex;
         justify-content: center;
-        width: 16%;
+        align-items: center;
     }
 
     #dishImage {
-        width: 35vw;
+        width: 40%;
+        height: 7vw;
+        border: 2px solid lightblue;
     }
 
-    #reviewsPopup, #ratePopup {
+
+    #outerDirectionsWrapper {
+        width: 40%;
+    }
+
+    .directionsWrapper {
+        border: 2px solid lightblue;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 33.33%;
+    }
+
+    .directionsLabel {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+
+
+    #reviewsPopup,
+    #ratePopup {
         background-color: #8E8D8A;
         position: absolute;
         opacity: 0.0;
@@ -195,16 +243,18 @@
         border-radius: 5px;
     }
 
-    #reviewsWrapper, #rateWrapper {
+    #reviewsWrapper,
+    #rateWrapper {
         width: 60vw;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        
-        
+
+
     }
 
-    .reviewContainer, .rateContainer {
+    .reviewContainer,
+    .rateContainer {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
@@ -215,15 +265,18 @@
         width: 100%;
     }
 
-    .reviewlines, .ratelines{
-        width: 100%;    }
-    
+    .reviewlines,
+    .ratelines {
+        width: 100%;
+    }
+
 
     #showReviewsPopupBtn {
         width: 10vw;
     }
 
-    #closeReviewsPopupBtn, #closeRatePopupBtn {
+    #closeReviewsPopupBtn,
+    #closeRatePopupBtn {
         width: 10vw;
         height: 5vw;
     }

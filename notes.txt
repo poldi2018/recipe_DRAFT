@@ -1,8 +1,19 @@
 DB schema:
 
 TODO:
-calculation of total time 
+schemas and mockups!
+recipe:
+level selector
 dish type dropdown
+preptime selector
+cooking time selector
+calculation of total time 
+add allergens fields and handling
+add ingredient fields and handling
+
+
+
+
 raise Exception("this is a test") 
 
 search:
@@ -19,6 +30,8 @@ Datatype
 
 
 collection ‘recipes’:
+{
+"_id": <ObjectId>,
 "title": request.form.get('recipe_title'), 
 "dish_type": request.form.get('dish_type'),
 "added_by": session["username"],
@@ -38,23 +51,31 @@ collection ‘recipes’:
 "ingredients": request.form.get("ingredients"),
 "origin": request.form.get("origin"),
 "img_src": url_img_src
+}
 
 
 collection ‘users’:
-_id: <ObjectId>
+{
+"_id": <ObjectId>,
 username: <string>
 email_address: <string>,
 email_address_hash: <string>,
 password: <string>
+}
 
 collection ‘reviews’:
-_id: <ObjectId>
+{
+"_id": <ObjectId>,
 "review_title": request.form.get('review_title'),
 "review_for": recipe_title,
 "recipe_id":  recipe_id,
 "rating": request.form.get('rating'),
-"comment": request.form.get('comment')
- 
+"comment": request.form.get('comment'),
+"added_on_date": today,
+"added_on_time": now,
+"rated_by": session['username'],
+"user_email_hash": session['email_address']
+}
 
 Object ‘ingredients’:
 amount_ingredient: <string>
@@ -174,7 +195,7 @@ ACKNOWLEDGEMENT:
 - tutsmake for converting image into base64  and using the FileReader Object
   "https://www.tutsmake.com/convert-image-to-base64-string-jquery/"
 - mongoDB documentation for additional information on CRUD operations and indexing.
- 
+
 
 CURRENT ISSUES, FUTURE FEATURES:
 - uploading images to imgbb database works, but I could not figure out how to address specific album. Passing a key-value pair like {“album”: “test”} inside the data dictionary did not succeed, nor throwed an error. 
@@ -202,16 +223,21 @@ REQUIREMENTS
 
 MSP4:
 
-In this project, you’ll be building a data-driven web application using the technologies that you have learned throughout Data Centric Development. You can either choose to to follow the example brief below, or you can use your own idea for the website.
+In this project, you’ll be building a data-driven web application using the technologies that you have learned throughout Data Centric Development. 
+You can either choose to to follow the example brief below, or you can use your own idea for the website.
 CREATE AN ONLINE COOKBOOK:
-Create a web application that allows users to store and easily access cooking recipes
-Put some effort into designing a database schema based on recipes, and any other related properties and entities (e.g. views, upvotes, ingredients, recipe authors, allergens, author’s country of origin, cuisine etc…). Make sure to put some thought into the relationships between them, and use either foreign keys (in the case of a relational database) or nesting (in the case of a document store) to connect these pieces of data
-Create the backend code and frontend form to allow users to add new recipes to the site (at least a basic one, if you haven’t taken the frontend course)
-Create the backend code to group and summarise the recipes on the site, based on their attributes such as cuisine, country of origin, allergens, ingredients, etc. and a frontend page to show this summary, and make the categories clickable to drill down into a filtered view based on that category. This frontend page can be as simple or as complex as you’d like; you can use a Python library such as matplotlib, or a JS library such as d3/dc (that you learned about if you took the frontend modules) for visualisation
-Create the backend code to retrieve a list of recipes, filtered based on various criteria (e.g. allergens, cuisine, etc…) and order them based on some reasonable aspect (e.g. number of views or upvotes). Create a frontend page to display these, and to show some summary statistics around the list (e.g. number of matching recipes, number of new recipes. Optionally, add support for pagination, when the number of results is large
-Create a detailed view for each recipes, that would just show all attributes for that recipe, and the full preparation instructions
-Allow for editing and deleting of the recipe records, either on separate pages, or built into the list/detail pages
-Optionally, you may choose to add basic user registration and authentication to the site. This can as simple as adding a username field to the recipe creation form, without a password (for this project only, this is not expected to be secure)
+- Create a web application that allows users to store and easily access cooking recipes
+Put some effort into designing a database schema based on recipes, and any other related properties and entities 
+(e.g. views, upvotes, ingredients, recipe authors, allergens, author’s country of origin, cuisine etc…). 
+Make sure to put some thought into the relationships between them, and use either foreign keys 
+(in the case of a relational database) or nesting (in the case of a document store) to connect these pieces of data
+- Create the backend code and frontend form to allow users to add new recipes to the site 
+(at least a basic one, if you haven’t taken the frontend course)
+- Create the backend code to group and summarise the recipes on the site, based on their attributes such as cuisine, country of origin, allergens, ingredients, etc. and a frontend page to show this summary, and make the categories clickable to drill down into a filtered view based on that category. This frontend page can be as simple or as complex as you’d like; you can use a Python library such as matplotlib, or a JS library such as d3/dc (that you learned about if you took the frontend modules) for visualisation
+- Create the backend code to retrieve a list of recipes, filtered based on various criteria (e.g. allergens, cuisine, etc…) and order them based on some reasonable aspect (e.g. number of views or upvotes). Create a frontend page to display these, and to show some summary statistics around the list (e.g. number of matching recipes, number of new recipes. Optionally, add support for pagination, when the number of results is large
+- Create a detailed view for each recipes, that would just show all attributes for that recipe, and the full preparation instructions
+- Allow for editing and deleting of the recipe records, either on separate pages, or built into the list/detail pages
+- Optionally, you may choose to add basic user registration and authentication to the site. This can as simple as adding a username field to the recipe creation form, without a password (for this project only, this is not expected to be secure)
 
 
 GUIDELINES:
