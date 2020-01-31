@@ -108,7 +108,7 @@ $('#addRecipeBtn').on('touchstart click', function () {
 });
 
 $(document).ready(function () {
-
+    $('select').material_select();
 
 
 });

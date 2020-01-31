@@ -84,14 +84,13 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    border: 2px solid green;
-    border-radius: 1vw;
     z-index: 99;
   }
   #menulistDesktop {
-    width: 95vw;
+    width: 90vw;
     height: 4vw;
     padding: 0;
+    margin: 25px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -129,10 +128,6 @@
     padding-right: 1vw;
     font-size: 1vw;
   }
-  .menulistitem {
-    border: 2px solid darkgreen;
-    border-radius: 1vw;
-  }
   .menulistitem form {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -147,7 +142,7 @@
   #search_term {
     background-color: transparent;
     margin: 0;
-    height: 90%;
+    height: 80%;
   }
   .menulistitem .hyperlinks {
     display: -webkit-box;
@@ -174,7 +169,7 @@
             justify-content: space-evenly;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    width: 95vw;
+    width: 80vw;
     -webkit-transform: translateY(4vw);
             transform: translateY(4vw);
     margin-top: 2.5vw;
@@ -187,6 +182,7 @@
     display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+    font-size: .8vw;
   }
   .recipeHeader {
     border: 2px solid lightblue;
@@ -198,6 +194,7 @@
             justify-content: space-evenly;
     height: 2vw;
     width: 100%;
+    margin-top: 2vw;
   }
   .recipeHeaderItem {
     display: -webkit-box;
@@ -219,17 +216,13 @@
         -ms-flex-pack: center;
             justify-content: center;
   }
-  #outerStatsWrapper,
-  #outerIngredientsWrapper {
-    width: 60%;
-  }
-  #outerStatsWrapper,
-  #outerDirectionsWrapper {
+  #outerStatsWrapper {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+    width: 65%;
   }
   .statsWrapper {
     border: 2px solid lightblue;
@@ -257,16 +250,8 @@
         -ms-flex-align: center;
             align-items: center;
   }
-  #dishImage {
-    width: 40%;
-    height: 7vw;
-    border: 2px solid lightblue;
-  }
-  #outerDirectionsWrapper {
-    width: 40%;
-  }
-  .directionsWrapper {
-    border: 2px solid lightblue;
+  .outerTimesWrapper {
+    width: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -278,7 +263,21 @@
             align-items: center;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+  }
+  .timesWrapper {
+    border: 2px solid lightblue;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
     width: 33.33%;
+    height: 100%;
   }
   .directionsLabel {
     width: 100%;
@@ -291,6 +290,23 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+  }
+  #dishImageWrapper {
+    width: 35vw;
+    height: 19.68vw;
+    border: 2px solid lightblue;
+  }
+  #origin {
+    position: absolute;
+  }
+  #dishImageWrapper {
+    width: 35%;
+  }
+  #outerIngredientsWrapper {
+    width: 40%;
+  }
+  #outerDirectionsWrapper {
+    width: 60%;
   }
   #reviewsPopup,
   #ratePopup {

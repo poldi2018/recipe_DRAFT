@@ -1,96 +1,135 @@
 {% extends 'base.html'%}
-
 {% block content %}
-<h3>Add a recipe</h3>
-<div class="row">
-    <div class="addIngredientField">click to add ingredient field</div>
-    <div class="removeIngredientField">click to remove ingredient field</div>
-    <div class="row">
-        <form action="{{ url_for('insert_recipe')}}" method="POST" class="col s12" enctype="multipart/form-data">
-            <div class="row">
-                <div class="input-field col s12 testdiv">
-                    <i class="material-icons prefix">playlist_add</i>
-                    <input id="recipe_title" name="recipe_title" type="text" class="validate">
-                    <label for="recipe_title">Recipe Title</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12 testdiv">
-                    <i class="material-icons prefix">playlist_add</i>
-                    <input id="dish_type" name="dish_type" type="text" class="validate">
-                    <label for="dish_type">Dish Type:</label>
-                </div>
-            </div>
+<div class="recipeWrapper">
+    <div id="recipeTitle" class="recipeHeaderItem">
+        <h3>Add a recipe</h3>
+    </div>
+    <form action="{{ url_for('insert_recipe')}}" method="POST" class="col s12" enctype="multipart/form-data"></form>
+    <div class="recipeHeader">
+        <div class="input-field" id="recipeTitle">
+            <i class="material-icons prefix">playlist_add</i>
+            <input id="recipe_title" name="recipe_title" type="text" class="validate">
+            <label for="recipe_title">Recipe Title</label>
+        </div>
+        <div id="dishType" class="recipeHeaderItem">DISH</div>
+    </div>
 
-            <div class="row">
-                <div class="input-field col s12 testdiv">
-                    <i class="material-icons prefix">playlist_add</i>
-                    <input id="level" name="level" type="text" class="validate">
-                    <label for="level">Sofistication</label>
-                </div>
-            </div>
+    <div id="outerStatsWrapper">
+        <div class="statsWrapper">
+            <div class="statsfield">Added By:</div>
+            <div class="statsfield">{{session["username"]}}</div>
+        </div>
 
-            <div class="row">
-                <div class="input-field col s12 testdiv">
-                    <i class="material-icons prefix">playlist_add</i>
-                    <input id="prep_time" name="prep_time" type="text" class="validate">
-                    <label for="prep_time">Preparation time</label>
-                </div>
-            </div>
+        <div class="statsWrapper">
+            <div class="statsfield">Date added:</div>
+            <div class="statsfield">Timestamp follows</div>
+        </div>
 
-            <div class="row">
-                <div class="input-field col s12 testdiv">
-                    <i class="material-icons prefix">playlist_add</i>
-                    <input id="cooking_time" name="cooking_time" type="text" class="validate">
-                    <label for="cooking_time">Cooking time</label>
-                </div>
-            </div>
+        <div class="statsWrapper">
+            <div class="statsfield">Time added:</div>
+            <div class="statsfield">Timestamp follows</div>
+        </div>
 
-            <div class="row">
-                <div class="input-field col s12 testdiv">
-                    <i class="material-icons prefix">playlist_add</i>
-                    <textarea id="directions" name="directions"></textarea>
-                    <label for="directions">Directions</label>
-                </div>
+        <div class="statsWrapper">
+            <div class="statsfield">Level:</div>
+            <div class="input-field statsfield">
+                <select>
+                    <option value="" disabled selected>Experience level:</option>
+                    <option value="1">Easy</option>
+                    <option value="2">Medium</option>
+                    <option value="3">Difficult</option>
+                </select>
+                <label>Experience level:</label>
             </div>
+        </div>
 
-            <div class="row">
-                <div class="input-field col s12 testdiv">
-                    <i class="material-icons prefix">playlist_add</i>
-                    <textarea id="allergens" name="allergens"></textarea>
-                    <label for="allergens">Allergens</label>
-                </div>
-            </div>
-            <div id="ingredientWrapper">
-                <div class="row">
+        <div class="statsWrapper">
+            <div class="statsfield">Reviews:</div>
+            <div class="statsfield">-</div>
+        </div>
+
+        <div class="statsWrapper">
+            <div class="statsfield">Viewed:</div>
+            <div class="statsfield">-</div>
+        </div>
+        <div class="outerTimesWrapper">
+            <div class="timesWrapper">
+                <div class="directionsLabel">Prep Time:</div>
+                <div class="prepTime">
                     <div class="input-field col s12 testdiv">
                         <i class="material-icons prefix">playlist_add</i>
-                        <input id="ingredient1" name="ingredient1" type="text" class="validate">
-                        <label for="ingredient1">Ingredient</label>
+                        <input id="prep_time" name="prep_time" type="text" class="validate">
+                        <label for="prep_time">Preparation time</label>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="input-field col s12 testdiv">
-                    <i class="material-icons prefix">playlist_add</i>
-                    <input id="origin" name="origin" type="text" class="validate">
-                    <label for="origin">Origin Country</label>
+            <div class="timesWrapper">
+                <div class="directionsLabel">Cooking Time:</div>
+                <div class="cookingTime">
+                    <div class="input-field col s12 testdiv">
+                        <i class="material-icons prefix">playlist_add</i>
+                        <input id="cooking_time" name="cooking_time" type="text" class="validate">
+                        <label for="cooking_time">Cooking time</label>
+                    </div>
                 </div>
             </div>
-
-            <div class="row">
-                <input type="file" name="file" id="fileinputfield" onchange="encodeImgtoBase64(this)"
-                    enctype="multipart/form-data">
-                <textarea id="base64file" name="base64file" hidden></textarea>
+            <div class="timesWrapper">
+                <div class="directionsLabel">Total Time:</div>
+                <div class="totalTime"></div>
             </div>
-
-            <div class="row">
-                <button class="btn waves-effect waves-light" type="submit" id="add_recipe_Btn" name="action"
-                    onclick="">Send
-                    <i class="material-icons right">playlist</i>
-                </button>
-            </div>
-        </form>
+        </div>
     </div>
+
+    <div id="dishImageWrapper">
+        <div id="origin">
+            <div class="input-field statsfield">
+                <select>
+                    <option value="" disabled selected>Experience level:</option>
+                    <option value="1">Easy</option>
+                    <option value="2">Medium</option>
+                    <option value="3">Difficult</option>
+                </select>
+                <label>Experience level:</label>
+            </div>
+
+        </div>
+        <input type="file" name="file" id="fileinputfield" onchange="encodeImgtoBase64(this)"
+            enctype="multipart/form-data">
+        <textarea id="base64file" name="base64file" hidden></textarea>
+    </div>
+
+
+    <div id="outerIngredientsWrapper">
+        <div class="addIngredientField">click to add ingredient field</div>
+        <div class="removeIngredientField">click to remove ingredient field</div>
+        <div class="input-field col s12 testdiv">
+            <i class="material-icons prefix">playlist_add</i>
+            <input id="amount1" name="amount1" type="text" class="validate">
+            <label for="amount1">Amount</label>
+        </div>
+        <div class="input-field col s12 testdiv">
+            <i class="material-icons prefix">playlist_add</i>
+            <input id="ingredient1" name="ingredient1" type="text" class="validate">
+            <label for="ingredient1">Ingredient</label>
+        </div>
+    </div>
+
+    <div id="outerDirectionsWrapper">
+        <div class="directions">
+            <div class="input-field col s12 testdiv">
+                <i class="material-icons prefix">playlist_add</i>
+                <textarea id="directions" name="directions"></textarea>
+                <label for="directions">Directions</label>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <button class="btn waves-effect waves-light" type="submit" id="add_recipe_Btn" name="action" onclick="">Send
+            <i class="material-icons right">playlist</i>
+        </button>
+    </div>
+    </form>
 </div>
+
 {% endblock %}
