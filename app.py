@@ -39,6 +39,9 @@ def set_session(user):
     session['email_address']=user['user_email_hash']
     return session
 
+def build_origin_filepath(selection):
+    filename="/static/images/flags-mini/"+selection+".png"
+    return filename
 
 #ROUTES AND VIEWS
 
@@ -177,11 +180,11 @@ def insert_recipe():
         "view_count": 0,
         "prep_time": int(request.form.get("prep_time")),
         "cooking_time": int(request.form.get("cooking_time")),
-        "total_time": request.form.get("prep_time")+request.form.get("cooking_time"),
+        "total_time": int(request.form.get("prep_time"))+int(request.form.get("cooking_time")),
         "directions": request.form.get("directions"),
         "allergens": request.form.get("allergens"),
         "ingredients": request.form.get("ingredients"),
-        "origin": request.form.get("origin"),
+        "origin": build_origin_filepath(request.form.get("origin")),
         "img_src": url_img_src
     })
     return redirect(url_for('latest_added'))
