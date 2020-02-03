@@ -145,18 +145,24 @@
     .recipeWrapper {
         width: 60vw;
         display: flex;
+        justify-content: center;
         flex-wrap: wrap;
         font-size: .8vw;
+        margin-top: 2vw;
+    }
+
+    .recipeWrapper .input-field {
+        margin-top: .5rem;
+        display: flex;
+        align-items: center;
     }
 
     .recipeHeader {
         border: 2px solid lightblue;
         display: flex;
         justify-content: space-evenly;
-        height: 2vw;
+        height: 3vw;
         width: 100%;
-        margin-top: 2vw;
-
     }
 
     .recipeHeaderItem {
@@ -169,6 +175,13 @@
         width: 50%;
         display: flex;
         justify-content: center;
+    }
+
+    .addRecipeTitle {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        font-size: 2vw;
     }
 
     #outerStatsWrapper {
@@ -219,16 +232,17 @@
     }
 
     #dishImageWrapper {
-        width: 35vw;
-        height:19.68vw;
+        width: 21.33vw;
+        height:12vw;
         border: 2px solid lightblue;
     }
 
+    
     #origin {
         position: absolute;
     }
 
-    #dishImage {}
+  
 
     #dishImageWrapper
  {
@@ -243,11 +257,6 @@
     #outerDirectionsWrapper {
     width: 60%;       
     }
-
-
-    .recipeTile {}
-
-
 
 
     // Popups

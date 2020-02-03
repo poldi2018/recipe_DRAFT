@@ -183,6 +183,16 @@
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     font-size: .8vw;
+    margin-top: 2vw;
+  }
+  .recipeWrapper .input-field {
+    margin-top: .5rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
   .recipeHeader {
     border: 2px solid lightblue;
@@ -192,9 +202,8 @@
     -webkit-box-pack: space-evenly;
         -ms-flex-pack: space-evenly;
             justify-content: space-evenly;
-    height: 2vw;
+    height: 3vw;
     width: 100%;
-    margin-top: 2vw;
   }
   .recipeHeaderItem {
     display: -webkit-box;
@@ -215,6 +224,16 @@
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+  }
+  .addRecipeTitle {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 100%;
+    font-size: 2vw;
   }
   #outerStatsWrapper {
     display: -webkit-box;
@@ -292,8 +311,8 @@
             align-items: center;
   }
   #dishImageWrapper {
-    width: 35vw;
-    height: 19.68vw;
+    width: 21.33vw;
+    height: 12vw;
     border: 2px solid lightblue;
   }
   #origin {

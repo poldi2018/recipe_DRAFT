@@ -62,7 +62,7 @@
 
     <div id="dishImageWrapper">
         <div id="origin">
-            {{recipe.origin}}
+            {{url_for('static', filename='images/flags-mini/{{recipe.origin}}.png')}}
         </div>
         <img id="dishImage" src="{{recipe.img_src}}" style="width:100%;height:100%;" alt="image of dish">
     </div>
