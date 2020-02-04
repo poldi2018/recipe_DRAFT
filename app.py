@@ -7,7 +7,7 @@ import base64
 import requests
 from werkzeug.security import check_password_hash, generate_password_hash
 
-#creating instance of Flask to have an app object
+#creating instance of Flask app object
 app = Flask(__name__)
 #setting name of db, parse and assign system env variable
 app.config["MONGO_DBNAME"] = 'bookbaseDRAFT'
@@ -43,6 +43,17 @@ def build_origin_filepath(selection):
     filename="/static/images/flags-mini/"+selection+".png"
     return filename
 
+def create_new_user(form):
+    new_user = {
+            "username": form.get('username').casefold(), 
+            "email_address": form.get('email_address'),
+            "user_email_hash": generate_password_hash(form.get('email_address')),
+            "password": generate_password_hash(form.get('password'))
+    }
+    return new_user
+
+    
+
 #ROUTES AND VIEWS
 
 #Indexpage CHECKED
@@ -54,8 +65,6 @@ def index():
 @app.route('/reviews')
 def reviews():
     reviews=mongo.db.reviews.find()
-    if not reviews:
-        raise Exception("No reviews found")
     return render_template("reviews.html", reviews=reviews)
 
 #Search dialog CHECKED
@@ -87,12 +96,7 @@ def insert_user():
     username_to_check = mongo.db.users.find_one({"username": request.form.get('username')}) 
 
     if not user_email_to_check and not username_to_check: 
-        new_user = {
-            "username": request.form.get('username').casefold(), 
-            "email_address": request.form.get('email_address'),
-            "user_email_hash": generate_password_hash(request.form.get('email_address')),
-            "password": generate_password_hash(request.form.get('password'))
-        }
+        new_user=create_new_user(request.form)        
         users.insert_one(new_user)
         message="Account created! Please login with your username or email and password. Thanks!"
         return render_template("loginpage.html", message=message) 

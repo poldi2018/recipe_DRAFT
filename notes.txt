@@ -3,23 +3,22 @@ DB schema:
 TODO:
 schemas and mockups!
 recipe:
-level selector
-dish type dropdown
+field validators
 preptime selector
 cooking time selector
-calculation of total time 
+# carousel newly added
+ 
 add allergens fields and handling
 add ingredient fields and handling
 
-
-
-
-raise Exception("this is a test") 
-
+documentations
+testing
 search:
 - dish type
 - country
 - ingredients
+
+raise Exception("this is a test") 
 
 
 ####
@@ -83,18 +82,22 @@ ingredient: <string>
 
 
 drop down menu dish_type options:
-breakfast
+
+STARTERS
 soup
 salads
-lunch
-dinner
-dessert
+
+DESSERTS
+cake
+ice
+fruits
+
+MAIN COURSE
 chicken
 fish
 game
 meat
-cake
-### ADD NEW
+
 
 
 
@@ -136,8 +139,8 @@ total time to make
 directions div:
 Lorem ipsum ….
 
-# carousel newly added
-# carousel top rated
+
+
 
 footer:
 C
