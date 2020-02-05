@@ -1,14 +1,20 @@
 // variables
 var add_recipe_Btn_Active = false;
-var fieldcount = 1;
-var currentIngredientFieldname = "";
+var fieldcount = 2;
+var currentIngredientFieldname, currentAmountFieldname = "";
 
-function generate_ingredientfield() {
-    fieldcount++;
-    var ingredientfield = "ingredient" + fieldcount;
-    currentIngredientFieldname = ingredientfield;
-    return ingredientfield;
+function generate_ingredientfieldName() {
+    var ingredientFieldname = "ingredient" + fieldcount;
+    currentIngredientFieldname = ingredientFieldname;
+    return ingredientFieldname;
 }
+
+function generate_amountfieldName() {
+    var amountFieldname = "amount" + fieldcount;
+    currentAmountFieldname = amountFieldname;
+    return amountFieldname;
+}
+
 
 function decrease_ingredientfield() {
     if (fieldcount >= 2) {
@@ -21,8 +27,10 @@ function decrease_ingredientfield() {
 
 
 function addIngredientField() {
-    $("#ingredientWrapper").append("<div class='row'><input id='ingredient' name='ingredient' type='text' class='validate'><label for='ingredient'></label></div><p></p>");
-    $('#ingredient').attr('id', generate_ingredientfield()).attr('name', generate_ingredientfield());
+    $("#ingredientWrapper").append("<div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='amount' name='amount' type='text' class='validate'><label for='amount'>Amount</label></div><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='ingredient' name='ingredient' type='text' class='validate'><label for='ingredient'>Ingredient</label></div>");
+    $('#ingredient').attr('name', generate_ingredientfieldName()).attr('id', generate_ingredientfieldName());
+    $('#amount').attr('name', generate_amountfieldName()).attr('id', generate_amountfieldName());
+    fieldcount++;
 }
 
 function removeIngredientField() {

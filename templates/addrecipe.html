@@ -17,6 +17,7 @@
 
             <div class="recipeHeaderItem" id="">
                 <div class="input-field">
+                    <i class="material-icons prefix">playlist_add</i>
                     <select name="dish_type">
                         <option value="" disabled selected>Choose Dish Type</option>
                         <optgroup label="Starters">
@@ -39,14 +40,14 @@
                 </div>
             </div>
             <div class="recipeHeaderItem">
-
                 <div class="input-field">
+                    <i class="material-icons prefix">playlist_add</i>
                     <select class="icons" name="origin">
                         <option value="" disabled selected>Choose origin country</option>
                         {% for country in countries %}
-                        <option value="{{country["country_name"]}}"
-                            data-icon="{{url_for('static', filename=country["filename"])}}" class="circle">
-                            {{country["country_name"]}}</option>
+                        <option value="{{country['country_name']}}"
+                            data-icon="{{url_for('static', filename=country['filename'])}}" class="circle">
+                            {{country['country_name']}}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -94,9 +95,10 @@
                 <div class="timesWrapper">
                     <div class="directionsLabel">Prep Time [mins]:</div>
                     <div class="prepTime">
-                        <div class="input-field col s12 testdiv">
+                        <div class="input-field col s12">
                             <i class="material-icons prefix">playlist_add</i>
-                            <input id="prepTime" name="prep_time" type="text" class="validate" value="0" onchange="calcTotalTime()">
+                            <input id="prepTime" name="prep_time" type="text" class="validate" value="0"
+                                onchange="calcTotalTime()">
                             <label for="prepTime">Preparation time</label>
                         </div>
                     </div>
@@ -104,9 +106,10 @@
                 <div class="timesWrapper">
                     <div class="directionsLabel">Cooking Time [mins]:</div>
                     <div class="cookingTime">
-                        <div class="input-field col s12 testdiv">
+                        <div class="input-field col s12">
                             <i class="material-icons prefix">playlist_add</i>
-                            <input id="cookingTime" name="cooking_time" type="text" class="validate" value="0" onchange="calcTotalTime()">
+                            <input id="cookingTime" name="cooking_time" type="text" class="validate" value="0"
+                                onchange="calcTotalTime()">
                             <label for="cookingTime">Cooking time</label>
                         </div>
                     </div>
@@ -119,37 +122,39 @@
         </div>
 
         <div id="dishImageWrapper">
-            <div class="input-field col s12 testdiv">
+            <div class="input-field col s12">
                 <input type="file" name="file" id="fileinputfield" onchange="encodeImgtoBase64(this)"
                     enctype="multipart/form-data">
                 <textarea id="base64file" name="base64file" hidden></textarea>
             </div>
         </div>
 
-
-        <div id="outerIngredientsWrapper">
-            <div class="addIngredientField">click to add ingredient field</div>
-            <div class="removeIngredientField">click to remove ingredient field</div>
-            <div class="input-field col s12 testdiv">
-                <i class="material-icons prefix">playlist_add</i>
-                <input id="amount1" name="amount1" type="text" class="validate">
-                <label for="amount1">Amount</label>
-            </div>
-            <div class="input-field col s12 testdiv">
-                <i class="material-icons prefix">playlist_add</i>
-                <input id="ingredient1" name="ingredient1" type="text" class="validate">
-                <label for="ingredient1">Ingredient</label>
-            </div>
-        </div>
-
         <div id="outerDirectionsWrapper">
-            <div class="directions">
-                <div class="input-field col s12 testdiv">
+            <div id="outerIngredientsWrapper">
+                <div class="addRemoveBtnWrapper">
+                    <div class="addIngredientField">add ingredient field</div>
+                    <div class="removeIngredientField">remove ingredient field</div>
+                </div>
+                <div id="ingredientWrapper">
+                    <div class="input-field">
+                        <i class="material-icons prefix">playlist_add</i>
+                        <input id="amount1" name="amount1" type="text" class="validate">
+                        <label for="amount1">Amount</label>
+                    </div>
+                    <div class="input-field">
+                        <i class="material-icons prefix">playlist_add</i>
+                        <input id="ingredient1" name="ingredient1" type="text" class="validate">
+                        <label for="ingredient1">Ingredient</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="directionsWrapper">
+                <div class="input-field col s12 directionInput">
                     <i class="material-icons prefix">playlist_add</i>
                     <textarea id="directions" name="directions"></textarea>
                     <label for="directions">Directions</label>
                 </div>
-
             </div>
         </div>
         <div class="row">

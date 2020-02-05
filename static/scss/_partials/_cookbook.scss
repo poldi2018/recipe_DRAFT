@@ -207,7 +207,7 @@
     }
 
     .outerTimesWrapper {
-        width:100%;
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -223,6 +223,7 @@
         width: 33.33%;
         height: 100%;
     }
+
     #totalTime {
         height: 50%;
         display: flex;
@@ -240,31 +241,68 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 21.33vw;
-        height:12vw;
         border: 2px solid lightblue;
+        width: 35%;
     }
 
-    
+    #dishImage {
+        width: 21.33vw;
+        height: 12vw;
+    }
+
+
     #origin {
         position: absolute;
     }
 
-  
-    #dishImageWrapper
- {
-        width: 35%;
+    #originFlag {
+        width: 2vw;
+        height: 1.13vw;
+    }
+
+    #outerDirectionsWrapper {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 2vw;
     }
 
     #outerIngredientsWrapper {
         width: 40%;
+    }
+
+    .addRemoveBtnWrapper {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+
+    .addIngredientField,
+    .removeIngredientField {
+        width: 50%;
+        display: flex;
+        justify-content: center;
 
     }
 
-    #outerDirectionsWrapper {
-    width: 60%;       
+    #ingredientWrapper {
+        display: flex;
+        flex-wrap: wrap;
     }
 
+    #ingredientWrapper .input-field {
+        width: 50%;
+    }
+
+    #directionsWrapper {
+        width: 60%;
+    }
+
+    #directions,
+    .directionInput {
+        height: 100%;
+    }
 
     // Popups
 
@@ -278,7 +316,7 @@
         z-index: -1;
         border: 2px white;
         border-radius: 5px;
-        
+
     }
 
     #reviewsWrapper,

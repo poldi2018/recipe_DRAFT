@@ -332,21 +332,66 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+    border: 2px solid lightblue;
+    width: 35%;
+  }
+  #dishImage {
     width: 21.33vw;
     height: 12vw;
-    border: 2px solid lightblue;
   }
   #origin {
     position: absolute;
   }
-  #dishImageWrapper {
-    width: 35%;
+  #originFlag {
+    width: 2vw;
+    height: 1.13vw;
+  }
+  #outerDirectionsWrapper {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    margin-bottom: 2vw;
   }
   #outerIngredientsWrapper {
     width: 40%;
   }
-  #outerDirectionsWrapper {
+  .addRemoveBtnWrapper {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .addIngredientField,
+  .removeIngredientField {
+    width: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  #ingredientWrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  #ingredientWrapper .input-field {
+    width: 50%;
+  }
+  #directionsWrapper {
     width: 60%;
+  }
+  #directions,
+  .directionInput {
+    height: 100%;
   }
   #reviewsPopup,
   #ratePopup {
