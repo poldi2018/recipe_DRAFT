@@ -45,9 +45,8 @@
                     <select class="icons" name="origin">
                         <option value="" disabled selected>Choose origin country</option>
                         {% for country in countries %}
-                        <option value="{{country['country_name']}}"
-                            data-icon="{{url_for('static', filename=country['filename'])}}" class="circle">
-                            {{country['country_name']}}</option>
+                        <option value="{{country['country_name']}}" data-icon="{{url_for('static', filename=country['filename'])}}"
+                        class="circle">{{country['country_name']}}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -138,15 +137,18 @@
                 <div id="ingredientWrapper">
                     <div class="input-field">
                         <i class="material-icons prefix">playlist_add</i>
-                        <input id="amount1" name="amount1" type="text" class="validate">
+                        <input id="amount1" name="amount1" type="text" class="validate amounts">
                         <label for="amount1">Amount</label>
                     </div>
                     <div class="input-field">
                         <i class="material-icons prefix">playlist_add</i>
-                        <input id="ingredient1" name="ingredient1" type="text" class="validate">
+                        <input id="ingredient1" name="ingredient1" type="text" class="validate ingredients">
                         <label for="ingredient1">Ingredient</label>
                     </div>
                 </div>
+
+                <input id="amountsArray" name="amounts" type="text" class="validate" hidden>
+                <input id="ingredientsArray" name="amounts" type="text" class="validate" hidden>
             </div>
 
             <div id="directionsWrapper">
@@ -158,7 +160,7 @@
             </div>
         </div>
         <div class="row">
-            <button class="btn waves-effect waves-light" type="submit" id="add_recipe_Btn" name="action" onclick="">Send
+            <button class="btn waves-effect waves-light" type="submit" id="add_recipe_Btn" name="action" onclick="makeIngredientsArray()">Send
                 <i class="material-icons right">playlist</i>
             </button>
         </div>

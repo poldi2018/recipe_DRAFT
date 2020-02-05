@@ -51,6 +51,13 @@ def create_new_user(form):
     }
     return new_user
 
+def make_ingredient_dict(amounts_list, ingredients_list):
+    ingredients_dict={}
+    for amount in amounts_list:    
+        for ingredient in ingredients_list:
+            ingredients_dict.update({"amount": amount, "ingredient": ingredient})
+            print(ingredients_dict)
+    return ingredients_dict
 
 def get_countries():
     with open("static/data/countries.json", "r") as json_data:
@@ -173,6 +180,10 @@ def insert_recipe():
     url_img_src=upload_image(request.form.get("base64file"))
     today = datetime.datetime.now().strftime("%d. %B %Y")
     now = datetime.datetime.now().strftime("%H:%M:%S")
+    amounts_list=request.form.get("amountsArray").split()
+    ingredients_list=request.form.get("ingredientsArray").split()
+    ingredients_dict=make_ingredient_dict(amounts_list, ingredients_list)
+    print(ingredients_dict)
     recipes.insert_one(
     {
         "title": request.form.get('recipe_title'), 
@@ -285,6 +296,38 @@ def insert_rating(recipe_id, recipe_title):
         "$inc": {"review_count": 1 }
     })
     return redirect(url_for('read_recipe', recipe_id=recipe_id))
+
+@app.route('/form')
+def form():
+    return render_template("form.html")
+
+
+@app.route('/formdata', methods=["POST"])
+def formdata():
+    #amounts_array=request.form.get("amountsArray").split()
+    #ing_array=request.form.get("ingredientsArray").split()
+    #print(amounts_array)
+    #print(ing_array)
+    amounts_list=request.form.get("amountsArray").split()
+    #print(amounts_list)
+    ingredients_list=request.form.get("ingredientsArray").split()
+    #print(ingredients_list)
+    ingredients_dict={}
+    for amount in amounts_list:
+        print(amount)    
+        print(ingredient)
+        for ingredient in ingredients_list:
+            print(ingredient)
+            continue
+        ingredients_dict.update({"amount": amount, "ingredient": ingredient})
+        
+            #print(ingredients_dict)
+    #make_ingredient_dict(amounts_list, ingredients_list)
+    #print(ingredients_dict)
+    return redirect(url_for('form'))
+
+
+
 
 # run app
 if __name__ == '__main__':

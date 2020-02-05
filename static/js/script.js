@@ -16,7 +16,7 @@ function generate_amountfieldName() {
 }
 
 function addIngredientField() {
-    $("#ingredientWrapper").append("<div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='amount' name='amount' type='text' class='validate'><label for='amount'>Amount</label></div><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='ingredient' name='ingredient' type='text' class='validate'><label for='ingredient'>Ingredient</label></div>");
+    $("#ingredientWrapper").append("<div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='amount' name='amount' type='text' class='validate amounts'><label for='amount'>Amount</label></div><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='ingredient' name='ingredient' type='text' class='validate ingredients'><label for='ingredient'>Ingredient</label></div>");
     $('#ingredient').attr('name', generate_ingredientfieldName()).attr('id', generate_ingredientfieldName());
     $('#amount').attr('name', generate_amountfieldName()).attr('id', generate_amountfieldName());
     fieldcount++;
@@ -137,8 +137,34 @@ function calcTotalTime() {
     console.log(totalTime);
     if (totalTime) {
         $("#totalTime").html(totalTime + " mins");
-    }
-    else {
+    } else {
         $("#totalTime").html(0 + " mins");
     }
+}
+
+$('.makearray').on('touchstart click', function () {
+    makeIngredientsArray();
+});
+
+
+function makeAmountsArray() {
+    
+}
+
+function makeIngredientsArray() {
+    let ingredientsArray = $('.ingredients').toArray();
+    let ingredients=""
+    for (let i=0; i < ingredientsArray.length; i++) {
+        ingredients=ingredients+ingredientsArray[i].value+" ";
+    }
+    console.log(ingredients);
+    $('#ingredientsArray').val(ingredients);
+
+    let amountsArray = $('.amounts').toArray();
+    let amounts=""
+    for (let i=0; i < amountsArray.length; i++) {
+        amounts=amounts+amountsArray[i].value+" ";
+    }
+    console.log(amounts);
+    $('#amountsArray').val(amounts);
 }
