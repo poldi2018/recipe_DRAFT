@@ -15,29 +15,19 @@ function generate_amountfieldName() {
     return amountFieldname;
 }
 
-
-function decrease_ingredientfield() {
-    if (fieldcount >= 2) {
-        fieldcount--;
-    }
-    var ingredientfield = "ingredient" + fieldcount;
-    currentIngredientFieldId = "#" + ingredientfield;
-    return ingredientfield;
-}
-
-
 function addIngredientField() {
     $("#ingredientWrapper").append("<div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='amount' name='amount' type='text' class='validate'><label for='amount'>Amount</label></div><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='ingredient' name='ingredient' type='text' class='validate'><label for='ingredient'>Ingredient</label></div>");
     $('#ingredient').attr('name', generate_ingredientfieldName()).attr('id', generate_ingredientfieldName());
     $('#amount').attr('name', generate_amountfieldName()).attr('id', generate_amountfieldName());
     fieldcount++;
+    console.log(fieldcount);
 }
 
 function removeIngredientField() {
-    var tmpfield = "";
-    $(currentIngredientFieldId).remove();
+    var ingredientFieldList = document.getElementById("ingredientWrapper"); // Get the <ul> element with id="myList"
+    ingredientFieldList.removeChild(ingredientFieldList.childNodes[$("#ingredientWrapper").length]);
+    ingredientFieldList.removeChild(ingredientFieldList.childNodes[$("#ingredientWrapper").length]);
     fieldcount--;
-    currentIngredientFieldId = "#ingredient" + fieldcount;
 }
 
 $('.addIngredientField').on('touchstart click', function () {
@@ -47,8 +37,6 @@ $('.addIngredientField').on('touchstart click', function () {
 $('.removeIngredientField').on('touchstart click', function () {
     removeIngredientField();
 });
-
-
 
 //function for onchange event of file input field to convert selected file into base64
 function encodeImgtoBase64(element) {
@@ -60,7 +48,6 @@ function encodeImgtoBase64(element) {
     }
     reader.readAsDataURL(file);
 }
-
 
 function validateImageName() {
     var enteredFilename = $('#fileinputfield').val();
@@ -142,11 +129,11 @@ $('#closeRatePopupBtn').on('touchstart click', function () {
     $('#ratePopup').css("opacity", "0.0");
     setTimeout(function () {
         $('#ratePopup').css("transform", "translateX(-100vw)").css("z-index", "-1");
-    }, 200);   
+    }, 200);
 });
 
 
 function calcTotalTime() {
-    let totalTime=parseInt($("#prepTime").val())+parseInt($("#cookingTime").val());
-    $("#totalTime").html(totalTime+" mins");
+    let totalTime = parseInt($("#prepTime").val()) + parseInt($("#cookingTime").val());
+    $("#totalTime").html(totalTime + " mins");
 }
