@@ -223,6 +223,11 @@
         width: 33.33%;
         height: 100%;
     }
+    #totalTime {
+        height: 50%;
+        display: flex;
+        align-items: center;
+    }
 
     .directionsLabel {
         width: 100%;
@@ -232,6 +237,9 @@
     }
 
     #dishImageWrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 21.33vw;
         height:12vw;
         border: 2px solid lightblue;

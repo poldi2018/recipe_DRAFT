@@ -4,8 +4,6 @@ TODO:
 schemas and mockups!
 recipe:
 field validators
-preptime selector
-cooking time selector
 # carousel newly added
  
 add allergens fields and handling
@@ -17,8 +15,6 @@ search:
 - dish type
 - country
 - ingredients
-
-raise Exception("this is a test") 
 
 
 ####

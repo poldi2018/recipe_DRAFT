@@ -56,7 +56,7 @@ def get_countries():
     with open("static/data/countries.json", "r") as json_data:
         countries = json.load(json_data)
     return countries
-    
+
 
 #ROUTES AND VIEWS
 
@@ -291,4 +291,9 @@ if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT', 5000)),
             debug=True)
+
+
+
+
+
 

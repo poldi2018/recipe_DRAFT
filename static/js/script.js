@@ -137,3 +137,8 @@ $('#closeRatePopupBtn').on('touchstart click', function () {
     }, 200);   
 });
 
+
+function calcTotalTime() {
+    let totalTime=parseInt($("#prepTime").val())+parseInt($("#cookingTime").val());
+    $("#totalTime").html(totalTime+" mins");
+}

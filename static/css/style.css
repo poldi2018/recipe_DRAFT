@@ -301,6 +301,15 @@
     width: 33.33%;
     height: 100%;
   }
+  #totalTime {
+    height: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
   .directionsLabel {
     width: 100%;
     display: -webkit-box;
@@ -314,6 +323,15 @@
             align-items: center;
   }
   #dishImageWrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     width: 21.33vw;
     height: 12vw;
     border: 2px solid lightblue;

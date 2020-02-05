@@ -39,397 +39,15 @@
                 </div>
             </div>
             <div class="recipeHeaderItem">
-                
+
                 <div class="input-field">
                     <select class="icons" name="origin">
                         <option value="" disabled selected>Choose origin country</option>
                         {% for country in countries %}
-
-
                         <option value="{{country["country_name"]}}"
                             data-icon="{{url_for('static', filename=country["filename"])}}" class="circle">
                             {{country["country_name"]}}</option>
-        
                         {% endfor %}
-
-                        <option value="XXX" data-icon="{{url_for('static', filename='images/flags-mini/ae.png')}}"
-                            class="circle">XXX</option>
-
-
-                        <option value="ae" data-icon="{{url_for('static', filename='images/flags-mini/ae.png')}}"
-                            class="circle">ae</option>
-                        <option value="af" data-icon="{{url_for('static', filename='images/flags-mini/af.png')}}"
-                            class="circle">af</option>
-                        <option value="ag" data-icon="{{url_for('static', filename='images/flags-mini/ag.png')}}"
-                            class="circle">ag</option>
-                        <option value="al" data-icon="{{url_for('static', filename='images/flags-mini/al.png')}}"
-                            class="circle">al</option>
-                        <option value="am" data-icon="{{url_for('static', filename='images/flags-mini/am.png')}}"
-                            class="circle">am</option>
-                        <option value="ao" data-icon="{{url_for('static', filename='images/flags-mini/ao.png')}}"
-                            class="circle">ao</option>
-                        <option value="ar" data-icon="{{url_for('static', filename='images/flags-mini/ar.png')}}"
-                            class="circle">ar</option>
-                        <option value="at" data-icon="{{url_for('static', filename='images/flags-mini/at.png')}}"
-                            class="circle">at</option>
-                        <option value="au" data-icon="{{url_for('static', filename='images/flags-mini/au.png')}}"
-                            class="circle">au</option>
-                        <option value="az" data-icon="{{url_for('static', filename='images/flags-mini/az.png')}}"
-                            class="circle">az</option>
-                        <option value="ba" data-icon="{{url_for('static', filename='images/flags-mini/ba.png')}}"
-                            class="circle">ba</option>
-                        <option value="bb" data-icon="{{url_for('static', filename='images/flags-mini/bb.png')}}"
-                            class="circle">bb</option>
-                        <option value="bd" data-icon="{{url_for('static', filename='images/flags-mini/bd.png')}}"
-                            class="circle">bd</option>
-                        <option value="be" data-icon="{{url_for('static', filename='images/flags-mini/be.png')}}"
-                            class="circle">be</option>
-                        <option value="bf" data-icon="{{url_for('static', filename='images/flags-mini/bf.png')}}"
-                            class="circle">bf</option>
-                        <option value="bg" data-icon="{{url_for('static', filename='images/flags-mini/bg.png')}}"
-                            class="circle">bg</option>
-                        <option value="bh" data-icon="{{url_for('static', filename='images/flags-mini/bh.png')}}"
-                            class="circle">bh</option>
-                        <option value="bi" data-icon="{{url_for('static', filename='images/flags-mini/bi.png')}}"
-                            class="circle">bi</option>
-                        <option value="bj" data-icon="{{url_for('static', filename='images/flags-mini/bj.png')}}"
-                            class="circle">bj</option>
-                        <option value="bn" data-icon="{{url_for('static', filename='images/flags-mini/bn.png')}}"
-                            class="circle">bn</option>
-                        <option value="bo" data-icon="{{url_for('static', filename='images/flags-mini/bo.png')}}"
-                            class="circle">bo</option>
-                        <option value="br" data-icon="{{url_for('static', filename='images/flags-mini/br.png')}}"
-                            class="circle">br</option>
-                        <option value="bs" data-icon="{{url_for('static', filename='images/flags-mini/bs.png')}}"
-                            class="circle">bs</option>
-                        <option value="bt" data-icon="{{url_for('static', filename='images/flags-mini/bt.png')}}"
-                            class="circle">bt</option>
-                        <option value="bw" data-icon="{{url_for('static', filename='images/flags-mini/bw.png')}}"
-                            class="circle">bw</option>
-                        <option value="by" data-icon="{{url_for('static', filename='images/flags-mini/by.png')}}"
-                            class="circle">by</option>
-                        <option value="bz" data-icon="{{url_for('static', filename='images/flags-mini/bz.png')}}"
-                            class="circle">bz</option>
-                        <option value="ca" data-icon="{{url_for('static', filename='images/flags-mini/ca.png')}}"
-                            class="circle">ca</option>
-                        <option value="cd" data-icon="{{url_for('static', filename='images/flags-mini/cd.png')}}"
-                            class="circle">cd</option>
-                        <option value="cf" data-icon="{{url_for('static', filename='images/flags-mini/cf.png')}}"
-                            class="circle">cf</option>
-                        <option value="cg" data-icon="{{url_for('static', filename='images/flags-mini/cg.png')}}"
-                            class="circle">cg</option>
-                        <option value="ch" data-icon="{{url_for('static', filename='images/flags-mini/ch.png')}}"
-                            class="circle">ch</option>
-                        <option value="ci" data-icon="{{url_for('static', filename='images/flags-mini/ci.png')}}"
-                            class="circle">ci</option>
-                        <option value="ck" data-icon="{{url_for('static', filename='images/flags-mini/ck.png')}}"
-                            class="circle">ck</option>
-                        <option value="cl" data-icon="{{url_for('static', filename='images/flags-mini/cl.png')}}"
-                            class="circle">cl</option>
-                        <option value="cm" data-icon="{{url_for('static', filename='images/flags-mini/cm.png')}}"
-                            class="circle">cm</option>
-                        <option value="cn" data-icon="{{url_for('static', filename='images/flags-mini/cn.png')}}"
-                            class="circle">cn</option>
-                        <option value="co" data-icon="{{url_for('static', filename='images/flags-mini/co.png')}}"
-                            class="circle">co</option>
-                        <option value="cr" data-icon="{{url_for('static', filename='images/flags-mini/cr.png')}}"
-                            class="circle">cr</option>
-                        <option value="cu" data-icon="{{url_for('static', filename='images/flags-mini/cu.png')}}"
-                            class="circle">cu</option>
-                        <option value="cv" data-icon="{{url_for('static', filename='images/flags-mini/cv.png')}}"
-                            class="circle">cv</option>
-                        <option value="cy" data-icon="{{url_for('static', filename='images/flags-mini/cy.png')}}"
-                            class="circle">cy</option>
-                        <option value="cz" data-icon="{{url_for('static', filename='images/flags-mini/cz.png')}}"
-                            class="circle">cz</option>
-                        <option value="de" data-icon="{{url_for('static', filename='images/flags-mini/de.png')}}"
-                            class="circle">de</option>
-                        <option value="dj" data-icon="{{url_for('static', filename='images/flags-mini/dj.png')}}"
-                            class="circle">dj</option>
-                        <option value="dk" data-icon="{{url_for('static', filename='images/flags-mini/dk.png')}}"
-                            class="circle">dk</option>
-                        <option value="dm" data-icon="{{url_for('static', filename='images/flags-mini/dm.png')}}"
-                            class="circle">dm</option>
-                        <option value="do" data-icon="{{url_for('static', filename='images/flags-mini/do.png')}}"
-                            class="circle">do</option>
-                        <option value="dz" data-icon="{{url_for('static', filename='images/flags-mini/dz.png')}}"
-                            class="circle">dz</option>
-                        <option value="ec" data-icon="{{url_for('static', filename='images/flags-mini/ec.png')}}"
-                            class="circle">ec</option>
-                        <option value="ee" data-icon="{{url_for('static', filename='images/flags-mini/ee.png')}}"
-                            class="circle">ee</option>
-                        <option value="eg" data-icon="{{url_for('static', filename='images/flags-mini/eg.png')}}"
-                            class="circle">eg</option>
-                        <option value="eh" data-icon="{{url_for('static', filename='images/flags-mini/eh.png')}}"
-                            class="circle">eh</option>
-                        <option value="er" data-icon="{{url_for('static', filename='images/flags-mini/er.png')}}"
-                            class="circle">er</option>
-                        <option value="es" data-icon="{{url_for('static', filename='images/flags-mini/es.png')}}"
-                            class="circle">es</option>
-                        <option value="et" data-icon="{{url_for('static', filename='images/flags-mini/et.png')}}"
-                            class="circle">et</option>
-                        <option value="fi" data-icon="{{url_for('static', filename='images/flags-mini/fi.png')}}"
-                            class="circle">fi</option>
-                        <option value="fj" data-icon="{{url_for('static', filename='images/flags-mini/fj.png')}}"
-                            class="circle">fj</option>
-                        <option value="fm" data-icon="{{url_for('static', filename='images/flags-mini/fm.png')}}"
-                            class="circle">fm</option>
-                        <option value="fr" data-icon="{{url_for('static', filename='images/flags-mini/fr.png')}}"
-                            class="circle">fr</option>
-                        <option value="ga" data-icon="{{url_for('static', filename='images/flags-mini/ga.png')}}"
-                            class="circle">ga</option>
-                        <option value="gb" data-icon="{{url_for('static', filename='images/flags-mini/gb.png')}}"
-                            class="circle">gb</option>
-                        <option value="gd" data-icon="{{url_for('static', filename='images/flags-mini/gd.png')}}"
-                            class="circle">gd</option>
-                        <option value="ge" data-icon="{{url_for('static', filename='images/flags-mini/ge.png')}}"
-                            class="circle">ge</option>
-                        <option value="gh" data-icon="{{url_for('static', filename='images/flags-mini/gh.png')}}"
-                            class="circle">gh</option>
-                        <option value="gm" data-icon="{{url_for('static', filename='images/flags-mini/gm.png')}}"
-                            class="circle">gm</option>
-                        <option value="gn" data-icon="{{url_for('static', filename='images/flags-mini/gn.png')}}"
-                            class="circle">gn</option>
-                        <option value="gq" data-icon="{{url_for('static', filename='images/flags-mini/gq.png')}}"
-                            class="circle">gq</option>
-                        <option value="gr" data-icon="{{url_for('static', filename='images/flags-mini/gr.png')}}"
-                            class="circle">gr</option>
-                        <option value="gt" data-icon="{{url_for('static', filename='images/flags-mini/gt.png')}}"
-                            class="circle">gt</option>
-                        <option value="gw" data-icon="{{url_for('static', filename='images/flags-mini/gw.png')}}"
-                            class="circle">gw</option>
-                        <option value="gy" data-icon="{{url_for('static', filename='images/flags-mini/gy.png')}}"
-                            class="circle">gy</option>
-                        <option value="hn" data-icon="{{url_for('static', filename='images/flags-mini/hn.png')}}"
-                            class="circle">hn</option>
-                        <option value="hr" data-icon="{{url_for('static', filename='images/flags-mini/hr.png')}}"
-                            class="circle">hr</option>
-                        <option value="ht" data-icon="{{url_for('static', filename='images/flags-mini/ht.png')}}"
-                            class="circle">ht</option>
-                        <option value="hu" data-icon="{{url_for('static', filename='images/flags-mini/hu.png')}}"
-                            class="circle">hu</option>
-                        <option value="id" data-icon="{{url_for('static', filename='images/flags-mini/id.png')}}"
-                            class="circle">id</option>
-                        <option value="ie" data-icon="{{url_for('static', filename='images/flags-mini/ie.png')}}"
-                            class="circle">ie</option>
-                        <option value="il" data-icon="{{url_for('static', filename='images/flags-mini/il.png')}}"
-                            class="circle">il</option>
-                        <option value="in" data-icon="{{url_for('static', filename='images/flags-mini/in.png')}}"
-                            class="circle">in</option>
-                        <option value="iq" data-icon="{{url_for('static', filename='images/flags-mini/iq.png')}}"
-                            class="circle">iq</option>
-                        <option value="ir" data-icon="{{url_for('static', filename='images/flags-mini/ir.png')}}"
-                            class="circle">ir</option>
-                        <option value="is" data-icon="{{url_for('static', filename='images/flags-mini/is.png')}}"
-                            class="circle">is</option>
-                        <option value="it" data-icon="{{url_for('static', filename='images/flags-mini/it.png')}}"
-                            class="circle">it</option>
-                        <option value="jm" data-icon="{{url_for('static', filename='images/flags-mini/jm.png')}}"
-                            class="circle">jm</option>
-                        <option value="jo" data-icon="{{url_for('static', filename='images/flags-mini/jo.png')}}"
-                            class="circle">jo</option>
-                        <option value="jp" data-icon="{{url_for('static', filename='images/flags-mini/jp.png')}}"
-                            class="circle">jp</option>
-                        <option value="ke" data-icon="{{url_for('static', filename='images/flags-mini/ke.png')}}"
-                            class="circle">ke</option>
-                        <option value="kg" data-icon="{{url_for('static', filename='images/flags-mini/kg.png')}}"
-                            class="circle">kg</option>
-                        <option value="kh" data-icon="{{url_for('static', filename='images/flags-mini/kh.png')}}"
-                            class="circle">kh</option>
-                        <option value="ki" data-icon="{{url_for('static', filename='images/flags-mini/ki.png')}}"
-                            class="circle">ki</option>
-                        <option value="km" data-icon="{{url_for('static', filename='images/flags-mini/km.png')}}"
-                            class="circle">km</option>
-                        <option value="kn" data-icon="{{url_for('static', filename='images/flags-mini/kn.png')}}"
-                            class="circle">kn</option>
-                        <option value="kp" data-icon="{{url_for('static', filename='images/flags-mini/kp.png')}}"
-                            class="circle">kp</option>
-                        <option value="kr" data-icon="{{url_for('static', filename='images/flags-mini/kr.png')}}"
-                            class="circle">kr</option>
-                        <option value="kw" data-icon="{{url_for('static', filename='images/flags-mini/kw.png')}}"
-                            class="circle">kw</option>
-                        <option value="kz" data-icon="{{url_for('static', filename='images/flags-mini/kz.png')}}"
-                            class="circle">kz</option>
-                        <option value="la" data-icon="{{url_for('static', filename='images/flags-mini/la.png')}}"
-                            class="circle">la</option>
-                        <option value="lb" data-icon="{{url_for('static', filename='images/flags-mini/lb.png')}}"
-                            class="circle">lb</option>
-                        <option value="lc" data-icon="{{url_for('static', filename='images/flags-mini/lc.png')}}"
-                            class="circle">lc</option>
-                        <option value="li" data-icon="{{url_for('static', filename='images/flags-mini/li.png')}}"
-                            class="circle">li</option>
-                        <option value="lk" data-icon="{{url_for('static', filename='images/flags-mini/lk.png')}}"
-                            class="circle">lk</option>
-                        <option value="lr" data-icon="{{url_for('static', filename='images/flags-mini/lr.png')}}"
-                            class="circle">lr</option>
-                        <option value="ls" data-icon="{{url_for('static', filename='images/flags-mini/ls.png')}}"
-                            class="circle">ls</option>
-                        <option value="lt" data-icon="{{url_for('static', filename='images/flags-mini/lt.png')}}"
-                            class="circle">lt</option>
-                        <option value="lu" data-icon="{{url_for('static', filename='images/flags-mini/lu.png')}}"
-                            class="circle">lu</option>
-                        <option value="lv" data-icon="{{url_for('static', filename='images/flags-mini/lv.png')}}"
-                            class="circle">lv</option>
-                        <option value="ly" data-icon="{{url_for('static', filename='images/flags-mini/ly.png')}}"
-                            class="circle">ly</option>
-                        <option value="ma" data-icon="{{url_for('static', filename='images/flags-mini/ma.png')}}"
-                            class="circle">ma</option>
-                        <option value="mc" data-icon="{{url_for('static', filename='images/flags-mini/mc.png')}}"
-                            class="circle">mc</option>
-                        <option value="md" data-icon="{{url_for('static', filename='images/flags-mini/md.png')}}"
-                            class="circle">md</option>
-                        <option value="me" data-icon="{{url_for('static', filename='images/flags-mini/me.png')}}"
-                            class="circle">me</option>
-                        <option value="mg" data-icon="{{url_for('static', filename='images/flags-mini/mg.png')}}"
-                            class="circle">mg</option>
-                        <option value="mh" data-icon="{{url_for('static', filename='images/flags-mini/mh.png')}}"
-                            class="circle">mh</option>
-                        <option value="mk" data-icon="{{url_for('static', filename='images/flags-mini/mk.png')}}"
-                            class="circle">mk</option>
-                        <option value="ml" data-icon="{{url_for('static', filename='images/flags-mini/ml.png')}}"
-                            class="circle">ml</option>
-                        <option value="mm" data-icon="{{url_for('static', filename='images/flags-mini/mm.png')}}"
-                            class="circle">mm</option>
-                        <option value="mn" data-icon="{{url_for('static', filename='images/flags-mini/mn.png')}}"
-                            class="circle">mn</option>
-                        <option value="mr" data-icon="{{url_for('static', filename='images/flags-mini/mr.png')}}"
-                            class="circle">mr</option>
-                        <option value="mt" data-icon="{{url_for('static', filename='images/flags-mini/mt.png')}}"
-                            class="circle">mt</option>
-                        <option value="mu" data-icon="{{url_for('static', filename='images/flags-mini/mu.png')}}"
-                            class="circle">mu</option>
-                        <option value="mv" data-icon="{{url_for('static', filename='images/flags-mini/mv.png')}}"
-                            class="circle">mv</option>
-                        <option value="mw" data-icon="{{url_for('static', filename='images/flags-mini/mw.png')}}"
-                            class="circle">mw</option>
-                        <option value="mx" data-icon="{{url_for('static', filename='images/flags-mini/mx.png')}}"
-                            class="circle">mx</option>
-                        <option value="my" data-icon="{{url_for('static', filename='images/flags-mini/my.png')}}"
-                            class="circle">my</option>
-                        <option value="mz" data-icon="{{url_for('static', filename='images/flags-mini/mz.png')}}"
-                            class="circle">mz</option>
-                        <option value="na" data-icon="{{url_for('static', filename='images/flags-mini/na.png')}}"
-                            class="circle">na</option>
-                        <option value="ne" data-icon="{{url_for('static', filename='images/flags-mini/ne.png')}}"
-                            class="circle">ne</option>
-                        <option value="ng" data-icon="{{url_for('static', filename='images/flags-mini/ng.png')}}"
-                            class="circle">ng</option>
-                        <option value="ni" data-icon="{{url_for('static', filename='images/flags-mini/ni.png')}}"
-                            class="circle">ni</option>
-                        <option value="nl" data-icon="{{url_for('static', filename='images/flags-mini/nl.png')}}"
-                            class="circle">nl</option>
-                        <option value="no" data-icon="{{url_for('static', filename='images/flags-mini/no.png')}}"
-                            class="circle">no</option>
-                        <option value="np" data-icon="{{url_for('static', filename='images/flags-mini/np.png')}}"
-                            class="circle">np</option>
-                        <option value="nr" data-icon="{{url_for('static', filename='images/flags-mini/nr.png')}}"
-                            class="circle">nr</option>
-                        <option value="nu" data-icon="{{url_for('static', filename='images/flags-mini/nu.png')}}"
-                            class="circle">nu</option>
-                        <option value="nz" data-icon="{{url_for('static', filename='images/flags-mini/nz.png')}}"
-                            class="circle">nz</option>
-                        <option value="om" data-icon="{{url_for('static', filename='images/flags-mini/om.png')}}"
-                            class="circle">om</option>
-                        <option value="pa" data-icon="{{url_for('static', filename='images/flags-mini/pa.png')}}"
-                            class="circle">pa</option>
-                        <option value="pe" data-icon="{{url_for('static', filename='images/flags-mini/pe.png')}}"
-                            class="circle">pe</option>
-                        <option value="pg" data-icon="{{url_for('static', filename='images/flags-mini/pg.png')}}"
-                            class="circle">pg</option>
-                        <option value="ph" data-icon="{{url_for('static', filename='images/flags-mini/ph.png')}}"
-                            class="circle">ph</option>
-                        <option value="pk" data-icon="{{url_for('static', filename='images/flags-mini/pk.png')}}"
-                            class="circle">pk</option>
-                        <option value="pl" data-icon="{{url_for('static', filename='images/flags-mini/pl.png')}}"
-                            class="circle">pl</option>
-                        <option value="ps" data-icon="{{url_for('static', filename='images/flags-mini/ps.png')}}"
-                            class="circle">ps</option>
-                        <option value="pt" data-icon="{{url_for('static', filename='images/flags-mini/pt.png')}}"
-                            class="circle">pt</option>
-                        <option value="pw" data-icon="{{url_for('static', filename='images/flags-mini/pw.png')}}"
-                            class="circle">pw</option>
-                        <option value="py" data-icon="{{url_for('static', filename='images/flags-mini/py.png')}}"
-                            class="circle">py</option>
-                        <option value="qa" data-icon="{{url_for('static', filename='images/flags-mini/qa.png')}}"
-                            class="circle">qa</option>
-                        <option value="ro" data-icon="{{url_for('static', filename='images/flags-mini/ro.png')}}"
-                            class="circle">ro</option>
-                        <option value="rs" data-icon="{{url_for('static', filename='images/flags-mini/rs.png')}}"
-                            class="circle">rs</option>
-                        <option value="ru" data-icon="{{url_for('static', filename='images/flags-mini/ru.png')}}"
-                            class="circle">ru</option>
-                        <option value="rw" data-icon="{{url_for('static', filename='images/flags-mini/rw.png')}}"
-                            class="circle">rw</option>
-                        <option value="sa" data-icon="{{url_for('static', filename='images/flags-mini/sa.png')}}"
-                            class="circle">sa</option>
-                        <option value="sb" data-icon="{{url_for('static', filename='images/flags-mini/sb.png')}}"
-                            class="circle">sb</option>
-                        <option value="sc" data-icon="{{url_for('static', filename='images/flags-mini/sc.png')}}"
-                            class="circle">sc</option>
-                        <option value="sd" data-icon="{{url_for('static', filename='images/flags-mini/sd.png')}}"
-                            class="circle">sd</option>
-                        <option value="se" data-icon="{{url_for('static', filename='images/flags-mini/se.png')}}"
-                            class="circle">se</option>
-                        <option value="sg" data-icon="{{url_for('static', filename='images/flags-mini/sg.png')}}"
-                            class="circle">sg</option>
-                        <option value="si" data-icon="{{url_for('static', filename='images/flags-mini/si.png')}}"
-                            class="circle">si</option>
-                        <option value="sk" data-icon="{{url_for('static', filename='images/flags-mini/sk.png')}}"
-                            class="circle">sk</option>
-                        <option value="sl" data-icon="{{url_for('static', filename='images/flags-mini/sl.png')}}"
-                            class="circle">sl</option>
-                        <option value="sm" data-icon="{{url_for('static', filename='images/flags-mini/sm.png')}}"
-                            class="circle">sm</option>
-                        <option value="sn" data-icon="{{url_for('static', filename='images/flags-mini/sn.png')}}"
-                            class="circle">sn</option>
-                        <option value="so" data-icon="{{url_for('static', filename='images/flags-mini/so.png')}}"
-                            class="circle">so</option>
-                        <option value="sr" data-icon="{{url_for('static', filename='images/flags-mini/sr.png')}}"
-                            class="circle">sr</option>
-                        <option value="ss" data-icon="{{url_for('static', filename='images/flags-mini/ss.png')}}"
-                            class="circle">ss</option>
-                        <option value="st" data-icon="{{url_for('static', filename='images/flags-mini/st.png')}}"
-                            class="circle">st</option>
-                        <option value="sv" data-icon="{{url_for('static', filename='images/flags-mini/sv.png')}}"
-                            class="circle">sv</option>
-                        <option value="sy" data-icon="{{url_for('static', filename='images/flags-mini/sy.png')}}"
-                            class="circle">sy</option>
-                        <option value="sz" data-icon="{{url_for('static', filename='images/flags-mini/sz.png')}}"
-                            class="circle">sz</option>
-                        <option value="td" data-icon="{{url_for('static', filename='images/flags-mini/td.png')}}"
-                            class="circle">td</option>
-                        <option value="tg" data-icon="{{url_for('static', filename='images/flags-mini/tg.png')}}"
-                            class="circle">tg</option>
-                        <option value="th" data-icon="{{url_for('static', filename='images/flags-mini/th.png')}}"
-                            class="circle">th</option>
-                        <option value="tj" data-icon="{{url_for('static', filename='images/flags-mini/tj.png')}}"
-                            class="circle">tj</option>
-                        <option value="tl" data-icon="{{url_for('static', filename='images/flags-mini/tl.png')}}"
-                            class="circle">tl</option>
-                        <option value="tm" data-icon="{{url_for('static', filename='images/flags-mini/tm.png')}}"
-                            class="circle">tm</option>
-                        <option value="tn" data-icon="{{url_for('static', filename='images/flags-mini/tn.png')}}"
-                            class="circle">tn</option>
-                        <option value="to" data-icon="{{url_for('static', filename='images/flags-mini/to.png')}}"
-                            class="circle">to</option>
-                        <option value="tr" data-icon="{{url_for('static', filename='images/flags-mini/tr.png')}}"
-                            class="circle">tr</option>
-                        <option value="tt" data-icon="{{url_for('static', filename='images/flags-mini/tt.png')}}"
-                            class="circle">tt</option>
-                        <option value="tv" data-icon="{{url_for('static', filename='images/flags-mini/tv.png')}}"
-                            class="circle">tv</option>
-                        <option value="tw" data-icon="{{url_for('static', filename='images/flags-mini/tw.png')}}"
-                            class="circle">tw</option>
-                        <option value="tz" data-icon="{{url_for('static', filename='images/flags-mini/tz.png')}}"
-                            class="circle">tz</option>
-                        <option value="ua" data-icon="{{url_for('static', filename='images/flags-mini/ua.png')}}"
-                            class="circle">ua</option>
-                        <option value="ug" data-icon="{{url_for('static', filename='images/flags-mini/ug.png')}}"
-                            class="circle">ug</option>
-                        <option value="us" data-icon="{{url_for('static', filename='images/flags-mini/us.png')}}"
-                            class="circle">us</option>
-                        <option value="uy" data-icon="{{url_for('static', filename='images/flags-mini/uy.png')}}"
-                            class="circle">uy</option>
                     </select>
                 </div>
             </div>
@@ -478,8 +96,8 @@
                     <div class="prepTime">
                         <div class="input-field col s12 testdiv">
                             <i class="material-icons prefix">playlist_add</i>
-                            <input id="prep_time" name="prep_time" type="text" class="validate">
-                            <label for="prep_time">Preparation time</label>
+                            <input id="prepTime" name="prep_time" type="text" class="validate" value="0" onchange="calcTotalTime()">
+                            <label for="prepTime">Preparation time</label>
                         </div>
                     </div>
                 </div>
@@ -488,14 +106,14 @@
                     <div class="cookingTime">
                         <div class="input-field col s12 testdiv">
                             <i class="material-icons prefix">playlist_add</i>
-                            <input id="cooking_time" name="cooking_time" type="text" class="validate">
-                            <label for="cooking_time">Cooking time</label>
+                            <input id="cookingTime" name="cooking_time" type="text" class="validate" value="0" onchange="calcTotalTime()">
+                            <label for="cookingTime">Cooking time</label>
                         </div>
                     </div>
                 </div>
                 <div class="timesWrapper">
                     <div class="directionsLabel">Total Time:</div>
-                    <div class="totalTime"></div>
+                    <div id="totalTime">0 mins</div>
                 </div>
             </div>
         </div>
@@ -541,5 +159,4 @@
         </div>
     </div>
 </form>
-
 {% endblock %}
