@@ -2,7 +2,7 @@
 {% block content %}
 <div class="recipeWrapper">
     <div class="recipeHeader">
-        <div id="recipeTitle" class="recipeHeaderItem">{{recipe.title}}</div>
+        <div id="readRecipeTitle" class="recipeHeaderItem">{{recipe.title}}</div>
         <div id="dishType" class="recipeHeaderItem">{{recipe.dish_type}}</div>
         <div id="showReviewsPopupBtn" class="recipeHeaderItem">Reviews</div>
         {% if session["username"]!="" %}
@@ -77,7 +77,29 @@
         <div class="directions">
             {{recipe.directions}}
         </div>
-    </div>   
+    </div>
+</div>
+{% endblock %}
+
+
+{% block popups %}
+
+<div id="reviewsPopup">
+    <div id="reviewsWrapper">
+        {% for review in reviews_of_recipe %}
+        <div class="reviewContainer">
+            <div class="reviewlines">{{review.review_title}}</div>
+            <div class="reviewlines">{{review.review_for}}</div>
+            <div class="reviewlines">{{review.rating}}</div>
+            <div class="reviewlines">{{review.comment}}</div>
+            <div class="reviewlines">{{review.added_on_date}}</div>
+            <div class="reviewlines">{{review.added_on_time}}</div>
+            <div class="reviewlines">{{review.rated_by}}</div>
+            <hr>
+        </div>
+        {% endfor %}
+        <div id="closeReviewsPopupBtn">Close</div>
+    </div>
 </div>
 
 <div id="ratePopup">
@@ -118,21 +140,4 @@
     </div>
 </div>
 
-<div id="reviewsPopup">
-    <div id="reviewsWrapper">
-        {% for review in reviews_of_recipe %}
-        <div class="reviewContainer">
-            <div class="reviewlines">{{review.review_title}}</div>
-            <div class="reviewlines">{{review.review_for}}</div>
-            <div class="reviewlines">{{review.rating}}</div>
-            <div class="reviewlines">{{review.comment}}</div>
-            <div class="reviewlines">{{review.added_on_date}}</div>
-            <div class="reviewlines">{{review.added_on_time}}</div>
-            <div class="reviewlines">{{review.rated_by}}</div>
-            <hr>
-        </div>
-        {% endfor %}
-        <div id="closeReviewsPopupBtn">Close</div>
-    </div>
-</div>
 {% endblock %}

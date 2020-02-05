@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for, session
+from flask import Flask, render_template, redirect, request, url_for, session, json
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 import datetime
@@ -21,7 +21,6 @@ mongo = PyMongo(app)
 
 mongo.db.recipes.create_index([("title", "text"), ("dish_type", "text"), ("level", "text"), ("directions", "text"), ("allergens", "text"), ("ingredients", "text"), ("origin", "text")])
 mongo.db.reviews.create_index([("review_title", "text"), ("review_for", "text"), ("rating", "text"), ("comment", "text")])
-
 
 def upload_image(base64file):
     response = requests.post(imgbb_upload_url, data={"image": base64file})
@@ -52,6 +51,11 @@ def create_new_user(form):
     }
     return new_user
 
+
+def get_countries():
+    with open("static/data/countries.json", "r") as json_data:
+        countries = json.load(json_data)
+    return countries
     
 
 #ROUTES AND VIEWS
@@ -160,7 +164,7 @@ def add_recipe():
     if not session['username']:
         return render_template("loginpage.html", message="Please login first to be able to post recipes. Thanks!")
     else:
-        return render_template('addrecipe.html')
+        return render_template('addrecipe.html', countries=get_countries())
 
 #Inserting recipe into db
 @app.route('/insert_recipe', methods=["POST"])

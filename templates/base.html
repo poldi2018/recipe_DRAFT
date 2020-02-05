@@ -26,14 +26,17 @@
             </li>
             <li class="menulistitem">
                 <form action="{{ url_for('results')}}" method="POST" id="searchForm">
-                        <i class="material-icons">search</i>
-                        <input id="search_term" name="search_term" placeholder="Search" type="search">
+                    <i class="material-icons">search</i>
+                    <input id="search_term" name="search_term" placeholder="Search" type="search">
                 </form>
             </li>
 
             {% if session["username"]=="" %}
             <li class="menulistitem">
                 <a class="hyperlinks" href="{{url_for('login_page')}}">Login</a>
+            </li>
+            <li class="menulistitem">
+                <a class="hyperlinks" href="{{url_for('register')}}">Register</a>
             </li>
             {% endif %}
 
@@ -79,6 +82,9 @@
             <li class="menulistitem">
                 <a class="hyperlinks" href="{{url_for('login_page')}}">Login</a>
             </li>
+            <li class="menulistitem">
+                <a class="hyperlinks" href="{{url_for('register')}}">Register</a>
+            </li>
             {% endif %}
 
             {% if session["username"]!="" %}
@@ -93,14 +99,14 @@
 
     </header>
 
-
     <div id="baseWrapper">
-        
-            {% block content %}
-
-            {% endblock %}
-    
+        {% block content %}
+        {% endblock %}
     </div>
+
+    {% block popups %}
+    {% endblock %}
+
 
 
 
