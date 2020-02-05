@@ -172,7 +172,7 @@
     width: 80vw;
     -webkit-transform: translateY(4vw);
             transform: translateY(4vw);
-    margin-top: 3.5vw;
+    margin-top: 60px;
     border-radius: 1vw;
   }
   .recipeWrapper {

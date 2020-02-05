@@ -20,7 +20,6 @@ function addIngredientField() {
     $('#ingredient').attr('name', generate_ingredientfieldName()).attr('id', generate_ingredientfieldName());
     $('#amount').attr('name', generate_amountfieldName()).attr('id', generate_amountfieldName());
     fieldcount++;
-    console.log(fieldcount);
 }
 
 function removeIngredientField() {
@@ -135,5 +134,11 @@ $('#closeRatePopupBtn').on('touchstart click', function () {
 
 function calcTotalTime() {
     let totalTime = parseInt($("#prepTime").val()) + parseInt($("#cookingTime").val());
-    $("#totalTime").html(totalTime + " mins");
+    console.log(totalTime);
+    if (totalTime) {
+        $("#totalTime").html(totalTime + " mins");
+    }
+    else {
+        $("#totalTime").html(0 + " mins");
+    }
 }
