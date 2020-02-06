@@ -51,19 +51,31 @@ def create_new_user(form):
     }
     return new_user
 
-def make_ingredient_dict(amounts_list, ingredients_list):
-    ingredients_dict={}
-    for amount in amounts_list:    
-        for ingredient in ingredients_list:
-            ingredients_dict.update({"amount": amount, "ingredient": ingredient})
-            print(ingredients_dict)
-    return ingredients_dict
+def make_ingredient_list(amounts_string, ingredients_string):
+    print(amounts_string)
+    print(ingredients_string)
+
+    amounts_list=amounts_string.split('#')
+    amounts_list.pop(len(amounts_list)-1)
+    print(amounts_list)
+    ingredients_list=ingredients_string.split('#')
+    ingredients_list.pop(len(ingredients_list)-1)
+    print(ingredients_list)
+    ingredient_iter=iter(ingredients_list)
+    ingredients=[]
+    for amount in amounts_list:
+        ingredients.append({'amount': amount, 'ingredient': next(ingredient_iter)})
+    # print(ingdict)
+    
+    # recipes= mongo.db.recipes
+    # recipes.insert_one({"ingredients": ingdict })
+    # ingredients_list=dict(zip(amounts_list, ingredients_list))
+    return ingredients
 
 def get_countries():
     with open("static/data/countries.json", "r") as json_data:
         countries = json.load(json_data)
     return countries
-
 
 #ROUTES AND VIEWS
 
@@ -180,10 +192,8 @@ def insert_recipe():
     url_img_src=upload_image(request.form.get("base64file"))
     today = datetime.datetime.now().strftime("%d. %B %Y")
     now = datetime.datetime.now().strftime("%H:%M:%S")
-    amounts_list=request.form.get("amountsArray").split()
-    ingredients_list=request.form.get("ingredientsArray").split()
-    ingredients_dict=make_ingredient_dict(amounts_list, ingredients_list)
-    print(ingredients_dict)
+    ingredients=make_ingredient_list(request.form.get("amounts_string"), request.form.get("ingredients_string"))
+    print(ingredients)
     recipes.insert_one(
     {
         "title": request.form.get('recipe_title'), 
@@ -202,7 +212,7 @@ def insert_recipe():
         "total_time": int(request.form.get("prep_time"))+int(request.form.get("cooking_time")),
         "directions": request.form.get("directions"),
         "allergens": request.form.get("allergens"),
-        "ingredients": request.form.get("ingredients"),
+        "ingredients": ingredients,
         "origin": build_origin_filepath(request.form.get("origin")),
         "img_src": url_img_src
     })
@@ -304,29 +314,20 @@ def form():
 
 @app.route('/formdata', methods=["POST"])
 def formdata():
-    #amounts_array=request.form.get("amountsArray").split()
-    #ing_array=request.form.get("ingredientsArray").split()
-    #print(amounts_array)
-    #print(ing_array)
-    amounts_list=request.form.get("amountsArray").split()
-    #print(amounts_list)
-    ingredients_list=request.form.get("ingredientsArray").split()
-    #print(ingredients_list)
-    ingredients_dict={}
-    for amount in amounts_list:
-        print(amount)    
-        print(ingredient)
-        for ingredient in ingredients_list:
-            print(ingredient)
-            continue
-        ingredients_dict.update({"amount": amount, "ingredient": ingredient})
-        
-            #print(ingredients_dict)
-    #make_ingredient_dict(amounts_list, ingredients_list)
-    #print(ingredients_dict)
+    # amounts_array=request.form.get("amountsArray").split()
+    # ing_array=request.form.get("ingredientsArray").split()
+    # print(amounts_array)
+    # print(ing_array)
+    print(request.form.get("amounts_string"))
+    print(request.form.get("ingredients_string"))
+    ingredients=make_ingredient_list(request.form.get("amounts_string"), request.form.get("ingredients_string"))
+    print(ingredients)
+    print(ingredients)
+    print(ingredients)
+    # ingredients_dict=zip(amounts_list, ingredients_list)
+    # ingredients=make_ingredient_list(amounts_list, ingredients_list)
+    # print(ingredients)
     return redirect(url_for('form'))
-
-
 
 
 # run app

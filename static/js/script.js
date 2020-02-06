@@ -143,28 +143,24 @@ function calcTotalTime() {
 }
 
 $('.makearray').on('touchstart click', function () {
-    makeIngredientsArray();
+    makeIngredientsStrings();
 });
 
 
-function makeAmountsArray() {
-    
-}
-
-function makeIngredientsArray() {
-    let ingredientsArray = $('.ingredients').toArray();
-    let ingredients=""
-    for (let i=0; i < ingredientsArray.length; i++) {
-        ingredients=ingredients+ingredientsArray[i].value+" ";
-    }
-    console.log(ingredients);
-    $('#ingredientsArray').val(ingredients);
-
+function makeIngredientsStrings() {
     let amountsArray = $('.amounts').toArray();
-    let amounts=""
+    let ingredientsArray = $('.ingredients').toArray();
+    let amounts="", ingredients="";
     for (let i=0; i < amountsArray.length; i++) {
-        amounts=amounts+amountsArray[i].value+" ";
+        amounts=amounts+amountsArray[i].value+"#";
     }
-    console.log(amounts);
-    $('#amountsArray').val(amounts);
+    // console.log(amounts);
+    $('#amountsString').val(amounts);
+    for (let i=0; i < ingredientsArray.length; i++) {
+        ingredients=ingredients+ingredientsArray[i].value+"#";
+    }
+    // console.log(ingredients);
+    $('#ingredientsString').val(ingredients);
+
+    
 }

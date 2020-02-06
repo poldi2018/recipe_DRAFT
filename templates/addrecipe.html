@@ -146,9 +146,8 @@
                         <label for="ingredient1">Ingredient</label>
                     </div>
                 </div>
-
-                <input id="amountsArray" name="amounts" type="text" class="validate" hidden>
-                <input id="ingredientsArray" name="amounts" type="text" class="validate" hidden>
+                <input id="amountsString" name="amounts_string" type="text" class="validate" hidden>
+                <input id="ingredientsString" name="ingredients_string" type="text" class="validate" hidden>
             </div>
 
             <div id="directionsWrapper">
@@ -160,7 +159,7 @@
             </div>
         </div>
         <div class="row">
-            <button class="btn waves-effect waves-light" type="submit" id="add_recipe_Btn" name="action" onclick="makeIngredientsArray()">Send
+            <button class="btn waves-effect waves-light" type="submit" id="add_recipe_Btn" name="action" onclick="makeIngredientsStrings()">Send
                 <i class="material-icons right">playlist</i>
             </button>
         </div>

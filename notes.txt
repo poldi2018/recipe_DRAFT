@@ -1,20 +1,39 @@
-DB schema:
-
 TODO:
-schemas and mockups!
-recipe:
-field validators
-# carousel newly added
- 
-add allergens fields and handling
-add ingredient fields and handling
+THU6th:
+ADD:
+- add allergens fields and handling
+- add ingredient fields and handling
+- string length fields
+- chk all fields filled / selected
 
+
+TOP-REVIEWS:
+- review tiles
+
+ADVSEARCH:
+- form layout
+
+ADVSEARCH-RESULTS:
+- recipe tiles
+
+QUICKSEARCH RESULTS:
+- recipe tiles
+- review tiles
+
+LOGOUT, LOGIN, REGISTER:
+-  basic styles
+
+EDIT:
+- basic styles
+
+
+schemas and mockups!
+
+# carousel newly added
+
+SUN9th:
 documentations
 testing
-search:
-- dish type
-- country
-- ingredients
 
 
 ####
@@ -259,3 +278,6 @@ Non-requirements for this project:
 Secure user authentication (e.g. via passwords) is not required for this particular project. Having each user just choose a username is sufficient. Secure authentication will be introduced in the Django module.
 
 
+
+
+        "ingredients": request.form.get("ingredients"),
