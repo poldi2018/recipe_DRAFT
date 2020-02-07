@@ -255,6 +255,9 @@
     #originFlag {
         width: 3vw;
         height: 1.68vw;
+        border: 1px solid grey;
+        border-radius: 10px;
+        overflow: hidden;
     }
 
     #outerDirectionsWrapper {
@@ -288,7 +291,13 @@
         flex-wrap: wrap;
     }
 
-    #ingredientWrapper .input-field {
+    .ingredientContainer {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .ingredientContainer .input-field {
         width: 50%;
     }
 

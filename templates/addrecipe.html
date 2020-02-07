@@ -1,6 +1,6 @@
 {% extends 'base.html'%}
 {% block content %}
-<form action="{{ url_for('insert_recipe')}}" method="POST" class="addRecipeForm" enctype="multipart/form-data">
+<form id="addRecipeForm" action="{{ url_for('insert_recipe')}}" method="POST" class="addRecipeForm" enctype="multipart/form-data">
 
     <div class="recipeWrapper">
         <div class="recipeTitle">
@@ -18,7 +18,7 @@
             <div class="recipeHeaderItem" id="">
                 <div class="input-field">
                     <i class="material-icons prefix">playlist_add</i>
-                    <select name="dish_type">
+                    <select id="dishType" name="dish_type">
                         <option value="" disabled selected>Choose Dish Type</option>
                         <optgroup label="Starters">
                             <option value="Soup">Soup</option>
@@ -42,11 +42,10 @@
             <div class="recipeHeaderItem">
                 <div class="input-field">
                     <i class="material-icons prefix">playlist_add</i>
-                    <select class="icons" name="origin">
+                    <select id="origin" class="icons" name="origin">
                         <option value="" disabled selected>Choose origin country</option>
                         {% for country in countries %}
-                        <option value="{{country['country_name']}}" data-icon="{{url_for('static', filename=country['filename'])}}"
-                        class="circle">{{country['country_name']}}</option>
+                        <option value="{{country['country_name']}}" data-icon="{{url_for('static', filename=country['filename'])}}" class="circle">{{country['country_name']}}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -72,7 +71,7 @@
             <div class="statsWrapper">
                 <div class="statsfield">Level:</div>
                 <div class="input-field statsfield">
-                    <select name="level">
+                    <select id="level" name="level">
                         <option value="" disabled selected>Experience level:</option>
                         <option value="Easy">Easy</option>
                         <option value="Medium">Medium</option>
@@ -90,13 +89,14 @@
                 <div class="statsfield">Viewed:</div>
                 <div class="statsfield">-</div>
             </div>
+
             <div class="outerTimesWrapper">
                 <div class="timesWrapper">
                     <div class="directionsLabel">Prep Time [mins]:</div>
                     <div class="prepTime">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">playlist_add</i>
-                            <input id="prepTime" name="prep_time" type="text" class="validate" value="0"
+                            <input id="prepTime" name="prep_time" type="text" class="validate"
                                 onchange="calcTotalTime()">
                             <label for="prepTime">Preparation time</label>
                         </div>
@@ -107,7 +107,7 @@
                     <div class="cookingTime">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">playlist_add</i>
-                            <input id="cookingTime" name="cooking_time" type="text" class="validate" value="0"
+                            <input id="cookingTime" name="cooking_time" type="text" class="validate"
                                 onchange="calcTotalTime()">
                             <label for="cookingTime">Cooking time</label>
                         </div>
@@ -122,7 +122,7 @@
 
         <div id="dishImageWrapper">
             <div class="input-field col s12">
-                <input type="file" name="file" id="fileinputfield" onchange="encodeImgtoBase64(this)"
+                <input type="file" name="file" id="fileinputfield" onchange="validateImageName(this)"
                     enctype="multipart/form-data">
                 <textarea id="base64file" name="base64file" hidden></textarea>
             </div>
@@ -135,19 +135,21 @@
                     <div class="removeIngredientField">remove ingredient field</div>
                 </div>
                 <div id="ingredientWrapper">
-                    <div class="input-field">
-                        <i class="material-icons prefix">playlist_add</i>
-                        <input id="amount1" name="amount1" type="text" class="validate amounts">
-                        <label for="amount1">Amount</label>
-                    </div>
-                    <div class="input-field">
-                        <i class="material-icons prefix">playlist_add</i>
-                        <input id="ingredient1" name="ingredient1" type="text" class="validate ingredients">
-                        <label for="ingredient1">Ingredient</label>
+                    <div class="ingredientContainer">
+                        <div class="input-field">
+                            <i class="material-icons prefix">playlist_add</i>
+                            <input id="amount1" name="amount1" type="text" class="validate amounts">
+                            <label for="amount1">Amount</label>
+                        </div>
+                        <div class="input-field">
+                            <i class="material-icons prefix">playlist_add</i>
+                            <input id="ingredient1" name="ingredient1" type="text" class="validate ingredients">
+                            <label for="ingredient1">Ingredient</label>
+                        </div>
                     </div>
                 </div>
-                <input id="amountsString" name="amounts_string" type="text" class="validate" hidden>
-                <input id="ingredientsString" name="ingredients_string" type="text" class="validate" hidden>
+                <input id="amountsString" name="amounts_string" type="text" class="" hidden>
+                <input id="ingredientsString" name="ingredients_string" type="text" class="" hidden>
             </div>
 
             <div id="directionsWrapper">
@@ -159,9 +161,11 @@
             </div>
         </div>
         <div class="row">
-            <button class="btn waves-effect waves-light" type="submit" id="add_recipe_Btn" name="action" onclick="makeIngredientsStrings()">Send
+            <div id="sendButton" onclick="fieldvalidation()">SEND!!!</div>
+            <!-- <button class="btn waves-effect waves-light" type="submit" id="add_recipe_Btn" name="action"
+                onclick="">Send
                 <i class="material-icons right">playlist</i>
-            </button>
+            </button> -->
         </div>
     </div>
 </form>

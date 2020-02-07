@@ -52,24 +52,16 @@ def create_new_user(form):
     return new_user
 
 def make_ingredient_list(amounts_string, ingredients_string):
-    print(amounts_string)
-    print(ingredients_string)
-
     amounts_list=amounts_string.split('#')
     amounts_list.pop(len(amounts_list)-1)
-    print(amounts_list)
+    # print(amounts_list)
     ingredients_list=ingredients_string.split('#')
     ingredients_list.pop(len(ingredients_list)-1)
-    print(ingredients_list)
+    # print(ingredients_list)
     ingredient_iter=iter(ingredients_list)
     ingredients=[]
     for amount in amounts_list:
         ingredients.append({'amount': amount, 'ingredient': next(ingredient_iter)})
-    # print(ingdict)
-    
-    # recipes= mongo.db.recipes
-    # recipes.insert_one({"ingredients": ingdict })
-    # ingredients_list=dict(zip(amounts_list, ingredients_list))
     return ingredients
 
 def get_countries():

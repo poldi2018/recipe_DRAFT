@@ -83,7 +83,6 @@
 
 
 {% block popups %}
-
 <div id="reviewsPopup">
     <div id="reviewsWrapper">
         {% for review in reviews_of_recipe %}
@@ -106,7 +105,6 @@
     <div id="rateWrapper">
         <h3>Rate recipe for {{recipe.recipe_title}}, created by {{recipe.added_by}}</h3>
         <div class="row">
-            <div class="addfield">click to add field to form</div>
             <form action="{{ url_for('insert_rating', recipe_id=recipe._id, recipe_title=recipe.title) }}" method="POST"
                 class="col s12">
                 <div class="row">

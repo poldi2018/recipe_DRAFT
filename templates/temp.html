@@ -825,4 +825,10 @@
 </select>
 
 
-
+<div id="dishImageWrapper">
+    <div class="input-field col s12">
+        <input type="file" name="file" id="fileinputfield" onchange="validateImageName(this)"
+            enctype="multipart/form-data">
+        <textarea id="base64file" name="base64file" hidden></textarea>
+    </div>
+</div>

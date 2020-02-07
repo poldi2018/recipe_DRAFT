@@ -1,6 +1,6 @@
 {% extends 'base.html'%}
 {% block content %}
-<form action="{{ url_for('formdata')}}" method="POST" class="addRecipeForm">
+<form id='testform' action="{{ url_for('formdata')}}" method="POST" class="addRecipeForm">
     <div class="recipeWrapper">
         <div id="outerDirectionsWrapper">
             <div id="outerIngredientsWrapper">
@@ -9,36 +9,96 @@
                     <div class="removeIngredientField">remove ingredient field</div>
                 </div>
                 <div id="ingredientWrapper">
-                    <div class="input-field">
-                        <i class="material-icons prefix">playlist_add</i>
-                        <input id="amount1" name="amount" type="text" class="validate amounts" value="100g">
-                        <label for="amount1">Amount</label>
+                    <div class="ingredientContainer">
+                        <div class="input-field">
+                            <i class="material-icons prefix">playlist_add</i>
+                            <input id="amount1" name="amount" type="text" class="validate amounts" value="100g">
+                            <label for="amount1">Amount</label>
+                        </div>
+                        <div class="input-field">
+                            <i class="material-icons prefix">playlist_add</i>
+                            <input id="ingredient1" name="ingredient" type="text" class="validate ingredients"
+                                value="Salz">
+                            <label for="">Ingredient</label>
+                        </div>
                     </div>
-                    <div class="input-field">
-                        <i class="material-icons prefix">playlist_add</i>
-                        <input id="ingredient1" name="ingredient" type="text" class="validate ingredients" value="Salz">
-                        <label for="ingredient1">Ingredient</label>
+                    <div class="ingredientContainer">
+                        <div class="input-field">
+                            <i class="material-icons prefix">playlist_add</i>
+                            <input id="amount2" name="amount" type="text" class="validate amounts" value="200g">
+                            <label for="amount2">Amount</label>
+                        </div>
+                        <div class="input-field">
+                            <i class="material-icons prefix">playlist_add</i>
+                            <input id="ingredient2" name="ingredient" type="text" class="validate ingredients"
+                                value="Butter">
+                            <label for="ingredient2">Ingredient</label>
+                        </div>
                     </div>
-                    <div class="input-field">
-                        <i class="material-icons prefix">playlist_add</i>
-                        <input id="amount2" name="amount" type="text" class="validate amounts" value="200g">
-                        <label for="amount2">Amount</label>
+                    <div class="ingredientContainer">
+                        <div class="input-field">
+                            <i class="material-icons prefix">playlist_add</i>
+                            <input id="amount3" name="amount" type="text" class="validate amounts" value="">
+                            <label for="amount3">Amount</label>
+                        </div>
+                        <div class="input-field">
+                            <i class="material-icons prefix">playlist_add</i>
+                            <input id="ingredient3" name="ingredient" type="text" class="validate ingredients"
+                                value="">
+                            <label for="ingredient3">Ingredient</label>
+                        </div>
                     </div>
-                    <div class="input-field">
-                        <i class="material-icons prefix">playlist_add</i>
-                        <input id="ingredient2" name="ingredient" type="text" class="validate ingredients" value="Butter">
-                        <label for="ingredient2">Ingredient</label>
-                    </div>
-                    <div class="makearray">push</div>
-                    <input id="amountsString" name="amounts_string" type="text" class="validate">
-                    <input id="ingredientsString" name="ingredients_string" type="text" class="validate">
                 </div>
+                <div id="dishImageWrapper">
+                    <div class="input-field col s12">
+                        <input type="file" name="file" id="fileinputfield" onchange="validateImageName(this)"
+                            enctype="multipart/form-data">
+                        <textarea id="base64file" name="base64file" hidden></textarea>
+                    </div>
+                </div>
+                <div id="directionsWrapper">
+                    <div class="input-field col s12 directionInput">
+                        <i class="material-icons prefix">playlist_add</i>
+                        <textarea id="directions" name="directions"></textarea>
+                        <label for="directions">Directions</label>
+                    </div>
+                </div>
+
+                <div class="input-field">
+                    <i class="material-icons prefix">playlist_add</i>
+                    <select id="dishType" name="dish_type">
+                        <option value="" disabled selected>Choose Dish Type</option>
+                        <optgroup label="Starters">
+                            <option value="Soup">Soup</option>
+                            <option value="Salad">Salad</option>
+                            <option value="Fingerfood">Fingerfood</option>
+                        </optgroup>
+                        <optgroup label="Main Course">
+                            <option value="Chicken">Chicken</option>
+                            <option value="Fish">Fish</option>
+                            <option value="Game">Game</option>
+                            <option value="Meat">Meat</option>
+                        </optgroup>
+                        <optgroup label="Desserts">
+                            <option value="Cake">Cake</option>
+                            <option value="Fruit">Fruit</option>
+                            <option value="Ice">Ice</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+
+                <div class="makearray">push</div>
+                <input id="amountsString" name="amounts_string" type="text" class="validate">
+                <input id="ingredientsString" name="ingredients_string" type="text" class="validate">
+                <div class="sendform" onclick="test()" >SEND!</div>
             </div>
-            
+
         </div>
     </div>
     <div class="row">
-        <button class="btn waves-effect waves-light" type="submit" id="add_recipe_Btn" name="action" onclick="makeIngredientsArray()">Send
+        <button class="btn waves-effect waves-light" type="submit" id="add_recipe_Btn" name="action"
+            onclick="">Send
             <i class="material-icons right">playlist</i>
         </button>
     </div>

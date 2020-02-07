@@ -1,30 +1,32 @@
-// variables
-var add_recipe_Btn_Active = false;
+// init
+
+$(document).ready(function () {
+    $('select').material_select();
+});
+
+// global variables
+var allFieldsFilled = false;
 var fieldcount = 2;
-var currentIngredientFieldname, currentAmountFieldname = "";
 
 function generate_ingredientfieldName() {
     var ingredientFieldname = "ingredient" + fieldcount;
-    currentIngredientFieldname = ingredientFieldname;
     return ingredientFieldname;
 }
 
 function generate_amountfieldName() {
     var amountFieldname = "amount" + fieldcount;
-    currentAmountFieldname = amountFieldname;
     return amountFieldname;
 }
 
 function addIngredientField() {
-    $("#ingredientWrapper").append("<div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='amount' name='amount' type='text' class='validate amounts'><label for='amount'>Amount</label></div><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='ingredient' name='ingredient' type='text' class='validate ingredients'><label for='ingredient'>Ingredient</label></div>");
+    $("#ingredientWrapper").append("<div class='ingredientContainer'><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='amount' name='amount' type='text' class='validate amounts'><label for='amount'>Amount</label></div><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='ingredient' name='ingredient' type='text' class='validate ingredients'><label for='ingredient'>Ingredient</label></div></div>");
     $('#ingredient').attr('name', generate_ingredientfieldName()).attr('id', generate_ingredientfieldName());
     $('#amount').attr('name', generate_amountfieldName()).attr('id', generate_amountfieldName());
     fieldcount++;
 }
 
 function removeIngredientField() {
-    var ingredientFieldList = document.getElementById("ingredientWrapper"); // Get the <ul> element with id="myList"
-    ingredientFieldList.removeChild(ingredientFieldList.childNodes[$("#ingredientWrapper").length]);
+    var ingredientFieldList = document.getElementById("ingredientWrapper");
     ingredientFieldList.removeChild(ingredientFieldList.childNodes[$("#ingredientWrapper").length]);
     fieldcount--;
 }
@@ -48,8 +50,75 @@ function encodeImgtoBase64(element) {
     reader.readAsDataURL(file);
 }
 
-function validateImageName() {
+function ingredientfieldValidation() {
+    let amountsArray = $('.amounts').toArray();
+    let ingredientsArray = $('.ingredients').toArray();
+    for (let i = 0; i < amountsArray.length; i++) {
+        if (amountsArray[i].value == "") {
+            return false;
+        }
+    }
+    for (let i = 0; i < ingredientsArray.length; i++) {
+        if (ingredientsArray[i].value == "") {
+            return false;
+        }
+    }
+    return true;
+}
+
+
+function fieldvalidation() {
+    if ($('#recipetitle').val() == "") {
+        alert("Please give your recipe a title")
+    } else if ($('#dishType').val() == null) {
+        alert("Please give your dish a type")
+    } else if ($('#origin').val() == null) {
+        alert("Please select the origin")
+    } else if ($('#level').val() == null) {
+        alert("Please select the difficulty")
+    } else if ($('#prepTime').val() == "") {
+        alert("Please provide a preparation timeframe")
+    } else if (isNaN($('#prepTime').val())) {
+        alert("Please provide number of minutes for the preparation time")
+    } else if ($('#cookingTime').val() == "") {
+        alert("Please provide a cooking timeframe")
+    } else if (isNaN($('#cookingTime').val())) {
+        alert("Please provide number of minutes for the cooking time")
+    } else if ($('#fileinputfield').val() == "") {
+        alert("Please provide a picture of your dish")
+    } else if (ingredientfieldValidation() == false) {
+        alert("Please fill all ingredient fields")
+    } else if ($('#directions').val() == "") {
+        alert("Please fill in the directions")
+    } else {
+        makeIngredientsStrings()
+        $('#addRecipeForm').submit();
+    }
+}
+
+
+function test() {
+    if ($('#directions').val()=="") {
+        alert("Please provide value")
+
+    }
+    console.log(parseInt($('#directions').val()));
+    if (isNaN($('#directions').val())) {
+        alert("Please provide number of minutes for the cooking time")
+    }
+}
+
+function validateImageName(element) {
+
     var enteredFilename = $('#fileinputfield').val();
+    console.log($('#fileinputfield').val());
+    if (enteredFilename.endsWith('.jpeg') || enteredFilename.endsWith('.jpg')) {
+        encodeImgtoBase64(element);
+    } else {
+        $('#fileinputfield').val()="";
+        alert("Please select an JPEG or JPG.");
+    }
+    /*
     if (enteredFilename.length != 0) {
         add_recipe_Btn_Active = true;
     }
@@ -57,8 +126,8 @@ function validateImageName() {
         $('.popupCheckImagename').html(`Please select an JPEG or JPG.`);
         popupCheckImageName();
 
-    }
-
+    } 
+*/
 
 }
 
@@ -96,17 +165,6 @@ function processNames() {
     }, 1000);
 }
 
-// ... for save button button on registration modal
-$('#addRecipeBtn').on('touchstart click', function () {
-    validateImageName();
-});
-
-$(document).ready(function () {
-    $('select').material_select();
-
-
-});
-
 $('#showReviewsPopupBtn').on('touchstart click', function () {
     $('#reviewsPopup').css("transform", "translateX(0vw)").css("z-index", "500");
     $('#reviewsPopup').css("opacity", "1.0");
@@ -134,7 +192,6 @@ $('#closeRatePopupBtn').on('touchstart click', function () {
 
 function calcTotalTime() {
     let totalTime = parseInt($("#prepTime").val()) + parseInt($("#cookingTime").val());
-    console.log(totalTime);
     if (totalTime) {
         $("#totalTime").html(totalTime + " mins");
     } else {
@@ -150,17 +207,22 @@ $('.makearray').on('touchstart click', function () {
 function makeIngredientsStrings() {
     let amountsArray = $('.amounts').toArray();
     let ingredientsArray = $('.ingredients').toArray();
-    let amounts="", ingredients="";
-    for (let i=0; i < amountsArray.length; i++) {
-        amounts=amounts+amountsArray[i].value+"#";
+    for (let i = 0; i < ingredientsArray.length; i++) {
+        console.log(ingredientsArray[i]);
+    }
+
+    let amounts = "",
+        ingredients = "";
+    for (let i = 0; i < amountsArray.length; i++) {
+        amounts = amounts + amountsArray[i].value + "#";
     }
     // console.log(amounts);
     $('#amountsString').val(amounts);
-    for (let i=0; i < ingredientsArray.length; i++) {
-        ingredients=ingredients+ingredientsArray[i].value+"#";
+    for (let i = 0; i < ingredientsArray.length; i++) {
+        ingredients = ingredients + ingredientsArray[i].value + "#";
     }
     // console.log(ingredients);
     $('#ingredientsString').val(ingredients);
 
-    
+
 }
