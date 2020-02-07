@@ -244,7 +244,8 @@
     display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    width: 65%;
+    width: 75%;
+    height: 10vw;
   }
   .statsWrapper {
     border: 2px solid lightblue;
@@ -324,11 +325,12 @@
   }
   #dishImageWrapper {
     border: 2px solid lightblue;
-    width: 35%;
+    width: 25%;
+    height: 10vw;
   }
   #dishImage {
     width: 21.33vw;
-    height: 12vw;
+    height: 100%;
   }
   #origin {
     position: absolute;

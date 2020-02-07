@@ -185,7 +185,6 @@ def insert_recipe():
     today = datetime.datetime.now().strftime("%d. %B %Y")
     now = datetime.datetime.now().strftime("%H:%M:%S")
     ingredients=make_ingredient_list(request.form.get("amounts_string"), request.form.get("ingredients_string"))
-    print(ingredients)
     recipes.insert_one(
     {
         "title": request.form.get('recipe_title'), 
@@ -205,6 +204,7 @@ def insert_recipe():
         "directions": request.form.get("directions"),
         "allergens": request.form.get("allergens"),
         "ingredients": ingredients,
+        "country_name": request.form.get("origin"),
         "origin": build_origin_filepath(request.form.get("origin")),
         "img_src": url_img_src
     })
@@ -233,13 +233,14 @@ def latest_added():
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    return render_template('editrecipe.html', recipe=recipe)
+    return render_template('editrecipe.html', recipe=recipe, countries=get_countries())
 
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
     url_img_src=upload_image(request.form.get("base64file"))
     today = datetime.datetime.now().strftime("%d. %B %Y")
     now = datetime.datetime.now().strftime("%H:%M:%S")
+    ingredients=make_ingredient_list(request.form.get("amounts_string"), request.form.get("ingredients_string"))
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     recipes = mongo.db.recipes
     recipes.update_one({"_id": ObjectId(recipe_id)},
@@ -254,13 +255,14 @@ def update_recipe(recipe_id):
         "level": request.form.get("level"),
         "review_count": recipe["review_count"],
         "view_count": recipe["review_count"],
-        "prep_time": request.form.get("prep_time"),
-        "cooking_time": request.form.get("cooking_time"),
-        "total_time": request.form.get("prep_time")+request.form.get("cooking_time"),
+        "prep_time": int(request.form.get("prep_time")),
+        "cooking_time": int(request.form.get("cooking_time")),
+        "total_time": int(request.form.get("prep_time"))+int(request.form.get("cooking_time")),
         "directions": request.form.get("directions"),
         "allergens": request.form.get("allergens"),
-        "ingredients": request.form.get("ingredients"),
-        "origin": request.form.get("origin"),
+        "ingredients": ingredients,
+        "country_name": request.form.get("origin"),
+        "origin": build_origin_filepath(request.form.get("origin")),
         "img_src": url_img_src
         }
     })
