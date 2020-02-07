@@ -1,14 +1,21 @@
 TODO:
-THU6th:
+FRI7th
+schemas and mockups!
 ADD:
 - add allergens fields and handling
-- add ingredient fields and handling
+- add ingredient fields and handling DONE
 - string length fields
-- chk all fields filled / selected
+- chk all fields filled / selected DONE
 
 
 TOP-REVIEWS:
 - review tiles
+
+REVIEWS POPUP:
+-  basic styles
+
+RATE POPUP:
+-  basic styles
 
 ADVSEARCH:
 - form layout
@@ -26,8 +33,9 @@ LOGOUT, LOGIN, REGISTER:
 EDIT:
 - basic styles
 
+USERPAGE:
+-  basic styles
 
-schemas and mockups!
 
 # carousel newly added
 
@@ -35,6 +43,8 @@ SUN9th:
 documentations
 testing
 
+MON10th:
+3rd call
 
 ####
 Referenced Data of

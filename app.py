@@ -54,10 +54,8 @@ def create_new_user(form):
 def make_ingredient_list(amounts_string, ingredients_string):
     amounts_list=amounts_string.split('#')
     amounts_list.pop(len(amounts_list)-1)
-    # print(amounts_list)
     ingredients_list=ingredients_string.split('#')
     ingredients_list.pop(len(ingredients_list)-1)
-    # print(ingredients_list)
     ingredient_iter=iter(ingredients_list)
     ingredients=[]
     for amount in amounts_list:
@@ -315,9 +313,6 @@ def formdata():
     print(request.form.get("amounts_string"))
     print(request.form.get("ingredients_string"))
     ingredients=make_ingredient_list(request.form.get("amounts_string"), request.form.get("ingredients_string"))
-    print(ingredients)
-    print(ingredients)
-    print(ingredients)
     # ingredients_dict=zip(amounts_list, ingredients_list)
     # ingredients=make_ingredient_list(amounts_list, ingredients_list)
     # print(ingredients)

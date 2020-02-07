@@ -78,9 +78,13 @@
                         <option value="" disabled selected>Choose origin country</option>
                         {% for country in countries %}
                         {% if recipe.country_name==country['country_name'] %}
-                        <option value="{{country['country_name']}}" data-icon="{{url_for('static', filename=country['filename'])}}" class="circle" selected>{{country['country_name']}}</option>
+                        <option value="{{country['country_name']}}"
+                            data-icon="{{url_for('static', filename=country['filename'])}}" class="circle" selected>
+                            {{country['country_name']}}</option>
                         {% else %}
-                        <option value="{{country['country_name']}}" data-icon="{{url_for('static', filename=country['filename'])}}" class="circle">{{country['country_name']}}</option>
+                        <option value="{{country['country_name']}}"
+                            data-icon="{{url_for('static', filename=country['filename'])}}" class="circle">
+                            {{country['country_name']}}</option>
                         {% endif %}
                         {% endfor %}
                     </select>
@@ -114,7 +118,7 @@
                         {% else %}
                         <option value="Easy">Easy</option>
                         {% if recipe.level=="Medium" %}
-                        <option value="Medium" selected >Medium</option>
+                        <option value="Medium" selected>Medium</option>
                         {% else %}
                         <option value="Medium">Medium</option>
                         {% if recipe.level=="Difficult" %}
@@ -186,12 +190,14 @@
                     <div class="ingredientContainer">
                         <div class="input-field">
                             <i class="material-icons prefix">playlist_add</i>
-                            <input id="amount1" name="amount1" type="text" class="validate amounts" value="{{ingredient.amount}}">
+                            <input id="amount1" name="amount1" type="text" class="validate amounts"
+                                value="{{ingredient.amount}}">
                             <label for="amount1">Amount</label>
                         </div>
                         <div class="input-field">
                             <i class="material-icons prefix">playlist_add</i>
-                            <input id="ingredient1" name="ingredient1" type="text" class="validate ingredients" value="{{ingredient.ingredient}}">
+                            <input id="ingredient1" name="ingredient1" type="text" class="validate ingredients"
+                                value="{{ingredient.ingredient}}">
                             <label for="ingredient1">Ingredient</label>
                         </div>
                     </div>
