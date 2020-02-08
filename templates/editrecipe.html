@@ -227,7 +227,9 @@
             </div>
         </div>
         <div class="row">
-            <div id="sendButton" onclick="fieldvalidation()">SEND!!!</div>
+            <div id="sendButton" class="btn waves-effect waves-light" onclick="fieldvalidation()">Update</div>
+            <div class="btn waves-effect waves-light"><a href="{{url_for('read_recipe', recipe_id=recipe._id)}}">Cancel</a></div>
+
             <!-- <button class="btn waves-effect waves-light" type="submit" id="add_recipe_Btn" name="action"
                 onclick="">Send
                 <i class="material-icons right">playlist</i>

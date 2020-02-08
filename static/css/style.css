@@ -75,6 +75,13 @@
         -ms-flex-pack: center;
             justify-content: center;
   }
+  div a:hover,
+  a:visited,
+  a:link,
+  a:active {
+    text-decoration: none;
+    color: green;
+  }
   header {
     background-color: #EAE7DC;
     position: fixed;

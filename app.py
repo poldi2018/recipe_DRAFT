@@ -219,6 +219,9 @@ def read_recipe(recipe_id):
     {
         "$inc": {"view_count": 1 }
     })
+    for ingredient in recipe['ingredients']:
+        print(ingredient)
+    print(recipe['title'])
     return render_template('readrecipe.html', recipe=recipe, reviews_of_recipe=reviews_of_recipe)
 
 #show latest recipes
@@ -299,34 +302,8 @@ def insert_rating(recipe_id, recipe_title):
     })
     return redirect(url_for('read_recipe', recipe_id=recipe_id))
 
-@app.route('/form')
-def form():
-    return render_template("form.html")
-
-
-@app.route('/formdata', methods=["POST"])
-def formdata():
-    # amounts_array=request.form.get("amountsArray").split()
-    # ing_array=request.form.get("ingredientsArray").split()
-    # print(amounts_array)
-    # print(ing_array)
-    print(request.form.get("amounts_string"))
-    print(request.form.get("ingredients_string"))
-    ingredients=make_ingredient_list(request.form.get("amounts_string"), request.form.get("ingredients_string"))
-    # ingredients_dict=zip(amounts_list, ingredients_list)
-    # ingredients=make_ingredient_list(amounts_list, ingredients_list)
-    # print(ingredients)
-    return redirect(url_for('form'))
-
-
 # run app
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT', 5000)),
             debug=True)
-
-
-
-
-
-

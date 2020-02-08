@@ -67,75 +67,96 @@
         <img id="dishImage" src="{{recipe.img_src}}" style="width:100%;height:100%;" alt="image of dish">
     </div>
 
-
-    <div id="outerIngredientsWrapper">
-        <div class="amount">100g</div>
-        <div class="ingredient">Spinat</div>
-    </div>
-
     <div id="outerDirectionsWrapper">
-        <div class="directions">
-            {{recipe.directions}}
-        </div>
-    </div>
-</div>
-{% endblock %}
-
-
-{% block popups %}
-<div id="reviewsPopup">
-    <div id="reviewsWrapper">
-        {% for review in reviews_of_recipe %}
-        <div class="reviewContainer">
-            <div class="reviewlines">{{review.review_title}}</div>
-            <div class="reviewlines">{{review.review_for}}</div>
-            <div class="reviewlines">{{review.rating}}</div>
-            <div class="reviewlines">{{review.comment}}</div>
-            <div class="reviewlines">{{review.added_on_date}}</div>
-            <div class="reviewlines">{{review.added_on_time}}</div>
-            <div class="reviewlines">{{review.rated_by}}</div>
-            <hr>
-        </div>
-        {% endfor %}
-        <div id="closeReviewsPopupBtn">Close</div>
-    </div>
-</div>
-
-<div id="ratePopup">
-    <div id="rateWrapper">
-        <h3>Rate recipe for {{recipe.recipe_title}}, created by {{recipe.added_by}}</h3>
-        <div class="row">
-            <form action="{{ url_for('insert_rating', recipe_id=recipe._id, recipe_title=recipe.title) }}" method="POST"
-                class="col s12">
-                <div class="row">
-                    <div class="input-field col s12">
+        <div id="outerIngredientsWrapper">
+            <div id="ingredientWrapper">
+                {% for ingredient in recipe.ingredients %}
+                <div class="ingredientContainer">
+                    <div class="input-field">
                         <i class="material-icons prefix">playlist_add</i>
-                        <input id="review_title" name="review_title" type="text" class="validate" required>
-                        <label for="review_title">review title</label>
+                        <input id="amount1" name="amount1" type="text" class="validate amounts"
+                            value="{{ingredient.amount}}" data-length="30">
+                        <label for="amount1">Amount</label>
+                    </div>
+                    <div class="input-field">
+                        <i class="material-icons prefix">playlist_add</i>
+                        <input id="ingredient1" name="ingredient1" type="text" class="validate ingredients"
+                            value="{{ingredient.ingredient}}" data-length="30">
+                        <label for="ingredient1">Ingredient</label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">playlist_add</i>
-                        <input id="rating" name="rating" type="text" class="validate" required>
-                        <label for="rating">rating</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">playlist_add</i>
-                        <input id="comment" name="comment" type="text" class="validate">
-                        <label for="comment">Comment:</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <button id="closeRatePopupBtn" class="btn waves-effect waves-light" type="submit" name="action">Send
-                        <i class="material-icons right">playlist</i>
-                    </button>
-                </div>
-            </form>
+                {% endfor %}
+            </div>
+            <input id="amountsString" name="amounts_string" type="text" class="" hidden>
+            <input id="ingredientsString" name="ingredients_string" type="text" class="" hidden>
+        </div>
+
+        <div id="directionsWrapper">
+            <div class="input-field col s12 directionInput">
+                <i class="material-icons prefix">playlist_add</i>
+                <textarea id="directions" name="directions" data-length="1000">{{recipe.directions}}</textarea>
+                <label for="directions">Directions</label>
+            </div>
         </div>
     </div>
-</div>
+    {% endblock %}
 
-{% endblock %}
+
+    {% block popups %}
+    <div id="reviewsPopup">
+        <div id="reviewsWrapper">
+            {% for review in reviews_of_recipe %}
+            <div class="reviewContainer">
+                <div class="reviewlines">{{review.review_title}}</div>
+                <div class="reviewlines">{{review.review_for}}</div>
+                <div class="reviewlines">{{review.rating}}</div>
+                <div class="reviewlines">{{review.comment}}</div>
+                <div class="reviewlines">{{review.added_on_date}}</div>
+                <div class="reviewlines">{{review.added_on_time}}</div>
+                <div class="reviewlines">{{review.rated_by}}</div>
+                <hr>
+            </div>
+            {% endfor %}
+            <div id="closeReviewsPopupBtn">Close</div>
+        </div>
+    </div>
+
+    <div id="ratePopup">
+        <div id="rateWrapper">
+            <h3>Rate recipe for {{recipe.recipe_title}}, created by {{recipe.added_by}}</h3>
+            <div class="row">
+                <form action="{{ url_for('insert_rating', recipe_id=recipe._id, recipe_title=recipe.title) }}"
+                    method="POST" class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">playlist_add</i>
+                            <input id="review_title" name="review_title" type="text" class="validate" required>
+                            <label for="review_title">review title</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">playlist_add</i>
+                            <input id="rating" name="rating" type="text" class="validate" required>
+                            <label for="rating">rating</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">playlist_add</i>
+                            <input id="comment" name="comment" type="text" class="validate">
+                            <label for="comment">Comment:</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button id="closeRatePopupBtn" class="btn waves-effect waves-light" type="submit"
+                            name="action">Send
+                            <i class="material-icons right">playlist</i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}

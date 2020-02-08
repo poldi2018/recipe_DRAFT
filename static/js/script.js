@@ -103,14 +103,6 @@ function fieldsTooLong() {
     }
 }
 
-function test() {
-    console.log(fieldsTooLongTest());
-
-    if (fieldsTooLongTest() == true) {
-        alert("fields too long!");
-    }
-}
-
 //function for onchange event of file input field to convert selected file into base64
 function encodeImgtoBase64(element) {
     var file = element.files[0];
