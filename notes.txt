@@ -13,6 +13,7 @@ TOP-REVIEWS:
 
 REVIEWS POPUP:
 -  basic styles
+- star selector
 
 RATE POPUP:
 -  basic styles

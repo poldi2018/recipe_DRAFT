@@ -273,8 +273,10 @@ def update_recipe(recipe_id):
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
     #delete id from reviews!!
-    #reviews = mongo.db.reviews.find({"recipe_id": ObjectId(recipe_id)}) 
-    #mongo.db.reviews.delete_one({'_id': ObjectId(recipe_id)})
+    reviews = mongo.db.reviews.find({"recipe_id": recipe_id})
+    for review in reviews:
+        mongo.db.reviews.delete_one({"recipe_id": review['recipe_id']})
+    #mongo.db.reviews.delete_many(ObjectId(reviews))
     mongo.db.recipes.delete_one({'_id': ObjectId(recipe_id)})
     return redirect(url_for('latest_added'))
 
