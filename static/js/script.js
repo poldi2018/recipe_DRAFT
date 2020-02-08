@@ -148,17 +148,6 @@ function popupCheckImageName() {
         , 3000);
 }
 
-function processNames() {
-    namePlayer1 = $('#nameFieldPlayer1Form').val();
-    $('.namePlayer1Field').html(namePlayer1 + ": ");
-    namePlayer2 = $('#nameFieldPlayer2Form').val();
-    $('.namePlayer2Field').html(namePlayer2 + ": ");
-    $('#enterPlayersModal').css("opacity", "0.0");
-    setTimeout(function () {
-        $('#enterPlayersModal').css("transform", "translateZ(-10px)").css("z-index", "-1");
-    }, 1000);
-}
-
 $('#showReviewsPopupBtn').on('touchstart click', function () {
     $('#reviewsPopup').css("transform", "translateX(0vw)").css("z-index", "500");
     $('#reviewsPopup').css("opacity", "1.0");
@@ -192,16 +181,10 @@ function calcTotalTime() {
     }
 }
 
-$('.makearray').on('touchstart click', function () {
-    makeIngredientsStrings();
-});
-
 function makeIngredientsStrings() {
     let amountsArray = $('.amounts').toArray();
     let ingredientsArray = $('.ingredients').toArray();
     let amounts = "", ingredients = "";
-    for (let i = 0; i < ingredientsArray.length; i++) {
-    } 
     for (let i = 0; i < amountsArray.length; i++) {
         amounts = amounts + amountsArray[i].value + "#";
     }
