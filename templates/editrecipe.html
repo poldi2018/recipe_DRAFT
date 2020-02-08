@@ -1,6 +1,6 @@
 {% extends 'base.html'%}
 {% block content %}
-<form action="{{ url_for('update_recipe', recipe_id=recipe._id)}}" method="POST" class="" enctype="multipart/form-data">
+<form id="recipeForm" action="{{ url_for('update_recipe', recipe_id=recipe._id)}}" method="POST" class="" enctype="multipart/form-data">
     <div class="recipeWrapper">
         <div class="recipeTitle">
             Edit recipe for {{recipe.title}}
@@ -9,7 +9,8 @@
             <div class="recipeHeaderItem">
                 <div class="input-field" id="">
                     <i class="material-icons prefix">playlist_add</i>
-                    <input id="recipetitle" name="recipe_title" type="text" class="validate" value="{{recipe.title}}">
+                    <input id="recipetitle" name="recipe_title" type="text" class="validate" value="{{recipe.title}}"
+                        data-length="30">
                     <label for="recipetitle">Recipe Title</label>
                 </div>
             </div>
@@ -24,10 +25,12 @@
                             <option value="Soup" selected>Soup</option>
                             {% else %}
                             <option value="Soup">Soup</option>
+                            {% endif %}
                             {% if recipe.dish_type=="Salad" %}
                             <option value="Salad" selected>Salad</option>
                             {% else %}
                             <option value="Salad">Salad</option>
+                            {% endif %}
                             {% if recipe.dish_type=="Fingerfood" %}
                             <option value="Fingerfood" selected>Fingerfood</option>
                             {% else %}
@@ -39,14 +42,17 @@
                             <option value="Chicken" selected>Chicken</option>
                             {% else %}
                             <option value="Chicken">Chicken</option>
+                            {% endif %}
                             {% if recipe.dish_type=="Fish" %}
                             <option value="Fish" selected>Fish</option>
                             {% else %}
                             <option value="Fish">Fish</option>
+                            {% endif %}
                             {% if recipe.dish_type=="Game" %}
                             <option value="Game" selected>Game</option>
                             {% else %}
                             <option value="Game">Game</option>
+                            {% endif %}
                             {% if recipe.dish_type=="Meat" %}
                             <option value="Meat" selected>Meat</option>
                             {% else %}
@@ -58,10 +64,12 @@
                             <option value="Cake" selected>Cake</option>
                             {% else %}
                             <option value="Cake">Cake</option>
+                            {% endif %}
                             {% if recipe.dish_type=="Fruit" %}
                             <option value="Fruit" selected>Fruit</option>
                             {% else %}
                             <option value="Fruit">Fruit</option>
+                            {% endif %}
                             {% if recipe.dish_type=="Ice" %}
                             <option value="Ice" selected>Ice</option>
                             {% else %}
@@ -117,10 +125,12 @@
                         <option value="Easy" selected>Easy</option>
                         {% else %}
                         <option value="Easy">Easy</option>
+                        {% endif %}
                         {% if recipe.level=="Medium" %}
                         <option value="Medium" selected>Medium</option>
                         {% else %}
                         <option value="Medium">Medium</option>
+                        {% endif %}
                         {% if recipe.level=="Difficult" %}
                         <option value="Difficult" selected>Difficult</option>
                         {% else %}
@@ -191,13 +201,13 @@
                         <div class="input-field">
                             <i class="material-icons prefix">playlist_add</i>
                             <input id="amount1" name="amount1" type="text" class="validate amounts"
-                                value="{{ingredient.amount}}">
+                                value="{{ingredient.amount}}" data-length="30">
                             <label for="amount1">Amount</label>
                         </div>
                         <div class="input-field">
                             <i class="material-icons prefix">playlist_add</i>
                             <input id="ingredient1" name="ingredient1" type="text" class="validate ingredients"
-                                value="{{ingredient.ingredient}}">
+                                value="{{ingredient.ingredient}}" data-length="30">
                             <label for="ingredient1">Ingredient</label>
                         </div>
                     </div>
@@ -210,7 +220,8 @@
             <div id="directionsWrapper">
                 <div class="input-field col s12 directionInput">
                     <i class="material-icons prefix">playlist_add</i>
-                    <textarea id="directions" name="directions" value="{{recipe.directions}}"></textarea>
+                    <textarea id="directions" name="directions"
+                        data-length="1000">{{recipe.directions}}</textarea>
                     <label for="directions">Directions</label>
                 </div>
             </div>
@@ -224,4 +235,5 @@
         </div>
     </div>
 </form>
+
 {% endblock %}

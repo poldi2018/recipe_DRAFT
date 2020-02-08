@@ -1,6 +1,6 @@
 {% extends 'base.html'%}
 {% block content %}
-<form id="addRecipeForm" action="{{ url_for('insert_recipe')}}" method="POST" class="addRecipeForm" enctype="multipart/form-data">
+<form id="recipeForm" action="{{ url_for('insert_recipe')}}" method="POST" class="addRecipeForm" enctype="multipart/form-data">
 
     <div class="recipeWrapper">
         <div class="recipeTitle">
@@ -10,7 +10,7 @@
             <div class="recipeHeaderItem">
                 <div class="input-field" id="">
                     <i class="material-icons prefix">playlist_add</i>
-                    <input id="recipetitle" name="recipe_title" type="text" class="validate">
+                    <input id="recipetitle" name="recipe_title" type="text" class="validate" data-length="30">
                     <label for="recipetitle">Recipe Title</label>
                 </div>
             </div>
@@ -138,12 +138,12 @@
                     <div class="ingredientContainer">
                         <div class="input-field">
                             <i class="material-icons prefix">playlist_add</i>
-                            <input id="amount1" name="amount1" type="text" class="validate amounts">
+                            <input id="amount1" name="amount1" type="text" class="validate amounts" data-length="30">
                             <label for="amount1">Amount</label>
                         </div>
                         <div class="input-field">
                             <i class="material-icons prefix">playlist_add</i>
-                            <input id="ingredient1" name="ingredient1" type="text" class="validate ingredients">
+                            <input id="ingredient1" name="ingredient1" type="text" class="validate ingredients" data-length="30">
                             <label for="ingredient1">Ingredient</label>
                         </div>
                     </div>
@@ -155,7 +155,7 @@
             <div id="directionsWrapper">
                 <div class="input-field col s12 directionInput">
                     <i class="material-icons prefix">playlist_add</i>
-                    <textarea id="directions" name="directions"></textarea>
+                    <textarea id="directions" name="directions" data-length="1000"></textarea>
                     <label for="directions">Directions</label>
                 </div>
             </div>
