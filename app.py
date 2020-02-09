@@ -367,7 +367,7 @@ def insert_rating(recipe_id, recipe_title):
             "review_title": request.form.get('review_title'),
             "review_for": recipe_title,
             "recipe_id":  recipe_id,
-            "rating": request.form.get('rating'),
+            "rating": int(request.form.get('rating')),
             "comment": request.form.get('comment'),
             "added_on_date": today,
             "added_on_time": now,

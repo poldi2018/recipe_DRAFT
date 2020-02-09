@@ -110,7 +110,7 @@
                 <div class="reviewlines">{{review.review_title}}</div>
                 <div class="reviewlines">{{review.review_for}}</div>
                 <div class="reviewlines">
-                    {% for star in range(review.rating|int) %}
+                    {% for star in range(review.rating) %}
                     <i class="material-icons prefix">star</i>
                     {% endfor %}
                 </div>
