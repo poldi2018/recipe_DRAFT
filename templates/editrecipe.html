@@ -65,6 +65,11 @@
                             {% else %}
                             <option value="Cake">Cake</option>
                             {% endif %}
+                            {% if recipe.dish_type=="Dessert" %}
+                            <option value="Dessert" selected>Dessert</option>
+                            {% else %}
+                            <option value="Dessert">Dessert</option>
+                            {% endif %}
                             {% if recipe.dish_type=="Fruit" %}
                             <option value="Fruit" selected>Fruit</option>
                             {% else %}
@@ -74,6 +79,23 @@
                             <option value="Ice" selected>Ice</option>
                             {% else %}
                             <option value="Ice">Ice</option>
+                            {% endif %}
+                        </optgroup>
+                        <optgroup label="Drinks">
+                            {% if recipe.dish_type=="Juice" %}
+                            <option value="Juice" selected>Juice</option>
+                            {% else %}
+                            <option value="Juice">Juice</option>
+                            {% endif %}
+                            {% if recipe.dish_type=="Shake" %}
+                            <option value="Shake" selected>Shake</option>
+                            {% else %}
+                            <option value="Shake">Shake</option>
+                            {% endif %}
+                            {% if recipe.dish_type=="Cocktail" %}
+                            <option value="Cocktail" selected>Cocktail</option>
+                            {% else %}
+                            <option value="Cocktail">Cocktail</option>
                             {% endif %}
                         </optgroup>
                     </select>

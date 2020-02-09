@@ -292,4 +292,5 @@ Secure user authentication (e.g. via passwords) is not required for this particu
 
 
 
-        "ingredients": request.form.get("ingredients"),
+# user_to_query= mongo.db.users.find_one( { '$or': [{"email_address_hash": generate_password_hash(request.form.get('email_address'))}, {"username": request.form.get("username")}]})
+
