@@ -118,6 +118,9 @@ def results():
     else:
         recipes = mongo.db.recipes.find({"$text": {"$search": search_term}})
         reviews = mongo.db.reviews.find({"$text": {"$search": search_term}})
+    # get document count based on search_term
+    #result=mongo.db.recipes
+    #doc_count = result.count_documents({"$text": {"$search": search_term}})
     return render_template("results.html", recipes=recipes, reviews=reviews,
                            search_term=search_term)
 

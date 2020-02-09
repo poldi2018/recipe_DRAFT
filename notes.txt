@@ -1,5 +1,5 @@
 TODO:
-SAT8th
+SUN9th:
 schemas and mockups!
 ADD:
 - add allergens fields and handling
@@ -13,7 +13,7 @@ TOP-REVIEWS:
 
 REVIEWS POPUP:
 -  basic styles
-- star selector
+- star selector DONE
 
 RATE POPUP:
 -  basic styles
@@ -38,13 +38,17 @@ USERPAGE:
 -  basic styles
 
 
-# carousel newly added
+# carousel newly added today
 
-SUN9th:
+MON10th:
+Anthony: schema and mockup
 documentations
 testing
 
-MON10th:
+TUE11th:
+2nd call
+
+WED12:
 3rd call
 
 ####
