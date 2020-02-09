@@ -284,8 +284,11 @@ def read_recipe(recipe_id):
             "$inc": {"view_count": 1}
         }
     )
+    today = datetime.datetime.now().strftime("%d. %B %Y")
+    recipes_today = mongo.db.recipes.find( { "added_on_date": today} )
+    
     return render_template('readrecipe.html', recipe=recipe,
-                           reviews_of_recipe=reviews_of_recipe)
+                           reviews_of_recipe=reviews_of_recipe, recipes_today=recipes_today)
 
 # show latest recipes
 

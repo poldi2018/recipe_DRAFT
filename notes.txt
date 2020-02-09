@@ -2,10 +2,14 @@ TODO:
 SUN9th:
 schemas and mockups!
 ADD:
-- add allergens fields and handling
+- add allergens fields and handling and recipe adaptation in db, edit and add dialog
 - add ingredient fields and handling DONE
 - string length fields DONE
 - chk all fields filled / selected DONE
+- tiles with clickable category
+- collect reviewed_by and assign to recipe
+- d3 for summary categories?
+- display document count based on category and on searchterm
 
 
 TOP-REVIEWS:
@@ -17,6 +21,7 @@ REVIEWS POPUP:
 
 RATE POPUP:
 -  basic styles
+- field validation
 
 ADVSEARCH:
 - form layout
@@ -30,12 +35,18 @@ QUICKSEARCH RESULTS:
 
 LOGOUT, LOGIN, REGISTER:
 -  basic styles
+- field validation and 2nd pw field registration
+
 
 EDIT:
 - basic styles
 
 USERPAGE:
 -  basic styles
+
+MOBILE VERSION:
+- styles
+
 
 
 # carousel newly added today

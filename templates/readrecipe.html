@@ -99,8 +99,14 @@
             </div>
         </div>
     </div>
-    {% endblock %}
 
+    <div class="carousel">
+        {% for recipe in recipes_today %}
+        <a class="carousel-item" href="#one!"><img
+                src="{{url_for('static', filename='images/logo_small.jpeg')}}">{{recipe.title}}</a>
+        {% endfor%}
+    </div>
+    {% endblock %}
 
     {% block popups %}
     <div id="reviewsPopup">
