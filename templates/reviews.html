@@ -4,9 +4,7 @@
     <h3>There are {{reviews_count}} Reviews from today with 5 Star rating</h3>
 </div>
 <div class="outerReviewsWrapper">
-
     <div class="innerReviewsWrapper">
-        <!--   -->
         {% if message %}
         <div class="div">{{message}}</div>
         {% else %}
@@ -33,11 +31,8 @@
             <div class="reviewKey">Comment</div>
             <div class="reviewValue">{{review.comment}}</div>
         </div>
-    
-    
-    {% endfor %}
-    {% endif %}
-  
+        {% endfor %}
+        {% endif %}
     </div>
 </div>
 {% endblock %}

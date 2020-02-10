@@ -139,19 +139,19 @@
         <div id="outerDirectionsWrapper">
             <div id="outerIngredientsWrapper">
                 <div class="addRemoveBtnWrapper">
-                    <div class="addIngredientField">add ingredient field</div>
-                    <div class="removeIngredientField">remove ingredient field</div>
+                    <div class="addIngredientField" class="btn waves-effect waves-light">add ingredient field</div>
+                    <div class="removeIngredientField" class="btn waves-effect waves-light">remove ingredient field</div>
                 </div>
                 <div id="ingredientWrapper">
                     <div class="ingredientContainer">
                         <div class="input-field">
                             <i class="material-icons prefix">playlist_add</i>
-                            <input name="amount1" type="text" class="validate amounts" data-length="30">
+                            <input id="amount1" name="amount1" type="text" class="validate amounts" data-length="30">
                             <label for="amount1">Amount</label>
                         </div>
                         <div class="input-field">
                             <i class="material-icons prefix">playlist_add</i>
-                            <input name="ingredient1" type="text" class="validate ingredients" data-length="30">
+                            <input id="ingredient1" name="ingredient1" type="text" class="validate ingredients" data-length="30">
                             <label for="ingredient1">Ingredient</label>
                         </div>
                     </div>
@@ -169,12 +169,15 @@
             </div>
         </div>
         <div class="row">
-            <div id="sendButton" onclick="fieldvalidation()">SEND!!!</div>
-            <!-- <button class="btn waves-effect waves-light" type="submit" id="add_recipe_Btn" name="action"
-                onclick="">Send
-                <i class="material-icons right">playlist</i>
-            </button> -->
+            <div id="sendButton" onclick="fieldvalidation()" class="btn waves-effect waves-light">Save recipe</div>
         </div>
     </div>
 </form>
+
+<div id="popupCheckForValidFields">
+    <div id="resultCheckForValidFields"></div>
+    <div class="buttonWrapper"><div id="closeCheckForValidFieldsBtn" class="btn waves-effect waves-light">Close</div></div>
+    
+</div>
+
 {% endblock %}

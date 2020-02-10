@@ -95,52 +95,8 @@ def get_countries():
 def index():
     return render_template("index.html")
 
-# HEADER
 
-
-@app.route('/reviews_today')
-def reviews_today():
-    today = datetime.datetime.now().strftime("%d. %B %Y")
-    reviews=mongo.db.reviews
-    # check if 5 star ratings from today is available
-    reviews_count = reviews.count_documents({ "$and": [ { "added_on_date": today }, { "rating": 5 } ] })
-    if reviews_count == 0:
-        message="No recipes with 5 stars have been rated today"
-        return render_template("reviews.html", message=message)
-    else:
-        reviews_from_today = mongo.db.reviews.find( { "$and": [ { "added_on_date": today }, { "rating": 5 } ] } )
-        return render_template("reviews.html", reviews_from_today=reviews_from_today, reviews_count=reviews_count)
-
-# Search dialog CHECKED
-
-
-@app.route('/advanced_search')
-def advanced_search():
-    return render_template("search.html")
-
-
-@app.route('/results', methods=["POST"])
-def results():
-    recipes=mongo.db.recipes
-    reviews=mongo.db.reviews
-    search_term = request.form.get("search_term")
-    if search_term == "":
-        recipes_by_searchterm = mongo.db.recipes.find()
-        recipes_count = recipes.count_documents({"$text": {"$search": search_term}})        
-        print(recipes_count)
-        reviews_by_searchterm = mongo.db.reviews.find()
-        reviews_count = reviews.count_documents({"$text": {"$search": search_term}})
-        print(reviews_count)
-
-    else:
-        recipes_by_searchterm = mongo.db.recipes.find({"$text": {"$search": search_term}})
-        recipes_count = recipes.count_documents({"$text": {"$search": search_term}})        
-        reviews_by_searchterm = mongo.db.reviews.find({"$text": {"$search": search_term}})
-        reviews_count = reviews.count_documents({"$text": {"$search": search_term}})
-    return render_template("results.html", recipes_by_searchterm=recipes_by_searchterm, reviews_by_searchterm=reviews_by_searchterm,
-                           search_term=search_term, recipes_count=recipes_count, reviews_count=reviews_count)
-
-# registeration of user CHECKED
+# registration of user CHECKED
 
 
 @app.route('/register')
@@ -236,6 +192,53 @@ def logout():
     logout_user(session)
     return redirect(url_for('latest_added'))
 
+
+@app.route('/reviews_today')
+def reviews_today():
+    today = datetime.datetime.now().strftime("%d. %B %Y")
+    reviews=mongo.db.reviews
+    # check if 5 star ratings from today is available
+    reviews_count = reviews.count_documents({ "$and": [ { "added_on_date": today }, { "rating": 5 } ] })
+    if reviews_count == 0:
+        message="No recipes with 5 stars have been rated today"
+        return render_template("reviews.html", message=message)
+    else:
+        reviews_from_today = mongo.db.reviews.find( { "$and": [ { "added_on_date": today }, { "rating": 5 } ] } )
+        return render_template("reviews.html", reviews_from_today=reviews_from_today, reviews_count=reviews_count)
+
+# Search dialog CHECKED
+
+
+@app.route('/advanced_search')
+def advanced_search():
+    return render_template("advancedsearch.html")
+
+@app.route('/advanced_results', methods=["POST"])
+def advanced_results():
+    return render_template("advancedresults.html")
+
+
+@app.route('/results', methods=["POST"])
+def results():
+    recipes=mongo.db.recipes
+    reviews=mongo.db.reviews
+    search_term = request.form.get("search_term")
+    if search_term == "":
+        recipes_by_searchterm = mongo.db.recipes.find()
+        recipes_count = recipes.count_documents({"$text": {"$search": search_term}})        
+        reviews_by_searchterm = mongo.db.reviews.find()
+        reviews_count = reviews.count_documents({"$text": {"$search": search_term}})
+    else:
+        recipes_by_searchterm = mongo.db.recipes.find({"$text": {"$search": search_term}})
+        recipes_count = recipes.count_documents({"$text": {"$search": search_term}})        
+        reviews_by_searchterm = mongo.db.reviews.find({"$text": {"$search": search_term}})
+        reviews_count = reviews.count_documents({"$text": {"$search": search_term}})
+    return render_template("results.html", recipes_by_searchterm=recipes_by_searchterm, reviews_by_searchterm=reviews_by_searchterm,
+                           search_term=search_term, recipes_count=recipes_count, reviews_count=reviews_count)
+
+
+
+
 # Add A Recipe CHECKED
 
 
@@ -290,8 +293,6 @@ def insert_recipe():
 
 @app.route('/read_recipe/<recipe_id>')
 def read_recipe(recipe_id):
-    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    reviews_of_recipe = mongo.db.reviews.find({"recipe_id": recipe_id})
     # increment view counter
     recipes = mongo.db.recipes
     recipes.update_one(
@@ -300,18 +301,17 @@ def read_recipe(recipe_id):
             "$inc": {"view_count": 1}
         }
     )    
-    return render_template('readrecipe.html', recipe=recipe,
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    reviews_of_recipe = mongo.db.reviews.find({"recipe_id": recipe_id})
+    reviews=mongo.db.reviews
+    reviews_count = reviews.count_documents({"recipe_id": recipe_id})
+    if reviews_count == 0:
+        message="This recipe has not been rated yet."
+        return render_template('readrecipe.html', recipe=recipe,
+                           reviews_of_recipe=reviews_of_recipe, message=message)
+    else:
+        return render_template('readrecipe.html', recipe=recipe,
                            reviews_of_recipe=reviews_of_recipe)
-
-# show latest recipes
-
-
-@app.route('/latest_added')
-def latest_added():
-    recipes = mongo.db.recipes.find()
-    return render_template("latest_added.html", recipes=recipes)
-
-# Update database CHECKED
 
 
 @app.route('/edit_recipe/<recipe_id>')
@@ -370,6 +370,19 @@ def delete_recipe(recipe_id):
         mongo.db.reviews.delete_one({"recipe_id": review['recipe_id']})
     mongo.db.recipes.delete_one({'_id': ObjectId(recipe_id)})
     return redirect(url_for('latest_added'))
+
+
+
+
+# show latest recipes
+
+
+@app.route('/latest_added')
+def latest_added():
+    recipes = mongo.db.recipes.find()
+    return render_template("latest_added.html", recipes=recipes)
+
+# Update database CHECKED
 
 
 # insert rating

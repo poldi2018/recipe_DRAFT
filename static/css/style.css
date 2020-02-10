@@ -96,6 +96,7 @@
   .headline {
     text-align: center;
     width: 100%;
+    font-size: 1vw;
   }
   #menulistDesktop {
     width: 90vw;
@@ -472,7 +473,7 @@
             justify-content: center;
   }
   #reviewsPopup,
-  #ratePopup {
+  #ratePopup, #popupCheckForValidFields {
     background-color: #8E8D8A;
     position: absolute;
     opacity: 0.0;
@@ -480,7 +481,7 @@
     transition: opacity .5s ease-in-out;
     -webkit-transform: translateX(-100vw);
             transform: translateX(-100vw);
-    z-index: -1;
+    z-index: 500;
     border: 2px white;
     border-radius: 5px;
   }
@@ -535,23 +536,32 @@
   .ratelines {
     width: 100%;
   }
+  .buttonWrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
   #showReviewsPopupBtn {
     width: 10vw;
   }
   #closeReviewsPopupBtn,
-  #closeRatePopupBtn {
+  #sendReviewPopupBtn, #cancelReviewPopupBtn, #closeCheckForValidFieldsBtn {
     width: 10vw;
-    height: 5vw;
+    height: 2vw;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
-  .popupImageValidator {
-    opacity: 0.0;
-    z-index: -1;
-    -webkit-transform: translateZ(-10px);
-            transform: translateZ(-10px);
-    -webkit-transition: opacity .8s ease-in-out;
-    transition: opacity .8s ease-in-out;
-  }
-  .wrapper_logo_big {
+  .wrapperLogoBig {
     width: 95vw;
     height: 95vh;
     display: -webkit-box;

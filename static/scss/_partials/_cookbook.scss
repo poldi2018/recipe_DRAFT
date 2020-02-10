@@ -79,6 +79,7 @@
     .headline {
         text-align: center;
         width: 100%;
+        font-size: 1vw;
     }
 
     #menulistDesktop {
@@ -320,7 +321,6 @@
 
     .ingredientfield {
         width: 35%;
-
     }
 
     #directionsWrapper {
@@ -353,7 +353,6 @@
         display: flex;
         flex-wrap: wrap;
         width: 50%;
-
     }
 
     .reviewTile {
@@ -365,31 +364,26 @@
         justify-content: center;
         margin: {
             top: 10px;
-            bottom: 10px;
-        
+            bottom: 10px;    
         }
-
     }
 
     .reviewKey, .reviewValue {
         width: 50%;
         display: flex;
         justify-content: center;
-
     }
-
-
 
     // Popups
 
     #reviewsPopup,
-    #ratePopup {
+    #ratePopup, #popupCheckForValidFields {
         background-color: #8E8D8A;
         position: absolute;
         opacity: 0.0;
         transition: opacity .5s ease-in-out;
         transform: translateX(-100vw);
-        z-index: -1;
+        z-index: 500;
         border: 2px white;
         border-radius: 5px;
 
@@ -414,8 +408,6 @@
         justify-content: center;
         width: 40vw;
         flex-wrap: wrap;
-
-
     }
 
     .reviewContainer,
@@ -435,25 +427,30 @@
         width: 100%;
     }
 
+    .buttonWrapper {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin: {
+            top: 10px;
+            bottom: 20px;
+
+        }
+    }
 
     #showReviewsPopupBtn {
         width: 10vw;
     }
 
     #closeReviewsPopupBtn,
-    #closeRatePopupBtn {
+    #sendReviewPopupBtn, #cancelReviewPopupBtn, #closeCheckForValidFieldsBtn {
         width: 10vw;
-        height: 5vw;
+        height: 2vw;
+        display: flex;
+        justify-content: center;
     }
 
-    .popupImageValidator {
-        opacity: 0.0;
-        z-index: -1;
-        transform: translateZ(-10px);
-        transition: opacity .8s ease-in-out;
-    }
-
-    .wrapper_logo_big {
+    .wrapperLogoBig {
         width: 95vw;
         height: 95vh;
         display: flex;

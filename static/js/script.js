@@ -19,42 +19,22 @@ function generate_amountfieldName() {
 }
 
 $('.addIngredientField').on('touchstart click', function () {
-    $("#ingredientWrapper").append("<div class='ingredientContainer'><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input name='amount' type='text' class='validate amounts' data-length='30'><label for='amount'>Amount</label></div><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input name='ingredient' type='text' class='validate ingredients' data-length='30'><label for='ingredient'>Ingredient</label></div></div>");
-    //$('#ingredient').attr('name', generate_ingredientfieldName()).attr('id', generate_ingredientfieldName());
-    //$('#amount').attr('name', generate_amountfieldName()).attr('id', generate_amountfieldName());
-    let ingredientContainerArray = $(".ingredientContainer").toArray();
+    $("#ingredientWrapper").append("<div class='ingredientContainer'><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='amount' name='amount' type='text' class='validate amounts' data-length='30'><label for='amount'>Amount</label></div><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='ingredient' name='ingredient' type='text' class='validate ingredients' data-length='30'><label for='ingredient'>Ingredient</label></div></div>");
+    $('#ingredient').attr('name', generate_ingredientfieldName()).attr('id', generate_ingredientfieldName());
+    $('#amount').attr('name', generate_amountfieldName()).attr('id', generate_amountfieldName());
     fieldcount++;
-    amountsArray = $('.amounts').toArray();
-    ingredientsArray = $('.ingredients').toArray();
-    console.log(amountsArray);
-    console.log(ingredientsArray);
-
-
 });
 
 $('.removeIngredientField').on('touchstart click', function () {
     var ingredientWrapper = document.getElementById("ingredientWrapper");
-    //let ingredientContainerArray= $(".ingredientContainer").toArray();
-    //console.log("pre: ", ingredientContainerArray.length)
     if ($(".ingredientContainer").length > 1) {
-        // ingredientContainerArray.pop();
-
-        ingredientWrapper.removeChild(ingredientWrapper.childNodes[$(".ingredientContainer").length]);
-        fieldcount = $(".ingredientContainer").length + 1;
-
+        ingredientWrapper.removeChild(ingredientWrapper.lastChild);
+        fieldcount--;
+        console.log(fieldcount);
     }
-    amountsArray = $('.amounts').toArray();
-    ingredientsArray = $('.ingredients').toArray();
-
-    console.log(amountsArray);
-    console.log(ingredientsArray);
-
-
-    // console.log("current fieldcount:", fieldcount);
-
 });
 
-function ingredientfieldValidation() {
+function ingredientfieldsFilled() {
     let amountsArray = $('.amounts').toArray();
     let ingredientsArray = $('.ingredients').toArray();
     for (let i = 0; i < amountsArray.length; i++) {
@@ -89,7 +69,7 @@ function fieldvalidation() {
         alert("Please provide number of minutes for the cooking time")
     } else if ($('#fileinputfield').val() == "") {
         alert("Please provide a picture of your dish")
-    } else if (ingredientfieldValidation() == false) {
+    } else if (ingredientfieldsFilled() == false) {
         alert("Please fill all ingredient fields or remove fields not needed.")
     } else if ($('#directions').val() == "") {
         alert("Please fill in the directions")
@@ -141,55 +121,67 @@ function validateImageName(element) {
     if (enteredFilename.endsWith('.jpeg') || enteredFilename.endsWith('.jpg')) {
         encodeImgtoBase64(element);
     } else if (enteredFilename.endsWith('.jpeg') == false || enteredFilename.endsWith('.jpg') == false) {
-        alert("Please select an JPEG or JPG.");
+        $('#resultCheckForValidFields').html(`Please select an JPEG or JPG.`);
+        popupCheckForValidFields();
+        //alert("Please select an JPEG or JPG.");
         $('#fileinputfield').val("");
     }
     /*
     if ($('#fileinputfield').val().length == 0) {
-        $('.popupCheckImagename').html(`Please select an JPEG or JPG.`);
+        $('#resultCheckForValidFields').html(`Please select an JPEG or JPG.`);
         popupCheckImageName();
     } 
 */
 }
 
-function popupCheckImageName() {
-    $('.popupCheckImagename').css("transform", "translateZ(500px)").css("z-index", "500");
-    setTimeout(function () {
-        $('.popupCheckImagename').css("opacity", "1.0");
-    }, 300);
-
-    setTimeout(function () {
-        $('.popupCheckImagename').css("opacity", "0.0");
-    }, 2200);
-
-    setTimeout(function () {
-        $('.popupCheckImagename').css("transform", "translateZ(-10px)").css("z-index", "-1");
-    }, 3000);
+function popupCheckForValidFields() {
+    $('#popupCheckForValidFields').css("transform", "translateX(0vw)");
+    $('#popupCheckForValidFields').css("opacity", "1.0");
 }
 
+$('#closeCheckForValidFieldsBtn').on('touchstart click', function () {
+    $('#popupCheckForValidFields').css("opacity", "0.0");
+    setTimeout(function () {
+        $('#resultCheckForValidFields').html(``);
+        $('#popupCheckForValidFields').css("transform", "translateX(-100vw)");
+    }, 400);
+
+});
+
 $('#showReviewsPopupBtn').on('touchstart click', function () {
-    $('#reviewsPopup').css("transform", "translateX(0vw)").css("z-index", "500");
+    $('#reviewsPopup').css("transform", "translateX(0vw)");
     $('#reviewsPopup').css("opacity", "1.0");
 });
 
 $('#closeReviewsPopupBtn').on('touchstart click', function () {
     $('#reviewsPopup').css("opacity", "0.0");
     setTimeout(function () {
-        $('#reviewsPopup').css("transform", "translateX(-100vw)").css("z-index", "-1");
-    }, 200);
+        $('#reviewsPopup').css("transform", "translateX(-100vw)");
+    }, 400);
 });
 
 $('#showRatePopupBtn').on('touchstart click', function () {
-    $('#ratePopup').css("transform", "translateX(0vw)").css("z-index", "500");
+    $('#ratePopup').css("transform", "translateX(0vw)");
     $('#ratePopup').css("opacity", "1.0");
 });
 
-$('#closeRatePopupBtn').on('touchstart click', function () {
+$('#sendRatePopupBtn').on('touchstart click', function () {
     $('#ratePopup').css("opacity", "0.0");
     setTimeout(function () {
-        $('#ratePopup').css("transform", "translateX(-100vw)").css("z-index", "-1");
-    }, 200);
+        $('#ratePopup').css("transform", "translateX(-100vw)");
+    }, 400);
+    $('#rateForm').submit();
 });
+
+$('#cancelReviewPopupBtn').on('touchstart click', function () {
+    $('#ratePopup').css("opacity", "0.0");
+    setTimeout(function () {
+        $('#ratePopup').css("transform", "translateX(-100vw)");
+    }, 400);
+});
+
+
+
 
 function calcTotalTime() {
     let totalTime = parseInt($("#prepTime").val()) + parseInt($("#cookingTime").val());
