@@ -1,6 +1,7 @@
 {% extends 'base.html'%}
 {% block content %}
-<form id="recipeForm" action="{{ url_for('insert_recipe')}}" method="POST" class="addRecipeForm" enctype="multipart/form-data">
+<form id="recipeForm" action="{{ url_for('insert_recipe')}}" method="POST" class="addRecipeForm"
+    enctype="multipart/form-data">
 
     <div class="recipeWrapper">
         <div class="recipeTitle">
@@ -33,13 +34,13 @@
                             <option value="Meat">Vegetarian</option>
 
                         </optgroup>
-                        <optgroup label="Desserts">                            
+                        <optgroup label="Desserts">
                             <option value="Cake">Cake</option>
                             <option value="Dessert">Dessert</option>
                             <option value="Fruit">Fruit</option>
                             <option value="Ice">Ice</option>
                         </optgroup>
-                        <optgroup label="Drinks">                            
+                        <optgroup label="Drinks">
                             <option value="Juice">Juice</option>
                             <option value="Shake">Shake</option>
                             <option value="Cocktail">Cocktail</option>
@@ -53,7 +54,9 @@
                     <select id="origin" class="icons" name="origin">
                         <option value="" disabled selected>Choose origin country</option>
                         {% for country in countries %}
-                        <option value="{{country['country_name']}}" data-icon="{{url_for('static', filename=country['filename'])}}" class="circle">{{country['country_name']}}</option>
+                        <option value="{{country['country_name']}}"
+                            data-icon="{{url_for('static', filename=country['filename'])}}" class="circle">
+                            {{country['country_name']}}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -61,86 +64,87 @@
         </div>
 
         <div id="outerStatsWrapper">
-            <div class="statsWrapper">
-                <div class="statsfield">Added By:</div>
-                <div class="statsfield">{{session["username"]}}</div>
-            </div>
-
-            <div class="statsWrapper">
-                <div class="statsfield">Date added:</div>
-                <div class="statsfield">Today</div>
-            </div>
-
-            <div class="statsWrapper">
-                <div class="statsfield">Time added:</div>
-                <div class="statsfield">Now</div>
-            </div>
-
-            <div class="statsWrapper">
-                <div class="statsfield">Level:</div>
-                <div class="input-field statsfield">
-                    <select id="level" name="level">
-                        <option value="" disabled selected>Experience level:</option>
-                        <option value="Easy">Easy</option>
-                        <option value="Medium">Medium</option>
-                        <option value="Difficult">Difficult</option>
-                    </select>
+            <div id="innerStatsWrapper">
+                <div class="statsWrapper">
+                    <div class="statsfield">Added By:</div>
+                    <div class="statsfield">{{session["username"]}}</div>
                 </div>
-            </div>
 
-            <div class="statsWrapper">
-                <div class="statsfield">Reviews:</div>
-                <div class="statsfield">-</div>
-            </div>
+                <div class="statsWrapper">
+                    <div class="statsfield">Date added:</div>
+                    <div class="statsfield">Today</div>
+                </div>
 
-            <div class="statsWrapper">
-                <div class="statsfield">Viewed:</div>
-                <div class="statsfield">-</div>
-            </div>
+                <div class="statsWrapper">
+                    <div class="statsfield">Time added:</div>
+                    <div class="statsfield">Now</div>
+                </div>
 
-            <div class="outerTimesWrapper">
-                <div class="timesWrapper">
-                    <div class="directionsLabel">Prep Time [mins]:</div>
-                    <div class="prepTime">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">playlist_add</i>
-                            <input id="prepTime" name="prep_time" type="text" class="validate"
-                                onchange="calcTotalTime()">
-                            <label for="prepTime">Preparation time</label>
-                        </div>
+                <div class="statsWrapper">
+                    <div class="statsfield">Level:</div>
+                    <div class="input-field statsfield">
+                        <select id="level" name="level">
+                            <option value="" disabled selected>Experience level:</option>
+                            <option value="Easy">Easy</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Difficult">Difficult</option>
+                        </select>
                     </div>
                 </div>
-                <div class="timesWrapper">
-                    <div class="directionsLabel">Cooking Time [mins]:</div>
-                    <div class="cookingTime">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">playlist_add</i>
-                            <input id="cookingTime" name="cooking_time" type="text" class="validate"
-                                onchange="calcTotalTime()">
-                            <label for="cookingTime">Cooking time</label>
+
+                <div class="statsWrapper">
+                    <div class="statsfield">Reviews:</div>
+                    <div class="statsfield">-</div>
+                </div>
+
+                <div class="statsWrapper">
+                    <div class="statsfield">Viewed:</div>
+                    <div class="statsfield">-</div>
+                </div>
+
+                <div class="outerTimesWrapper">
+                    <div class="timesWrapper">
+                        <div class="directionsLabel">Prep Time [mins]:</div>
+                        <div class="prepTime">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">playlist_add</i>
+                                <input id="prepTime" name="prep_time" type="text" class="validate"
+                                    onchange="calcTotalTime()">
+                                <label for="prepTime">Preparation time</label>
+                            </div>
                         </div>
                     </div>
+                    <div class="timesWrapper">
+                        <div class="directionsLabel">Cooking Time [mins]:</div>
+                        <div class="cookingTime">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">playlist_add</i>
+                                <input id="cookingTime" name="cooking_time" type="text" class="validate"
+                                    onchange="calcTotalTime()">
+                                <label for="cookingTime">Cooking time</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timesWrapper">
+                        <div class="directionsLabel">Total Time:</div>
+                        <div id="totalTime">0 mins</div>
+                    </div>
                 </div>
-                <div class="timesWrapper">
-                    <div class="directionsLabel">Total Time:</div>
-                    <div id="totalTime">0 mins</div>
+            </div>
+            <div id="dishImageWrapper">
+                <div class="input-field col s12">
+                    <input type="file" name="file" id="fileinputfield" onchange="validateImageName(this)"
+                        enctype="multipart/form-data">
+                    <textarea id="base64file" name="base64file" hidden></textarea>
                 </div>
             </div>
         </div>
-
-        <div id="dishImageWrapper">
-            <div class="input-field col s12">
-                <input type="file" name="file" id="fileinputfield" onchange="validateImageName(this)"
-                    enctype="multipart/form-data">
-                <textarea id="base64file" name="base64file" hidden></textarea>
-            </div>
-        </div>
-
         <div id="outerDirectionsWrapper">
             <div id="outerIngredientsWrapper">
                 <div class="addRemoveBtnWrapper">
                     <div class="addIngredientField" class="btn waves-effect waves-light">add ingredient field</div>
-                    <div class="removeIngredientField" class="btn waves-effect waves-light">remove ingredient field</div>
+                    <div class="removeIngredientField" class="btn waves-effect waves-light">remove ingredient field
+                    </div>
                 </div>
                 <div id="ingredientWrapper">
                     <div class="ingredientContainer">
@@ -151,7 +155,8 @@
                         </div>
                         <div class="input-field">
                             <i class="material-icons prefix">playlist_add</i>
-                            <input id="ingredient1" name="ingredient1" type="text" class="validate ingredients" data-length="30">
+                            <input id="ingredient1" name="ingredient1" type="text" class="validate ingredients"
+                                data-length="30">
                             <label for="ingredient1">Ingredient</label>
                         </div>
                     </div>
@@ -170,16 +175,18 @@
         </div>
         <div class="buttonWrapper">
             <div id="sendButton" onclick="fieldvalidation()" class="btn waves-effect waves-light">Save recipe</div>
-            <div id="cancelAddRecipeBtn" class="btn waves-effect waves-light"><a href="{{url_for('latest_added')}}">Cancel</a></div>
+            <div id="cancelAddRecipeBtn" class="btn waves-effect waves-light"><a
+                    href="{{url_for('latest_added')}}">Cancel</a></div>
         </div>
     </div>
 </form>
 
 <div id="popupCheckForValidFields">
     <div id="resultCheckForValidFields"></div>
-    <div class="buttonWrapper"><div id="closeCheckForValidFieldsBtn" class="btn waves-effect waves-light">Close</div>
-</div>
-    
+    <div class="buttonWrapper">
+        <div id="closeCheckForValidFieldsBtn" class="btn waves-effect waves-light">Close</div>
+    </div>
+
 </div>
 
 {% endblock %}
