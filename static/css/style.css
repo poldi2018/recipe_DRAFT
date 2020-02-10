@@ -80,7 +80,7 @@
   a:link,
   a:active {
     text-decoration: none;
-    color: green;
+    color: #4495D4;
   }
   header {
     background-color: #EAE7DC;
@@ -210,17 +210,19 @@
             align-items: center;
   }
   .recipeHeader {
-    border: 2px solid lightblue;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: space-evenly;
-        -ms-flex-pack: space-evenly;
-            justify-content: space-evenly;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     height: 3vw;
     width: 100%;
   }
   .recipeHeaderItem {
+    border: 2px solid none;
+    border-radius: 10px;
+    background-color: lightgrey;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -230,6 +232,9 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+  }
+  #dishType, #showReviewsPopupBtn, #showRatePopupBtn, #editRecipeBtn, #deleteRecipeBtn {
+    width: 6.6vw;
   }
   #readRecipeTitle {
     width: 50%;
@@ -256,11 +261,17 @@
     display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     width: 75%;
     height: 11vw;
+    margin-top: 4px;
   }
   .statsWrapper {
-    border: 2px solid lightblue;
+    border: 2px solid none;
+    border-radius: 10px;
+    background-color: lightgrey;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -271,7 +282,7 @@
         align-content: center;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    width: 16.66%;
+    width: 16.3%;
   }
   .statsfield {
     width: 100%;
@@ -290,17 +301,21 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+    margin-top: 4px;
+    margin-bottom: 4px;
   }
   .timesWrapper {
-    border: 2px solid lightblue;
+    border: 2px solid none;
+    border-radius: 10px;
+    background-color: lightgrey;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -311,7 +326,7 @@
         align-content: center;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    width: 33.33%;
+    width: 33%;
     height: 100%;
   }
   #totalTime {
@@ -336,9 +351,9 @@
             align-items: center;
   }
   #dishImageWrapper {
-    border: 2px solid lightblue;
     width: 25%;
-    height: 11vw;
+    height: 10.8vw;
+    margin-top: 4px;
   }
   #dishImage {
     width: 21.33vw;
@@ -424,6 +439,16 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .divider {
+    width: 100%;
+    height: 2px;
+    border: 2px solid grey;
+    border-radius: 2px;
   }
   .created,
   .contact,
@@ -439,6 +464,9 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+  }
+  a i {
+    color: black;
   }
   .recipeTile {
     display: -webkit-box;
@@ -474,7 +502,7 @@
   }
   #reviewsPopup,
   #ratePopup, #popupCheckForValidFields {
-    background-color: #8E8D8A;
+    background-color: #D8C3A5;
     position: absolute;
     opacity: 0.0;
     -webkit-transition: opacity .5s ease-in-out;
@@ -483,7 +511,7 @@
             transform: translateX(-100vw);
     z-index: 500;
     border: 2px white;
-    border-radius: 5px;
+    border-radius: 10px;
   }
   #reviewsWrapper,
   #rateWrapper {
@@ -529,9 +557,6 @@
         flex-wrap: wrap;
     width: 100%;
   }
-  hr {
-    width: 100%;
-  }
   .reviewlines,
   .ratelines {
     width: 100%;
@@ -546,6 +571,13 @@
     width: 100%;
     margin-top: 10px;
     margin-bottom: 20px;
+  }
+  .buttonWrapper div {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .buttonWrapper a {
+    color: white;
   }
   #showReviewsPopupBtn {
     width: 10vw;

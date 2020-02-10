@@ -168,15 +168,17 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="buttonWrapper">
             <div id="sendButton" onclick="fieldvalidation()" class="btn waves-effect waves-light">Save recipe</div>
+            <div id="cancelAddRecipeBtn" class="btn waves-effect waves-light"><a href="{{url_for('latest_added')}}">Cancel</a></div>
         </div>
     </div>
 </form>
 
 <div id="popupCheckForValidFields">
     <div id="resultCheckForValidFields"></div>
-    <div class="buttonWrapper"><div id="closeCheckForValidFieldsBtn" class="btn waves-effect waves-light">Close</div></div>
+    <div class="buttonWrapper"><div id="closeCheckForValidFieldsBtn" class="btn waves-effect waves-light">Close</div>
+</div>
     
 </div>
 
