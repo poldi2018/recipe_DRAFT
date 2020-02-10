@@ -125,8 +125,13 @@ def results():
     reviews=mongo.db.reviews
     search_term = request.form.get("search_term")
     if search_term == "":
-        recipes = mongo.db.recipes.find()
-        reviews = mongo.db.reviews.find()
+        recipes_by_searchterm = mongo.db.recipes.find()
+        recipes_count = recipes.count_documents({"$text": {"$search": search_term}})        
+        print(recipes_count)
+        reviews_by_searchterm = mongo.db.reviews.find()
+        reviews_count = reviews.count_documents({"$text": {"$search": search_term}})
+        print(reviews_count)
+
     else:
         recipes_by_searchterm = mongo.db.recipes.find({"$text": {"$search": search_term}})
         recipes_count = recipes.count_documents({"$text": {"$search": search_term}})        
