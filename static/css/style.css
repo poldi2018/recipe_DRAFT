@@ -93,6 +93,10 @@
             align-items: center;
     z-index: 99;
   }
+  .headline {
+    text-align: center;
+    width: 100%;
+  }
   #menulistDesktop {
     width: 90vw;
     height: 4vw;
@@ -183,7 +187,7 @@
     border-radius: 1vw;
   }
   .recipeWrapper {
-    width: 60vw;
+    width: 75vw;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -252,7 +256,7 @@
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     width: 75%;
-    height: 10vw;
+    height: 11vw;
   }
   .statsWrapper {
     border: 2px solid lightblue;
@@ -333,7 +337,7 @@
   #dishImageWrapper {
     border: 2px solid lightblue;
     width: 25%;
-    height: 10vw;
+    height: 11vw;
   }
   #dishImage {
     width: 21.33vw;
@@ -356,7 +360,8 @@
     display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    margin-bottom: 2vw;
+    margin-top: 1vw;
+    margin-bottom: 2.5vw;
   }
   #outerIngredientsWrapper {
     width: 40%;
@@ -397,6 +402,9 @@
   .ingredientContainer .input-field {
     width: 50%;
   }
+  .ingredientfield {
+    width: 35%;
+  }
   #directionsWrapper {
     width: 60%;
   }
@@ -404,10 +412,64 @@
   .directionInput {
     height: 100%;
   }
-  .latestAddedWrapper {
-    background-color: greenyellow;
-    width: 100%;
-    height: 4vw;
+  .footerWrapper {
+    width: 75vw;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .created,
+  .contact,
+  .github {
+    width: 33%;
+    height: 2vw;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .recipeTile {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    width: 50%;
+  }
+  .reviewTile {
+    border: 2px solid grey;
+    border-radius: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    width: 60%;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .reviewKey, .reviewValue {
+    width: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
   #reviewsPopup,
   #ratePopup {
@@ -433,6 +495,26 @@
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+  }
+  .outerReviewsWrapper {
+    width: 60vw;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .innerReviewsWrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 40vw;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
   }
   .reviewContainer,
   .rateContainer {

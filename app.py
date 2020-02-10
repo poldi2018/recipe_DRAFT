@@ -29,6 +29,9 @@ mongo.db.reviews.create_index([
                              ("review_title", "text"), ("review_for", "text"),
                              ("rating", "text"), ("comment", "text")])
 
+# fetching top rated recipes
+top_reviewed_recipes = mongo.db.reviews.find({ "rating": "5"})
+
 
 def upload_image(base64file):
     response = requests.post(imgbb_upload_url, data={"image": base64file})
@@ -98,8 +101,15 @@ def index():
 @app.route('/reviews_today')
 def reviews_today():
     today = datetime.datetime.now().strftime("%d. %B %Y")
-    reviews = mongo.db.reviews.find( { "$and": [ { "added_on_date": today }, { "rating": "5" } ] } )
-    return render_template("reviews.html", reviews=reviews)
+    reviews=mongo.db.reviews
+    # check if 5 star ratings from today is available
+    reviews_count = reviews.count_documents({ "$and": [ { "added_on_date": today }, { "rating": 5 } ] })
+    if reviews_count == 0:
+        message="No recipes with 5 stars have been rated today"
+        return render_template("reviews.html", message=message)
+    else:
+        reviews_from_today = mongo.db.reviews.find( { "$and": [ { "added_on_date": today }, { "rating": 5 } ] } )
+        return render_template("reviews.html", reviews_from_today=reviews_from_today, reviews_count=reviews_count)
 
 # Search dialog CHECKED
 
@@ -111,18 +121,19 @@ def advanced_search():
 
 @app.route('/results', methods=["POST"])
 def results():
+    recipes=mongo.db.recipes
+    reviews=mongo.db.reviews
     search_term = request.form.get("search_term")
     if search_term == "":
         recipes = mongo.db.recipes.find()
         reviews = mongo.db.reviews.find()
     else:
-        recipes = mongo.db.recipes.find({"$text": {"$search": search_term}})
-        reviews = mongo.db.reviews.find({"$text": {"$search": search_term}})
-    # get document count based on search_term
-    #result=mongo.db.recipes
-    #doc_count = result.count_documents({"$text": {"$search": search_term}})
-    return render_template("results.html", recipes=recipes, reviews=reviews,
-                           search_term=search_term)
+        recipes_by_searchterm = mongo.db.recipes.find({"$text": {"$search": search_term}})
+        recipes_count = recipes.count_documents({"$text": {"$search": search_term}})        
+        reviews_by_searchterm = mongo.db.reviews.find({"$text": {"$search": search_term}})
+        reviews_count = reviews.count_documents({"$text": {"$search": search_term}})
+    return render_template("results.html", recipes_by_searchterm=recipes_by_searchterm, reviews_by_searchterm=reviews_by_searchterm,
+                           search_term=search_term, recipes_count=recipes_count, reviews_count=reviews_count)
 
 # registeration of user CHECKED
 
@@ -283,12 +294,9 @@ def read_recipe(recipe_id):
         {
             "$inc": {"view_count": 1}
         }
-    )
-    today = datetime.datetime.now().strftime("%d. %B %Y")
-    recipes_today = mongo.db.recipes.find( { "added_on_date": today} )
-    
+    )    
     return render_template('readrecipe.html', recipe=recipe,
-                           reviews_of_recipe=reviews_of_recipe, recipes_today=recipes_today)
+                           reviews_of_recipe=reviews_of_recipe)
 
 # show latest recipes
 
@@ -355,7 +363,6 @@ def delete_recipe(recipe_id):
     reviews = mongo.db.reviews.find({"recipe_id": recipe_id})
     for review in reviews:
         mongo.db.reviews.delete_one({"recipe_id": review['recipe_id']})
-    # mongo.db.reviews.delete_many(ObjectId(reviews))
     mongo.db.recipes.delete_one({'_id': ObjectId(recipe_id)})
     return redirect(url_for('latest_added'))
 

@@ -5,7 +5,12 @@
     <h3>Search results for {{search_term}}</h3>
 </div>
 
-{% for recipe in recipes %}
+<div class="headline">
+    For your query '{{search_term}}' there have been found {{recipes_count}} recipes.  
+</div>
+
+
+{% for recipe in recipes_by_searchterm %}
 <div class="resultsWapper">
     <div class="row">
         <div class="col s6">
@@ -24,38 +29,34 @@
         <img src="{{recipe.img_src}}" alt="picture_of_dish"></div>
     {% endfor %}
 
-
-    {% for review in reviews %}
-
-    <div class="row">
-        <div class="col s12">{{review.review_title}}</div>
+    <div class="headline">
+        For your query '{{search_term}}' there have been found {{reviews_count}} reviews.  
     </div>
 
-    <div class="row">
-        <div class="col s12">{{review.review_for}}</div>
-    </div>
+    {% for review in reviews_by_searchterm %}
 
-    <div class="row">
-        <div class="col s12">{{review.rating}}</div>
-    </div>
-
-    <div class="row">
-        <div class="col s12">{{review.comment}}</div>
-    </div>
-
-    <div class="row">
-        <div class="col s12">{{review.added_on_date}}</div>
-    </div>
-
-    <div class="row">
-        <div class="col s12">{{review.added_on_time}}</div>
-    </div>
-
-    <div class="row">
-        <div class="col s12">{{review.rated_by}}</div>
+    <div class="reviewTile">
+        <div class="reviewKey">Review Title</div>
+        <div class="reviewValue">{{review.review_title}}</div>
+        <div class="reviewKey">Review For</div>
+        <div class="reviewValue">
+            <a href="{{url_for('read_recipe', recipe_id=review.recipe_id)}}">{{review.review_for}}</a>
+        </div>
+        <div class="reviewKey">Rating</div>
+        <div class="reviewValue">
+            {% for star in range(review.rating) %}
+            <i class="material-icons prefix">star</i>
+            {% endfor %}
+        </div>
+        <div class="reviewKey">Added on date</div>
+        <div class="reviewValue">{{review.added_on_date}}</div>
+        <div class="reviewKey">Added on time</div>
+        <div class="reviewValue">{{review.added_on_time}}</div>
+        <div class="reviewKey">Reviewed By</div>
+        <div class="reviewValue">{{review.rated_by}}</div>
+        <div class="reviewKey">Comment</div>
+        <div class="reviewValue">{{review.comment}}</div>
     </div>
     {% endfor %}
-
 </div>
-
 {% endblock %}

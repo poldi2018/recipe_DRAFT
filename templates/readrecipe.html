@@ -72,18 +72,13 @@
             <div id="ingredientWrapper">
                 {% for ingredient in recipe.ingredients %}
                 <div class="ingredientContainer">
-                    <div class="input-field">
+                    
                         <i class="material-icons prefix">playlist_add</i>
-                        <input id="amount1" name="amount1" type="text" class="validate amounts"
-                            value="{{ingredient.amount}}" data-length="30">
-                        <label for="amount1">Amount</label>
-                    </div>
-                    <div class="input-field">
+                        <div class="ingredientfield">{{ingredient.amount}}</div>
                         <i class="material-icons prefix">playlist_add</i>
-                        <input id="ingredient1" name="ingredient1" type="text" class="validate ingredients"
-                            value="{{ingredient.ingredient}}" data-length="30">
-                        <label for="ingredient1">Ingredient</label>
-                    </div>
+                        <div class="ingredientfield">{{ingredient.ingredient}}</div>
+            
+                
                 </div>
                 {% endfor %}
             </div>
@@ -99,14 +94,9 @@
             </div>
         </div>
     </div>
-
-    <div class="carousel">
-        {% for recipe in recipes_today %}
-        <a class="carousel-item" href="#one!"><img
-                src="{{url_for('static', filename='images/logo_small.jpeg')}}">{{recipe.title}}</a>
-        {% endfor%}
-    </div>
     {% endblock %}
+
+    
 
     {% block popups %}
     <div id="reviewsPopup">

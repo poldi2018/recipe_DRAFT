@@ -19,20 +19,39 @@ function generate_amountfieldName() {
 }
 
 $('.addIngredientField').on('touchstart click', function () {
-    $("#ingredientWrapper").append("<div class='ingredientContainer'><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='amount' name='amount' type='text' class='validate amounts' data-length='30'><label for='amount'>Amount</label></div><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='ingredient' name='ingredient' type='text' class='validate ingredients' data-length='30'><label for='ingredient'>Ingredient</label></div></div>");
-    $('#ingredient').attr('name', generate_ingredientfieldName()).attr('id', generate_ingredientfieldName());
-    $('#amount').attr('name', generate_amountfieldName()).attr('id', generate_amountfieldName());
+    $("#ingredientWrapper").append("<div class='ingredientContainer'><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input name='amount' type='text' class='validate amounts' data-length='30'><label for='amount'>Amount</label></div><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input name='ingredient' type='text' class='validate ingredients' data-length='30'><label for='ingredient'>Ingredient</label></div></div>");
+    //$('#ingredient').attr('name', generate_ingredientfieldName()).attr('id', generate_ingredientfieldName());
+    //$('#amount').attr('name', generate_amountfieldName()).attr('id', generate_amountfieldName());
+    let ingredientContainerArray = $(".ingredientContainer").toArray();
     fieldcount++;
-    // addIngredientField();
+    amountsArray = $('.amounts').toArray();
+    ingredientsArray = $('.ingredients').toArray();
+    console.log(amountsArray);
+    console.log(ingredientsArray);
+
+
 });
 
 $('.removeIngredientField').on('touchstart click', function () {
-    var ingredientFieldList = document.getElementById("ingredientWrapper");
-    ingredientFieldList.removeChild(ingredientFieldList.childNodes[$("#ingredientWrapper").length]);
-    if (fieldcount > 1) {
-        fieldcount--;
+    var ingredientWrapper = document.getElementById("ingredientWrapper");
+    //let ingredientContainerArray= $(".ingredientContainer").toArray();
+    //console.log("pre: ", ingredientContainerArray.length)
+    if ($(".ingredientContainer").length > 1) {
+        // ingredientContainerArray.pop();
+
+        ingredientWrapper.removeChild(ingredientWrapper.childNodes[$(".ingredientContainer").length]);
+        fieldcount = $(".ingredientContainer").length + 1;
+
     }
-    // removeIngredientField();
+    amountsArray = $('.amounts').toArray();
+    ingredientsArray = $('.ingredients').toArray();
+
+    console.log(amountsArray);
+    console.log(ingredientsArray);
+
+
+    // console.log("current fieldcount:", fieldcount);
+
 });
 
 function ingredientfieldValidation() {
@@ -77,6 +96,8 @@ function fieldvalidation() {
     } else if (fieldsTooLong() == true) {
         alert("Please allow 50 characters per field and 1000 characters for directions text max.")
     } else {
+        $('#prepTime').val(parseInt($('#prepTime').val()));
+        $('#cookingTime').val(parseInt($('#cookingTime').val()));
         makeIngredientsStrings()
         $('#recipeForm').submit();
     }
@@ -134,19 +155,16 @@ function validateImageName(element) {
 function popupCheckImageName() {
     $('.popupCheckImagename').css("transform", "translateZ(500px)").css("z-index", "500");
     setTimeout(function () {
-            $('.popupCheckImagename').css("opacity", "1.0");
-        }
-        , 300);
+        $('.popupCheckImagename').css("opacity", "1.0");
+    }, 300);
 
     setTimeout(function () {
-            $('.popupCheckImagename').css("opacity", "0.0");
-        }
-        , 2200);
+        $('.popupCheckImagename').css("opacity", "0.0");
+    }, 2200);
 
     setTimeout(function () {
-            $('.popupCheckImagename').css("transform", "translateZ(-10px)").css("z-index", "-1");
-        }
-        , 3000);
+        $('.popupCheckImagename').css("transform", "translateZ(-10px)").css("z-index", "-1");
+    }, 3000);
 }
 
 $('#showReviewsPopupBtn').on('touchstart click', function () {
@@ -185,7 +203,8 @@ function calcTotalTime() {
 function makeIngredientsStrings() {
     let amountsArray = $('.amounts').toArray();
     let ingredientsArray = $('.ingredients').toArray();
-    let amounts = "", ingredients = "";
+    let amounts = "",
+        ingredients = "";
     for (let i = 0; i < amountsArray.length; i++) {
         amounts = amounts + amountsArray[i].value + "#";
     }

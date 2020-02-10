@@ -1,32 +1,43 @@
 {% extends 'base.html' %}
 {% block content %}
-<h3>reviews in our database</h3>
-{% for review in reviews %}
-<div class="row">
-    <div class="col s6">
-        <h4 class="">{{review_title}}</h4>
-    </div>
-
-    <div class="col s6">
-        <h4 class="">{{review.review_for}}</h4>
-    </div>
-
-    <div class="col s6">
-        <h4 class="">{{review.reviewed_by}}</h4>
-    </div>
-
-    <div class="col s6">
-        <h4 class="">{{review.rating}}</h4>
-    </div>
-
-    <div class="col s6">
-        <h4 class="">{{review.comment}}</h4>
-    </div>
-
+<div class="headline">
+    <h3>There are {{reviews_count}} Reviews from today with 5 Star rating</h3>
 </div>
+<div class="outerReviewsWrapper">
 
-{% endfor %}
-<div class="row">
-    <a href="{{url_for('add_recipe')}}">To add recipe dialog</a>
+    <div class="innerReviewsWrapper">
+        <!--   -->
+        {% if message %}
+        <div class="div">{{message}}</div>
+        {% else %}
+        {% for review in reviews_from_today %}
+        <div class="reviewTile">
+            <div class="reviewKey">Review Title</div>
+            <div class="reviewValue">{{review.review_title}}</div>
+            <div class="reviewKey">Review For</div>
+            <div class="reviewValue">
+                <a href="{{url_for('read_recipe', recipe_id=review.recipe_id)}}">{{review.review_for}}</a>
+            </div>
+            <div class="reviewKey">Rating</div>
+            <div class="reviewValue">
+                {% for star in range(review.rating) %}
+                <i class="material-icons prefix">star</i>
+                {% endfor %}
+            </div>
+            <div class="reviewKey">Added on date</div>
+            <div class="reviewValue">{{review.added_on_date}}</div>
+            <div class="reviewKey">Added on time</div>
+            <div class="reviewValue">{{review.added_on_time}}</div>
+            <div class="reviewKey">Reviewed By</div>
+            <div class="reviewValue">{{review.rated_by}}</div>
+            <div class="reviewKey">Comment</div>
+            <div class="reviewValue">{{review.comment}}</div>
+        </div>
+    
+    
+    {% endfor %}
+    {% endif %}
+  
+    </div>
 </div>
 {% endblock %}

@@ -6,10 +6,11 @@ ADD:
 - add ingredient fields and handling DONE
 - string length fields DONE
 - chk all fields filled / selected DONE
-- tiles with clickable category
+- recipe tiles with clickable category
+- review tiles with clickable category
 - collect reviewed_by and assign to recipe
 - d3 for summary categories?
-- display document count based on category and on searchterm
+- display document count based on category and on searchterm DONE
 
 
 TOP-REVIEWS:
@@ -129,17 +130,20 @@ drop down menu dish_type options:
 STARTERS
 soup
 salads
+fingerfood
 
 DESSERTS
 cake
-ice
+dessert
 fruits
+ice
 
 MAIN COURSE
 chicken
 fish
 game
 meat
+vegetarian
 
 
 
@@ -225,9 +229,10 @@ ENTRYPAGE:
 ############
 
 FEATURES:
-- Creation of recipes and ratings are bound to user acounts
-image upload illustrating the prepared dish
-for security reasons email addresses are treated like passwords and have been hashed as well, to omit.
+- Creation of recipes and ratings are bound to user acounts, edit and delete only available to author.
+- image upload illustrating the prepared dish
+- for security reasons email addresses are treated like passwords and have been hashed as well, to omit.
+- form fields all checked to ensure proper compliant to database structure.
 
 
 
@@ -244,7 +249,7 @@ ACKNOWLEDGEMENT:
 
 
 CURRENT ISSUES, FUTURE FEATURES:
-- uploading images to imgbb database works, but I could not figure out how to address specific album. Passing a key-value pair like {“album”: “test”} inside the data dictionary did not succeed, nor throwed an error. 
+- addressing an album in imgbb database was til now not possible. Passing a key-value pair like {“album”: “test”} inside the data dictionary did not succeed, nor throwed an error. 
 - check on collection file size to prevent exceeding 16MB
 
 
@@ -260,7 +265,7 @@ CSS
 HTML
 JShint
 Jasmine
-PEP
+PEP8
 test py code
 
 
@@ -306,6 +311,6 @@ Secure user authentication (e.g. via passwords) is not required for this particu
 
 
 
-
+ADDITIONAL COMMANDS:
 # user_to_query= mongo.db.users.find_one( { '$or': [{"email_address_hash": generate_password_hash(request.form.get('email_address'))}, {"username": request.form.get("username")}]})
 
