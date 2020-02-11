@@ -215,7 +215,6 @@
 
     }
 
-
     #innerStatsWrapper {
         display: flex;
         flex-wrap: wrap;
@@ -346,7 +345,7 @@
     }
 
     .ingredientContainer .input-field {
-        width: 44%;
+        width: 50%;
     }
 
     .ingredientfield {
@@ -361,7 +360,8 @@
 
     #directions,
     .directionInput {
-        height: 5vw;
+        height: 10vw;
+
     }
 
     #ingredientsHeadline, #directionsHeadline {

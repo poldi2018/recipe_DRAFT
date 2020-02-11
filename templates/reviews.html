@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
+{% if message is not defined %}
 <div class="headline">
     <h3>There are {{reviews_count}} Reviews from today with 5 Star rating</h3>
 </div>
+{% endif %}
+
 <div class="outerReviewsWrapper">
     <div class="innerReviewsWrapper">
         {% if message %}
-        <div class="div">{{message}}</div>
+        <div class="headline">{{message}}</div>
         {% else %}
         {% for review in reviews_from_today %}
         <div class="reviewTile">

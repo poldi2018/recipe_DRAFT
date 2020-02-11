@@ -165,7 +165,7 @@ $('#showRatePopupBtn').on('touchstart click', function () {
     $('#ratePopup').css("opacity", "1.0");
 });
 
-$('#sendRatePopupBtn').on('touchstart click', function () {
+$('#sendReviewPopupBtn').on('touchstart click', function () {
     $('#ratePopup').css("opacity", "0.0");
     setTimeout(function () {
         $('#ratePopup').css("transform", "translateX(-100vw)");

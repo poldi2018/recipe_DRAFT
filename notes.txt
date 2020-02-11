@@ -2,7 +2,6 @@ TODO:
 SUN9th:
 schemas and mockups!
 ADD:
-- add allergens fields and handling and recipe adaptation in db, edit and add dialog
 - add ingredient fields and handling DONE
 - string length fields DONE
 - chk all fields filled / selected DONE
@@ -17,7 +16,7 @@ TOP-REVIEWS:
 - review tiles
 
 REVIEWS POPUP:
--  basic styles
+-  basic styles DONE
 - star selector DONE
 
 RATE POPUP:
@@ -35,7 +34,7 @@ QUICKSEARCH RESULTS:
 - review tiles
 
 LOGOUT, LOGIN, REGISTER:
--  basic styles
+- basic styles
 - field validation and 2nd pw field registration
 
 
