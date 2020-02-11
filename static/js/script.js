@@ -2,11 +2,10 @@
 
 $(document).ready(function () {
     $('select').material_select();
-    $('.carousel').carousel();
 });
 
 // global variables
-var fieldcount = 2;
+let fieldcount = $(".ingredientContainer").length;
 
 function generate_ingredientfieldName() {
     var ingredientFieldname = "ingredient" + fieldcount;
@@ -19,18 +18,19 @@ function generate_amountfieldName() {
 }
 
 $('.addIngredientField').on('touchstart click', function () {
+    fieldcount++;
     $("#ingredientWrapper").append("<div class='ingredientContainer'><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='amount' name='amount' type='text' class='validate amounts' data-length='30'><label for='amount'>Amount</label></div><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='ingredient' name='ingredient' type='text' class='validate ingredients' data-length='30'><label for='ingredient'>Ingredient</label></div></div>");
     $('#ingredient').attr('name', generate_ingredientfieldName()).attr('id', generate_ingredientfieldName());
     $('#amount').attr('name', generate_amountfieldName()).attr('id', generate_amountfieldName());
-    fieldcount++;
 });
 
+
 $('.removeIngredientField').on('touchstart click', function () {
-    var ingredientWrapper = document.getElementById("ingredientWrapper");
-    if ($(".ingredientContainer").length > 1) {
-        ingredientWrapper.removeChild(ingredientWrapper.lastChild);
-        fieldcount--;
-        console.log(fieldcount);
+    if (fieldcount > 1) {
+        $(".ingredientContainer").last().remove();
+        setTimeout(function () {
+            fieldcount--;
+        }, 400);
     }
 });
 

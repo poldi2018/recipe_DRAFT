@@ -71,7 +71,9 @@
     </div>
 
     <div id="outerDirectionsWrapper">
+        
         <div id="outerIngredientsWrapper">
+            <div id="ingredientsHeadline">Ingredients</div>
             <div id="ingredientWrapper">
                 {% for ingredient in recipe.ingredients %}
                 <div class="ingredientContainer">
@@ -85,11 +87,11 @@
             <input id="amountsString" name="amounts_string" type="text" class="" hidden>
             <input id="ingredientsString" name="ingredients_string" type="text" class="" hidden>
         </div>
-
         <div id="directionsWrapper">
+            <div id="directionsHeadline">Directions</div>
             <div class="input-field col s12 directionInput">
                 <i class="material-icons prefix">playlist_add</i>
-                <textarea id="directions" name="directions" data-length="1000">{{recipe.directions}}</textarea>
+                <textarea id="directions" name="directions" data-length="1000" disabled>{{recipe.directions}}</textarea>
                 <label for="directions">Directions</label>
             </div>
         </div>

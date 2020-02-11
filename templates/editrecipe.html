@@ -7,7 +7,7 @@
             Edit recipe for {{recipe.title}}
         </div>
         <div class="recipeHeader">
-            <div class="recipeHeaderItem">
+            <div id="readRecipeTitle" class="recipeHeaderItem">
                 <div class="input-field" id="">
                     <i class="material-icons prefix">playlist_add</i>
                     <input id="recipetitle" name="recipe_title" type="text" class="validate" value="{{recipe.title}}"
@@ -16,7 +16,7 @@
                 </div>
             </div>
 
-            <div class="recipeHeaderItem" id="">
+            <div class="recipeHeaderItem" id="dishTypeAddEdit">
                 <div class="input-field">
                     <i class="material-icons prefix">playlist_add</i>
                     <select id="dishType" name="dish_type">
@@ -102,7 +102,7 @@
                     </select>
                 </div>
             </div>
-            <div class="recipeHeaderItem">
+            <div class="recipeHeaderItem" id="originAddEdit">
                 <div class="input-field">
                     <i class="material-icons prefix">playlist_add</i>
                     <select id="origin" class="icons" name="origin">
@@ -216,9 +216,11 @@
 
         <div id="outerDirectionsWrapper">
             <div id="outerIngredientsWrapper">
-                <div class="addRemoveBtnWrapper">
-                    <div class="addIngredientField">add ingredient field</div>
-                    <div class="removeIngredientField">remove ingredient field</div>
+                <div id="ingredientsHeadline">Ingredients</div>
+                <div class="buttonWrapper">
+                    <div class="addIngredientField btn waves-effect waves-light">add ingredient field</div>
+                    <div class="removeIngredientField btn waves-effect waves-light">remove ingredient field
+                    </div>
                 </div>
 
                 <div id="ingredientWrapper">
@@ -244,6 +246,7 @@
             </div>
 
             <div id="directionsWrapper">
+                <div id="directionsHeadline">Directions</div>
                 <div class="input-field col s12 directionInput">
                     <i class="material-icons prefix">playlist_add</i>
                     <textarea id="directions" name="directions" data-length="1000">{{recipe.directions}}</textarea>
