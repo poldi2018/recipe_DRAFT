@@ -76,6 +76,18 @@
         z-index: 99;
     }
 
+    .width10 {
+        width: 9.7%;
+    }
+
+    .width16 {
+        width: 16.43%;
+    }
+
+    .width25 {
+        width: 24.7%;
+    }
+
     .headline {
         text-align: center;
         width: 100%;
@@ -187,14 +199,6 @@
         align-items: center;
     }
 
-    #dishType, #showReviewsPopupBtn, #showRatePopupBtn, #editRecipeBtn, #deleteRecipeBtn {
-        width: 6.6vw;
-    }
-
-    #dishTypeAddEdit, #dishTypeAddEdit, #originAddEdit {
-        width: 24.7%;
-    }
-
     #readRecipeTitle {
         width: 50%;
         display: flex;
@@ -208,7 +212,7 @@
         font-size: 2vw;
     }
 
-    #outerStatsWrapper { 
+    #outerStatsWrapper {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -248,6 +252,7 @@
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
+
         margin: {
             top: 4px;
             bottom: 4px;
@@ -262,9 +267,8 @@
         justify-content: center;
         align-content: center;
         flex-wrap: wrap;
-        width: 33%;
+        width: 33.03%;
         height: 100%;
-        
     }
 
     #totalTime {
@@ -286,14 +290,14 @@
         background-color: lightgrey;
         width: 24.7%;
         height: 10.8vw;
+
         margin: {
             top: 4px;
         }
+
         display: flex;
         justify-content: center;
         overflow: hidden;
-
-
     }
 
     #dishImage {
@@ -310,8 +314,8 @@
         overflow: hidden;
     }
 
-    #outerDirectionsWrapper {
-        width: 100%;
+    #outerInstructionsWrapper {
+        //width: 60vw;
         display: flex;
         flex-wrap: wrap;
         margin-top: 1vw;
@@ -319,7 +323,11 @@
     }
 
     #outerIngredientsWrapper {
-        width: 50%;
+        width: 40%;
+    }
+
+    #outerDirectionsWrapper {
+        width: 60%;
     }
 
     .addIngredientField,
@@ -336,12 +344,22 @@
         justify-content: center;
         width: 100%;
 
-        }
+    }
 
-    .ingredientContainer {
+    .outerIngredientContainer {
         width: 100%;
         display: flex;
         flex-wrap: wrap;
+    }
+
+    .amountContainer {
+        display: flex;
+        width: 40%;
+    }
+
+    .ingredientContainer {
+        display: flex;
+        width: 60%;
     }
 
     .ingredientContainer .input-field {
@@ -355,16 +373,17 @@
     }
 
     #directionsWrapper {
-        width: 50%;
+        display: flex;
+        align-items: center;
+        // width: 50%;
     }
 
-    #directions,
-    .directionInput {
+    #directions {
         height: 10vw;
-
     }
 
-    #ingredientsHeadline, #directionsHeadline {
+    #ingredientsHeadline,
+    #directionsHeadline {
         display: flex;
         justify-content: center;
     }
@@ -375,6 +394,7 @@
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
+
         margin: {
             top: 20px;
             bottom: 20px;
@@ -415,13 +435,15 @@
         flex-wrap: wrap;
         width: 60%;
         justify-content: center;
+
         margin: {
             top: 10px;
-            bottom: 10px;    
+            bottom: 10px;
         }
     }
 
-    .reviewKey, .reviewValue {
+    .reviewKey,
+    .reviewValue {
         width: 50%;
         display: flex;
         justify-content: center;
@@ -430,7 +452,8 @@
     // Popups
 
     #reviewsPopup,
-    #ratePopup, #popupCheckForValidFields {
+    #ratePopup,
+    #popupCheckForValidFields {
         background-color: #D8C3A5;
         position: absolute;
         opacity: 0.0;
@@ -479,10 +502,12 @@
         width: 100%;
     }
 
-    .buttonWrapper, .buttonWrapperPopup {
+    .buttonWrapper,
+    .buttonWrapperPopup {
         display: flex;
         justify-content: center;
         width: 100%;
+
         margin: {
             top: 10px;
             bottom: 20px;
@@ -503,13 +528,10 @@
         color: white;
     }
 
-
-    #showReviewsPopupBtn {
-        width: 10vw;
-    }
-
     #closeReviewsPopupBtn,
-    #sendReviewPopupBtn, #cancelReviewPopupBtn, #closeCheckForValidFieldsBtn {
+    #sendReviewPopupBtn,
+    #cancelReviewPopupBtn,
+    #closeCheckForValidFieldsBtn {
         width: 10vw;
         height: 2vw;
         display: flex;

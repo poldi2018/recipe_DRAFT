@@ -407,11 +407,16 @@ def insert_rating(recipe_id, recipe_title):
         }
     )
     # incrementing review counter
+    recipe_to_rate= mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    user_who_rated= [recipe_to_rate["rated_by"], session['username']]
     recipes = mongo.db.recipes
     recipes.update_one(
         {"_id": ObjectId(recipe_id)},
         {
-            "$inc": {"review_count": 1}
+            "$inc": {"review_count": 1},
+            "$set":
+            {"rated_by": user_who_rated
+            }
         }
     )
     return redirect(url_for('read_recipe', recipe_id=recipe_id))

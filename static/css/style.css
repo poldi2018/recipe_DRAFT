@@ -93,6 +93,15 @@
             align-items: center;
     z-index: 99;
   }
+  .width10 {
+    width: 9.7%;
+  }
+  .width16 {
+    width: 16.43%;
+  }
+  .width25 {
+    width: 24.7%;
+  }
   .headline {
     text-align: center;
     width: 100%;
@@ -233,12 +242,6 @@
         -ms-flex-align: center;
             align-items: center;
   }
-  #dishType, #showReviewsPopupBtn, #showRatePopupBtn, #editRecipeBtn, #deleteRecipeBtn {
-    width: 6.6vw;
-  }
-  #dishTypeAddEdit, #dishTypeAddEdit, #originAddEdit {
-    width: 24.7%;
-  }
   #readRecipeTitle {
     width: 50%;
     display: -webkit-box;
@@ -339,7 +342,7 @@
         align-content: center;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    width: 33%;
+    width: 33.03%;
     height: 100%;
   }
   #totalTime {
@@ -390,8 +393,7 @@
     border-radius: 10px;
     overflow: hidden;
   }
-  #outerDirectionsWrapper {
-    width: 100%;
+  #outerInstructionsWrapper {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -401,7 +403,10 @@
     margin-bottom: 2.5vw;
   }
   #outerIngredientsWrapper {
-    width: 50%;
+    width: 40%;
+  }
+  #outerDirectionsWrapper {
+    width: 60%;
   }
   .addIngredientField,
   .removeIngredientField {
@@ -424,13 +429,25 @@
             justify-content: center;
     width: 100%;
   }
-  .ingredientContainer {
+  .outerIngredientContainer {
     width: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+  }
+  .amountContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 40%;
+  }
+  .ingredientContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 60%;
   }
   .ingredientContainer .input-field {
     width: 50%;
@@ -445,13 +462,18 @@
             justify-content: center;
   }
   #directionsWrapper {
-    width: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
-  #directions,
-  .directionInput {
+  #directions {
     height: 10vw;
   }
-  #ingredientsHeadline, #directionsHeadline {
+  #ingredientsHeadline,
+  #directionsHeadline {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -522,7 +544,8 @@
     margin-top: 10px;
     margin-bottom: 10px;
   }
-  .reviewKey, .reviewValue {
+  .reviewKey,
+  .reviewValue {
     width: 50%;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -532,7 +555,8 @@
             justify-content: center;
   }
   #reviewsPopup,
-  #ratePopup, #popupCheckForValidFields {
+  #ratePopup,
+  #popupCheckForValidFields {
     background-color: #D8C3A5;
     position: absolute;
     opacity: 0.0;
@@ -600,7 +624,8 @@
   .ratelines {
     width: 100%;
   }
-  .buttonWrapper, .buttonWrapperPopup {
+  .buttonWrapper,
+  .buttonWrapperPopup {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -620,11 +645,10 @@
   .buttonWrapper a {
     color: white;
   }
-  #showReviewsPopupBtn {
-    width: 10vw;
-  }
   #closeReviewsPopupBtn,
-  #sendReviewPopupBtn, #cancelReviewPopupBtn, #closeCheckForValidFieldsBtn {
+  #sendReviewPopupBtn,
+  #cancelReviewPopupBtn,
+  #closeCheckForValidFieldsBtn {
     width: 10vw;
     height: 2vw;
     display: -webkit-box;
