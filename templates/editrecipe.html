@@ -1,6 +1,6 @@
 {% extends 'base.html'%}
 {% block content %}
-<form id="recipeForm" action="{{ url_for('update_recipe', recipe_id=recipe._id)}}" method="POST" class=""
+<form id="recipeForm" action="{{ url_for('update_recipe', recipe_id=recipe._id)}}" method="POST" class="addRecipeForm"
     enctype="multipart/form-data">
     <div class="recipeWrapper">
         <div class="recipeTitle">
@@ -212,8 +212,6 @@
             </div>
         </div>
 
-
-
         <div id="outerDirectionsWrapper">
             <div id="outerIngredientsWrapper">
                 <div id="ingredientsHeadline">Ingredients</div>
@@ -255,16 +253,17 @@
             </div>
         </div>
         <div class="buttonWrapper">
-            <div id="sendButton" class="btn waves-effect waves-light" onclick="fieldvalidation()">Update</div>
-            <div class="btn waves-effect waves-light"><a
-                    href="{{url_for('read_recipe', recipe_id=recipe._id)}}">Cancel</a></div>
-
-            <!-- <button class="btn waves-effect waves-light" type="submit" id="add_recipe_Btn" name="action"
-                onclick="">Send
-                <i class="material-icons right">playlist</i>
-            </button> -->
+            <div id="sendButton" onclick="fieldvalidation()" class="btn waves-effect waves-light">Update recipe</div>
+            <div id="cancelAddEditRecipeBtn" class="btn waves-effect waves-light"><a href="{{url_for('read_recipe', recipe_id=recipe._id)}}">Cancel</a></div>
         </div>
     </div>
 </form>
+
+<div id="popupCheckForValidFields">
+    <div id="resultCheckForValidFields"></div>
+    <div class="buttonWrapperPopup">
+        <div id="closeCheckForValidFieldsBtn" class="btn waves-effect waves-light">Close</div>
+    </div>
+</div>
 
 {% endblock %}

@@ -439,6 +439,9 @@
         z-index: 500;
         border: 2px white;
         border-radius: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
 
     }
 
@@ -476,7 +479,7 @@
         width: 100%;
     }
 
-    .buttonWrapper {
+    .buttonWrapper, .buttonWrapperPopup {
         display: flex;
         justify-content: center;
         width: 100%;
@@ -484,6 +487,10 @@
             top: 10px;
             bottom: 20px;
         }
+    }
+
+    #resultCheckForValidFields {
+        margin: 2vw;
     }
 
     .buttonWrapper div {
@@ -495,6 +502,7 @@
     .buttonWrapper a {
         color: white;
     }
+
 
     #showReviewsPopupBtn {
         width: 10vw;

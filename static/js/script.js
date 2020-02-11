@@ -52,35 +52,48 @@ function ingredientfieldsFilled() {
 
 function fieldvalidation() {
     if ($('#recipetitle').val() == "") {
-        alert("Please give your recipe a title")
+        $('#resultCheckForValidFields').html(`Please give your recipe a title.`);
     } else if ($('#dishType').val() == null) {
-        alert("Please give your dish a type")
+        $('#resultCheckForValidFields').html(`Please give your dish a category.`);
+        popupCheckForValidFields();
     } else if ($('#origin').val() == null) {
-        alert("Please select the origin")
+        $('#resultCheckForValidFields').html(`Please select the origin.`);
+        popupCheckForValidFields();
     } else if ($('#level').val() == null) {
-        alert("Please select the difficulty")
+        $('#resultCheckForValidFields').html(`Please select the difficulty.`);
+        popupCheckForValidFields();
     } else if ($('#prepTime').val() == "") {
-        alert("Please provide a preparation timeframe")
+        $('#resultCheckForValidFields').html(`Please provide a preparation timeframe.`);
+        popupCheckForValidFields();
     } else if (isNaN($('#prepTime').val())) {
-        alert("Please provide number of minutes for the preparation time")
+        $('#resultCheckForValidFields').html(`Please provide number of minutes for the preparation time.`);
+        popupCheckForValidFields();
     } else if ($('#cookingTime').val() == "") {
-        alert("Please provide a cooking timeframe")
+        $('#resultCheckForValidFields').html(`Please provide a cooking timeframe.`);
+        popupCheckForValidFields();
     } else if (isNaN($('#cookingTime').val())) {
-        alert("Please provide number of minutes for the cooking time")
+        $('#resultCheckForValidFields').html(`Please provide number of minutes for the cooking time.`);
+        popupCheckForValidFields();
     } else if ($('#fileinputfield').val() == "") {
-        alert("Please provide a picture of your dish")
+        $('#resultCheckForValidFields').html(`Please provide a picture of your dish.`);
+        popupCheckForValidFields();
     } else if (ingredientfieldsFilled() == false) {
-        alert("Please fill all ingredient fields or remove fields not needed.")
+        $('#resultCheckForValidFields').html(`Please fill all ingredient fields or remove fields not needed.`);
+        popupCheckForValidFields();
     } else if ($('#directions').val() == "") {
-        alert("Please fill in the directions")
+        $('#resultCheckForValidFields').html(`Please fill in the directions.`);
+        popupCheckForValidFields();
     } else if (fieldsTooLong() == true) {
-        alert("Please allow 50 characters per field and 1000 characters for directions text max.")
+        $('#resultCheckForValidFields').html(`Please allow 30 characters per field and 1000 characters for directions text max.`);
+        popupCheckForValidFields();
     } else {
         $('#prepTime').val(parseInt($('#prepTime').val()));
         $('#cookingTime').val(parseInt($('#cookingTime').val()));
-        makeIngredientsStrings()
+        makeIngredientsStrings();
         $('#recipeForm').submit();
+        return;
     }
+    return;
 }
 
 function fieldsTooLong() {
@@ -126,12 +139,6 @@ function validateImageName(element) {
         //alert("Please select an JPEG or JPG.");
         $('#fileinputfield').val("");
     }
-    /*
-    if ($('#fileinputfield').val().length == 0) {
-        $('#resultCheckForValidFields').html(`Please select an JPEG or JPG.`);
-        popupCheckImageName();
-    } 
-*/
 }
 
 function popupCheckForValidFields() {
@@ -206,3 +213,7 @@ function makeIngredientsStrings() {
     }
     $('#ingredientsString').val(ingredients);
 }
+
+$('#sendButton').on('touchstart click', function () {
+    fieldvalidation();
+});

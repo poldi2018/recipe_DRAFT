@@ -543,6 +543,14 @@
     z-index: 500;
     border: 2px white;
     border-radius: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
   #reviewsWrapper,
   #rateWrapper {
@@ -592,7 +600,7 @@
   .ratelines {
     width: 100%;
   }
-  .buttonWrapper {
+  .buttonWrapper, .buttonWrapperPopup {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -602,6 +610,9 @@
     width: 100%;
     margin-top: 10px;
     margin-bottom: 20px;
+  }
+  #resultCheckForValidFields {
+    margin: 2vw;
   }
   .buttonWrapper div {
     margin-left: 44px;
