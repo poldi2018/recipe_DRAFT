@@ -395,13 +395,14 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+    margin-top: 5px;
   }
   #dishImageWrapper {
     border: 2px solid none;
     border-radius: 10px;
     background-color: lightgrey;
     width: 24.7%;
-    height: 10.8vw;
+    height: 96%;
     margin-top: 4px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -432,6 +433,7 @@
         flex-wrap: wrap;
     margin-top: 1vw;
     margin-bottom: 2.5vw;
+    background-color: lightgrey;
   }
   #outerIngredientsWrapper {
     width: 50%;
@@ -443,6 +445,7 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    margin-bottom: 10px;
   }
   .addIngredientField,
   .removeIngredientField {
@@ -502,10 +505,8 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
     height: 100%;
+    width: 98%;
   }
   #directions {
     height: 100%;
@@ -518,6 +519,7 @@
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+    margin-bottom: 10px;
   }
   .footerWrapper {
     width: 75vw;
@@ -575,12 +577,13 @@
     display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    width: 60%;
+    width: 30%;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
   .reviewKey,
   .reviewValue {
@@ -593,10 +596,14 @@
             justify-content: center;
   }
   #reviewsPopup {
-    width: 50vw;
+    width: 80vw;
   }
   #ratePopup {
     width: 50vw;
+  }
+  #deletePopup {
+    width: 50vw;
+    background-color: #E85A4F;
   }
   #popupCheckForValidFields {
     z-index: 1000;
@@ -608,9 +615,13 @@
   }
   #reviewsPopup,
   #ratePopup,
+  #popupCheckForValidFields, .reviewTile {
+    background-color: #D8C3A5;
+  }
+  #reviewsPopup,
+  #ratePopup,
   #deletePopup,
   #popupCheckForValidFields {
-    background-color: #D8C3A5;
     position: absolute;
     opacity: 0.0;
     -webkit-transition: opacity .5s ease-in-out;
@@ -627,6 +638,7 @@
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+    top: 7vw;
   }
   #reviewsWrapper,
   #rateWrapper {
@@ -643,7 +655,7 @@
             justify-content: center;
   }
   .outerReviewsWrapper {
-    width: 60vw;
+    width: 80vw;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -660,7 +672,7 @@
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    width: 40vw;
+    width: 80vw;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
   }

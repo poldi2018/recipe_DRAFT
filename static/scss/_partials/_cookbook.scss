@@ -305,6 +305,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-top: 5px;
     }
 
     #dishImageWrapper {
@@ -312,7 +313,7 @@
         border-radius: 10px;
         background-color: lightgrey;
         width: 24.7%;
-        height: 10.8vw;
+        height: 96%;
         margin: {
             top: 4px;
         }
@@ -341,6 +342,7 @@
         flex-wrap: wrap;
         margin-top: 1vw;
         margin-bottom: 2.5vw;
+        background-color: lightgrey;
     }
 
     #outerIngredientsWrapper {
@@ -353,6 +355,7 @@
 
     .AddIngredientButtonWrapper {
         display: flex;
+        margin-bottom: 10px;
     }
 
     .addIngredientField,
@@ -398,8 +401,8 @@
 
     #directionsWrapper {
         display: flex;
-        align-items: center;
         height: 100%;
+        width: 98%;
     }
 
     #directions {
@@ -410,6 +413,7 @@
     #directionsHeadline {
         display: flex;
         justify-content: center;
+        margin-bottom: 10px;
     }
 
     .footerWrapper {
@@ -456,10 +460,10 @@
         border-radius: 10px;
         display: flex;
         flex-wrap: wrap;
-        width: 60%;
+        width: 30%;
         justify-content: center;
-
-        margin: {
+        margin: 10px;
+        padding: {
             top: 10px;
             bottom: 10px;
         }
@@ -475,11 +479,17 @@
     // Popups
 
     #reviewsPopup {
-        width: 50vw;
+        width: 80vw;
     }
 
     #ratePopup {
         width: 50vw;
+    }
+
+    #deletePopup {
+        width: 50vw;
+        background-color: #E85A4F;
+
     }
 
     #popupCheckForValidFields {
@@ -494,9 +504,14 @@
 
     #reviewsPopup,
     #ratePopup,
+    #popupCheckForValidFields, .reviewTile {
+        background-color: #D8C3A5;
+    }
+
+    #reviewsPopup,
+    #ratePopup,
     #deletePopup,
     #popupCheckForValidFields {
-        background-color: #D8C3A5;
         position: absolute;
         opacity: 0.0;
         transition: opacity .5s ease-in-out;
@@ -506,6 +521,7 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        top: 7vw;
     }
 
     #reviewsWrapper,
@@ -522,7 +538,7 @@
     }
 
     .outerReviewsWrapper {
-        width: 60vw;
+        width: 80vw;
         display: flex;
         justify-content: center;
     }
@@ -532,10 +548,9 @@
             top: 20px;
             bottom: 20px;
         }
-
         display: flex;
         justify-content: center;
-        width: 40vw;
+        width: 80vw;
         flex-wrap: wrap;
     }
 

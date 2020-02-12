@@ -12,10 +12,9 @@
                     <i class="material-icons prefix">playlist_add</i>
                     <input id="recipetitle" name="recipe_title" type="text" class="validate" value="{{recipe.title}}"
                         data-length="30">
-                    <label for="recipetitle">Recipe Title</label>
+                    
                 </div>
             </div>
-
             <div class="recipeHeaderItem width25">
                 <div class="input-field">
                     <i class="material-icons prefix">playlist_add</i>
@@ -213,7 +212,7 @@
         <div id="outerInstructionsWrapper">
             <div id="outerIngredientsWrapper">
                 <div id="ingredientsHeadline">Ingredients</div>
-                <div class="buttonWrapper">
+                <div class="AddIngredientButtonWrapper">
                     <div class="addIngredientField btn waves-effect waves-light">add ingredient field</div>
                     <div class="removeIngredientField btn waves-effect waves-light">remove ingredient field
                     </div>
@@ -221,18 +220,22 @@
 
                 <div id="ingredientWrapper">
                     {% for ingredient in recipe.ingredients %}
-                    <div class="ingredientContainer">
-                        <div class="input-field">
-                            <i class="material-icons prefix">playlist_add</i>
-                            <input name="amount1" type="text" class="validate amounts" value="{{ingredient.amount}}"
+                    <div class="outerIngredientContainer">
+                        <div class="amountContainer">
+                            <div class="input-field">
+                                <i class="material-icons prefix">playlist_add</i>
+                                <input name="amount1" type="text" class="validate amounts" value="{{ingredient.amount}}"
                                 data-length="30">
-                            <label for="amount1">Amount</label>
+                                <label for="amount1">Amount</label>
+                            </div>
                         </div>
-                        <div class="input-field">
-                            <i class="material-icons prefix">playlist_add</i>
-                            <input name="ingredient1" type="text" class="validate ingredients"
-                                value="{{ingredient.ingredient}}" data-length="30">
-                            <label for="ingredient1">Ingredient</label>
+                        <div class="ingredientContainer">
+                            <div class="input-field">
+                                <i class="material-icons prefix">playlist_add</i>
+                                <input name="ingredient1" type="text" class="validate ingredients"
+                                    value="{{ingredient.ingredient}}" data-length="30">
+                                <label for="ingredient1">Ingredient</label>
+                            </div>
                         </div>
                     </div>
                     {% endfor %}
@@ -240,13 +243,11 @@
                 <input id="amountsString" name="amounts_string" type="text" class="" hidden>
                 <input id="ingredientsString" name="ingredients_string" type="text" class="" hidden>
             </div>
-
-            <div id="directionsWrapper">
+            <div id="outerDirectionsWrapper">
                 <div id="directionsHeadline">Directions</div>
-                <div class="input-field col s12 directionInput">
-                    <i class="material-icons prefix">playlist_add</i>
-                    <textarea id="directions" name="directions" data-length="1000">{{recipe.directions}}</textarea>
-                    <label for="directions">Directions</label>
+                <div id="directionsWrapper">  
+                        <i class="material-icons prefix">playlist_add</i>
+                        <textarea id="directions" name="directions" data-length="1000">{{recipe.directions}}</textarea>
                 </div>
             </div>
         </div>
