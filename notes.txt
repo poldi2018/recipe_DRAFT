@@ -1,27 +1,17 @@
 TODO:
-SUN9th:
-schemas and mockups!
+
 ADD:
 - add ingredient fields and handling DONE
 - string length fields DONE
 - chk all fields filled / selected DONE
 - recipe tiles with clickable category
 - review tiles with clickable category
-- collect reviewed_by and assign to recipe
+- collect reviewed_by and assign to recipe DONE BUT: ADD BUTTON TO READ
 - d3 for summary categories?
 - display document count based on category and on searchterm DONE
 
-
-TOP-REVIEWS:
-- review tiles DONE
-
-REVIEWS POPUP:
--  basic styles DONE
-- star selector DONE
-
-RATE POPUP:
--  basic styles DONE
-- field validation DONE
+ADD-RECIPE:
+- basic styles DONE
 
 ADVSEARCH:
 - form layout
@@ -29,17 +19,42 @@ ADVSEARCH:
 ADVSEARCH-RESULTS:
 - recipe tiles
 
+BASE:
+- styles ??
+
+EDIT:
+- styles DONE
+
+INDEX:
+- styles DONE
+
+LATEST-ADDED:
+- styles
+
+LOGOUT, LOGIN, REGISTER:
+- styles
+- field validation and 2nd pw field registration
+
+READ:
+- styles DONE
+
 QUICKSEARCH RESULTS:
 - recipe tiles
 - review tiles
 
-LOGOUT, LOGIN, REGISTER:
-- basic styles
-- field validation and 2nd pw field registration
+TOP-REVIEWS:
+- review tiles DONE
 
+REVIEWS POPUP:
+- styles DONE
+- star selector DONE
 
-EDIT:
-- basic styles
+RATE POPUP:
+- styles DONE
+- field validation DONE
+
+DELETE-POPUP:
+- styles DONE
 
 USERPAGE:
 -  basic styles
@@ -48,16 +63,26 @@ MOBILE VERSION:
 - styles
 
 
-MON10th:
-Anthony: schema and mockup
 documentations
 testing
 
-TUE11th:
-2nd call
+TIMEFRAME:
 
 WED12:
+Anthony: schema, mockup, link
+styles
+search dialogs
+
+THU13:
+upload to production
+2nd call
+documentations
+testing
+
+FRI14:
+mobile 2nd part
 3rd call
+last changes
 
 ####
 Referenced Data of
@@ -141,96 +166,11 @@ game
 meat
 vegetarian
 
-
-
-MOCKUPS:
-header:
-#icon
-#menu bar:
-#Add A Recipe (C)
-#Top Rated
-#Advanced Search
-#Rate This One
-#Edit This Recipe (U)
-#Delete This Recipe(D)
-#Quick Search
-
-main content block:
-#recipe title  and Btn#UPDATE , Btn#DEL
-#upper stats panel:
-container:
-added_By:
-date_Added:
-level:
-stars:
-likes:
-
-#upper right pic
-#lower left ingredients panel:
-<amount> ingredient
-<amount> ingredient
-<amount> ingredient
-<amount> ingredient
-
-#lower right directions panel:
-stats div:
-container:
-prep time
-cook time
-total time to make
-directions div:
-Lorem ipsum ….
-
-
-
-
-footer:
-C
-contact
-gh
-
-
-VIEWS:
-add recipe ADDED
-reviews ADDED
-advance search ADDED
-search results ADDED
-rate this one <modal> ADDED
-delete this recipe ADDED
-edit this recipe ADDED
-read recipe details DONE
-
-ROUTES AND VIEWS:
-
-ENTRYPAGE:
-(‘/‘): enter.html  -> linked TO (‘/latest_added’) 
-############
-(‘/latest_added’): show last 20 latest added
-############
-(‘/add_recipe’): add a recipe -> TO (‘/current_added’)
-############
-(‘/read_recipe<recipe_id>’): show recipe details
-############
-(‘/reviews’): show first 20 of reviews  TO (‘/read_recipe<recipe_id>’)
-############
-(‘/advanced_search’): enter search parameters ->TO (‘/search_results’)
-############
-(‘/search_results’): display results -> TO (‘/read_recipe<recipe_id>’)
-############
-('/rate_recipe/<recipe_id>’): modal rate this one -> TO (‘/read_recipe<recipe_id>’)
-############
-(‘/edit_recipe/<recipe_id>’): edit view(same as read_recipe view with pop fields) -> TO (‘/read_recipe<recipe_id>’)
-############
-(‘/delete_recipe/<recipe_id>’): modal delete this one -> TO (‘/latest_added’)
-############
-
 FEATURES:
 - Creation of recipes and ratings are bound to user acounts, edit and delete only available to author.
 - image upload illustrating the prepared dish
 - for security reasons email addresses are treated like passwords and have been hashed as well, to omit.
 - form fields all checked to ensure proper compliant to database structure.
-
-
 
 README.MD
 # markup language!
@@ -249,21 +189,13 @@ CURRENT ISSUES, FUTURE FEATURES:
 - check on collection file size to prevent exceeding 16MB
 
 
-
-ANTHONY:
-repo link
-mockups
-schema
-
-
 COMPLIANCE
 CSS
 HTML
-JShint
+JShint ALMOST
 Jasmine
 PEP8
 test py code
-
 
 
 REQUIREMENTS
