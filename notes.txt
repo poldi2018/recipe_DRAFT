@@ -13,15 +13,15 @@ ADD:
 
 
 TOP-REVIEWS:
-- review tiles
+- review tiles DONE
 
 REVIEWS POPUP:
 -  basic styles DONE
 - star selector DONE
 
 RATE POPUP:
--  basic styles
-- field validation
+-  basic styles DONE
+- field validation DONE
 
 ADVSEARCH:
 - form layout
@@ -310,6 +310,3 @@ Secure user authentication (e.g. via passwords) is not required for this particu
 ADDITIONAL COMMANDS:
 # user_to_query= mongo.db.users.find_one( { '$or': [{"email_address_hash": generate_password_hash(request.form.get('email_address'))}, {"username": request.form.get("username")}]})
 
-
-"review_count": recipe["review_count"],
-"view_count": recipe["review_count"],

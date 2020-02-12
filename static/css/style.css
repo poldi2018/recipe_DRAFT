@@ -424,6 +424,7 @@
     overflow: hidden;
   }
   #outerInstructionsWrapper {
+    width: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -433,14 +434,20 @@
     margin-bottom: 2.5vw;
   }
   #outerIngredientsWrapper {
-    width: 40%;
+    width: 50%;
   }
   #outerDirectionsWrapper {
-    width: 60%;
+    width: 50%;
+  }
+  .AddIngredientButtonWrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
   }
   .addIngredientField,
   .removeIngredientField {
-    width: 50%;
+    width: 40%;
+    margin-left: 40px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -479,8 +486,8 @@
     display: flex;
     width: 60%;
   }
-  .ingredientContainer .input-field {
-    width: 50%;
+  .amountContainer .input-field, .ingredientContainer .input-field {
+    width: 90%;
   }
   .ingredientfield {
     width: 44%;
@@ -498,9 +505,10 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+    height: 100%;
   }
   #directions {
-    height: 10vw;
+    height: 100%;
   }
   #ingredientsHeadline,
   #directionsHeadline {

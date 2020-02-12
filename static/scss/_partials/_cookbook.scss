@@ -313,11 +313,9 @@
         background-color: lightgrey;
         width: 24.7%;
         height: 10.8vw;
-
         margin: {
             top: 4px;
         }
-
         display: flex;
         justify-content: center;
         overflow: hidden;
@@ -338,7 +336,7 @@
     }
 
     #outerInstructionsWrapper {
-        //width: 60vw;
+        width: 100%;
         display: flex;
         flex-wrap: wrap;
         margin-top: 1vw;
@@ -346,19 +344,23 @@
     }
 
     #outerIngredientsWrapper {
-        width: 40%;
+        width: 50%;
     }
 
     #outerDirectionsWrapper {
-        width: 60%;
+        width: 50%;
+    }
+
+    .AddIngredientButtonWrapper {
+        display: flex;
     }
 
     .addIngredientField,
     .removeIngredientField {
-        width: 50%;
+        width: 40%;
+        margin-left: 40px;
         display: flex;
         justify-content: center;
-
     }
 
     #ingredientWrapper {
@@ -366,7 +368,6 @@
         flex-wrap: wrap;
         justify-content: center;
         width: 100%;
-
     }
 
     .outerIngredientContainer {
@@ -385,8 +386,8 @@
         width: 60%;
     }
 
-    .ingredientContainer .input-field {
-        width: 50%;
+    .amountContainer .input-field, .ingredientContainer .input-field {
+        width: 90%;
     }
 
     .ingredientfield {
@@ -398,11 +399,11 @@
     #directionsWrapper {
         display: flex;
         align-items: center;
-        // width: 50%;
+        height: 100%;
     }
 
     #directions {
-        height: 10vw;
+        height: 100%;
     }
 
     #ingredientsHeadline,
@@ -417,7 +418,6 @@
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
-
         margin: {
             top: 20px;
             bottom: 20px;

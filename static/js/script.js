@@ -19,7 +19,7 @@ function generate_amountfieldName() {
 
 $('.addIngredientField').on('touchstart click', function () {
     fieldcount++;
-    $("#ingredientWrapper").append("<div class='ingredientContainer'><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='amount' name='amount' type='text' class='validate amounts' data-length='30'><label for='amount'>Amount</label></div><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='ingredient' name='ingredient' type='text' class='validate ingredients' data-length='30'><label for='ingredient'>Ingredient</label></div></div>");
+    $("#ingredientWrapper").append("<div class='outerIngredientContainer'><div class='amountContainer'><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='amount' name='amount' type='text' class='validate amounts' data-length='30'><label for='amount'>Amount</label></div></div><div class='ingredientContainer'><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='ingredient' name='ingredient' type='text' class='validate ingredients' data-length='30'><label for='ingredient'>Ingredient</label></div></div></div>");
     $('#ingredient').attr('name', generate_ingredientfieldName()).attr('id', generate_ingredientfieldName());
     $('#amount').attr('name', generate_amountfieldName()).attr('id', generate_amountfieldName());
 });
@@ -27,7 +27,7 @@ $('.addIngredientField').on('touchstart click', function () {
 
 $('.removeIngredientField').on('touchstart click', function () {
     if (fieldcount > 1) {
-        $(".ingredientContainer").last().remove();
+        $(".outerIngredientContainer").last().remove();
         setTimeout(function () {
             fieldcount--;
         }, 400);
@@ -178,7 +178,7 @@ $('#sendReviewPopupBtn').on('touchstart click', function () {
     } else if ($('#comment').val() == "") {
         $('#resultCheckForValidFields').html("Please provide a short feedback or suggestion");
     }
-    
+
     if ($('#resultCheckForValidFields').html() != "") {
         popupCheckForValidFields();
     } else {
