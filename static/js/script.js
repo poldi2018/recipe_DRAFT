@@ -5,7 +5,7 @@ $(document).ready(function () {
 });
 
 // global variables
-let fieldcount = $(".ingredientContainer").length;
+var fieldcount = $(".ingredientContainer").length;
 
 function generate_ingredientfieldName() {
     var ingredientFieldname = "ingredient" + fieldcount;
@@ -34,15 +34,40 @@ $('.removeIngredientField').on('touchstart click', function () {
     }
 });
 
+
+//function for onchange event of file input field to convert selected file into base64
+function encodeImgtoBase64(element) {
+    var file = element.files[0];
+    var reader = new FileReader();
+    reader.onloadend = function () {
+        // writing reader result without mime type information to hidden textarea field to use with form.get() method in python    
+        $("#base64file").text(reader.result.split(',')[1]);
+    };
+    reader.readAsDataURL(file);
+}
+
+function validateImageName(element) {
+    var enteredFilename = $('#fileinputfield').val();
+    if (enteredFilename.endsWith('.jpeg') || enteredFilename.endsWith('.jpg')) {
+        encodeImgtoBase64(element);
+    } else if (enteredFilename.endsWith('.jpeg') == false || enteredFilename.endsWith('.jpg') == false) {
+        $('#resultCheckForValidFields').html("Please select an JPEG or JPG.");
+        popupCheckForValidFields();
+        $('#fileinputfield').val("");
+    }
+}
+
 function ingredientfieldsFilled() {
-    let amountsArray = $('.amounts').toArray();
-    let ingredientsArray = $('.ingredients').toArray();
-    for (let i = 0; i < amountsArray.length; i++) {
+    var amountsArray = $('.amounts').toArray();
+    var ingredientsArray = $('.ingredients').toArray();
+    var i = 0;
+    for (i = 0; i < amountsArray.length; i++) {
         if (amountsArray[i].value == "") {
             return false;
         }
     }
-    for (let i = 0; i < ingredientsArray.length; i++) {
+    i = 0;
+    for (i = 0; i < ingredientsArray.length; i++) {
         if (ingredientsArray[i].value == "") {
             return false;
         }
@@ -50,61 +75,17 @@ function ingredientfieldsFilled() {
     return true;
 }
 
-function fieldvalidation() {
-    if ($('#recipetitle').val() == "") {
-        $('#resultCheckForValidFields').html(`Please give your recipe a title.`);
-    } else if ($('#dishType').val() == null) {
-        $('#resultCheckForValidFields').html(`Please give your dish a category.`);
-        popupCheckForValidFields();
-    } else if ($('#origin').val() == null) {
-        $('#resultCheckForValidFields').html(`Please select the origin.`);
-        popupCheckForValidFields();
-    } else if ($('#level').val() == null) {
-        $('#resultCheckForValidFields').html(`Please select the difficulty.`);
-        popupCheckForValidFields();
-    } else if ($('#prepTime').val() == "") {
-        $('#resultCheckForValidFields').html(`Please provide a preparation timeframe.`);
-        popupCheckForValidFields();
-    } else if (isNaN($('#prepTime').val())) {
-        $('#resultCheckForValidFields').html(`Please provide number of minutes for the preparation time.`);
-        popupCheckForValidFields();
-    } else if ($('#cookingTime').val() == "") {
-        $('#resultCheckForValidFields').html(`Please provide a cooking timeframe.`);
-        popupCheckForValidFields();
-    } else if (isNaN($('#cookingTime').val())) {
-        $('#resultCheckForValidFields').html(`Please provide number of minutes for the cooking time.`);
-        popupCheckForValidFields();
-    } else if ($('#fileinputfield').val() == "") {
-        $('#resultCheckForValidFields').html(`Please provide a picture of your dish.`);
-        popupCheckForValidFields();
-    } else if (ingredientfieldsFilled() == false) {
-        $('#resultCheckForValidFields').html(`Please fill all ingredient fields or remove fields not needed.`);
-        popupCheckForValidFields();
-    } else if ($('#directions').val() == "") {
-        $('#resultCheckForValidFields').html(`Please fill in the directions.`);
-        popupCheckForValidFields();
-    } else if (fieldsTooLong() == true) {
-        $('#resultCheckForValidFields').html(`Please allow 30 characters per field and 1000 characters for directions text max.`);
-        popupCheckForValidFields();
-    } else {
-        $('#prepTime').val(parseInt($('#prepTime').val()));
-        $('#cookingTime').val(parseInt($('#cookingTime').val()));
-        makeIngredientsStrings();
-        $('#recipeForm').submit();
-        return;
-    }
-    return;
-}
-
 function fieldsTooLong() {
-    let amountsArray = $('.amounts').toArray();
-    let ingredientsArray = $('.ingredients').toArray();
-    for (let i = 0; i < amountsArray.length; i++) {
+    var amountsArray = $('.amounts').toArray();
+    var ingredientsArray = $('.ingredients').toArray();
+    var i = 0;
+    for (i = 0; i < amountsArray.length; i++) {
         if (amountsArray[i].value.length > 30) {
             return true;
         }
     }
-    for (let i = 0; i < ingredientsArray.length; i++) {
+    i = 0;
+    for (i = 0; i < ingredientsArray.length; i++) {
         if (ingredientsArray[i].value.length > 30) {
             return true;
         }
@@ -118,27 +99,42 @@ function fieldsTooLong() {
     }
 }
 
-//function for onchange event of file input field to convert selected file into base64
-function encodeImgtoBase64(element) {
-    var file = element.files[0];
-    var reader = new FileReader();
-    reader.onloadend = function () {
-        // writing reader result without mime type information to hidden textarea field to use with form.get() method in python    
-        $("#base64file").text(reader.result.split(',')[1]);
+function fieldvalidation() {
+    if ($('#recipetitle').val() == "") {
+        $('#resultCheckForValidFields').html("Please give your recipe a title.");
+    } else if ($('#dishType').val() == null) {
+        $('#resultCheckForValidFields').html("Please give your dish a category.");
+    } else if ($('#origin').val() == null) {
+        $('#resultCheckForValidFields').html("Please select the origin.");
+    } else if ($('#level').val() == null) {
+        $('#resultCheckForValidFields').html("Please select the difficulty.");
+    } else if ($('#prepTime').val() == "") {
+        $('#resultCheckForValidFields').html("Please provide a preparation timeframe.");
+    } else if (isNaN($('#prepTime').val())) {
+        $('#resultCheckForValidFields').html("Please provide number of minutes for the preparation time.");
+    } else if ($('#cookingTime').val() == "") {
+        $('#resultCheckForValidFields').html("Please provide a cooking timeframe.");
+    } else if (isNaN($('#cookingTime').val())) {
+        $('#resultCheckForValidFields').html("Please provide number of minutes for the cooking time.");
+    } else if ($('#fileinputfield').val() == "") {
+        $('#resultCheckForValidFields').html("Please provide a picture of your dish.");
+    } else if (ingredientfieldsFilled() == false) {
+        $('#resultCheckForValidFields').html("Please fill all ingredient fields or remove fields not needed.");
+    } else if ($('#directions').val() == "") {
+        $('#resultCheckForValidFields').html("Please fill in the directions.");
+    } else if (fieldsTooLong() == true) {
+        $('#resultCheckForValidFields').html("Please allow 30 characters per field and 1000 characters for directions text max.");
+    } else {
+        $('#prepTime').val(parseInt($('#prepTime').val()));
+        $('#cookingTime').val(parseInt($('#cookingTime').val()));
+        makeIngredientsStrings();
+        $('#recipeForm').submit();
+        return;
     }
-    reader.readAsDataURL(file);
-}
-
-function validateImageName(element) {
-    var enteredFilename = $('#fileinputfield').val();
-    if (enteredFilename.endsWith('.jpeg') || enteredFilename.endsWith('.jpg')) {
-        encodeImgtoBase64(element);
-    } else if (enteredFilename.endsWith('.jpeg') == false || enteredFilename.endsWith('.jpg') == false) {
-        $('#resultCheckForValidFields').html(`Please select an JPEG or JPG.`);
+    if ($('#resultCheckForValidFields').html() != "") {
         popupCheckForValidFields();
-        //alert("Please select an JPEG or JPG.");
-        $('#fileinputfield').val("");
     }
+    return;
 }
 
 function popupCheckForValidFields() {
@@ -149,7 +145,7 @@ function popupCheckForValidFields() {
 $('#closeCheckForValidFieldsBtn').on('touchstart click', function () {
     $('#popupCheckForValidFields').css("opacity", "0.0");
     setTimeout(function () {
-        $('#resultCheckForValidFields').html(``);
+        $('#resultCheckForValidFields').html("");
         $('#popupCheckForValidFields').css("transform", "translateX(-100vw)");
     }, 400);
 
@@ -173,11 +169,25 @@ $('#showRatePopupBtn').on('touchstart click', function () {
 });
 
 $('#sendReviewPopupBtn').on('touchstart click', function () {
-    $('#ratePopup').css("opacity", "0.0");
-    setTimeout(function () {
-        $('#ratePopup').css("transform", "translateX(-100vw)");
-    }, 400);
-    $('#rateForm').submit();
+    if ($('#review_title').val() == "") {
+        $('#resultCheckForValidFields').html("Please give your review a title.");
+        popupCheckForValidFields();
+    } else if ($('#level').val() == null) {
+        $('#resultCheckForValidFields').html("Please select star level.");
+        popupCheckForValidFields();
+    } else if ($('#comment').val() == "") {
+        $('#resultCheckForValidFields').html("Please provide a short feedback or suggestion");
+    }
+    
+    if ($('#resultCheckForValidFields').html() != "") {
+        popupCheckForValidFields();
+    } else {
+        $('#ratePopup').css("opacity", "0.0");
+        setTimeout(function () {
+            $('#ratePopup').css("transform", "translateX(-100vw)");
+        }, 400);
+        $('#rateForm').submit();
+    }
 });
 
 $('#cancelReviewPopupBtn').on('touchstart click', function () {
@@ -188,10 +198,23 @@ $('#cancelReviewPopupBtn').on('touchstart click', function () {
 });
 
 
+$('#deleteRecipeBtn').on('touchstart click', function () {
+    $('#deletePopup').css("transform", "translateX(0vw)");
+    $('#deletePopup').css("opacity", "1.0");
+});
+
+$('#deleteRecipeCancelBtn').on('touchstart click', function () {
+    $('#deletePopup').css("opacity", "0.0");
+    setTimeout(function () {
+        $('#deletePopup').css("transform", "translateX(-100vw)");
+    }, 400);
+});
+
+
 
 
 function calcTotalTime() {
-    let totalTime = parseInt($("#prepTime").val()) + parseInt($("#cookingTime").val());
+    var totalTime = parseInt($("#prepTime").val()) + parseInt($("#cookingTime").val());
     if (totalTime) {
         $("#totalTime").html(totalTime + " mins");
     } else {
@@ -200,15 +223,17 @@ function calcTotalTime() {
 }
 
 function makeIngredientsStrings() {
-    let amountsArray = $('.amounts').toArray();
-    let ingredientsArray = $('.ingredients').toArray();
-    let amounts = "",
+    var amountsArray = $('.amounts').toArray();
+    var ingredientsArray = $('.ingredients').toArray();
+    var amounts = "",
         ingredients = "";
-    for (let i = 0; i < amountsArray.length; i++) {
+    var i = 0;
+    for (i = 0; i < amountsArray.length; i++) {
         amounts = amounts + amountsArray[i].value + "#";
     }
     $('#amountsString').val(amounts);
-    for (let i = 0; i < ingredientsArray.length; i++) {
+    i = 0;
+    for (i = 0; i < ingredientsArray.length; i++) {
         ingredients = ingredients + ingredientsArray[i].value + "#";
     }
     $('#ingredientsString').val(ingredients);

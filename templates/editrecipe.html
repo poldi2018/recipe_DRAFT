@@ -16,7 +16,7 @@
                 </div>
             </div>
 
-            <div class="recipeHeaderItem" id="dishTypeAddEdit">
+            <div class="recipeHeaderItem width25">
                 <div class="input-field">
                     <i class="material-icons prefix">playlist_add</i>
                     <select id="dishType" name="dish_type">
@@ -102,7 +102,7 @@
                     </select>
                 </div>
             </div>
-            <div class="recipeHeaderItem" id="originAddEdit">
+            <div class="recipeHeaderItem width25">
                 <div class="input-field">
                     <i class="material-icons prefix">playlist_add</i>
                     <select id="origin" class="icons" name="origin">
@@ -181,8 +181,7 @@
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">playlist_add</i>
                                 <input id="prepTime" name="prep_time" type="text" class="validate"
-                                    onchange="calcTotalTime()" value="{{recipe.prep_time}}">
-                                <label for="prepTime">Preparation time</label>
+                                    onchange="calcTotalTime()" value="{{recipe.prep_time}}">                              
                             </div>
                         </div>
                     </div>
@@ -193,7 +192,6 @@
                                 <i class="material-icons prefix">playlist_add</i>
                                 <input id="cookingTime" name="cooking_time" type="text" class="validate"
                                     onchange="calcTotalTime()" value="{{recipe.cooking_time}}">
-                                <label for="cookingTime">Cooking time</label>
                             </div>
                         </div>
                     </div>

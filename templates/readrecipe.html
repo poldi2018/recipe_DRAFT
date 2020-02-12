@@ -6,7 +6,9 @@
     <div class="recipeHeader">
         <div id="readRecipeTitle" class="recipeHeaderItem">{{recipe.title}}</div>
         <div id="dishType" class="recipeHeaderItem width25">{{recipe.dish_type}}</div>
-        <div id="showReviewsPopupBtn" class="recipeHeaderItem width25">Reviews</div>
+        <div id="showReviewsPopupBtn" class="recipeHeaderItem width10">
+            <div class="recipeButtonWrapper btn waves-effect waves-light">Reviews</div>
+        </div>
     </div>
     {% endif %}
 
@@ -15,8 +17,12 @@
     <div class="recipeHeader">
         <div id="readRecipeTitle" class="recipeHeaderItem">{{recipe.title}}</div>
         <div id="dishType" class="recipeHeaderItem width16">{{recipe.dish_type}}</div>
-        <div id="showReviewsPopupBtn" class="recipeHeaderItem width16">Reviews</div>
-        <div id="showRatePopupBtn" class="recipeHeaderItem width16">Rate This One!</div>
+        <div id="showReviewsPopupBtn" class="recipeHeaderItem width16">
+            <div class="recipeButtonWrapper btn waves-effect waves-light">Reviews</div>
+        </div>
+        <div id="showRatePopupBtn" class="recipeHeaderItem width16">
+            <div class="recipeButtonWrapper btn waves-effect waves-light">Rate!</div>
+        </div>
     </div>
     {% endif %}
 
@@ -25,12 +31,20 @@
     <div class="recipeHeader">
         <div id="readRecipeTitle" class="recipeHeaderItem">{{recipe.title}}</div>
         <div id="dishType" class="recipeHeaderItem width10">{{recipe.dish_type}}</div>
-        <div id="showReviewsPopupBtn" class="recipeHeaderItem width10">Reviews</div>
-        <div id="showRatePopupBtn" class="recipeHeaderItem width10">Rate This One!</div>
+        <div id="showReviewsPopupBtn" class="recipeHeaderItem width10">
+            <div class="recipeButtonWrapper btn waves-effect waves-light">Reviews</div>
+        </div>
+        <div id="showRatePopupBtn" class="recipeHeaderItem width10">
+            <div class="recipeButtonWrapper btn waves-effect waves-light">Rate!</div>
+        </div>
         <div id="editRecipeBtn" class="recipeHeaderItem width10"><a
-                href="{{url_for('edit_recipe', recipe_id=recipe._id)}}">Edit</a></div>
-        <div id="deleteRecipeBtn" class="recipeHeaderItem width10"><a
-                href="{{url_for('delete_recipe', recipe_id=recipe._id)}}">Delete</a></div>
+                href="{{url_for('edit_recipe', recipe_id=recipe._id)}}">
+                <div class="recipeButtonWrapper btn waves-effect waves-light">Edit</div>
+            </a></div>
+        <div id="deleteRecipeBtn" class="recipeHeaderItem width10">
+            <div class="recipeButtonWrapper btn waves-effect waves-light">Delete</div>
+            </a>
+        </div>
     </div>
     {% endif %}
 
@@ -175,7 +189,7 @@
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">playlist_add</i>
                                 <select id="level" name="rating">
-                                    <option value="" disabled selected>Please select </option>
+                                    <option value="" disabled selected>Please select stars</option>
                                     <option value=1>1 stars</option>
                                     <option value=2>2 stars</option>
                                     <option value=3>3 stars</option>
@@ -198,6 +212,27 @@
                         </div>
                     </form>
                 </div>
+            </div>
+        </div>
+
+        <div id="deletePopup">
+            <div id="deletePopupWrapper">
+                <div class="div">
+                    <h3>Are you sure to delete this recipe ?</h3>
+                </div>
+                <div class="buttonWrapper">
+                    <div id="" class="btn waves-effect waves-light">
+                        <a href="{{url_for('delete_recipe', recipe_id=recipe._id)}}">Delete!</a>
+                    </div>
+                    <div id="deleteRecipeCancelBtn" class="btn waves-effect waves-light">Cancel</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="popupCheckForValidFields">
+            <div id="resultCheckForValidFields"></div>
+            <div class="buttonWrapperPopup">
+                <div id="closeCheckForValidFieldsBtn" class="btn waves-effect waves-light">Close</div>
             </div>
         </div>
         {% endblock %}

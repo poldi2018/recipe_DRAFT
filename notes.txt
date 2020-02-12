@@ -48,9 +48,6 @@ MOBILE VERSION:
 - styles
 
 
-
-# carousel newly added today
-
 MON10th:
 Anthony: schema and mockup
 documentations
@@ -313,3 +310,6 @@ Secure user authentication (e.g. via passwords) is not required for this particu
 ADDITIONAL COMMANDS:
 # user_to_query= mongo.db.users.find_one( { '$or': [{"email_address_hash": generate_password_hash(request.form.get('email_address'))}, {"username": request.form.get("username")}]})
 
+
+"review_count": recipe["review_count"],
+"view_count": recipe["review_count"],

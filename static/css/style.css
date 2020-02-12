@@ -103,9 +103,11 @@
     width: 24.7%;
   }
   .headline {
+    margin-top: 10px;
+    margin-bottom: 20px;
     text-align: center;
     width: 100%;
-    font-size: 1vw;
+    font-size: 2vw;
   }
   #menulistDesktop {
     width: 90vw;
@@ -242,6 +244,21 @@
         -ms-flex-align: center;
             align-items: center;
   }
+  .recipeButtonWrapper {
+    border-radius: 10px;
+    padding-top: 2px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 80%;
+    height: 50%;
+  }
   #readRecipeTitle {
     width: 50%;
     display: -webkit-box;
@@ -260,6 +277,19 @@
             justify-content: center;
     width: 100%;
     font-size: 2vw;
+  }
+  #editRecipeBtn a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 80%;
+    height: 100%;
   }
   #outerStatsWrapper {
     display: -webkit-box;
@@ -554,8 +584,23 @@
         -ms-flex-pack: center;
             justify-content: center;
   }
+  #reviewsPopup {
+    width: 50vw;
+  }
+  #ratePopup {
+    width: 50vw;
+  }
+  #popupCheckForValidFields {
+    z-index: 1000;
+  }
   #reviewsPopup,
   #ratePopup,
+  #deletePopup {
+    z-index: 500;
+  }
+  #reviewsPopup,
+  #ratePopup,
+  #deletePopup,
   #popupCheckForValidFields {
     background-color: #D8C3A5;
     position: absolute;
@@ -564,7 +609,6 @@
     transition: opacity .5s ease-in-out;
     -webkit-transform: translateX(-100vw);
             transform: translateX(-100vw);
-    z-index: 500;
     border: 2px white;
     border-radius: 10px;
     display: -webkit-box;
@@ -578,7 +622,9 @@
   }
   #reviewsWrapper,
   #rateWrapper {
-    width: 60vw;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -598,6 +644,8 @@
             justify-content: center;
   }
   .innerReviewsWrapper {
+    margin-top: 20px;
+    margin-bottom: 20px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

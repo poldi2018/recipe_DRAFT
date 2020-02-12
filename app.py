@@ -328,7 +328,6 @@ def update_recipe(recipe_id):
     now = datetime.datetime.now().strftime("%H:%M:%S")
     ingredients = make_ingredient_list(request.form.get("amounts_string"),
                                        request.form.get("ingredients_string"))
-    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     recipes = mongo.db.recipes
     recipes.update_one(
         {"_id": ObjectId(recipe_id)},
@@ -342,8 +341,6 @@ def update_recipe(recipe_id):
                 "edited_on_date": today,
                 "edited_on_time": now,
                 "level": request.form.get("level"),
-                "review_count": recipe["review_count"],
-                "view_count": recipe["review_count"],
                 "prep_time": int(request.form.get("prep_time")),
                 "cooking_time": int(request.form.get("cooking_time")),
                 "total_time": int(request.form.get("prep_time")) +
@@ -406,16 +403,16 @@ def insert_rating(recipe_id, recipe_title):
             "user_email_hash": session['email_address']
         }
     )
-    # incrementing review counter
-    recipe_to_rate= mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    user_who_rated= [recipe_to_rate["rated_by"], session['username']]
+    # incrementing review counter and 
+    #recipe_to_rate= mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    #users_who_rated= [recipe_to_rate["rated_by"], session['username']]
     recipes = mongo.db.recipes
     recipes.update_one(
         {"_id": ObjectId(recipe_id)},
         {
             "$inc": {"review_count": 1},
-            "$set":
-            {"rated_by": user_who_rated
+            "$addToSet":
+            {"rated_by_users": session['username']
             }
         }
     )
