@@ -356,7 +356,6 @@
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     margin-top: 4px;
-    margin-bottom: 4px;
   }
   .timesWrapper {
     border: 2px solid none;
@@ -402,7 +401,7 @@
     border-radius: 10px;
     background-color: lightgrey;
     width: 24.7%;
-    height: 96%;
+    height: 11vw;
     margin-top: 4px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -434,6 +433,8 @@
     margin-top: 1vw;
     margin-bottom: 2.5vw;
     background-color: lightgrey;
+    height: 15vw;
+    border-radius: 10px;
   }
   #outerIngredientsWrapper {
     width: 50%;
@@ -468,6 +469,7 @@
         -ms-flex-pack: center;
             justify-content: center;
     width: 100%;
+    padding-left: 20px;
   }
   .outerIngredientContainer {
     width: 100%;
@@ -509,7 +511,9 @@
     width: 98%;
   }
   #directions {
-    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
   }
   #ingredientsHeadline,
   #directionsHeadline {
@@ -519,6 +523,7 @@
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+    margin-top: 10px;
     margin-bottom: 10px;
   }
   .footerWrapper {
