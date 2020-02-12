@@ -201,10 +201,10 @@ def reviews_today():
     reviews_count = reviews.count_documents({ "$and": [ { "added_on_date": today }, { "rating": 5 } ] })
     if reviews_count == 0:
         message="No recipes with 5 stars have been rated today"
-        return render_template("reviews.html", message=message)
+        return render_template("topreviews.html", message=message)
     else:
         reviews_from_today = mongo.db.reviews.find( { "$and": [ { "added_on_date": today }, { "rating": 5 } ] } )
-        return render_template("reviews.html", reviews_from_today=reviews_from_today, reviews_count=reviews_count)
+        return render_template("topreviews.html", reviews_from_today=reviews_from_today, reviews_count=reviews_count)
 
 # Search dialog CHECKED
 

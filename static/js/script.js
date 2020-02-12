@@ -178,7 +178,7 @@ $('#sendReviewPopupBtn').on('touchstart click', function () {
     } else if ($('#comment').val() == "") {
         $('#resultCheckForValidFields').html("Please provide a short feedback or suggestion");
     } else if ($('#comment').val().length > 30) {
-        $('#resultCheckForValidFields').html("Please allow a maximum of 30 characters");
+        $('#resultCheckForValidFields').html("Please allow a maximum of 30 characters per comment.");
     }
 
     if ($('#resultCheckForValidFields').html() != "") {
