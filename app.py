@@ -21,13 +21,13 @@ imgbb_upload_url = "https://api.imgbb.com/1/upload?key=" + os.getenv(
                                                         'IMGBB_CLIENT_API_KEY')
 # creating instance of Pymongo with app object to connect to MongoDB
 mongo = PyMongo(app)
-mongo.db.recipes.create_index([("title", "text"), ("dish_type", "text"),
-                               ("level", "text"), ("directions", "text"),
-                               ("allergens", "text"), ("ingredients.ingredient", "text"),
-                               ("origin", "text")])
-mongo.db.reviews.create_index([
-                             ("review_title", "text"), ("review_for", "text"),
-                             ("rating", "text"), ("comment", "text")])
+# mongo.db.recipes.create_index([("title", "text"), ("dish_type", "text"),
+#                                ("level", "text"), ("directions", "text"),
+#                                ("allergens", "text"), ("ingredients.ingredient", "text"),
+#                                ("origin", "text")])
+# mongo.db.reviews.create_index([
+#                              ("review_title", "text"), ("review_for", "text"),
+#                              ("rating", "text"), ("comment", "text")])
 
 # fetching top rated recipes
 # top_reviewed_recipes = mongo.db.reviews.find({ "rating": "5"})
