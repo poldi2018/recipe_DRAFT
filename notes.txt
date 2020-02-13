@@ -69,20 +69,24 @@ testing
 TIMEFRAME:
 
 WED12:
-Anthony: schema, mockup, link
+
 styles
 search dialogs
 
 THU13:
+Anthony: schema, mockup, link
 upload to production
+
+FRI14:
 2nd call
+mobile 2nd part
 documentations
 testing
 
-FRI14:
-mobile 2nd part
-3rd call
+SAT15:
 last changes
+3rd call
+
 
 ####
 Referenced Data of
@@ -245,3 +249,56 @@ ADDITIONAL COMMANDS:
 
 <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
     <link rel="icon" href="favicon.png" type="image/x-icon">
+
+
+
+
+
+    <ul id="menulistMobile">
+            <li id="menulistMobileShowBtn">
+                <i class="material-icons">menu</i>
+            </li>
+            <li>
+                <img class="logo_small" src="{{url_for('static', filename='images/logo_small.jpeg')}}"
+                    alt="logo_small"></a></li>
+            </li>
+        </ul>
+
+        <ul id="sideMobileMenu">
+            <li id="menulistMobileCloseBtn">
+                <i class="material-icons">menu</i>
+            </li>
+            <li class=""><a class="hyperlinks" href="{{url_for('latest_added')}}" class="brand-logo">
+                    <img id="logo_small" src="{{url_for('static', filename='images/logo_small.jpeg')}}"
+                        alt="logo_small"></a></li>
+            <li class="menulistitem"><a class="hyperlinks" href="{{url_for('add_recipe')}}">Add A Recipe</a></li>
+            <li class="menulistitem"><a class="hyperlinks" href="{{url_for('reviews_today')}}">Today's Top Reviews</a>
+            </li>
+            <li class="menulistitem"><a class="hyperlinks" href="{{url_for('advanced_search')}}">Advanced Search</a>
+            </li>
+            <li class="menulistitem">
+                <form action="{{ url_for('results')}}" method="POST" class="col s12">
+                    <i class="material-icons">search</i>
+                    <input id="search" type="search" required>
+                    <label class="label-icon" for="search"></label>
+                </form>
+            </li>
+
+            {% if session["username"]=="" %}
+            <li class="menulistitem">
+                <a class="hyperlinks" href="{{url_for('login_page')}}">Login</a>
+            </li>
+            <li class="menulistitem">
+                <a class="hyperlinks" href="{{url_for('register')}}">Register</a>
+            </li>
+            {% endif %}
+
+            {% if session["username"]!="" %}
+            <li class="menulistitem">
+                <a class="hyperlinks" href="{{url_for('logout')}}">Logout</a>
+            </li>
+            <li class="menulistitem">
+                <a class="hyperlinks" href="{{url_for('home')}}">{{session["username"]}}'s Homepage</a>
+            </li>
+            {% endif %}
+        </ul>

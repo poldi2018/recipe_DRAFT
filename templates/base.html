@@ -48,7 +48,7 @@
                 <a class="hyperlinks" href="{{url_for('logout')}}">Logout</a>
             </li>
             <li class="menulistitem">
-                <a class="hyperlinks" href="{{url_for('home')}}">{{session["username"]}}'s Homepage</a>
+                <a class="hyperlinks" href="{{url_for('home')}}">{{session["username"]}}'s <i class="material-icons">home</i></a>
             </li>
             {% endif %}
         </ul>
@@ -110,7 +110,7 @@
             <div class="footerWrapper">
                 <div class="divider"></div>
                 <div class="created">Created by: Peer Naupold</div>
-                <div class="contact">Mail: peer.naupold(at)gmx.de</div>
+                <div class="contact">Mail: poldipeer(at)gmail.com</div>
                 <div class="github"><i class="material-icons">work</i><a href="https://github.com/poldi2018"
                         target="_blank">github.com/poldi2018</a></div>
             </div>
@@ -119,10 +119,6 @@
 
     {% block popups %}
     {% endblock %}
-
-
-
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>

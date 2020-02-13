@@ -429,6 +429,7 @@
 
     #directionsWrapper {
         display: flex;
+        align-items: center;
         height: 100%;
         width: 98%;
     }
@@ -518,7 +519,7 @@
     }
 
     #deletePopup {
-        width: 30vw;
+        width: 44vw;
         background-color: #E85A4F;
 
     }
