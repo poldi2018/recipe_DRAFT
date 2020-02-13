@@ -5,7 +5,7 @@ $(document).ready(function () {
 });
 
 // global variables
-var fieldcount = $(".ingredientContainer").length;
+var fieldcount = $(".outerIngredientContainer").length;
 
 function generate_ingredientfieldName() {
     var ingredientFieldname = "ingredient" + fieldcount;
@@ -19,11 +19,12 @@ function generate_amountfieldName() {
 
 $('.addIngredientField').on('touchstart click', function () {
     fieldcount++;
+    var ingredientFieldname = "ingredient" + fieldcount;
+    var amountFieldname = "amount" + fieldcount;
     $("#ingredientWrapper").append("<div class='outerIngredientContainer'><div class='amountContainer'><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='amount' name='amount' type='text' class='validate amounts' data-length='30'><label for='amount'>Amount</label></div></div><div class='ingredientContainer'><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='ingredient' name='ingredient' type='text' class='validate ingredients' data-length='30'><label for='ingredient'>Ingredient</label></div></div></div>");
-    $('#ingredient').attr('name', generate_ingredientfieldName()).attr('id', generate_ingredientfieldName());
-    $('#amount').attr('name', generate_amountfieldName()).attr('id', generate_amountfieldName());
+    $('#ingredient').attr('name', ingredientFieldname).attr('id', ingredientFieldname);
+    $('#amount').attr('name', amountFieldname).attr('id', amountFieldname);
 });
-
 
 $('.removeIngredientField').on('touchstart click', function () {
     if (fieldcount > 1) {
@@ -33,8 +34,6 @@ $('.removeIngredientField').on('touchstart click', function () {
         }, 400);
     }
 });
-
-
 //function for onchange event of file input field to convert selected file into base64
 function encodeImgtoBase64(element) {
     var file = element.files[0];
@@ -44,6 +43,32 @@ function encodeImgtoBase64(element) {
         $("#base64file").text(reader.result.split(',')[1]);
     };
     reader.readAsDataURL(file);
+}
+
+function calcTotalTime() {
+    var totalTime = parseInt($("#prepTime").val()) + parseInt($("#cookingTime").val());
+    if (totalTime) {
+        $("#totalTime").html(totalTime + " mins");
+    } else {
+        $("#totalTime").html(0 + " mins");
+    }
+}
+
+function makeIngredientsStrings() {
+    var amountsArray = $('.amounts').toArray();
+    var ingredientsArray = $('.ingredients').toArray();
+    var amounts = "",
+        ingredients = "";
+    var i = 0;
+    for (i = 0; i < amountsArray.length; i++) {
+        amounts = amounts + amountsArray[i].value + "#";
+    }
+    $('#amountsString').val(amounts);
+    i = 0;
+    for (i = 0; i < ingredientsArray.length; i++) {
+        ingredients = ingredients + ingredientsArray[i].value + "#";
+    }
+    $('#ingredientsString').val(ingredients);
 }
 
 function validateImageName(element) {
@@ -90,9 +115,7 @@ function fieldsTooLong() {
             return true;
         }
     }
-    if ($('#recipetitle').val().length > 30) {
-        return true;
-    } else if ($('#directions').val().length > 1000) {
+    if ($('#recipetitle').val().length > 30 || $('#directions').val().length > 1000) {
         return true;
     } else {
         return false;
@@ -199,48 +222,15 @@ $('#cancelReviewPopupBtn').on('touchstart click', function () {
     }, 400);
 });
 
-
-$('#deleteRecipeBtn').on('touchstart click', function () {
+$('#deleteRecipePopupBtn').on('touchstart click', function () {
     $('#deletePopup').css("transform", "translateX(0vw)");
     $('#deletePopup').css("opacity", "1.0");
 });
 
-$('#deleteRecipeCancelBtn').on('touchstart click', function () {
+$('#deleteRecipePopupCancelBtn').on('touchstart click', function () {
     $('#deletePopup').css("opacity", "0.0");
     setTimeout(function () {
         $('#deletePopup').css("transform", "translateX(-100vw)");
     }, 400);
 });
 
-
-
-
-function calcTotalTime() {
-    var totalTime = parseInt($("#prepTime").val()) + parseInt($("#cookingTime").val());
-    if (totalTime) {
-        $("#totalTime").html(totalTime + " mins");
-    } else {
-        $("#totalTime").html(0 + " mins");
-    }
-}
-
-function makeIngredientsStrings() {
-    var amountsArray = $('.amounts').toArray();
-    var ingredientsArray = $('.ingredients').toArray();
-    var amounts = "",
-        ingredients = "";
-    var i = 0;
-    for (i = 0; i < amountsArray.length; i++) {
-        amounts = amounts + amountsArray[i].value + "#";
-    }
-    $('#amountsString').val(amounts);
-    i = 0;
-    for (i = 0; i < ingredientsArray.length; i++) {
-        ingredients = ingredients + ingredientsArray[i].value + "#";
-    }
-    $('#ingredientsString').val(ingredients);
-}
-
-$('#sendButton').on('touchstart click', function () {
-    fieldvalidation();
-});

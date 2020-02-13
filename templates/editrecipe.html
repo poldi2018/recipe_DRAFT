@@ -140,7 +140,7 @@
                 </div>
 
                 <div class="statsWrapper">
-                    <div class="statsfield">Level:</div>
+                    <div class="levelStatsfield">Level:</div>
                     <div class="input-field statsfield">
                         <select id="level" name="level">
                             <option value="" disabled selected>Experience level:</option>
@@ -252,7 +252,7 @@
             </div>
         </div>
         <div class="buttonWrapper">
-            <div id="sendButton" onclick="fieldvalidation()" class="btn waves-effect waves-light">Update recipe</div>
+            <div onclick="fieldvalidation()" class="btn waves-effect waves-light">Update recipe</div>
             <div id="cancelAddEditRecipeBtn" class="btn waves-effect waves-light"><a href="{{url_for('read_recipe', recipe_id=recipe._id)}}">Cancel</a></div>
         </div>
     </div>

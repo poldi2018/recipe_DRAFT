@@ -30,7 +30,7 @@ mongo.db.reviews.create_index([
                              ("rating", "text"), ("comment", "text")])
 
 # fetching top rated recipes
-top_reviewed_recipes = mongo.db.reviews.find({ "rating": "5"})
+# top_reviewed_recipes = mongo.db.reviews.find({ "rating": "5"})
 
 
 def upload_image(base64file):

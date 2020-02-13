@@ -31,7 +31,7 @@ INDEX:
 LATEST-ADDED:
 - styles
 
-LOGOUT, LOGIN, REGISTER:
+LOGIN, REGISTER:
 - styles
 - field validation and 2nd pw field registration
 
