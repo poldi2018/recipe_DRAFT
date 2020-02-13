@@ -89,6 +89,9 @@
     }
 
     .headline {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin: {
             top: 10px;
             bottom: 20px;
@@ -640,6 +643,14 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    #loginWrapper , #registerWrapper{
+        width: 40vw;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
     }
 }
 
