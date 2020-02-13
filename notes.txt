@@ -20,7 +20,7 @@ ADVSEARCH-RESULTS:
 - recipe tiles
 
 BASE:
-- styles ??
+- styles DONE
 
 EDIT:
 - styles DONE
@@ -32,8 +32,8 @@ LATEST-ADDED:
 - styles
 
 LOGIN, REGISTER:
-- styles
-- field validation and 2nd pw field registration
+- styles DONE
+- field validation and 2nd pw field registration DONE
 
 READ:
 - styles DONE
@@ -182,6 +182,7 @@ ACKNOWLEDGEMENT:
 - tutsmake for converting image into base64  and using the FileReader Object
   "https://www.tutsmake.com/convert-image-to-base64-string-jquery/"
 - mongoDB documentation for additional information on CRUD operations and indexing.
+-email validator w3 resources
 
 
 CURRENT ISSUES, FUTURE FEATURES:

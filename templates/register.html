@@ -13,7 +13,7 @@
     </div>
 
     <div class="row">
-        <form action="{{ url_for('insert_user') }}" method="POST" class="col s12" id="testform">
+        <form action="{{ url_for('insert_user') }}" method="POST" class="col s12" id="registrationForm">
             <div class="row">
                 <div class="input-field col s12 testdiv">
                     <i class="material-icons prefix">playlist_add</i>
@@ -34,14 +34,24 @@
                     <input id="password" name="password" type="text" class="validate" value="">
                     <label for="email_address">Password</label>
                 </div>
-                <div class="div">2nd PW FIELD!!</div>
+                <div class="input-field col s12 testdiv">
+                    <i class="material-icons prefix">playlist_add</i>
+                    <input id="password2" name="password" type="text" class="validate" value="">
+                    <label for="email_address">Password</label>
+                </div>
             </div>
-            <div class="row">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Send
-                    <i class="material-icons right">playlist</i>
-                </button>
+            <div class="buttonWrapper">
+                <div class="btn waves-effect waves-light" id="registrationFormSendBtn"
+                    onclick="checkRegistrationForm()">Register!</div>
             </div>
         </form>
+    </div>
+</div>
+<div id="popupCheckForValidFields">
+    <div id="resultCheckForValidFields"></div>
+    <div class="buttonWrapperPopup">
+        <div id="closeCheckForValidFieldsBtn" class="btn waves-effect waves-light"
+            onclick="closeCheckForValidFieldsPopup()">Close</div>
     </div>
 </div>
 {% endblock %}

@@ -40,10 +40,10 @@ function calcTotalTime() {
     var totalTime = parseInt($("#prepTime").val()) + parseInt($("#cookingTime").val());
     if (totalTime) {
         if (totalTime < 60) {
-        $("#totalTime").html(0 + " hrs " + totalTime + " mins");
+            $("#totalTime").html(0 + " hrs " + totalTime + " mins");
         }
         if (totalTime >= 60)
-        $("#totalTime").html(parseInt(totalTime/60) + " hrs " + totalTime%60 + " mins");
+            $("#totalTime").html(parseInt(totalTime / 60) + " hrs " + totalTime % 60 + " mins");
     } else {
         $("#totalTime").html(0 + " mins");
     }
@@ -160,7 +160,7 @@ function popupCheckForValidFields() {
     $('#popupCheckForValidFields').css("opacity", "1.0");
 }
 
-function closeCheckForValidFieldsPopup(){
+function closeCheckForValidFieldsPopup() {
     $('#popupCheckForValidFields').css("opacity", "0.0");
     setTimeout(function () {
         $('#resultCheckForValidFields').html("");
@@ -243,3 +243,20 @@ function cancelDeleteRecipe() {
 }
 //$('#deleteRecipePopupCancelBtn').on('touchstart click', function () {   
 //});
+
+function checkRegistrationForm() {
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    var emailToCheck=$('#email_address').val();
+    if ($('#username').val() == "" || $('#email_address').val() == "" || $('#password').val() == "" || $('#password2').val() == "") {
+        $('#resultCheckForValidFields').html("Please fill in all fields");
+        popupCheckForValidFields();
+    } else if (!$('#email_address').val().match(mailformat)) {
+        $('#resultCheckForValidFields').html("Please fill in a valid email address.");
+        popupCheckForValidFields();
+    } else if ($('#password').val() != $('#password2').val()) {
+        $('#resultCheckForValidFields').html("Passwords do not match.");
+        popupCheckForValidFields();
+    } else {
+        $('#registrationForm').submit();
+    }
+}
