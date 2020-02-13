@@ -1,3 +1,7 @@
+.dosisFont {
+  font-family: 'Dosis', sans-serif;
+}
+
 @media screen and (orientation: portrait) {
   header {
     background-color: #EAE7DC;
@@ -222,6 +226,9 @@
   .input-field {
     margin-top: 0;
   }
+  #recipetitle {
+    font-size: 1vw;
+  }
   .recipeHeader {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -269,6 +276,9 @@
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+  }
+  #readRecipeTitle .input-field {
+    width: 50%;
   }
   .recipeTitle {
     display: -webkit-box;
@@ -386,6 +396,9 @@
         flex-wrap: wrap;
     width: 33.03%;
     height: 100%;
+  }
+  .prepTime .input-field, .cookingTime .input-field {
+    margin-top: 8px;
   }
   #totalTime {
     height: 50%;
@@ -620,7 +633,7 @@
     width: 50vw;
   }
   #deletePopup {
-    width: 50vw;
+    width: 30vw;
     background-color: #E85A4F;
   }
   #popupCheckForValidFields {
@@ -734,9 +747,11 @@
   #closeReviewsPopupBtn,
   #sendReviewPopupBtn,
   #cancelReviewPopupBtn,
-  #closeCheckForValidFieldsBtn {
+  #closeCheckForValidFieldsBtn,
+  #deleteRecipeConfirmBtn,
+  #deleteRecipePopupCancelBtn {
     width: 10vw;
-    height: 2vw;
+    border-radius: 10px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

@@ -2,20 +2,11 @@
 
 $(document).ready(function () {
     $('select').material_select();
+    calcTotalTime();
 });
 
 // global variables
 var fieldcount = $(".outerIngredientContainer").length;
-
-function generate_ingredientfieldName() {
-    var ingredientFieldname = "ingredient" + fieldcount;
-    return ingredientFieldname;
-}
-
-function generate_amountfieldName() {
-    var amountFieldname = "amount" + fieldcount;
-    return amountFieldname;
-}
 
 $('.addIngredientField').on('touchstart click', function () {
     fieldcount++;
@@ -48,7 +39,11 @@ function encodeImgtoBase64(element) {
 function calcTotalTime() {
     var totalTime = parseInt($("#prepTime").val()) + parseInt($("#cookingTime").val());
     if (totalTime) {
-        $("#totalTime").html(totalTime + " mins");
+        if (totalTime < 60) {
+        $("#totalTime").html(0 + " hrs " + totalTime + " mins");
+        }
+        if (totalTime >= 60)
+        $("#totalTime").html(parseInt(totalTime/60) + " hrs " + totalTime%60 + " mins");
     } else {
         $("#totalTime").html(0 + " mins");
     }
@@ -233,4 +228,3 @@ $('#deleteRecipePopupCancelBtn').on('touchstart click', function () {
         $('#deletePopup').css("transform", "translateX(-100vw)");
     }, 400);
 });
-

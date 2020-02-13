@@ -32,7 +32,6 @@ mongo = PyMongo(app)
 # fetching top rated recipes
 # top_reviewed_recipes = mongo.db.reviews.find({ "rating": "5"})
 
-
 def upload_image(base64file):
     response = requests.post(imgbb_upload_url, data={"image": base64file})
     url_img_src_json = response.json()
@@ -422,4 +421,4 @@ def insert_rating(recipe_id, recipe_title):
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT', 5000)),
-            debug=False)
+            debug=True)

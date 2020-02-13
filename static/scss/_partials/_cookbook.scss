@@ -192,6 +192,12 @@
         margin-top: 0;
     }
 
+
+    #recipetitle {
+        font-size: 1vw;
+    }
+    
+
     .recipeHeader {
         display: flex;
         justify-content: space-between;
@@ -222,6 +228,10 @@
         width: 50%;
         display: flex;
         justify-content: center;
+    }
+
+    #readRecipeTitle .input-field {
+        width: 50%;
     }
 
     .recipeTitle {
@@ -300,6 +310,10 @@
         flex-wrap: wrap;
         width: 33.03%;
         height: 100%;
+    }
+
+    .prepTime .input-field, .cookingTime .input-field {
+        margin-top: 8px;
     }
 
     #totalTime {
@@ -501,7 +515,7 @@
     }
 
     #deletePopup {
-        width: 50vw;
+        width: 30vw;
         background-color: #E85A4F;
 
     }
@@ -610,9 +624,12 @@
     #closeReviewsPopupBtn,
     #sendReviewPopupBtn,
     #cancelReviewPopupBtn,
-    #closeCheckForValidFieldsBtn {
+    #closeCheckForValidFieldsBtn,
+    #deleteRecipeConfirmBtn,
+    #deleteRecipePopupCancelBtn {
         width: 10vw;
-        height: 2vw;
+        border-radius: 10px;
+        // height: 2vw;
         display: flex;
         justify-content: center;
     }
