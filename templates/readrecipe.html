@@ -6,7 +6,7 @@
     <div class="recipeHeader">
         <div id="readRecipeTitle" class="recipeHeaderItem">{{recipe.title}}</div>
         <div id="dishType" class="recipeHeaderItem width25">{{recipe.dish_type}}</div>
-        <div id="showReviewsPopupBtn" class="recipeHeaderItem width25">
+        <div id="showReviewsPopupBtn" class="recipeHeaderItem width25" onclick="showReviewsPopup()">
             <div class="recipeButtonWrapper btn waves-effect waves-light">Reviews</div>
         </div>
     </div>
@@ -17,10 +17,10 @@
     <div class="recipeHeader">
         <div id="readRecipeTitle" class="recipeHeaderItem">{{recipe.title}}</div>
         <div id="dishType" class="recipeHeaderItem width16">{{recipe.dish_type}}</div>
-        <div id="showReviewsPopupBtn" class="recipeHeaderItem width16">
+        <div id="showReviewsPopupBtn" class="recipeHeaderItem width16" onclick="showReviewsPopup()">
             <div class="recipeButtonWrapper btn waves-effect waves-light">Reviews</div>
         </div>
-        <div id="showRatePopupBtn" class="recipeHeaderItem width16">
+        <div id="showRatePopupBtn" class="recipeHeaderItem width16" onclick="showRatePopup()">
             <div class="recipeButtonWrapper btn waves-effect waves-light">Rate!</div>
         </div>
     </div>
@@ -31,17 +31,17 @@
     <div class="recipeHeader">
         <div id="readRecipeTitle" class="recipeHeaderItem">{{recipe.title}}</div>
         <div id="dishType" class="recipeHeaderItem width10">{{recipe.dish_type}}</div>
-        <div id="showReviewsPopupBtn" class="recipeHeaderItem width10">
+        <div id="showReviewsPopupBtn" class="recipeHeaderItem width10" onclick="showReviewsPopup()">
             <div class="recipeButtonWrapper btn waves-effect waves-light">Reviews</div>
         </div>
-        <div id="showRatePopupBtn" class="recipeHeaderItem width10">
+        <div id="showRatePopupBtn" class="recipeHeaderItem width10" onclick="showRatePopup()">
             <div class="recipeButtonWrapper btn waves-effect waves-light">Rate!</div>
         </div>
         <div id="editRecipeBtn" class="recipeHeaderItem width10"><a
                 href="{{url_for('edit_recipe', recipe_id=recipe._id)}}">
                 <div class="recipeButtonWrapper btn waves-effect waves-light">Edit</div>
             </a></div>
-        <div id="deleteRecipePopupBtn" class="recipeHeaderItem width10">
+        <div id="deleteRecipePopupBtn" class="recipeHeaderItem width10" onclick="showdeleteRecipePopup()">
             <div class="recipeButtonWrapper btn waves-effect waves-light">Delete</div>
             </a>
         </div>
@@ -165,7 +165,7 @@
 
     </div>
     <div class="buttonWrapper">
-        <div id="closeReviewsPopupBtn" class="btn waves-effect waves-light">Close</div>
+        <div id="closeReviewsPopupBtn" class="btn waves-effect waves-light" onclick="closeReviewsPopup()">Close</div>
     </div>
 </div>
 
@@ -204,8 +204,8 @@
                     </div>
                 </div>
                 <div class="buttonWrapper">
-                    <div id="sendReviewPopupBtn" class="btn waves-effect waves-light">Save Review!</div>
-                    <div id="cancelReviewPopupBtn" class="btn waves-effect waves-light">Cancel</div>
+                    <div id="sendReviewPopupBtn" class="btn waves-effect waves-light" onclick="sendReview()">Save Review!</div>
+                    <div id="cancelReviewPopupBtn" class="btn waves-effect waves-light" onclick="cancelReview()">Cancel</div>
                 </div>
             </form>
         </div>
@@ -221,7 +221,7 @@
             <div id="deleteRecipeConfirmBtn" class="btn waves-effect waves-light">
                 <a href="{{url_for('delete_recipe', recipe_id=recipe._id)}}">Delete!</a>
             </div>
-            <div id="deleteRecipePopupCancelBtn" class="btn waves-effect waves-light">Cancel</div>
+            <div id="deleteRecipePopupCancelBtn" class="btn waves-effect waves-light" onclick="cancelDeleteRecipe()">Cancel</div>
         </div>
     </div>
 </div>
@@ -229,7 +229,7 @@
 <div id="popupCheckForValidFields">
     <div id="resultCheckForValidFields"></div>
     <div class="buttonWrapperPopup">
-        <div id="closeCheckForValidFieldsBtn" class="btn waves-effect waves-light">Close</div>
+        <div id="closeCheckForValidFieldsBtn" class="btn waves-effect waves-light" onclick="closeCheckForValidFieldsPopup()">Close</div>
     </div>
 </div>
 {% endblock %}

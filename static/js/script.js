@@ -160,33 +160,40 @@ function popupCheckForValidFields() {
     $('#popupCheckForValidFields').css("opacity", "1.0");
 }
 
-$('#closeCheckForValidFieldsBtn').on('touchstart click', function () {
+function closeCheckForValidFieldsPopup(){
     $('#popupCheckForValidFields').css("opacity", "0.0");
     setTimeout(function () {
         $('#resultCheckForValidFields').html("");
         $('#popupCheckForValidFields').css("transform", "translateX(-100vw)");
     }, 400);
+}
+//$('#closeCheckForValidFieldsBtn').on('touchstart click', function () {
+//});
 
-});
-
-$('#showReviewsPopupBtn').on('touchstart click', function () {
+function showReviewsPopup() {
     $('#reviewsPopup').css("transform", "translateX(0vw)");
     $('#reviewsPopup').css("opacity", "1.0");
-});
+}
+//$('#showReviewsPopupBtn').on('touchstart click', function () {   
+//});
 
-$('#closeReviewsPopupBtn').on('touchstart click', function () {
+function closeReviewsPopup() {
     $('#reviewsPopup').css("opacity", "0.0");
     setTimeout(function () {
         $('#reviewsPopup').css("transform", "translateX(-100vw)");
     }, 400);
-});
+}
+//$('#closeReviewsPopupBtn').on('touchstart click', function () {
+//});
 
-$('#showRatePopupBtn').on('touchstart click', function () {
+function showRatePopup() {
     $('#ratePopup').css("transform", "translateX(0vw)");
     $('#ratePopup').css("opacity", "1.0");
-});
+}
+//$('#showRatePopupBtn').on('touchstart click', function () {   
+//});
 
-$('#sendReviewPopupBtn').on('touchstart click', function () {
+function sendReview() {
     if ($('#review_title').val() == "") {
         $('#resultCheckForValidFields').html("Please give your review a title.");
         popupCheckForValidFields();
@@ -208,23 +215,31 @@ $('#sendReviewPopupBtn').on('touchstart click', function () {
         }, 400);
         $('#rateForm').submit();
     }
-});
+}
+//$('#sendReviewPopupBtn').on('touchstart click', function () {   
+//});
 
-$('#cancelReviewPopupBtn').on('touchstart click', function () {
+function cancelReview() {
     $('#ratePopup').css("opacity", "0.0");
     setTimeout(function () {
         $('#ratePopup').css("transform", "translateX(-100vw)");
     }, 400);
-});
+}
+//$('#cancelReviewPopupBtn').on('touchstart click', function () {    
+//});
 
-$('#deleteRecipePopupBtn').on('touchstart click', function () {
+function showdeleteRecipePopup() {
     $('#deletePopup').css("transform", "translateX(0vw)");
     $('#deletePopup').css("opacity", "1.0");
-});
+}
+//$('#deleteRecipePopupBtn').on('touchstart click', function () {    
+//});
 
-$('#deleteRecipePopupCancelBtn').on('touchstart click', function () {
+function cancelDeleteRecipe() {
     $('#deletePopup').css("opacity", "0.0");
     setTimeout(function () {
         $('#deletePopup').css("transform", "translateX(-100vw)");
     }, 400);
-});
+}
+//$('#deleteRecipePopupCancelBtn').on('touchstart click', function () {   
+//});
