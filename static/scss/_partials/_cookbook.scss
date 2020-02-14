@@ -92,18 +92,18 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
         margin: {
             top: 10px;
             bottom: 20px;
         }
 
-        text-align: center;
         width: 100%;
-        font-size: 2vw;
+        font-size: $headlineFontSize;
     }
 
     #menulistDesktop {
-        width: 90vw;
+        width: 86vw;
         height: 4vw;
         padding: 0;
         margin: 25px;
@@ -159,6 +159,7 @@
         -webkit-transition: color .6s ease-in-out;
         -o-transition: color .6s ease-in-out;
         transition: color .6s ease-in-out;
+        font-size: $menuheaderFont;
     }
 
     .menulistitem:hover .hyperlinks {
@@ -172,7 +173,12 @@
         flex-wrap: wrap;
         width: 80vw;
         transform: translateY(4vw);
-        margin-top: 60px;
+
+        margin: {
+            top: 60px;
+            bottom: 1vw;
+        }
+
         border-radius: 1vw;
     }
 
@@ -181,8 +187,7 @@
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-        font-size: .8vw;
-        margin-top: 2vw;
+        margin-top: 1vw;
     }
 
     .recipeWrapper .input-field {
@@ -197,15 +202,16 @@
 
 
     #recipetitle {
-        font-size: 1vw;
+        font-size: $recipeFontSize;
     }
-    
+
 
     .recipeHeader {
         display: flex;
         justify-content: space-between;
-        height: 3vw;
+        height: 5vw;
         width: 100%;
+        font-size: .9vw;
     }
 
     .recipeHeaderItem {
@@ -225,6 +231,7 @@
         align-items: center;
         width: 80%;
         height: 50%;
+        font-size: $recipeFontSize;
     }
 
     #readRecipeTitle {
@@ -256,7 +263,7 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-
+        width: 100%;
     }
 
     #innerStatsWrapper {
@@ -279,6 +286,10 @@
         width: 16.3%;
     }
 
+    .statsWrapper div {
+        font-size: $recipeFontSize;
+    }
+
     .statsfield {
         width: 100%;
         display: flex;
@@ -288,11 +299,15 @@
 
     .levelStatsfield {
         width: 100%;
+        margin-top: 10px;
         display: flex;
         justify-content: center;
         align-content: center;
     }
 
+    .levelstatsinput {
+        height: 30%;
+    }
 
     .outerTimesWrapper {
         width: 100%;
@@ -315,8 +330,19 @@
         height: 100%;
     }
 
-    .prepTime .input-field, .cookingTime .input-field {
+    .timesWrapper div {
+        font-size: $recipeFontSize;
+
+    }
+
+    .prepTime .input-field,
+    .cookingTime .input-field {
         margin-top: 8px;
+    }
+
+    #prepTime,
+    #cookingTime {
+        font-size: $recipeFontSize;
     }
 
     #totalTime {
@@ -339,12 +365,15 @@
         background-color: lightgrey;
         width: 24.7%;
         height: 11vw;
+
         margin: {
             top: 4px;
         }
+
         display: flex;
         justify-content: center;
         overflow: hidden;
+        font-size: $recipeFontSize;
     }
 
     #dishImage {
@@ -372,12 +401,28 @@
         border-radius: 10px;
     }
 
+    #outerInstructionsWrapper div,
+    #ingredientWrapper input {
+        font-size: $recipeFontSize;
+    }
+
     #outerIngredientsWrapper {
         width: 55%;
     }
 
     #outerDirectionsWrapper {
         width: 45%;
+    }
+
+    #ingredientsHeadline,
+    #directionsHeadline {
+        display: flex;
+        justify-content: center;
+
+        margin: {
+            top: 10px;
+            bottom: 10px;
+        }
     }
 
     .AddIngredientButtonWrapper {
@@ -387,8 +432,8 @@
 
     .addIngredientField,
     .removeIngredientField {
-        width: 37.5%;
-        margin-left: 76px;
+        width: 40%;
+        margin-left: 3.1vw;
         display: flex;
         justify-content: center;
     }
@@ -418,7 +463,8 @@
         width: 50%;
     }
 
-    .amountContainer .input-field, .ingredientContainer .input-field {
+    .amountContainer .input-field,
+    .ingredientContainer .input-field {
         width: 90%;
     }
 
@@ -438,14 +484,12 @@
         display: flex;
     }
 
-    #ingredientsHeadline,
-    #directionsHeadline {
-        display: flex;
-        justify-content: center;
-        margin: {
-            top: 10px;
-            bottom: 10px;
-        }
+
+
+    #directionsWrapper textarea {
+        margin: 0px;
+        height: 80%;
+        width: 95%;
     }
 
     .footerWrapper {
@@ -454,6 +498,7 @@
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
+
         margin: {
             top: 20px;
             bottom: 20px;
@@ -471,9 +516,9 @@
     .contact,
     .github {
         width: 25%;
-        height: 2.5vw;
+        height: 3vw;
         display: flex;
-        justify-content: space-evenly;
+        justify-content: center;
         align-items: center;
     }
 
@@ -495,6 +540,7 @@
         width: 30%;
         justify-content: center;
         margin: 10px;
+
         padding: {
             top: 10px;
             bottom: 10px;
@@ -536,7 +582,8 @@
 
     #reviewsPopup,
     #ratePopup,
-    #popupCheckForValidFields, .reviewTile {
+    #popupCheckForValidFields,
+    .reviewTile {
         background-color: #D8C3A5;
     }
 
@@ -580,6 +627,7 @@
             top: 20px;
             bottom: 20px;
         }
+
         display: flex;
         justify-content: center;
         width: 80vw;
@@ -619,6 +667,8 @@
         margin: {
             left: 44px;
         }
+
+        font-size: $recipeFontSize;
     }
 
     .buttonWrapper a {
@@ -646,7 +696,8 @@
         align-items: center;
     }
 
-    #loginWrapper , #registerWrapper{
+    #loginWrapper,
+    #registerWrapper {
         width: 40vw;
         display: flex;
         flex-wrap: wrap;

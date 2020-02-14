@@ -45,7 +45,7 @@ function calcTotalTime() {
         if (totalTime >= 60)
             $("#totalTime").html(parseInt(totalTime / 60) + " hrs " + totalTime % 60 + " mins");
     } else {
-        $("#totalTime").html(0 + " mins");
+        $("#totalTime").html("-");
     }
 }
 

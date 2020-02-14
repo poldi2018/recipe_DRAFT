@@ -189,7 +189,8 @@ def home():
 @app.route('/logout')
 def logout():
     logout_user(session)
-    return redirect(url_for('latest_added'))
+    message = "You have been logged out."
+    return render_template("loginpage.html", message=message)
 
 
 @app.route('/reviews_today')
