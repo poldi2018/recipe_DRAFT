@@ -261,7 +261,7 @@ def insert_recipe():
     now = datetime.datetime.now().strftime("%H:%M:%S")
     ingredients = make_ingredient_list(request.form.get("amounts_string"),
                                        request.form.get("ingredients_string"))
-    recipes.insert_one(
+    recipe_id = recipes.insert_one(
         {
             "title": request.form.get('recipe_title'),
             "dish_type": request.form.get('dish_type'),
@@ -283,10 +283,11 @@ def insert_recipe():
             "ingredients": ingredients,
             "country_name": request.form.get("origin"),
             "origin": build_origin_filepath(request.form.get("origin")),
-            "img_src": url_img_src
+            "img_src": url_img_src,
+            "rated_by_users": []
         }
-    )
-    return redirect(url_for('latest_added'))
+    ).inserted_id
+    return redirect(url_for('read_recipe', recipe_id=recipe_id))
 
 # Read recipe
 
@@ -354,7 +355,7 @@ def update_recipe(recipe_id):
             }
         }
     )
-    return redirect(url_for('latest_added'))
+    return redirect(url_for('read_recipe', recipe_id=recipe_id))
 
 # Delete recipe in database CHECKED
 

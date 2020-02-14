@@ -27,7 +27,7 @@ LATEST-ADDED:
 
 LOGIN, REGISTER:
 - styles DONE
-- field validation and 2nd pw field registration DONE
+- field validation and registration DONE
 
 READ:
 - styles DONE
@@ -81,9 +81,7 @@ documentations
 testing
 
 TIMEFRAME:
-
 WED12:
-
 styles
 search dialogs
 

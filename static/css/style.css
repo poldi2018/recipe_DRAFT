@@ -746,6 +746,10 @@
   .menulistitem:hover .hyperlinks {
     color: red;
   }
+  .hyperlinks i {
+    font-size: 1.5vw;
+    color: #3399ff;
+  }
   #baseWrapper {
     border: 2px solid grey;
     -ms-flex-wrap: wrap;
