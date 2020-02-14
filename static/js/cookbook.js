@@ -264,6 +264,9 @@ function checkRegistrationForm() {
     if ($('#username').val() == "" || $('#email_address').val() == "" || $('#password').val() == "" || $('#password2').val() == "") {
         $('#resultCheckForValidFields').html("Please fill in all fields");
         popupCheckForValidFields();
+    } else if ($('#username').val().length > 20) {
+        $('#resultCheckForValidFields').html("Please allow username length of 20 character max.");
+        popupCheckForValidFields();
     } else if (!$('#email_address').val().match(mailformat)) {
         $('#resultCheckForValidFields').html("Please fill in a valid email address.");
         popupCheckForValidFields();

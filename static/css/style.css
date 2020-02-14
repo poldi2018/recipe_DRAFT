@@ -525,7 +525,8 @@
     margin-top: 10px;
     margin-bottom: 20px;
   }
-  .buttonWrapperPopup div, .buttonWrapper div {
+  .buttonWrapperPopup div,
+  .buttonWrapper div {
     font-size: 0.9vw;
   }
   #resultCheckForValidFields {
@@ -861,6 +862,7 @@
   .directionsLabel {
     width: 100%;
     margin-top: 5px;
+    margin-bottom: 10px;
   }
   #dishImageWrapper {
     border: 2px solid none;
@@ -986,6 +988,7 @@
   .github {
     width: 25%;
     height: 3vw;
+    font-size: 0.9vw;
   }
   a i {
     color: black;

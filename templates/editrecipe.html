@@ -175,22 +175,24 @@
 
                 <div class="outerTimesWrapper">
                     <div class="timesWrapper">
-                        <div class="directionsLabel">Prep Time [mins]:</div>
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">playlist_add</i>
-                                <input id="prepTime" name="prep_time" type="text" class="validate"
+                        <div class="directionsLabel">
+                            Prep Time [mins]:                         
+                        </div>
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">playlist_add</i>
+                            <input id="prepTime" name="prep_time" type="text" class="validate"
                                     onchange="calcTotalTimeInputField()" value="{{recipe.prep_time}}">                              
-                            </div>
+                        </div>
                     </div>
                     <div class="timesWrapper">
-                        <div class="directionsLabel">Cooking Time [mins]:</div>
-                        
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">playlist_add</i>
-                                <input id="cookingTime" name="cooking_time" type="text" class="validate"
-                                    onchange="calcTotalTimeInputField()" value="{{recipe.cooking_time}}">
-                            </div>
-                        
+                        <div class="directionsLabel">
+                            Cooking Time [mins]:
+                        </div>   
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">playlist_add</i>
+                            <input id="cookingTime" name="cooking_time" type="text" class="validate"
+                                onchange="calcTotalTimeInputField()" value="{{recipe.cooking_time}}">
+                        </div>                       
                     </div>
                     <div class="timesWrapper">
                         <div class="directionsLabel">Total Time:</div>

@@ -16,32 +16,48 @@
             <div class="row">
                 <div class="input-field">
                     <i class="material-icons prefix">playlist_add</i>
+                    {% if form %}
+                    <input id="username" name="username" type="text" class="validate" value="{{form.get('username')}}">
+                    {% else %}
                     <input id="username" name="username" type="text" class="validate" value="">
+                    {% endif %}
                     <label for="username">Your username</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field">
                     <i class="material-icons prefix">playlist_add</i>
+                    {% if form %}
+                    <input id="email_address" name="email_address" type="text" class="validate" value="{{form.get('email_address')}}">
+                    {% else %}
                     <input id="email_address" name="email_address" type="text" class="validate" value="">
+                    {% endif %}
                     <label for="email_address">Email Address</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field">
                     <i class="material-icons prefix">playlist_add</i>
-                    <input id="password" name="password" type="text" class="validate" value="">
+                    {% if form %}
+                    <input id="password" name="password" type="password" class="validate" value="{{form.get('password')}}">
+                    {% else %}
+                    <input id="password" name="password" type="password" class="validate" value="">
+                    {% endif %}
                     <label for="email_address">Password</label>
                 </div>
                 <div class="input-field">
                     <i class="material-icons prefix">playlist_add</i>
-                    <input id="password2" name="password" type="text" class="validate" value="">
+                    {% if form %}
+                    <input id="password2" name="password2" type="password" class="validate" value="{{form.get('password2')}}">
+                    {% else %}
+                    <input id="password2" name="password2" type="password" class="validate" value="">
+                    {% endif %}
                     <label for="email_address">Password</label>
                 </div>
             </div>
             <div class="buttonWrapper">
                 <div class="btn waves-effect waves-light" id="registrationFormSendBtn"
-                    onclick="checkRegistrationForm()">Register!</div>
+                    onclick="checkRegistrationForm()">Register me!</div>
             </div>
         </form>
     </div>

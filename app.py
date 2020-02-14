@@ -29,8 +29,6 @@ mongo = PyMongo(app)
 #                              ("review_title", "text"), ("review_for", "text"),
 #                              ("rating", "text"), ("comment", "text")])
 
-# fetching top rated recipes
-# top_reviewed_recipes = mongo.db.reviews.find({ "rating": "5"})
 
 def upload_image(base64file):
     response = requests.post(imgbb_upload_url, data={"image": base64file})
@@ -124,16 +122,16 @@ def insert_user():
     elif user_email_to_check:
         message = "Provided email has already been registered. \
         Please choose a different one."
-        return render_template('register.html', message=message)
+        return render_template('register.html', message=message, form=request.form)
 
     elif username_to_check:
         message = "Provided username has already been registered. \
         Please choose a different one."
-        return render_template('register.html', message=message)
+        return render_template('register.html', message=message, form=request.form)
 
     elif user_email_to_check and username_to_check:
         message = "Provided email and username already have been registered."
-        return render_template('register.html', message=message)
+        return render_template('register.html', message=message, form=request.form)
 
 # login page CHECKED
 

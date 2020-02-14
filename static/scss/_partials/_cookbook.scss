@@ -580,7 +580,8 @@
         }
     }
 
-    .buttonWrapperPopup div, .buttonWrapper div {
+    .buttonWrapperPopup div,
+    .buttonWrapper div {
         font-size: $recipeFontSize;
     }
 
@@ -951,7 +952,11 @@
 
     .directionsLabel {
         width: 100%;
-        margin-top: 5px;
+
+        margin: {
+            top: 5px;
+            bottom: 10px;
+        }
     }
 
     #dishImageWrapper {
@@ -1090,6 +1095,7 @@
     .github {
         width: 25%;
         height: 3vw;
+        font-size: $recipeFontSize;
     }
 
     a i {
