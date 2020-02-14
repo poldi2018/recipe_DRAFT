@@ -106,7 +106,6 @@ Key db identifier
 Datatype
 
 
-
 collection ‘recipes’:
 {
 "_id": <ObjectId>,
@@ -165,22 +164,28 @@ ingredient: <string>
 drop down menu dish_type options:
 
 STARTERS
-soup
-salads
-fingerfood
-
-DESSERTS
-cake
-dessert
-fruits
-ice
+Soup
+Salad
+Fingerfood
 
 MAIN COURSE
-chicken
-fish
-game
-meat
-vegetarian
+Chicken
+Fish
+Game
+Meet
+Vegetarian
+
+DESSERTS
+Cake
+Dessert
+Fruit
+Ice
+
+DRINKS
+Juice
+Shake
+Cocktail
+
 
 FEATURES:
 - Creation of recipes and ratings are bound to user acounts, edit and delete only available to author.

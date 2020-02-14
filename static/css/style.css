@@ -290,16 +290,9 @@
   .timesWrapper div {
     font-size: 0.9vw;
   }
-  .prepTime .input-field,
-  .cookingTime .input-field {
-    margin-top: 8px;
-  }
   #prepTime,
   #cookingTime {
     font-size: 0.9vw;
-  }
-  #totalTime {
-    height: 50%;
   }
   .directionsLabel {
     width: 100%;
@@ -861,16 +854,9 @@
   .timesWrapper div {
     font-size: 0.9vw;
   }
-  .prepTime .input-field,
-  .cookingTime .input-field {
-    margin-top: 8px;
-  }
   #prepTime,
   #cookingTime {
     font-size: 0.9vw;
-  }
-  #totalTime {
-    height: 50%;
   }
   .directionsLabel {
     width: 100%;

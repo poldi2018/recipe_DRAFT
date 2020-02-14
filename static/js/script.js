@@ -2,7 +2,8 @@
 
 $(document).ready(function () {
     $('select').material_select();
-    calcTotalTime();
+    calcTotalTimeDiv();
+    calcTotalTimeInputField();
 });
 
 // global variables
@@ -36,7 +37,7 @@ function encodeImgtoBase64(element) {
     reader.readAsDataURL(file);
 }
 
-function calcTotalTime() {
+function calcTotalTimeInputField() {
     var totalTime = parseInt($("#prepTime").val()) + parseInt($("#cookingTime").val());
     if (totalTime) {
         if (totalTime < 60) {
@@ -46,6 +47,19 @@ function calcTotalTime() {
             $("#totalTime").html(parseInt(totalTime / 60) + " hrs " + totalTime % 60 + " mins");
     } else {
         $("#totalTime").html("-");
+    }
+}
+
+function calcTotalTimeDiv() {
+    var totalTime = parseInt($("#prepTimeDiv").html()) + parseInt($("#cookingTimeDiv").html());
+    if (totalTime) {
+        if (totalTime < 60) {
+            $("#totalTimeDiv").html(0 + " hrs " + totalTime + " mins");
+        }
+        if (totalTime >= 60)
+            $("#totalTimeDiv").html(parseInt(totalTime / 60) + " hrs " + totalTime % 60 + " mins");
+    } else {
+        $("#totalTimeDiv").html("-");
     }
 }
 
@@ -263,5 +277,4 @@ function checkRegistrationForm() {
 
 function login() {
     $('#loginForm').submit();
-    
 }

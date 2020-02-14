@@ -103,29 +103,25 @@
                 <div class="outerTimesWrapper">
                     <div class="timesWrapper">
                         <div class="directionsLabel">Prep Time [mins]:</div>
-                        <div class="prepTime">
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">playlist_add</i>
                                 <input id="prepTime" name="prep_time" type="text" class="validate"
-                                    onchange="calcTotalTime()">
+                                    onchange="calcTotalTimeInputField()">
                                 <label for="prepTime">Preparation time</label>
                             </div>
-                        </div>
                     </div>
                     <div class="timesWrapper">
                         <div class="directionsLabel">Cooking Time [mins]:</div>
-                        <div class="cookingTime">
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">playlist_add</i>
                                 <input id="cookingTime" name="cooking_time" type="text" class="validate"
-                                    onchange="calcTotalTime()">
+                                    onchange="calcTotalTimeInputField()">
                                 <label for="cookingTime">Cooking time</label>
                             </div>
-                        </div>
                     </div>
                     <div class="timesWrapper">
                         <div class="directionsLabel">Total Time:</div>
-                        <div id="totalTime">0 mins</div>
+                        <div id="totalTime">-</div>
                     </div>
                 </div>
             </div>

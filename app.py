@@ -276,8 +276,6 @@ def insert_recipe():
             "view_count": 0,
             "prep_time": int(request.form.get("prep_time")),
             "cooking_time": int(request.form.get("cooking_time")),
-            "total_time": int(request.form.get("prep_time")) +
-            int(request.form.get("cooking_time")),
             "directions": request.form.get("directions"),
             "allergens": request.form.get("allergens"),
             "ingredients": ingredients,
@@ -344,8 +342,6 @@ def update_recipe(recipe_id):
                 "level": request.form.get("level"),
                 "prep_time": int(request.form.get("prep_time")),
                 "cooking_time": int(request.form.get("cooking_time")),
-                "total_time": int(request.form.get("prep_time")) +
-                int(request.form.get("cooking_time")),
                 "directions": request.form.get("directions"),
                 "allergens": request.form.get("allergens"),
                 "ingredients": ingredients,
