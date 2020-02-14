@@ -3,81 +3,8 @@
 }
 
 @media screen and (orientation: portrait) {
-  header {
-    background-color: #EAE7DC;
-    position: fixed;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    border: 2px solid green;
-    border-radius: 1vw;
-    z-index: 99;
-    height: 5vw;
-  }
   body {
     background-color: #EAE7DC;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-  }
-  #menulistDesktop {
-    display: none;
-  }
-  #menulistMobile {
-    width: 80vw;
-    height: 5vw;
-    padding: 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
-  }
-  #menulistMobileShowBtn {
-    font-size: large;
-  }
-  #sideMobileMenu {
-    position: absolute;
-    left: -100vw;
-    width: 80vw;
-    height: 20vw;
-    padding: 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: space-evenly;
-        -ms-flex-pack: space-evenly;
-            justify-content: space-evenly;
-    -webkit-transform: translateX(50vw);
-            transform: translateX(50vw);
-    -webkit-transition: -webkit-transform;
-    transition: -webkit-transform;
-    transition: transform;
-    transition: transform, -webkit-transform;
-  }
-}
-
-@media screen and (orientation: landscape) {
-  body {
-    background-color: #EAE7DC;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
   }
   div a:hover,
   a:visited,
@@ -89,12 +16,6 @@
   header {
     background-color: #EAE7DC;
     position: fixed;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
     z-index: 99;
   }
   .width10 {
@@ -107,15 +28,6 @@
     width: 24.7%;
   }
   .headline {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
     margin-top: 10px;
     margin-bottom: 20px;
     width: 100%;
@@ -126,50 +38,128 @@
     height: 4vw;
     padding: 0;
     margin: 25px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: space-evenly;
-        -ms-flex-pack: space-evenly;
-            justify-content: space-evenly;
   }
   #menulistMobile,
   #sideMobileMenu {
     display: none;
   }
-  .logoMenuListItem .hyperlinks {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-  }
-  .logo_small {
-    width: 8vw;
-  }
+  body,
   .menulistitem,
-  .logoMenuListItem {
+  .logoMenuListItem,
+  .headline,
+  .recipeWrapper,
+  .recipeHeaderItem,
+  .recipeButtonWrapper,
+  #readRecipeTitle,
+  .recipeTitle,
+  #editRecipeBtn a,
+  .statsfield,
+  .levelStatsfield,
+  .timesWrapper,
+  .directionsLabel,
+  .statsWrapper,
+  .directionsLabel,
+  #dishImageWrapper,
+  #ingredientsHeadline,
+  #directionsHeadline,
+  .addIngredientField,
+  .removeIngredientField,
+  #ingredientWrapper,
+  .footerWrapper,
+  .created,
+  .contact,
+  .github,
+  .reviewTile,
+  .reviewKey,
+  .reviewValue,
+  #reviewsPopup,
+  #ratePopup,
+  #deletePopup,
+  #popupCheckForValidFields,
+  #reviewsWrapper,
+  #rateWrapper,
+  .outerReviewsWrapper,
+  .outerRecipesWrapper,
+  .innerReviewsWrapper,
+  .innerRecipesWrapper,
+  .reviewContainer,
+  .rateContainer,
+  .buttonWrapper,
+  .buttonWrapperPopup,
+  #closeReviewsPopupBtn,
+  #sendReviewPopupBtn,
+  #cancelReviewPopupBtn,
+  #closeCheckForValidFieldsBtn,
+  #deleteRecipeConfirmBtn,
+  #deleteRecipePopupCancelBtn,
+  .wrapperLogoBig {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    padding-left: 1vw;
-    padding-right: 1vw;
-    font-size: 1vw;
   }
-  .menulistitem form {
+  .logoMenuListItem .hyperlinks header,
+  .headline,
+  #menulistDesktop,
+  .menulistitem form,
+  .menulistitem .hyperlinks,
+  .recipeWrapper .input-field,
+  .recipeHeaderItem,
+  .recipeButtonWrapper,
+  #editRecipeBtn a,
+  .statsfield,
+  .outerTimesWrapper,
+  #totalTime,
+  .directionsLabel,
+  .directionsLabel,
+  .ingredientfield,
+  #directionsWrapper,
+  .footerWrapper,
+  .created,
+  .contact,
+  .github,
+  .wrapperLogoBig,
+  #loginWrapper,
+  #registerWrapper {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+  }
+  #menulistDesktop,
+  #baseWrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
+  #outerStatsWrapper,
+  #innerStatsWrapper,
+  .outerTimesWrapper,
+  .recipeHeader {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .logo_small {
+    width: 8vw;
+  }
+  .menulistitem,
+  .logoMenuListItem {
+    padding-left: 1vw;
+    padding-right: 1vw;
+    font-size: 1vw;
+  }
+  .menulistitem form {
     width: 20vw;
     height: 1.5vw;
     background-color: #EAE7DC;
@@ -180,12 +170,6 @@
     height: 80%;
   }
   .menulistitem .hyperlinks {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
     color: #8D8D8A;
     text-decoration: none;
     -webkit-transition: color .6s ease-in-out;
@@ -197,12 +181,6 @@
   }
   #baseWrapper {
     border: 2px solid grey;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: space-evenly;
-        -ms-flex-pack: space-evenly;
-            justify-content: space-evenly;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     width: 80vw;
@@ -214,23 +192,9 @@
   }
   .recipeWrapper {
     width: 75vw;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     margin-top: 1vw;
-  }
-  .recipeWrapper .input-field {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
   }
   .input-field {
     margin-top: 0;
@@ -239,12 +203,6 @@
     font-size: 0.9vw;
   }
   .recipeHeader {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
     height: 5vw;
     width: 100%;
     font-size: .9vw;
@@ -253,87 +211,36 @@
     border: 2px solid none;
     border-radius: 10px;
     background-color: lightgrey;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
   }
   .recipeButtonWrapper {
     border-radius: 10px;
     padding-top: 2px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
     width: 80%;
     height: 50%;
     font-size: 0.9vw;
   }
   #readRecipeTitle {
     width: 50%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
   }
   #readRecipeTitle .input-field {
     width: 50%;
   }
   .recipeTitle {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
     width: 100%;
     font-size: 2vw;
   }
   #editRecipeBtn a {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
     width: 80%;
     height: 100%;
   }
   #outerStatsWrapper {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
     width: 100%;
   }
   #innerStatsWrapper {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
     width: 75%;
     height: 11vw;
     margin-top: 4px;
@@ -342,12 +249,6 @@
     border: 2px solid none;
     border-radius: 10px;
     background-color: lightgrey;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
     -ms-flex-line-pack: center;
         align-content: center;
     -ms-flex-wrap: wrap;
@@ -359,25 +260,10 @@
   }
   .statsfield {
     width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
   }
   .levelStatsfield {
     width: 100%;
     margin-top: 10px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
     -ms-flex-line-pack: center;
         align-content: center;
   }
@@ -386,15 +272,6 @@
   }
   .outerTimesWrapper {
     width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     margin-top: 4px;
@@ -403,12 +280,6 @@
     border: 2px solid none;
     border-radius: 10px;
     background-color: lightgrey;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
     -ms-flex-line-pack: center;
         align-content: center;
     -ms-flex-wrap: wrap;
@@ -429,41 +300,20 @@
   }
   #totalTime {
     height: 50%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
   }
   .directionsLabel {
     width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
     margin-top: 5px;
   }
   #dishImageWrapper {
     border: 2px solid none;
     border-radius: 10px;
+    overflow: hidden;
+    font-size: 0.9vw;
     background-color: lightgrey;
     width: 24.7%;
     height: 11vw;
     margin-top: 4px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    overflow: hidden;
-    font-size: 0.9vw;
   }
   #dishImage {
     width: 100%;
@@ -502,12 +352,6 @@
   }
   #ingredientsHeadline,
   #directionsHeadline {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
     margin-top: 10px;
     margin-bottom: 10px;
   }
@@ -521,22 +365,10 @@
   .removeIngredientField {
     width: 40%;
     margin-left: 3.1vw;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
   }
   #ingredientWrapper {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
     width: 100%;
     padding-left: 20px;
   }
@@ -565,21 +397,7 @@
   .ingredientContainer .input-field {
     width: 90%;
   }
-  .ingredientfield {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-  }
   #directionsWrapper {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
     height: 100%;
     width: 98%;
   }
@@ -595,15 +413,6 @@
   }
   .footerWrapper {
     width: 75vw;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     margin-top: 20px;
@@ -620,15 +429,6 @@
   .github {
     width: 25%;
     height: 3vw;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
   }
   a i {
     color: black;
@@ -644,15 +444,9 @@
   .reviewTile {
     border: 2px solid grey;
     border-radius: 10px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     width: 30%;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
     margin: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -660,12 +454,6 @@
   .reviewKey,
   .reviewValue {
     width: 50%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
   }
   #reviewsPopup {
     width: 80vw;
@@ -679,6 +467,7 @@
   }
   #popupCheckForValidFields {
     z-index: 1000;
+    background-color: #E98074;
   }
   #reviewsPopup,
   #ratePopup,
@@ -687,7 +476,6 @@
   }
   #reviewsPopup,
   #ratePopup,
-  #popupCheckForValidFields,
   .reviewTile {
     background-color: #D8C3A5;
   }
@@ -703,60 +491,33 @@
             transform: translateX(-100vw);
     border: 2px white;
     border-radius: 10px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
     top: 7vw;
+    font-size: 0.9vw;
   }
   #reviewsWrapper,
   #rateWrapper {
     margin-top: 10px;
     margin-bottom: 10px;
     width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
   }
-  .outerReviewsWrapper {
+  .outerReviewsWrapper,
+  .outerRecipesWrapper {
     width: 80vw;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
   }
-  .innerReviewsWrapper {
+  .innerReviewsWrapper,
+  .innerRecipesWrapper {
     margin-top: 20px;
     margin-bottom: 20px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
     width: 80vw;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
   }
   .reviewContainer,
   .rateContainer {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     width: 100%;
@@ -767,15 +528,12 @@
   }
   .buttonWrapper,
   .buttonWrapperPopup {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
     width: 100%;
     margin-top: 10px;
     margin-bottom: 20px;
+  }
+  .buttonWrapperPopup div, .buttonWrapper div {
+    font-size: 0.9vw;
   }
   #resultCheckForValidFields {
     margin: 2vw;
@@ -795,37 +553,583 @@
   #deleteRecipePopupCancelBtn {
     width: 10vw;
     border-radius: 10px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
   }
   .wrapperLogoBig {
     width: 95vw;
     height: 95vh;
+  }
+  #loginWrapper,
+  #registerWrapper {
+    width: 50vw;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .loginform {
+    width: 100%;
+  }
+}
+
+@media screen and (orientation: landscape) {
+  body {
+    background-color: #EAE7DC;
+  }
+  div a:hover,
+  a:visited,
+  a:link,
+  a:active {
+    text-decoration: none;
+    color: #4495D4;
+  }
+  header {
+    background-color: #EAE7DC;
+    position: fixed;
+    z-index: 99;
+  }
+  .width10 {
+    width: 9.7%;
+  }
+  .width16 {
+    width: 16.43%;
+  }
+  .width25 {
+    width: 24.7%;
+  }
+  .headline {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    font-size: 2vw;
+  }
+  #menulistDesktop {
+    width: 86vw;
+    height: 4vw;
+    padding: 0;
+    margin: 25px;
+  }
+  #menulistMobile,
+  #sideMobileMenu {
+    display: none;
+  }
+  body,
+  .menulistitem,
+  .logoMenuListItem,
+  .headline,
+  .recipeWrapper,
+  .recipeHeaderItem,
+  .recipeButtonWrapper,
+  #readRecipeTitle,
+  .recipeTitle,
+  #editRecipeBtn a,
+  .statsfield,
+  .levelStatsfield,
+  .timesWrapper,
+  .directionsLabel,
+  .statsWrapper,
+  .directionsLabel,
+  #dishImageWrapper,
+  #ingredientsHeadline,
+  #directionsHeadline,
+  .addIngredientField,
+  .removeIngredientField,
+  #ingredientWrapper,
+  .footerWrapper,
+  .created,
+  .contact,
+  .github,
+  .reviewTile,
+  .reviewKey,
+  .reviewValue,
+  #reviewsPopup,
+  #ratePopup,
+  #deletePopup,
+  #popupCheckForValidFields,
+  #reviewsWrapper,
+  #rateWrapper,
+  .outerReviewsWrapper,
+  .outerRecipesWrapper,
+  .innerReviewsWrapper,
+  .innerRecipesWrapper,
+  .reviewContainer,
+  .rateContainer,
+  .buttonWrapper,
+  .buttonWrapperPopup,
+  #closeReviewsPopupBtn,
+  #sendReviewPopupBtn,
+  #cancelReviewPopupBtn,
+  #closeCheckForValidFieldsBtn,
+  #deleteRecipeConfirmBtn,
+  #deleteRecipePopupCancelBtn,
+  .wrapperLogoBig {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+  }
+  .logoMenuListItem .hyperlinks header,
+  .headline,
+  #menulistDesktop,
+  .menulistitem form,
+  .menulistitem .hyperlinks,
+  .recipeWrapper .input-field,
+  .recipeHeaderItem,
+  .recipeButtonWrapper,
+  #editRecipeBtn a,
+  .statsfield,
+  .outerTimesWrapper,
+  #totalTime,
+  .directionsLabel,
+  .directionsLabel,
+  .ingredientfield,
+  #directionsWrapper,
+  .footerWrapper,
+  .created,
+  .contact,
+  .github,
+  .wrapperLogoBig,
+  #loginWrapper,
+  #registerWrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
   }
-  #loginWrapper,
-  #registerWrapper {
-    width: 40vw;
+  #menulistDesktop,
+  #baseWrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
+  #outerStatsWrapper,
+  #innerStatsWrapper,
+  .outerTimesWrapper,
+  .recipeHeader {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .logo_small {
+    width: 8vw;
+  }
+  .menulistitem,
+  .logoMenuListItem {
+    padding-left: 1vw;
+    padding-right: 1vw;
+    font-size: 1vw;
+  }
+  .menulistitem form {
+    width: 20vw;
+    height: 1.5vw;
+    background-color: #EAE7DC;
+  }
+  #search_term {
+    background-color: transparent;
+    margin: 0;
+    height: 80%;
+  }
+  .menulistitem .hyperlinks {
+    color: #8D8D8A;
+    text-decoration: none;
+    -webkit-transition: color .6s ease-in-out;
+    transition: color .6s ease-in-out;
+    font-size: 1.3vw;
+  }
+  .menulistitem:hover .hyperlinks {
+    color: red;
+  }
+  #baseWrapper {
+    border: 2px solid grey;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    width: 80vw;
+    -webkit-transform: translateY(4vw);
+            transform: translateY(4vw);
+    margin-top: 60px;
+    margin-bottom: 1vw;
+    border-radius: 1vw;
+  }
+  .recipeWrapper {
+    width: 75vw;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    margin-top: 1vw;
+  }
+  .input-field {
+    margin-top: 0;
+  }
+  #recipetitle {
+    font-size: 0.9vw;
+  }
+  .recipeHeader {
+    height: 5vw;
+    width: 100%;
+    font-size: .9vw;
+  }
+  .recipeHeaderItem {
+    border: 2px solid none;
+    border-radius: 10px;
+    background-color: lightgrey;
+  }
+  .recipeButtonWrapper {
+    border-radius: 10px;
+    padding-top: 2px;
+    width: 80%;
+    height: 50%;
+    font-size: 0.9vw;
+  }
+  #readRecipeTitle {
+    width: 50%;
+  }
+  #readRecipeTitle .input-field {
+    width: 50%;
+  }
+  .recipeTitle {
+    width: 100%;
+    font-size: 2vw;
+  }
+  #editRecipeBtn a {
+    width: 80%;
+    height: 100%;
+  }
+  #outerStatsWrapper {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    width: 100%;
+  }
+  #innerStatsWrapper {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    width: 75%;
+    height: 11vw;
+    margin-top: 4px;
+  }
+  .statsWrapper {
+    border: 2px solid none;
+    border-radius: 10px;
+    background-color: lightgrey;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    width: 16.3%;
+  }
+  .statsWrapper div {
+    font-size: 0.9vw;
+  }
+  .statsfield {
+    width: 100%;
+  }
+  .levelStatsfield {
+    width: 100%;
+    margin-top: 10px;
+    -ms-flex-line-pack: center;
+        align-content: center;
+  }
+  .levelstatsinput {
+    height: 30%;
+  }
+  .outerTimesWrapper {
+    width: 100%;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    margin-top: 4px;
+  }
+  .timesWrapper {
+    border: 2px solid none;
+    border-radius: 10px;
+    background-color: lightgrey;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    width: 33.03%;
+    height: 100%;
+  }
+  .timesWrapper div {
+    font-size: 0.9vw;
+  }
+  .prepTime .input-field,
+  .cookingTime .input-field {
+    margin-top: 8px;
+  }
+  #prepTime,
+  #cookingTime {
+    font-size: 0.9vw;
+  }
+  #totalTime {
+    height: 50%;
+  }
+  .directionsLabel {
+    width: 100%;
+    margin-top: 5px;
+  }
+  #dishImageWrapper {
+    border: 2px solid none;
+    border-radius: 10px;
+    overflow: hidden;
+    font-size: 0.9vw;
+    background-color: lightgrey;
+    width: 24.7%;
+    height: 11vw;
+    margin-top: 4px;
+  }
+  #dishImage {
+    width: 100%;
+    height: 100%;
+  }
+  #originFlag {
+    position: absolute;
+    width: 3vw;
+    height: 1.68vw;
+    border: 2px solid black;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  #outerInstructionsWrapper {
+    width: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    margin-top: 4px;
+    margin-bottom: 2.5vw;
+    padding-bottom: 2vw;
+    background-color: lightgrey;
+    border-radius: 10px;
+  }
+  #outerInstructionsWrapper div,
+  #ingredientWrapper input {
+    font-size: 0.9vw;
+  }
+  #outerIngredientsWrapper {
+    width: 55%;
+  }
+  #outerDirectionsWrapper {
+    width: 45%;
+  }
+  #ingredientsHeadline,
+  #directionsHeadline {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .AddIngredientButtonWrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 25px;
+  }
+  .addIngredientField,
+  .removeIngredientField {
+    width: 40%;
+    margin-left: 3.1vw;
+  }
+  #ingredientWrapper {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    width: 100%;
+    padding-left: 20px;
+  }
+  .outerIngredientContainer {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    padding-left: 10px;
+  }
+  .amountContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 50%;
+  }
+  .ingredientContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 50%;
+  }
+  .amountContainer .input-field,
+  .ingredientContainer .input-field {
+    width: 90%;
+  }
+  #directionsWrapper {
+    height: 100%;
+    width: 98%;
+  }
+  #directions {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  #directionsWrapper textarea {
+    margin: 0px;
+    height: 80%;
+    width: 95%;
+  }
+  .footerWrapper {
+    width: 75vw;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .divider {
+    width: 100%;
+    height: 1px;
+    border: 1px solid grey;
+    border-radius: 1px;
+  }
+  .created,
+  .contact,
+  .github {
+    width: 25%;
+    height: 3vw;
+  }
+  a i {
+    color: black;
+  }
+  .recipeTile {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    width: 50%;
+  }
+  .reviewTile {
+    border: 2px solid grey;
+    border-radius: 10px;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    width: 30%;
+    margin: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .reviewKey,
+  .reviewValue {
+    width: 50%;
+  }
+  #reviewsPopup {
+    width: 80vw;
+  }
+  #ratePopup {
+    width: 50vw;
+  }
+  #deletePopup {
+    width: 44vw;
+    background-color: #E85A4F;
+  }
+  #popupCheckForValidFields {
+    z-index: 1000;
+    background-color: #E98074;
+  }
+  #reviewsPopup,
+  #ratePopup,
+  #deletePopup {
+    z-index: 500;
+  }
+  #reviewsPopup,
+  #ratePopup,
+  .reviewTile {
+    background-color: #D8C3A5;
+  }
+  #reviewsPopup,
+  #ratePopup,
+  #deletePopup,
+  #popupCheckForValidFields {
+    position: absolute;
+    opacity: 0.0;
+    -webkit-transition: opacity .5s ease-in-out;
+    transition: opacity .5s ease-in-out;
+    -webkit-transform: translateX(-100vw);
+            transform: translateX(-100vw);
+    border: 2px white;
+    border-radius: 10px;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    top: 7vw;
+    font-size: 0.9vw;
+  }
+  #reviewsWrapper,
+  #rateWrapper {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .outerReviewsWrapper,
+  .outerRecipesWrapper {
+    width: 80vw;
+  }
+  .innerReviewsWrapper,
+  .innerRecipesWrapper {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 80vw;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .reviewContainer,
+  .rateContainer {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    width: 100%;
+  }
+  .reviewlines,
+  .ratelines {
+    width: 100%;
+  }
+  .buttonWrapper,
+  .buttonWrapperPopup {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  .buttonWrapperPopup div {
+    font-size: 0.9vw;
+  }
+  #resultCheckForValidFields {
+    margin: 2vw;
+  }
+  .buttonWrapper div {
+    margin-left: 44px;
+    font-size: 0.9vw;
+  }
+  .buttonWrapper a {
+    color: white;
+  }
+  #closeReviewsPopupBtn,
+  #sendReviewPopupBtn,
+  #cancelReviewPopupBtn,
+  #closeCheckForValidFieldsBtn,
+  #deleteRecipeConfirmBtn,
+  #deleteRecipePopupCancelBtn {
+    width: 10vw;
+    border-radius: 10px;
+  }
+  .wrapperLogoBig {
+    width: 95vw;
+    height: 95vh;
+  }
+  #loginWrapper,
+  #registerWrapper {
+    width: 50vw;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
   }
 }
 /*# sourceMappingURL=style.css.map */

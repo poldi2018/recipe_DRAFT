@@ -10,17 +10,11 @@ ADD:
 - d3 for summary categories?
 - display document count based on category and on searchterm DONE
 
-ADD-RECIPE:
-- basic styles DONE
-
-ADVSEARCH:
-- form layout
-
-ADVSEARCH-RESULTS:
-- recipe tiles
-
 BASE:
 - styles DONE
+
+ADD-RECIPE:
+- basic styles DONE
 
 EDIT:
 - styles DONE
@@ -37,6 +31,12 @@ LOGIN, REGISTER:
 
 READ:
 - styles DONE
+
+ADVSEARCH:
+- form layout
+
+ADVSEARCH-RESULTS:
+- recipe tiles
 
 QUICKSEARCH RESULTS:
 - recipe tiles
@@ -55,6 +55,20 @@ RATE POPUP:
 
 DELETE-POPUP:
 - styles DONE
+
+USERPAGE:
+-  basic styles
+
+MOBILE VERSION:
+- styles
+
+///////////////////////////////
+
+ADVSEARCH:
+- form layout
+
+ADVSEARCH-RESULTS:
+- recipe tiles
 
 USERPAGE:
 -  basic styles
@@ -185,13 +199,19 @@ ACKNOWLEDGEMENT:
 
 - tutsmake for converting image into base64  and using the FileReader Object
   "https://www.tutsmake.com/convert-image-to-base64-string-jquery/"
-- mongoDB documentation for additional information on CRUD operations and indexing.
--email validator w3 resources
+- mongoDB documentation for additional information on CRUD operations and text indexing.
+-email format string taken from validator w3 resources, https://www.w3resource.com/javascript/form/email-validation.php
+- flags taken from https://flagpedia.net/download
+- stackoverflow has been used to check for certain commands. Afterwards I consulted Python.org referencce for further details.
+
+Beside from above mentioned acknowledgements NO other code has been copied. 
 
 
 CURRENT ISSUES, FUTURE FEATURES:
 - addressing an album in imgbb database was til now not possible. Passing a key-value pair like {“album”: “test”} inside the data dictionary did not succeed, nor throwed an error. 
 - check on collection file size to prevent exceeding 16MB
+- update countries.json with full country name to be able to search origin country's full name.
+
 
 
 COMPLIANCE
@@ -199,7 +219,7 @@ CSS
 HTML
 JShint ALMOST
 Jasmine
-PEP8
+PEP8 ALMOST
 test py code
 
 
@@ -247,58 +267,3 @@ Secure user authentication (e.g. via passwords) is not required for this particu
 ADDITIONAL COMMANDS:
 # user_to_query= mongo.db.users.find_one( { '$or': [{"email_address_hash": generate_password_hash(request.form.get('email_address'))}, {"username": request.form.get("username")}]})
 
-<link rel="shortcut icon" href="favicon.png" type="image/x-icon">
-    <link rel="icon" href="favicon.png" type="image/x-icon">
-
-
-
-
-
-    <ul id="menulistMobile">
-            <li id="menulistMobileShowBtn">
-                <i class="material-icons">menu</i>
-            </li>
-            <li>
-                <img class="logo_small" src="{{url_for('static', filename='images/logo_small.jpeg')}}"
-                    alt="logo_small"></a></li>
-            </li>
-        </ul>
-
-        <ul id="sideMobileMenu">
-            <li id="menulistMobileCloseBtn">
-                <i class="material-icons">menu</i>
-            </li>
-            <li class=""><a class="hyperlinks" href="{{url_for('latest_added')}}" class="brand-logo">
-                    <img id="logo_small" src="{{url_for('static', filename='images/logo_small.jpeg')}}"
-                        alt="logo_small"></a></li>
-            <li class="menulistitem"><a class="hyperlinks" href="{{url_for('add_recipe')}}">Add A Recipe</a></li>
-            <li class="menulistitem"><a class="hyperlinks" href="{{url_for('reviews_today')}}">Today's Top Reviews</a>
-            </li>
-            <li class="menulistitem"><a class="hyperlinks" href="{{url_for('advanced_search')}}">Advanced Search</a>
-            </li>
-            <li class="menulistitem">
-                <form action="{{ url_for('results')}}" method="POST" class="col s12">
-                    <i class="material-icons">search</i>
-                    <input id="search" type="search" required>
-                    <label class="label-icon" for="search"></label>
-                </form>
-            </li>
-
-            {% if session["username"]=="" %}
-            <li class="menulistitem">
-                <a class="hyperlinks" href="{{url_for('login_page')}}">Login</a>
-            </li>
-            <li class="menulistitem">
-                <a class="hyperlinks" href="{{url_for('register')}}">Register</a>
-            </li>
-            {% endif %}
-
-            {% if session["username"]!="" %}
-            <li class="menulistitem">
-                <a class="hyperlinks" href="{{url_for('logout')}}">Logout</a>
-            </li>
-            <li class="menulistitem">
-                <a class="hyperlinks" href="{{url_for('home')}}">{{session["username"]}}'s Homepage</a>
-            </li>
-            {% endif %}
-        </ul>

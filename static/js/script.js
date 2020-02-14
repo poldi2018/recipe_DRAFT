@@ -260,3 +260,8 @@ function checkRegistrationForm() {
         $('#registrationForm').submit();
     }
 }
+
+function login() {
+    $('#loginForm').submit();
+    
+}

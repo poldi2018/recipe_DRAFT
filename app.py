@@ -140,7 +140,7 @@ def insert_user():
 
 @app.route('/login_page')
 def login_page():
-    message = "Please login with your username and password. Thanks!"
+    message = "Please login with your account. Thanks!"
     return render_template("loginpage.html", message=message)
 
 # check on provided credentials CHECKED
@@ -218,8 +218,8 @@ def advanced_results():
     return render_template("advancedresults.html")
 
 
-@app.route('/results', methods=["POST"])
-def results():
+@app.route('/quick_results', methods=["POST"])
+def quick_results():
     recipes=mongo.db.recipes
     reviews=mongo.db.reviews
     search_term = request.form.get("search_term")
@@ -233,7 +233,7 @@ def results():
         recipes_count = recipes.count_documents({"$text": {"$search": search_term}})        
         reviews_by_searchterm = mongo.db.reviews.find({"$text": {"$search": search_term}})
         reviews_count = reviews.count_documents({"$text": {"$search": search_term}})
-    return render_template("results.html", recipes_by_searchterm=recipes_by_searchterm, reviews_by_searchterm=reviews_by_searchterm,
+    return render_template("quickresults.html", recipes_by_searchterm=recipes_by_searchterm, reviews_by_searchterm=reviews_by_searchterm,
                            search_term=search_term, recipes_count=recipes_count, reviews_count=reviews_count)
 
 

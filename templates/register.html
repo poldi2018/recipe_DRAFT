@@ -1,9 +1,8 @@
 {% extends 'base.html'%}
-
 {% block content %}
 <div id="registerWrapper">
     <div class="headline">
-        <h3>Register User</h3>
+        <h3>User Registration</h3>
     </div>
     <div class="headline">
         <h4>{{message}}</h4>
@@ -13,28 +12,28 @@
     </div>
 
     <div class="row">
-        <form action="{{ url_for('insert_user') }}" method="POST" class="col s12" id="registrationForm">
+        <form action="{{ url_for('insert_user') }}" method="POST" id="registrationForm">
             <div class="row">
-                <div class="input-field col s12 testdiv">
+                <div class="input-field">
                     <i class="material-icons prefix">playlist_add</i>
                     <input id="username" name="username" type="text" class="validate" value="">
                     <label for="username">Your username</label>
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s12 testdiv">
+                <div class="input-field">
                     <i class="material-icons prefix">playlist_add</i>
                     <input id="email_address" name="email_address" type="text" class="validate" value="">
                     <label for="email_address">Email Address</label>
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s12 testdiv">
+                <div class="input-field">
                     <i class="material-icons prefix">playlist_add</i>
                     <input id="password" name="password" type="text" class="validate" value="">
                     <label for="email_address">Password</label>
                 </div>
-                <div class="input-field col s12 testdiv">
+                <div class="input-field">
                     <i class="material-icons prefix">playlist_add</i>
                     <input id="password2" name="password" type="text" class="validate" value="">
                     <label for="email_address">Password</label>
