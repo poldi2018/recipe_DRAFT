@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template, redirect, request, url_for, \
-                  session, json
+                  session, json, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 import datetime
@@ -390,7 +390,7 @@ def insert_rating(recipe_id, recipe_title):
     today = datetime.datetime.now().strftime("%d. %B %Y")
     now = datetime.datetime.now().strftime("%H:%M:%S")
     reviews = mongo.db.reviews
-    reviews.insert_one(
+    review_id=reviews.insert_one(
         {
             "review_title": request.form.get('review_title'),
             "review_for": recipe_title,
@@ -402,10 +402,11 @@ def insert_rating(recipe_id, recipe_title):
             "rated_by": session['username'],
             "user_email_hash": session['email_address']
         }
-    )
-    # incrementing review counter and 
-    #recipe_to_rate= mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    #users_who_rated= [recipe_to_rate["rated_by"], session['username']]
+    ).inserted_id
+    if review_id:
+        flash("Your review has been saved and can be found back under recipe's reviews")
+    
+    # incrementing review counter and add user to the user list who reviewed
     recipes = mongo.db.recipes
     recipes.update_one(
         {"_id": ObjectId(recipe_id)},

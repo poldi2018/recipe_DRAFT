@@ -881,6 +881,10 @@
         font-size: 2vw;
     }
 
+    .select-wrapper input.select-dropdown {
+        font-size: $recipeFontSize;
+    }
+
     #editRecipeBtn a {
         width: 80%;
         height: 100%;
@@ -973,6 +977,8 @@
         }
     }
 
+    
+    
     #dishImage {
         width: 100%;
         height: 100%;
@@ -1076,6 +1082,7 @@
     #directionsWrapper {
         height: 100%;
         width: 98%;
+        margin-left: 10px;
     }
 
     #directions {
@@ -1136,6 +1143,20 @@
         }
     }
 
+    .recipeTile #dishImageWrapper {
+        border: 2px solid none;
+        border-radius: 10px;
+        overflow: hidden;
+        font-size: $recipeFontSize;
+        background-color: lightgrey;
+        width: 24.7%;
+        height: 11vw;
+
+        margin: {
+            top: 4px;
+        }
+    }
+
     .reviewKey,
     .reviewValue {
         width: 50%;
@@ -1160,7 +1181,7 @@
 
     }
 
-    #popupCheckForValidFields {
+    #popupCheckForValidFields, #flashesPopup {
         z-index: 1000;
         background-color: #E98074;
     }
@@ -1280,6 +1301,24 @@
     #registerWrapper {
         width: 50vw;
         flex-wrap: wrap;
+    }
+
+    #flashesPopup {
+        position: absolute;
+        //opacity: 0.0;
+        transition: opacity .5s ease-in-out;
+        transform: translateX(0vw);
+        border: 2px white;
+        border-radius: 10px;
+        flex-wrap: wrap;
+        top: 7vw;
+        font-size: $recipeFontSize;
+
+    }
+
+    .opacityRise {
+        opacity: 1.0;
+        transition: opacity .5s ease-in-out;
     }
 }
 

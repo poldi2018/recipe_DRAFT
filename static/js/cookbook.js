@@ -199,6 +199,15 @@ function closeCheckForValidFieldsPopup() {
 //$('#closeCheckForValidFieldsBtn').on('touchstart click', function () {
 //});
 
+function closeFlashesPopup() {
+    $('#flashesPopup').css("opacity", "0.0");
+    setTimeout(function () {
+        $('#resultCheckForValidFields').html("");
+        $('#flashesPopup').css("transform", "translateX(-100vw)");
+    }, 400);
+}
+
+
 function showReviewsPopup() {
     $('#reviewsPopup').css("transform", "translateX(0vw)");
     $('#reviewsPopup').css("opacity", "1.0");

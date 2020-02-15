@@ -3,7 +3,7 @@
 <div class="resultsWapper">
 
     {% if search_term=="" %}
-    <div class="row">
+    <div class="headline">
         <h3>Search results for all Recipes</h3>
     </div>
     {% else %}
@@ -18,8 +18,10 @@
                 <div class="recipeName">
                     <a href="{{url_for('read_recipe', recipe_id=recipe._id)}}">{{recipe.title}}</a>
                 </div>
-                <div class="recipeImg">
+                <div id="dishImageWrapper">
+                    <a href="{{url_for('read_recipe', recipe_id=recipe._id)}}">{{recipe.title}}
                     <img src="{{recipe.img_src}}" alt="picture_of_dish" />
+                </a>
                 </div>
                 <div class="recipeTileStats">
                     <div class="div">{{recipe.dish_type}}</div>
@@ -33,7 +35,7 @@
     </div>
 
 {% if search_term=="" %}
-<div class="row">
+<div class="headline">
     <h3>Search results for all Reviews</h3>
 </div>
 {% else %}

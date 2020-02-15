@@ -262,33 +262,9 @@ ADDITIONAL COMMANDS:
 
 
 
-<input id="{{allergens_check_field_id}}" type="checkbox" class="filled-in allergens" />
-                            <label for="{{allergens_check_field_id}}">Allergen?</label>
-                            
-
-
-                            {% set amount_field_id = "amount"+loop.index|string %}
-                    {% set ingredient_field_id = "ingredient"+loop.index|string %}
-                    {% set allergens_check_field_id = "allergensCheck"+loop.index|string %}
-                    
-
-
-                    {% if recipe.allergens %}
-                            
-
-                            {% for allergens in recipe.allergens%}
-                            {% if ingredient.ingredient == allergen %}
-                            <input id="{{allergens_check_field_id}}" type="checkbox" class="filled-in allergens" value="checked" checked />
-                            <label for="{{allergens_check_field_id}}">Checked?</label>  
-                           {% endfor%}
-                            {% else %}
-                            <input id="{{allergens_check_field_id}}" type="checkbox" class="filled-in allergens" />
-                            <label for="{{allergens_check_field_id}}">unchecked?</label>
-                            {% endif %}
-                            {% endif %}
-
-
-
- {% for allergen in recipe.allergens %}
-                           {% endfor%}
-                           
+         {% with message = get_flashed_messages() %}
+        {% if message  %}
+        <div class="flashes">
+            <div>{{ message }}</div>
+        {% endif %}
+        {% endwith %}                  

@@ -794,6 +794,9 @@
     width: 100%;
     font-size: 2vw;
   }
+  .select-wrapper input.select-dropdown {
+    font-size: 0.9vw;
+  }
   #editRecipeBtn a {
     width: 80%;
     height: 100%;
@@ -975,6 +978,7 @@
   #directionsWrapper {
     height: 100%;
     width: 98%;
+    margin-left: 10px;
   }
   #directions {
     display: -webkit-box;
@@ -1027,6 +1031,16 @@
     padding-top: 10px;
     padding-bottom: 10px;
   }
+  .recipeTile #dishImageWrapper {
+    border: 2px solid none;
+    border-radius: 10px;
+    overflow: hidden;
+    font-size: 0.9vw;
+    background-color: lightgrey;
+    width: 24.7%;
+    height: 11vw;
+    margin-top: 4px;
+  }
   .reviewKey,
   .reviewValue {
     width: 50%;
@@ -1044,7 +1058,7 @@
     background-color: #E85A4F;
     padding-bottom: 1vw;
   }
-  #popupCheckForValidFields {
+  #popupCheckForValidFields, #flashesPopup {
     z-index: 1000;
     background-color: #E98074;
   }
@@ -1142,6 +1156,24 @@
     width: 50vw;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+  }
+  #flashesPopup {
+    position: absolute;
+    -webkit-transition: opacity .5s ease-in-out;
+    transition: opacity .5s ease-in-out;
+    -webkit-transform: translateX(0vw);
+            transform: translateX(0vw);
+    border: 2px white;
+    border-radius: 10px;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    top: 7vw;
+    font-size: 0.9vw;
+  }
+  .opacityRise {
+    opacity: 1.0;
+    -webkit-transition: opacity .5s ease-in-out;
+    transition: opacity .5s ease-in-out;
   }
 }
 /*# sourceMappingURL=style.css.map */
