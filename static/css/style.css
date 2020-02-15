@@ -174,7 +174,7 @@
     text-decoration: none;
     -webkit-transition: color .6s ease-in-out;
     transition: color .6s ease-in-out;
-    font-size: 1.3vw;
+    font-size: 1vw;
   }
   .menulistitem:hover .hyperlinks {
     color: red;
@@ -578,6 +578,7 @@
     background-color: #EAE7DC;
     position: fixed;
     z-index: 99;
+    width: 80vw;
   }
   .width10 {
     width: 9.7%;
@@ -595,10 +596,9 @@
     font-size: 2vw;
   }
   #menulistDesktop {
-    width: 86vw;
     height: 4vw;
     padding: 0;
-    margin: 25px;
+    margin-top: 25px;
   }
   #menulistMobile,
   #sideMobileMenu {
@@ -735,7 +735,7 @@
     text-decoration: none;
     -webkit-transition: color .6s ease-in-out;
     transition: color .6s ease-in-out;
-    font-size: 1.3vw;
+    font-size: 1vw;
   }
   .menulistitem:hover .hyperlinks {
     color: red;
@@ -895,7 +895,7 @@
         flex-wrap: wrap;
     margin-top: 4px;
     margin-bottom: 2.5vw;
-    padding-bottom: 2vw;
+    padding-bottom: 4vw;
     background-color: lightgrey;
     border-radius: 10px;
   }
@@ -950,7 +950,23 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     width: 50%;
+  }
+  .ingredientfield {
+    width: 90%;
+  }
+  .warning {
+    margin-left: 4px;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .warning-icon {
+    color: red;
   }
   .amountContainer .input-field,
   .ingredientContainer .input-field {
@@ -1017,6 +1033,8 @@
   }
   #reviewsPopup {
     width: 80vw;
+    padding-bottom: 2vw;
+    margin-bottom: 4vw;
   }
   #ratePopup {
     width: 50vw;
@@ -1024,6 +1042,7 @@
   #deletePopup {
     width: 44vw;
     background-color: #E85A4F;
+    padding-bottom: 1vw;
   }
   #popupCheckForValidFields {
     z-index: 1000;

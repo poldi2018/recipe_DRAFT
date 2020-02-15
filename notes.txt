@@ -77,28 +77,18 @@ MOBILE VERSION:
 - styles
 
 
-documentations
-testing
-
 TIMEFRAME:
-WED12:
-styles
+TODAY:
 search dialogs
-
-THU13:
+home
+mobile
 Anthony: schema, mockup, link
+
+
+SUN16:
 upload to production
-
-FRI14:
-2nd call
-mobile 2nd part
-documentations
 testing
-
-SAT15:
-last changes
-3rd call
-
+documentation
 
 ####
 Referenced Data of
@@ -270,3 +260,35 @@ Secure user authentication (e.g. via passwords) is not required for this particu
 ADDITIONAL COMMANDS:
 # user_to_query= mongo.db.users.find_one( { '$or': [{"email_address_hash": generate_password_hash(request.form.get('email_address'))}, {"username": request.form.get("username")}]})
 
+
+
+<input id="{{allergens_check_field_id}}" type="checkbox" class="filled-in allergens" />
+                            <label for="{{allergens_check_field_id}}">Allergen?</label>
+                            
+
+
+                            {% set amount_field_id = "amount"+loop.index|string %}
+                    {% set ingredient_field_id = "ingredient"+loop.index|string %}
+                    {% set allergens_check_field_id = "allergensCheck"+loop.index|string %}
+                    
+
+
+                    {% if recipe.allergens %}
+                            
+
+                            {% for allergens in recipe.allergens%}
+                            {% if ingredient.ingredient == allergen %}
+                            <input id="{{allergens_check_field_id}}" type="checkbox" class="filled-in allergens" value="checked" checked />
+                            <label for="{{allergens_check_field_id}}">Checked?</label>  
+                           {% endfor%}
+                            {% else %}
+                            <input id="{{allergens_check_field_id}}" type="checkbox" class="filled-in allergens" />
+                            <label for="{{allergens_check_field_id}}">unchecked?</label>
+                            {% endif %}
+                            {% endif %}
+
+
+
+ {% for allergen in recipe.allergens %}
+                           {% endfor%}
+                           

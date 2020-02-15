@@ -181,7 +181,7 @@
                         <div class="input-field col s12">
                             <i class="material-icons prefix">playlist_add</i>
                             <input id="prepTime" name="prep_time" type="text" class="validate"
-                                    onchange="calcTotalTimeInputField()" value="{{recipe.prep_time}}">                              
+                                    onchange="calcTotalTime()" value="{{recipe.prep_time}}">                              
                         </div>
                     </div>
                     <div class="timesWrapper">
@@ -191,7 +191,7 @@
                         <div class="input-field col s12">
                             <i class="material-icons prefix">playlist_add</i>
                             <input id="cookingTime" name="cooking_time" type="text" class="validate"
-                                onchange="calcTotalTimeInputField()" value="{{recipe.cooking_time}}">
+                                onchange="calcTotalTime()" value="{{recipe.cooking_time}}">
                         </div>                       
                     </div>
                     <div class="timesWrapper">
@@ -219,29 +219,44 @@
                 </div>
 
                 <div id="ingredientWrapper">
-                    {% for ingredient in recipe.ingredients %}
+                    {% for ingredient in recipe.ingredients %} 
+                    {% set amount_field_id = "amount"+loop.index|string %}
+                    {% set ingredient_field_id = "ingredient"+loop.index|string %}
+                    {% set allergens_check_field_id = "allergensCheck"+loop.index|string %}
+
                     <div class="outerIngredientContainer">
                         <div class="amountContainer">
                             <div class="input-field">
                                 <i class="material-icons prefix">playlist_add</i>
-                                <input name="amount1" type="text" class="validate amounts" value="{{ingredient.amount}}"
+                                <input id="{{amount_field_id}}" name="{{amount_field_id}}" type="text" class="validate amounts" value="{{ingredient.amount}}"
                                 data-length="30">
-                                <label for="amount1">Amount</label>
+                                <label for="{{amount_field_id}}">Amount</label>
                             </div>
                         </div>
                         <div class="ingredientContainer">
                             <div class="input-field">
                                 <i class="material-icons prefix">playlist_add</i>
-                                <input name="ingredient1" type="text" class="validate ingredients"
+                                <input id="{{ingredient_field_id}}" name="{{ingredient_field_id}}" type="text" class="validate ingredients"
                                     value="{{ingredient.ingredient}}" data-length="30">
-                                <label for="ingredient1">Ingredient</label>
+                                <label for="{{ingredient_field_id}}">Ingredient</label>
                             </div>
+                            
+                            {% if ingredient.ingredient in recipe.allergens %}
+                            <input id="{{allergens_check_field_id}}" type="checkbox" class="filled-in allergens" value="checked" checked />
+                            <label for="{{allergens_check_field_id}}">Allergen?</label>                
+                            {% else %}
+                            <input id="{{allergens_check_field_id}}" type="checkbox" class="filled-in allergens" />
+                            <label for="{{allergens_check_field_id}}">Allergen?</label>   
+                            {% endif %}
+                            
                         </div>
                     </div>
                     {% endfor %}
                 </div>
                 <input id="amountsString" name="amounts_string" type="text" class="" hidden>
                 <input id="ingredientsString" name="ingredients_string" type="text" class="" hidden>
+                <input id="allergensString" name="allergens_string" type="text" class="" hidden>
+
             </div>
             <div id="outerDirectionsWrapper">
                 <div id="directionsHeadline">Directions</div>

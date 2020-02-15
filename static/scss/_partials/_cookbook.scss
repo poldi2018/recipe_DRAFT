@@ -632,7 +632,7 @@
 @media screen and (orientation:landscape) {
 
     body {
-        background-color: #EAE7DC;
+        background-color: $body-bgcolor;
     }
 
     div a:hover,
@@ -647,6 +647,7 @@
         background-color: #EAE7DC;
         position: fixed;
         z-index: 99;
+        width: 80vw;
     }
 
     .width10 {
@@ -672,10 +673,9 @@
     }
 
     #menulistDesktop {
-        width: 86vw;
         height: 4vw;
         padding: 0;
-        margin: 25px;
+        margin-top: 25px;
     }
 
     #menulistMobile,
@@ -993,7 +993,7 @@
         flex-wrap: wrap;
         margin-top: 4px;
         margin-bottom: 2.5vw;
-        padding-bottom: 2vw;
+        padding-bottom: 4vw;
         background-color: lightgrey;
         border-radius: 10px;
     }
@@ -1050,7 +1050,22 @@
 
     .ingredientContainer {
         display: flex;
+        align-items: center;
         width: 50%;
+    }
+
+    .ingredientfield {
+        width: 90%;
+    }
+
+    .warning {
+        margin-left: 4px;
+        height: 100%;
+        display: flex;
+    }
+
+    .warning-icon {
+        color: red;
     }
 
     .amountContainer .input-field,
@@ -1130,6 +1145,8 @@
 
     #reviewsPopup {
         width: 80vw;
+        padding-bottom: 2vw;
+        margin-bottom: 4vw;
     }
 
     #ratePopup {
@@ -1139,6 +1156,8 @@
     #deletePopup {
         width: 44vw;
         background-color: #E85A4F;
+        padding-bottom: 1vw;
+
     }
 
     #popupCheckForValidFields {

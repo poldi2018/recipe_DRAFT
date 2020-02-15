@@ -63,7 +63,6 @@ def create_new_user(form):
     }
     return new_user
 
-
 def make_ingredient_list(amounts_string, ingredients_string):
     amounts_list = amounts_string.split('#')
     amounts_list.pop(len(amounts_list)-1)
@@ -73,10 +72,13 @@ def make_ingredient_list(amounts_string, ingredients_string):
     ingredients = []
     for amount in amounts_list:
         ingredients.append({'amount': amount, 'ingredient': next(ingredient_iter)})
-        #ingredients=ingredients, {'amount': amount, 'ingredient': next(ingredient_iter)}
-    #print(ingredients)
+
     return ingredients
 
+def make_allergens_list(allergens_string):
+    allergens_list = allergens_string.split('#')
+    allergens_list.pop(len(allergens_list)-1)
+    return allergens_list
 
 def get_countries():
     with open("static/data/countries.json", "r") as json_data:
@@ -259,6 +261,7 @@ def insert_recipe():
     now = datetime.datetime.now().strftime("%H:%M:%S")
     ingredients = make_ingredient_list(request.form.get("amounts_string"),
                                        request.form.get("ingredients_string"))
+    allergens = make_allergens_list(request.form.get("allergens_string"))
     recipe_id = recipes.insert_one(
         {
             "title": request.form.get('recipe_title'),
@@ -275,7 +278,7 @@ def insert_recipe():
             "prep_time": int(request.form.get("prep_time")),
             "cooking_time": int(request.form.get("cooking_time")),
             "directions": request.form.get("directions"),
-            "allergens": request.form.get("allergens"),
+            "allergens": allergens,
             "ingredients": ingredients,
             "country_name": request.form.get("origin"),
             "origin": build_origin_filepath(request.form.get("origin")),
@@ -325,7 +328,9 @@ def update_recipe(recipe_id):
     now = datetime.datetime.now().strftime("%H:%M:%S")
     ingredients = make_ingredient_list(request.form.get("amounts_string"),
                                        request.form.get("ingredients_string"))
+    allergens = make_allergens_list(request.form.get("allergens_string"))
     recipes = mongo.db.recipes
+    print(request.form.get("test"))
     recipes.update_one(
         {"_id": ObjectId(recipe_id)},
         {
@@ -341,7 +346,7 @@ def update_recipe(recipe_id):
                 "prep_time": int(request.form.get("prep_time")),
                 "cooking_time": int(request.form.get("cooking_time")),
                 "directions": request.form.get("directions"),
-                "allergens": request.form.get("allergens"),
+                "allergens": allergens,
                 "ingredients": ingredients,
                 "country_name": request.form.get("origin"),
                 "origin": build_origin_filepath(request.form.get("origin")),

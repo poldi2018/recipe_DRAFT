@@ -106,7 +106,7 @@
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">playlist_add</i>
                                 <input id="prepTime" name="prep_time" type="text" class="validate"
-                                    onchange="calcTotalTimeInputField()">
+                                    onchange="calcTotalTime()">
                                 <label for="prepTime">Preparation time</label>
                             </div>
                     </div>
@@ -115,7 +115,7 @@
                             <div class="input-field col s12">
                                 <i class="material-icons prefix">playlist_add</i>
                                 <input id="cookingTime" name="cooking_time" type="text" class="validate"
-                                    onchange="calcTotalTimeInputField()">
+                                    onchange="calcTotalTime()">
                                 <label for="cookingTime">Cooking time</label>
                             </div>
                     </div>
@@ -159,11 +159,15 @@
                                     data-length="30">
                                 <label for="ingredient1">Ingredient</label>
                             </div>
+                            <input id="allergenCheck1" type="checkbox" class="filled-in allergens" />
+                            <label for="allergenCheck1">Allergen?</label>
                         </div>
                     </div>
                 </div>
                 <input id="amountsString" name="amounts_string" type="text" class="" hidden>
                 <input id="ingredientsString" name="ingredients_string" type="text" class="" hidden>
+                <input id="allergensString" name="allergens_string" type="text" class="" hidden>
+
             </div>
 
             <div id="outerDirectionsWrapper">

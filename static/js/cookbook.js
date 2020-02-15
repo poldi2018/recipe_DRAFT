@@ -2,8 +2,9 @@
 
 $(document).ready(function () {
     $('select').material_select();
-    calcTotalTimeDiv();
-    calcTotalTimeInputField();
+    //calcTotalTimeDiv();
+    //calcTotalTimeInputField();
+    calcTotalTime();
 });
 
 // global variables
@@ -11,11 +12,24 @@ var fieldcount = $(".outerIngredientContainer").length;
 
 $('.addIngredientField').on('touchstart click', function () {
     fieldcount++;
-    var ingredientFieldname = "ingredient" + fieldcount;
-    var amountFieldname = "amount" + fieldcount;
-    $("#ingredientWrapper").append("<div class='outerIngredientContainer'><div class='amountContainer'><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='amount' name='amount' type='text' class='validate amounts' data-length='30'><label for='amount'>Amount</label></div></div><div class='ingredientContainer'><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='ingredient' name='ingredient' type='text' class='validate ingredients' data-length='30'><label for='ingredient'>Ingredient</label></div></div></div>");
-    $('#ingredient').attr('name', ingredientFieldname).attr('id', ingredientFieldname);
-    $('#amount').attr('name', amountFieldname).attr('id', amountFieldname);
+    var amountFieldId = "amount" + fieldcount;
+    var labelAmountFieldId = "labelAmount" + fieldcount;
+
+    var ingredientFieldId = "ingredient" + fieldcount;
+    var labelIngredientFieldId = "labelIngredient" + fieldcount;
+
+    var allergensCheckFieldId = "allergensCheck" + fieldcount;
+    var labelAllergensCheckFieldId  = "labelAllergensCheck" + fieldcount;
+
+    $("#ingredientWrapper").append("<div class='outerIngredientContainer'><div class='amountContainer'><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='amount' name='amount' type='text' class='validate amounts' data-length='30'><label for='labelAmount'>Amount</label></div></div><div class='ingredientContainer'><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='ingredient' name='ingredient' type='text' class='validate ingredients' data-length='30'><label for='labelIngredient'>Ingredient</label></div><input type='checkbox' class='filled-in allergens' id='allergensCheck' /><label id='labelAllergensCheck' for='allergensCheck'>Allergen?</label></div></div>");
+    $('#amount').attr('name', amountFieldId).attr('id', amountFieldId);
+    $('#labelAmount').attr('for', amountFieldId).attr('id', labelAmountFieldId);
+
+    $('#ingredient').attr('name', ingredientFieldId).attr('id', ingredientFieldId);
+    $('#labelIngredient').attr('for', ingredientFieldId).attr('id', labelIngredientFieldId);
+
+    $('#allergensCheck').attr('name', allergensCheckFieldId).attr('id', allergensCheckFieldId);
+    $('#labelAllergensCheck').attr('for', allergensCheckFieldId).attr('id', labelAllergensCheckFieldId);
 });
 
 $('.removeIngredientField').on('touchstart click', function () {
@@ -37,37 +51,34 @@ function encodeImgtoBase64(element) {
     reader.readAsDataURL(file);
 }
 
-function calcTotalTimeInputField() {
-    var totalTime = parseInt($("#prepTime").val()) + parseInt($("#cookingTime").val());
-    if (totalTime) {
-        if (totalTime < 60) {
-            $("#totalTime").html(0 + " hrs " + totalTime + " mins");
+function calcTotalTime() {
+    var totalTimeDiv = parseInt($("#prepTimeDiv").html()) + parseInt($("#cookingTimeDiv").html());
+    var totalTimeInput = parseInt($("#prepTime").val()) + parseInt($("#cookingTime").val());
+
+    if (totalTimeDiv || totalTimeInput) {
+        if (totalTimeDiv < 60 || totalTimeInput < 60) {
+            $("#totalTimeDiv").html(0 + " hrs " + totalTimeDiv + " mins");
+            $("#totalTime").html(0 + " hrs " + totalTimeInput + " mins");
         }
-        if (totalTime >= 60)
-            $("#totalTime").html(parseInt(totalTime / 60) + " hrs " + totalTime % 60 + " mins");
+        if (totalTimeDiv >= 60 || totalTimeInput >= 60)
+            $("#totalTimeDiv").html(parseInt(totalTimeDiv / 60) + " hrs " + totalTimeDiv % 60 + " mins");
+            $("#totalTime").html(parseInt(totalTimeInput / 60) + " hrs " + totalTimeInput % 60 + " mins");
+
     } else {
+        $("#totalTimeDiv").html("-");
         $("#totalTime").html("-");
+
     }
 }
 
-function calcTotalTimeDiv() {
-    var totalTime = parseInt($("#prepTimeDiv").html()) + parseInt($("#cookingTimeDiv").html());
-    if (totalTime) {
-        if (totalTime < 60) {
-            $("#totalTimeDiv").html(0 + " hrs " + totalTime + " mins");
-        }
-        if (totalTime >= 60)
-            $("#totalTimeDiv").html(parseInt(totalTime / 60) + " hrs " + totalTime % 60 + " mins");
-    } else {
-        $("#totalTimeDiv").html("-");
-    }
-}
 
 function makeIngredientsStrings() {
     var amountsArray = $('.amounts').toArray();
     var ingredientsArray = $('.ingredients').toArray();
+    var allergensArray = $('.allergens').toArray();
     var amounts = "",
-        ingredients = "";
+        ingredients = "",
+        allergens = "";
     var i = 0;
     for (i = 0; i < amountsArray.length; i++) {
         amounts = amounts + amountsArray[i].value + "#";
@@ -76,8 +87,12 @@ function makeIngredientsStrings() {
     i = 0;
     for (i = 0; i < ingredientsArray.length; i++) {
         ingredients = ingredients + ingredientsArray[i].value + "#";
+        if (allergensArray[i].checked== true) {
+            allergens = allergens + ingredientsArray[i].value + "#";
+        }
     }
     $('#ingredientsString').val(ingredients);
+    $('#allergensString').val(allergens);
 }
 
 function validateImageName(element) {
