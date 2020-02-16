@@ -14,10 +14,8 @@ $('.addIngredientField').on('touchstart click', function () {
     fieldcount++;
     var amountFieldId = "amount" + fieldcount;
     var labelAmountFieldId = "labelAmount" + fieldcount;
-
     var ingredientFieldId = "ingredient" + fieldcount;
     var labelIngredientFieldId = "labelIngredient" + fieldcount;
-
     var allergensCheckFieldId = "allergensCheck" + fieldcount;
     var labelAllergensCheckFieldId  = "labelAllergensCheck" + fieldcount;
 

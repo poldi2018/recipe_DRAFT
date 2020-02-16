@@ -644,7 +644,7 @@
     }
 
     header {
-        background-color: #EAE7DC;
+        background-color: $header-bgcolor;
         position: fixed;
         z-index: 99;
         width: 80vw;
@@ -793,7 +793,7 @@
     .menulistitem form {
         width: 20vw;
         height: 1.5vw;
-        background-color: #EAE7DC;
+        background-color: $header-bgcolor;
     }
 
     #search_term {
@@ -857,7 +857,7 @@
     .recipeHeaderItem {
         border: 2px solid none;
         border-radius: 10px;
-        background-color: lightgrey;
+        background-color: $recipefields-bgcolor;
     }
 
     .recipeButtonWrapper {
@@ -885,6 +885,11 @@
         font-size: $recipeFontSize;
     }
 
+    .select-wrapper {
+        width: 80%;
+
+    }
+
     #editRecipeBtn a {
         width: 80%;
         height: 100%;
@@ -905,7 +910,7 @@
     .statsWrapper {
         border: 2px solid none;
         border-radius: 10px;
-        background-color: lightgrey;
+        background-color: $recipefields-bgcolor;
         align-content: center;
         flex-wrap: wrap;
         width: 16.3%;
@@ -927,6 +932,8 @@
 
     .levelstatsinput {
         height: 30%;
+        display: flex;
+        justify-content: center;
     }
 
     .outerTimesWrapper {
@@ -938,7 +945,7 @@
     .timesWrapper {
         border: 2px solid none;
         border-radius: 10px;
-        background-color: lightgrey;
+        background-color: $recipefields-bgcolor;
         align-content: center;
         flex-wrap: wrap;
         width: 33.03%;
@@ -968,7 +975,7 @@
         border-radius: 10px;
         overflow: hidden;
         font-size: $recipeFontSize;
-        background-color: lightgrey;
+        background-color: $recipefields-bgcolor;
         width: 24.7%;
         height: 11vw;
 
@@ -1000,7 +1007,7 @@
         margin-top: 4px;
         margin-bottom: 2.5vw;
         padding-bottom: 4vw;
-        background-color: lightgrey;
+        background-color: $recipefields-bgcolor;
         border-radius: 10px;
     }
 
@@ -1066,7 +1073,7 @@
 
     .warning {
         margin-left: 4px;
-        height: 100%;
+        height: 70%;
         display: flex;
     }
 
@@ -1176,14 +1183,14 @@
 
     #deletePopup {
         width: 44vw;
-        background-color: #E85A4F;
+        background-color: $deletePopup-bgcolor;
         padding-bottom: 1vw;
 
     }
 
     #popupCheckForValidFields, #flashesPopup {
         z-index: 1000;
-        background-color: #E98074;
+        background-color: $popup-bgcolor;
     }
 
     #reviewsPopup,
@@ -1195,7 +1202,7 @@
     #reviewsPopup,
     #ratePopup,
     .reviewTile {
-        background-color: #D8C3A5;
+        background-color: $reviewAndRatePopup-bgcolor;
     }
 
     #reviewsPopup,

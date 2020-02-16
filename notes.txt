@@ -90,35 +90,30 @@ upload to production
 testing
 documentation
 
-####
-Referenced Data of
-Key db identifier
-Datatype
-
 
 collection ‘recipes’:
 {
-"_id": <ObjectId>,
-"title": request.form.get('recipe_title'), 
-        "dish_type": request.form.get('dish_type'),
-        "added_by": session["username"],
-        "user_email_hash": session["email_address"],
-        "added_on_date": today,
-        "added_on_time": now,
-        "edited_on_date": today,
-        "edited_on_time": now,
-        "level": request.form.get("level"),
-        "review_count": 0,
-        "view_count": 0,
-        "prep_time": int(request.form.get("prep_time")),
-        "cooking_time": int(request.form.get("cooking_time")),
-        "total_time": int(request.form.get("prep_time"))+int(request.form.get("cooking_time")),
-        "directions": request.form.get("directions"),
-        "allergens": request.form.get("allergens"),
-        "ingredients": ingredients,
-        "country_name": request.form.get("origin"),
-        "origin": build_origin_filepath(request.form.get("origin")),
-        "img_src": url_img_src
+        "_id": <ObjectId>,
+        "title": <string>,
+        "dish_type": <string>,
+        "added_by": <string>,
+        "user_email_hash": <string>,
+        "added_on_date": <string>,
+        "added_on_time": <string>,
+        "edited_on_date": <string>,
+        "edited_on_time": <string>,
+        "level": <integer>,
+        "review_count": <integer>,
+        "view_count": <integer>,
+        "prep_time": <integer>,
+        "cooking_time": <integer>,
+        "directions": <string>,
+        "allergens": <Array>,
+        "ingredients": <Array>,
+        "country_name": <string>,
+        "origin": <string>,
+        "img_src": <string>,
+        "rated_by_users": <Array>
 }
 
 
@@ -134,22 +129,19 @@ password: <string>
 collection ‘reviews’:
 {
 "_id": <ObjectId>,
-"review_title": request.form.get('review_title'),
-"review_for": recipe_title,
-"recipe_id":  recipe_id,
-"rating": request.form.get('rating'),
-"comment": request.form.get('comment'),
-"added_on_date": today,
-"added_on_time": now,
-"rated_by": session['username'],
-"user_email_hash": session['email_address']
+
+            "review_title": <string>,
+            "review_for": <string>,
+            "recipe_id": <string>,
+            "rating": <integer>,
+            "comment": <string>,
+            "added_on_date": <string>,
+            "added_on_time": <string>,
+            "rated_by": <string>,
+            "user_email_hash": <string>
+        }
 }
 
-Object ‘ingredients’:
-[{
-amount: <string>,
-ingredient: <string>
-}]
 
 drop down menu dish_type options:
 
@@ -178,34 +170,19 @@ Cocktail
 
 
 FEATURES:
-- Creation of recipes and ratings are bound to user acounts, edit and delete only available to author.
+- Creation of recipes and ratings are bound to user acounts
+- Author has the option to edit and delete the recipe.
+- full text search is available.
 - image upload illustrating the prepared dish
-- for security reasons email addresses are treated like passwords and have been hashed as well, to omit.
-- form fields all checked to ensure proper compliant to database structure.
+- Recipe review function is present. 
+- for security reasons email addresses have been hashed and omitted.
+- form fields all validated to ensure proper compliant to database structure.
+- feedback for user when review is saved or entered valued need to be corrected.
+- ingredients can be marked as allergens. Those marked allergens ingredients have a warning symbol.
+
 
 README.MD
 # markup language!
-# flash message!
-
-
-ACKNOWLEDGEMENT:
-
-- tutsmake for converting image into base64  and using the FileReader Object
-  "https://www.tutsmake.com/convert-image-to-base64-string-jquery/"
-- mongoDB documentation for additional information on CRUD operations and text indexing.
--email format string taken from validator w3 resources, https://www.w3resource.com/javascript/form/email-validation.php
-- flags taken from https://flagpedia.net/download
-- stackoverflow has been used to check for certain commands. Afterwards I consulted Python.org referencce for further details.
-
-Beside from above mentioned acknowledgements NO other code has been copied. 
-
-
-CURRENT ISSUES, FUTURE FEATURES:
-- addressing an album in imgbb database was til now not possible. Passing a key-value pair like {“album”: “test”} inside the data dictionary did not succeed, nor throwed an error. 
-- check on collection file size to prevent exceeding 16MB
-- update countries.json with full country name to be able to search origin country's full name.
-
-
 
 COMPLIANCE
 CSS
@@ -214,6 +191,32 @@ JShint ALMOST
 Jasmine
 PEP8 ALMOST
 test py code
+
+
+LAST CHECKS:
+loggedoff?
+debug=off
+deploy heroku, gh
+
+
+
+ACKNOWLEDGEMENT:
+
+
+- tutsmake for converting image into base64  and using the FileReader Object
+  "https://www.tutsmake.com/convert-image-to-base64-string-jquery/"
+- mongoDB documentation for additional information on CRUD operations and text indexing.
+-email format string taken from validator w3 resources, https://www.w3resource.com/javascript/form/email-validation.php
+- flags taken from https://flagpedia.net/download
+- stackoverflow has been used to check for certain commands. Afterwards I consulted Python.org referencce for further details.
+Beside from above mentioned acknowledgements NO other code has been copied. 
+
+
+CURRENT ISSUES, FUTURE FEATURES:
+- addressing an album in imgbb database was til now not possible. Passing a key-value pair like {“album”: “test”} inside the data dictionary did not succeed, nor throwed an error. 
+- check on collection file size to prevent exceeding 16MB
+- update countries.json with full country name to be able to search origin country's full name.
+- pagination feature is needed to keep the dataset handling responsive.
 
 
 REQUIREMENTS
@@ -268,3 +271,5 @@ ADDITIONAL COMMANDS:
             <div>{{ message }}</div>
         {% endif %}
         {% endwith %}                  
+
+        https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js
