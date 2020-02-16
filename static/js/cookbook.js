@@ -2,8 +2,6 @@
 
 $(document).ready(function () {
     $('select').material_select();
-    //calcTotalTimeDiv();
-    //calcTotalTimeInputField();
     calcTotalTime();
 });
 
@@ -23,18 +21,11 @@ function addIngredientField() {
     $("#ingredientWrapper").append("<div class='outerIngredientContainer'><div class='amountContainer'><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='amount' name='amount' type='text' class='validate amounts' data-length='30'><label for='labelAmount'>Amount</label></div></div><div class='ingredientContainer'><div class='input-field'><i class='material-icons prefix'>playlist_add</i><input id='ingredient' name='ingredient' type='text' class='validate ingredients' data-length='30'><label for='labelIngredient'>Ingredient</label></div><input type='checkbox' class='filled-in allergens' id='allergensCheck' /><label id='labelAllergensCheck' for='allergensCheck'>Allergen?</label></div></div>");
     $('#amount').attr('name', amountFieldId).attr('id', amountFieldId);
     $('#labelAmount').attr('for', amountFieldId).attr('id', labelAmountFieldId);
-
     $('#ingredient').attr('name', ingredientFieldId).attr('id', ingredientFieldId);
     $('#labelIngredient').attr('for', ingredientFieldId).attr('id', labelIngredientFieldId);
-
     $('#allergensCheck').attr('name', allergensCheckFieldId).attr('id', allergensCheckFieldId);
     $('#labelAllergensCheck').attr('for', allergensCheckFieldId).attr('id', labelAllergensCheckFieldId);
-
 }
-
-$('.addIngredientField').on('touchstart click', function () {
-    
-});
 
 function removeIngredientField() {
     if (fieldcount > 1) {
@@ -44,9 +35,7 @@ function removeIngredientField() {
         }, 400);
     }
 }
-$('.removeIngredientField').on('touchstart click', function () {
-    
-});
+
 //function for onchange event of file input field to convert selected file into base64
 function encodeImgtoBase64(element) {
     var file = element.files[0];

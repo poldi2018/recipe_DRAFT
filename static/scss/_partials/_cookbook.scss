@@ -270,13 +270,13 @@
     #outerStatsWrapper {
         flex-wrap: wrap;
         width: 100%;
+        margin-top: 4px;
     }
 
     #innerStatsWrapper {
         flex-wrap: wrap;
         width: 75%;
         height: 11vw;
-        margin-top: 4px;
     }
 
     .statsWrapper {
@@ -349,11 +349,7 @@
         font-size: $recipeFontSize;
         background-color: $recipefields-bgcolor;
         width: 24.7%;
-        height: 11vw;
-
-        margin: {
-            top: 4px;
-        }
+        height: 100%;
     }
 
 

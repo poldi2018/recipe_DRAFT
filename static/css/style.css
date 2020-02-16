@@ -247,13 +247,13 @@
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     width: 100%;
+    margin-top: 4px;
   }
   #innerStatsWrapper {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     width: 75%;
     height: 11vw;
-    margin-top: 4px;
   }
   .statsWrapper {
     border: 2px solid none;
@@ -322,8 +322,7 @@
     font-size: 0.9vw;
     background-color: lightgrey;
     width: 24.7%;
-    height: 11vw;
-    margin-top: 4px;
+    height: 100%;
   }
   #dishImage {
     width: 100%;
