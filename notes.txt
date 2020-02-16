@@ -217,6 +217,7 @@ CURRENT ISSUES, FUTURE FEATURES:
 - check on collection file size to prevent exceeding 16MB
 - update countries.json with full country name to be able to search origin country's full name.
 - pagination feature is needed to keep the dataset handling responsive.
+- rated_by_users populated with data, but not implemented in page
 
 
 REQUIREMENTS

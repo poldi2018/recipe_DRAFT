@@ -2,567 +2,6 @@
   font-family: 'Dosis', sans-serif;
 }
 
-@media screen and (orientation: portrait) {
-  body {
-    background-color: #EAE7DC;
-  }
-  div a:hover,
-  a:visited,
-  a:link,
-  a:active {
-    text-decoration: none;
-    color: #4495D4;
-  }
-  header {
-    background-color: #EAE7DC;
-    position: fixed;
-    z-index: 99;
-  }
-  .width10 {
-    width: 9.7%;
-  }
-  .width16 {
-    width: 16.43%;
-  }
-  .width25 {
-    width: 24.7%;
-  }
-  .headline {
-    margin-top: 10px;
-    margin-bottom: 20px;
-    width: 100%;
-    font-size: 2vw;
-  }
-  #menulistDesktop {
-    width: 86vw;
-    height: 4vw;
-    padding: 0;
-    margin: 25px;
-  }
-  #menulistMobile,
-  #sideMobileMenu {
-    display: none;
-  }
-  body,
-  .menulistitem,
-  .logoMenuListItem,
-  .headline,
-  .recipeWrapper,
-  .recipeHeaderItem,
-  .recipeButtonWrapper,
-  #readRecipeTitle,
-  .recipeTitle,
-  #editRecipeBtn a,
-  .statsfield,
-  .levelStatsfield,
-  .timesWrapper,
-  .directionsLabel,
-  .statsWrapper,
-  .directionsLabel,
-  #dishImageWrapper,
-  #ingredientsHeadline,
-  #directionsHeadline,
-  .addIngredientField,
-  .removeIngredientField,
-  #ingredientWrapper,
-  .footerWrapper,
-  .created,
-  .contact,
-  .github,
-  .reviewTile,
-  .reviewKey,
-  .reviewValue,
-  #reviewsPopup,
-  #ratePopup,
-  #deletePopup,
-  #popupCheckForValidFields,
-  #reviewsWrapper,
-  #rateWrapper,
-  .outerReviewsWrapper,
-  .outerRecipesWrapper,
-  .innerReviewsWrapper,
-  .innerRecipesWrapper,
-  .reviewContainer,
-  .rateContainer,
-  .buttonWrapper,
-  .buttonWrapperPopup,
-  #closeReviewsPopupBtn,
-  #sendReviewPopupBtn,
-  #cancelReviewPopupBtn,
-  #closeCheckForValidFieldsBtn,
-  #deleteRecipeConfirmBtn,
-  #deleteRecipePopupCancelBtn,
-  .wrapperLogoBig {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-  }
-  .logoMenuListItem .hyperlinks header,
-  .headline,
-  #menulistDesktop,
-  .menulistitem form,
-  .menulistitem .hyperlinks,
-  .recipeWrapper .input-field,
-  .recipeHeaderItem,
-  .recipeButtonWrapper,
-  #editRecipeBtn a,
-  .statsfield,
-  .outerTimesWrapper,
-  #totalTime,
-  .directionsLabel,
-  .directionsLabel,
-  .ingredientfield,
-  #directionsWrapper,
-  .footerWrapper,
-  .created,
-  .contact,
-  .github,
-  .wrapperLogoBig,
-  #loginWrapper,
-  #registerWrapper {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-  }
-  #menulistDesktop,
-  #baseWrapper {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: space-evenly;
-        -ms-flex-pack: space-evenly;
-            justify-content: space-evenly;
-  }
-  #outerStatsWrapper,
-  #innerStatsWrapper,
-  .outerTimesWrapper,
-  .recipeHeader {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-  }
-  .logo_small {
-    width: 8vw;
-  }
-  .menulistitem,
-  .logoMenuListItem {
-    padding-left: 1vw;
-    padding-right: 1vw;
-    font-size: 1vw;
-  }
-  .menulistitem form {
-    width: 20vw;
-    height: 1.5vw;
-    background-color: #EAE7DC;
-  }
-  #search_term {
-    background-color: transparent;
-    margin: 0;
-    height: 80%;
-  }
-  .menulistitem .hyperlinks {
-    color: #8D8D8A;
-    text-decoration: none;
-    -webkit-transition: color .6s ease-in-out;
-    transition: color .6s ease-in-out;
-    font-size: 1vw;
-  }
-  .menulistitem:hover .hyperlinks {
-    color: red;
-  }
-  #baseWrapper {
-    border: 2px solid grey;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    width: 80vw;
-    -webkit-transform: translateY(4vw);
-            transform: translateY(4vw);
-    margin-top: 60px;
-    margin-bottom: 1vw;
-    border-radius: 1vw;
-  }
-  .recipeWrapper {
-    width: 75vw;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    margin-top: 1vw;
-  }
-  .input-field {
-    margin-top: 0;
-  }
-  #recipetitle {
-    font-size: 0.9vw;
-  }
-  .recipeHeader {
-    height: 5vw;
-    width: 100%;
-    font-size: .9vw;
-  }
-  .recipeHeaderItem {
-    border: 2px solid none;
-    border-radius: 10px;
-    background-color: lightgrey;
-  }
-  .recipeButtonWrapper {
-    border-radius: 10px;
-    padding-top: 2px;
-    width: 80%;
-    height: 50%;
-    font-size: 0.9vw;
-  }
-  #readRecipeTitle {
-    width: 50%;
-  }
-  #readRecipeTitle .input-field {
-    width: 50%;
-  }
-  .recipeTitle {
-    width: 100%;
-    font-size: 2vw;
-  }
-  #editRecipeBtn a {
-    width: 80%;
-    height: 100%;
-  }
-  #outerStatsWrapper {
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    width: 100%;
-  }
-  #innerStatsWrapper {
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    width: 75%;
-    height: 11vw;
-    margin-top: 4px;
-  }
-  .statsWrapper {
-    border: 2px solid none;
-    border-radius: 10px;
-    background-color: lightgrey;
-    -ms-flex-line-pack: center;
-        align-content: center;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    width: 16.3%;
-  }
-  .statsWrapper div {
-    font-size: 0.9vw;
-  }
-  .statsfield {
-    width: 100%;
-  }
-  .levelStatsfield {
-    width: 100%;
-    margin-top: 10px;
-    -ms-flex-line-pack: center;
-        align-content: center;
-  }
-  .levelstatsinput {
-    height: 30%;
-  }
-  .outerTimesWrapper {
-    width: 100%;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    margin-top: 4px;
-  }
-  .timesWrapper {
-    border: 2px solid none;
-    border-radius: 10px;
-    background-color: lightgrey;
-    -ms-flex-line-pack: center;
-        align-content: center;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    width: 33.03%;
-    height: 100%;
-  }
-  .timesWrapper div {
-    font-size: 0.9vw;
-  }
-  #prepTime,
-  #cookingTime {
-    font-size: 0.9vw;
-  }
-  .directionsLabel {
-    width: 100%;
-    margin-top: 5px;
-  }
-  #dishImageWrapper {
-    border: 2px solid none;
-    border-radius: 10px;
-    overflow: hidden;
-    font-size: 0.9vw;
-    background-color: lightgrey;
-    width: 24.7%;
-    height: 11vw;
-    margin-top: 4px;
-  }
-  #dishImage {
-    width: 100%;
-    height: 100%;
-  }
-  #originFlag {
-    position: absolute;
-    width: 3vw;
-    height: 1.68vw;
-    border: 2px solid black;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  #outerInstructionsWrapper {
-    width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    margin-top: 4px;
-    margin-bottom: 2.5vw;
-    padding-bottom: 2vw;
-    background-color: lightgrey;
-    border-radius: 10px;
-  }
-  #outerInstructionsWrapper div,
-  #ingredientWrapper input {
-    font-size: 0.9vw;
-  }
-  #outerIngredientsWrapper {
-    width: 55%;
-  }
-  #outerDirectionsWrapper {
-    width: 45%;
-  }
-  #ingredientsHeadline,
-  #directionsHeadline {
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  .AddIngredientButtonWrapper {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    margin-bottom: 25px;
-  }
-  .addIngredientField,
-  .removeIngredientField {
-    width: 40%;
-    margin-left: 3.1vw;
-  }
-  #ingredientWrapper {
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    width: 100%;
-    padding-left: 20px;
-  }
-  .outerIngredientContainer {
-    width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    padding-left: 10px;
-  }
-  .amountContainer {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    width: 50%;
-  }
-  .ingredientContainer {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    width: 50%;
-  }
-  .amountContainer .input-field,
-  .ingredientContainer .input-field {
-    width: 90%;
-  }
-  #directionsWrapper {
-    height: 100%;
-    width: 98%;
-  }
-  #directions {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-  }
-  #directionsWrapper textarea {
-    margin: 0px;
-    height: 80%;
-    width: 95%;
-  }
-  .footerWrapper {
-    width: 75vw;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-  .divider {
-    width: 100%;
-    height: 1px;
-    border: 1px solid grey;
-    border-radius: 1px;
-  }
-  .created,
-  .contact,
-  .github {
-    width: 25%;
-    height: 3vw;
-  }
-  a i {
-    color: black;
-  }
-  .recipeTile {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    width: 50%;
-  }
-  .reviewTile {
-    border: 2px solid grey;
-    border-radius: 10px;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    width: 30%;
-    margin: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-  .reviewKey,
-  .reviewValue {
-    width: 50%;
-  }
-  #reviewsPopup {
-    width: 80vw;
-  }
-  #ratePopup {
-    width: 50vw;
-  }
-  #deletePopup {
-    width: 44vw;
-    background-color: #E85A4F;
-  }
-  #popupCheckForValidFields {
-    z-index: 1000;
-    background-color: #E98074;
-  }
-  #reviewsPopup,
-  #ratePopup,
-  #deletePopup {
-    z-index: 500;
-  }
-  #reviewsPopup,
-  #ratePopup,
-  .reviewTile {
-    background-color: #D8C3A5;
-  }
-  #reviewsPopup,
-  #ratePopup,
-  #deletePopup,
-  #popupCheckForValidFields {
-    position: absolute;
-    opacity: 0.0;
-    -webkit-transition: opacity .5s ease-in-out;
-    transition: opacity .5s ease-in-out;
-    -webkit-transform: translateX(-100vw);
-            transform: translateX(-100vw);
-    border: 2px white;
-    border-radius: 10px;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    top: 7vw;
-    font-size: 0.9vw;
-  }
-  #reviewsWrapper,
-  #rateWrapper {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 100%;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-  }
-  .outerReviewsWrapper,
-  .outerRecipesWrapper {
-    width: 80vw;
-  }
-  .innerReviewsWrapper,
-  .innerRecipesWrapper {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 80vw;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-  }
-  .reviewContainer,
-  .rateContainer {
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    width: 100%;
-  }
-  .reviewlines,
-  .ratelines {
-    width: 100%;
-  }
-  .buttonWrapper,
-  .buttonWrapperPopup {
-    width: 100%;
-    margin-top: 10px;
-    margin-bottom: 20px;
-  }
-  .buttonWrapperPopup div,
-  .buttonWrapper div {
-    font-size: 0.9vw;
-  }
-  #resultCheckForValidFields {
-    margin: 2vw;
-  }
-  .buttonWrapper div {
-    margin-left: 44px;
-    font-size: 0.9vw;
-  }
-  .buttonWrapper a {
-    color: white;
-  }
-  #closeReviewsPopupBtn,
-  #sendReviewPopupBtn,
-  #cancelReviewPopupBtn,
-  #closeCheckForValidFieldsBtn,
-  #deleteRecipeConfirmBtn,
-  #deleteRecipePopupCancelBtn {
-    width: 10vw;
-    border-radius: 10px;
-  }
-  .wrapperLogoBig {
-    width: 95vw;
-    height: 95vh;
-  }
-  #loginWrapper,
-  #registerWrapper {
-    width: 50vw;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-  }
-  .loginform {
-    width: 100%;
-  }
-}
-
 @media screen and (orientation: landscape) {
   body {
     background-color: #EAE7DC;
@@ -972,13 +411,14 @@
   }
   .warning {
     margin-left: 4px;
-    height: 70%;
+    height: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
   }
   .warning-icon {
     color: red;
+    font-size: 1.1vw;
   }
   .amountContainer .input-field,
   .ingredientContainer .input-field {
@@ -1028,7 +468,35 @@
     display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+    width: 65%;
+    margin-bottom: 1vw;
+  }
+  .recipeTileStatsWrapper {
     width: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .recipeTileStats {
+    width: 100%;
+  }
+  .recipeTileStats div {
+    font-size: 1vw;
+  }
+  .recipeTileName {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    font-size: 1.5vw;
+    width: 100%;
   }
   .reviewTile {
     border: 2px solid grey;
@@ -1046,9 +514,15 @@
     overflow: hidden;
     font-size: 0.9vw;
     background-color: lightgrey;
-    width: 24.7%;
+    width: 50%;
     height: 11vw;
     margin-top: 4px;
+  }
+  .recipeTile #dishImageWrapper a img {
+    width: 100%;
+    height: 400px;
+    -o-object-fit: cover;
+       object-fit: cover;
   }
   .reviewKey,
   .reviewValue {

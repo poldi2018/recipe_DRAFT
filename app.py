@@ -21,13 +21,14 @@ imgbb_upload_url = "https://api.imgbb.com/1/upload?key=" + os.getenv(
                                                         'IMGBB_CLIENT_API_KEY')
 # creating instance of Pymongo with app object to connect to MongoDB
 mongo = PyMongo(app)
-# mongo.db.recipes.create_index([("title", "text"), ("dish_type", "text"),
+#mongo.db.recipes.create_index([("title", "text"), ("dish_type", "text"),
+#                                ("added_by", "text"),
 #                                ("level", "text"), ("directions", "text"),
 #                                ("allergens", "text"), ("ingredients.ingredient", "text"),
 #                                ("origin", "text")])
 # mongo.db.reviews.create_index([
-#                              ("review_title", "text"), ("review_for", "text"),
-#                              ("rating", "text"), ("comment", "text")])
+#                               ("review_title", "text"), ("review_for", "text"),
+#                               ("comment", "text"), ("rated_by", "text")])
 
 
 def upload_image(base64file):
@@ -213,9 +214,16 @@ def reviews_today():
 def advanced_search():
     return render_template("advancedsearch.html")
 
-@app.route('/advanced_results', methods=["POST"])
-def advanced_results():
-    return render_template("advancedresults.html")
+@app.route('/advanced_results/<search_term>/<value>', methods=["POST", "GET"])
+def advanced_results(search_term, value):
+    if request.method=="GET":
+        if search_term=="dish_type":
+            recipes_by_category = mongo.db.recipes.find({"dish_type": value})
+            return render_template("advancedresults.html", search_term="dish type", recipes_by_category=recipes_by_category)
+        elif search_term=="user":
+            recipes_by_user = mongo.db.recipes.find({"added_by": value})
+            return render_template("advancedresults.html", search_term="user", recipes_by_user=recipes_by_user)
+
 
 
 @app.route('/quick_results', methods=["POST"])

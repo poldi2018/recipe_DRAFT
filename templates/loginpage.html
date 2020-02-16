@@ -1,5 +1,17 @@
 {% extends 'base.html'%}
 {% block content %}
+<script>
+    $('#password').keypress(function(event){
+                    var keycode = (event.keyCode ? event.keyCode : event.which);
+                    if(keycode == '13'){
+                        login();  
+                    }
+                    //Stop the event from propogation to other handlers
+                    //If this line will be removed, then keypress event handler attached 
+                    //at document level will also be triggered
+                    event.stopPropagation();
+                });
+    </script>
 <div id="loginWrapper">
     <div class="headline">
         <h3>Login</h3>

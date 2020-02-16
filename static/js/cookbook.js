@@ -10,7 +10,8 @@ $(document).ready(function () {
 // global variables
 var fieldcount = $(".outerIngredientContainer").length;
 
-$('.addIngredientField').on('touchstart click', function () {
+
+function addIngredientField() {
     fieldcount++;
     var amountFieldId = "amount" + fieldcount;
     var labelAmountFieldId = "labelAmount" + fieldcount;
@@ -28,15 +29,23 @@ $('.addIngredientField').on('touchstart click', function () {
 
     $('#allergensCheck').attr('name', allergensCheckFieldId).attr('id', allergensCheckFieldId);
     $('#labelAllergensCheck').attr('for', allergensCheckFieldId).attr('id', labelAllergensCheckFieldId);
+
+}
+
+$('.addIngredientField').on('touchstart click', function () {
+    
 });
 
-$('.removeIngredientField').on('touchstart click', function () {
+function removeIngredientField() {
     if (fieldcount > 1) {
         $(".outerIngredientContainer").last().remove();
         setTimeout(function () {
             fieldcount--;
         }, 400);
     }
+}
+$('.removeIngredientField').on('touchstart click', function () {
+    
 });
 //function for onchange event of file input field to convert selected file into base64
 function encodeImgtoBase64(element) {
@@ -68,7 +77,6 @@ function calcTotalTime() {
 
     }
 }
-
 
 function makeIngredientsStrings() {
     var amountsArray = $('.amounts').toArray();
@@ -194,8 +202,6 @@ function closeCheckForValidFieldsPopup() {
         $('#popupCheckForValidFields').css("transform", "translateX(-100vw)");
     }, 400);
 }
-//$('#closeCheckForValidFieldsBtn').on('touchstart click', function () {
-//});
 
 function closeFlashesPopup() {
     $('#flashesPopup').css("opacity", "0.0");
@@ -205,13 +211,10 @@ function closeFlashesPopup() {
     }, 400);
 }
 
-
 function showReviewsPopup() {
     $('#reviewsPopup').css("transform", "translateX(0vw)");
     $('#reviewsPopup').css("opacity", "1.0");
 }
-//$('#showReviewsPopupBtn').on('touchstart click', function () {   
-//});
 
 function closeReviewsPopup() {
     $('#reviewsPopup').css("opacity", "0.0");
@@ -219,15 +222,11 @@ function closeReviewsPopup() {
         $('#reviewsPopup').css("transform", "translateX(-100vw)");
     }, 400);
 }
-//$('#closeReviewsPopupBtn').on('touchstart click', function () {
-//});
 
 function showRatePopup() {
     $('#ratePopup').css("transform", "translateX(0vw)");
     $('#ratePopup').css("opacity", "1.0");
 }
-//$('#showRatePopupBtn').on('touchstart click', function () {   
-//});
 
 function sendReview() {
     if ($('#review_title').val() == "") {
@@ -252,8 +251,6 @@ function sendReview() {
         $('#rateForm').submit();
     }
 }
-//$('#sendReviewPopupBtn').on('touchstart click', function () {   
-//});
 
 function cancelReview() {
     $('#ratePopup').css("opacity", "0.0");
@@ -261,15 +258,11 @@ function cancelReview() {
         $('#ratePopup').css("transform", "translateX(-100vw)");
     }, 400);
 }
-//$('#cancelReviewPopupBtn').on('touchstart click', function () {    
-//});
 
 function showdeleteRecipePopup() {
     $('#deletePopup').css("transform", "translateX(0vw)");
     $('#deletePopup').css("opacity", "1.0");
 }
-//$('#deleteRecipePopupBtn').on('touchstart click', function () {    
-//});
 
 function cancelDeleteRecipe() {
     $('#deletePopup').css("opacity", "0.0");
@@ -277,8 +270,6 @@ function cancelDeleteRecipe() {
         $('#deletePopup').css("transform", "translateX(-100vw)");
     }, 400);
 }
-//$('#deleteRecipePopupCancelBtn').on('touchstart click', function () {   
-//});
 
 function checkRegistrationForm() {
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
