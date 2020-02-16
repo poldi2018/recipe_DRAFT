@@ -1,6 +1,4 @@
-@media screen and (orientation:portrait) {
-    
-}
+@media screen and (orientation:portrait) {}
 
 
 @media screen and (orientation:landscape) {
@@ -344,7 +342,7 @@
         }
     }
 
-    #dishImageWrapper {
+    #outerStatsWrapper #dishImageWrapper {
         border: 2px solid none;
         border-radius: 10px;
         overflow: hidden;
@@ -358,8 +356,8 @@
         }
     }
 
-    
-    
+
+
     #dishImage {
         width: 100%;
         height: 100%;
@@ -525,9 +523,9 @@
         margin-right: 5px;
     }
 
-.recipeTileStats {
-    width: 90%;
-}
+    .recipeTileStats {
+        width: 90%;
+    }
 
     .recipeTileStats div {
         font-size: 1vw;
@@ -537,7 +535,7 @@
         display: flex;
         font-size: 1.5vw;
         width: 100%;
-       
+
     }
 
     .reviewTile {
@@ -551,6 +549,12 @@
             top: 10px;
             bottom: 10px;
         }
+        font-size: $recipeFontSize;
+
+    }
+    .reviewValue {
+        display: flex;
+        align-items: center;
     }
 
     .recipeTile #dishImageWrapper {
@@ -563,7 +567,6 @@
         height: 11vw;
 
         margin: {
-            top: 4px;
             left: 5px;
 
         }
@@ -572,7 +575,8 @@
     .recipeTile #dishImageWrapper a img {
         width: 100%;
         height: 400px;
-        object-fit: cover;    }
+        object-fit: cover;
+    }
 
     .reviewKey,
     .reviewValue {
@@ -598,7 +602,8 @@
 
     }
 
-    #popupCheckForValidFields, #flashesPopup {
+    #popupCheckForValidFields,
+    #flashesPopup {
         z-index: 1000;
         background-color: $popup-bgcolor;
     }

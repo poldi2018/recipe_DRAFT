@@ -294,3 +294,7 @@ function checkRegistrationForm() {
 function login() {
     $('#loginForm').submit();
 }
+
+function sendSearchform() {
+    $('#searchForm').submit();
+}

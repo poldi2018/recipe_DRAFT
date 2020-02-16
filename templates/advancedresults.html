@@ -58,17 +58,203 @@
             </div>
             {% endfor %}
             {% endif %}
+
+            {% if recipes_by_title %}
+            <div class="headline">
+                <h3>{{count_title}} recipes with title {{form.get("search_title")}} have been found:</h3>
+            </div>
+            {% for recipe in recipes_by_title %}
+            <div class="recipeTile">
+                <div class="recipeTileStatsWrapper">
+                    <div class="recipeTileStats">
+                        <div class="recipeTileName">
+                            <a href="{{url_for('read_recipe', recipe_id=recipe._id)}}">{{recipe.title}}</a>
+                        </div>
+                        <div class="recipeTileDishType">Category: <a
+                                href="{{url_for('advanced_results', category='dish_type', value=recipe.dish_type)}}">{{recipe.dish_type}}</a></div>
+                        <div class="recipeTileAddedBy">Added by: <a
+                                href="{{url_for('advanced_results', category='user', value=recipe.added_by)}}">{{recipe.added_by}}</a>
+                        </div>
+                        <div class="recipeTileReviewCount">Review count: {{recipe.review_count}}</div>
+                        <div class="recipeTileViewCount">View count: {{recipe.view_count}}</div>
+                    </div>
+                </div>
+                <div id="dishImageWrapper">
+                    <a href="{{url_for('read_recipe', recipe_id=recipe._id)}}">
+                        <img src="{{recipe.img_src}}" alt="picture_of_dish" /></a>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            {% if recipes_by_dish_type %}
+            <div class="headline">
+                <h3>{{count_dish_type}} recipes by category {{form.get("dish_type")}} have been found:</h3>
+            </div>
+            {% for recipe in recipes_by_dish_type %}
+            <div class="recipeTile">
+                <div class="recipeTileStatsWrapper">
+                    <div class="recipeTileStats">
+                        <div class="recipeTileName">
+                            <a href="{{url_for('read_recipe', recipe_id=recipe._id)}}">{{recipe.title}}</a>
+                        </div>
+                        <div class="recipeTileDishType">Category: <a
+                                href="{{url_for('advanced_results', category='dish_type', value=recipe.dish_type)}}">{{recipe.dish_type}}</a></div>
+                        <div class="recipeTileAddedBy">Added by: <a
+                                href="{{url_for('advanced_results', category='user', value=recipe.added_by)}}">{{recipe.added_by}}</a>
+                        </div>
+                        <div class="recipeTileReviewCount">Review count: {{recipe.review_count}}</div>
+                        <div class="recipeTileViewCount">View count: {{recipe.view_count}}</div>
+                    </div>
+                </div>
+                <div id="dishImageWrapper">
+                    <a href="{{url_for('read_recipe', recipe_id=recipe._id)}}">
+                        <img src="{{recipe.img_src}}" alt="picture_of_dish" /></a>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            {% if recipes_by_user %}
+            <div class="headline">
+                <h3>{{count_added_by}} recipes by user {{form.get("searchfield_added_by")}} have been found:</h3>
+            </div>
+            {% for recipe in recipes_by_user %}
+            <div class="recipeTile">
+                <div class="recipeTileStatsWrapper">
+                    <div class="recipeTileStats">
+                        <div class="recipeTileName">
+                            <a href="{{url_for('read_recipe', recipe_id=recipe._id)}}">{{recipe.title}}</a>
+                        </div>
+                        <div class="recipeTileDishType">Category: <a
+                                href="{{url_for('advanced_results', category='dish_type', value=recipe.dish_type)}}">{{recipe.dish_type}}</a></div>
+                        <div class="recipeTileAddedBy">Added by: <a
+                                href="{{url_for('advanced_results', category='user', value=recipe.added_by)}}">{{recipe.added_by}}</a>
+                        </div>
+                        <div class="recipeTileReviewCount">Review count: {{recipe.review_count}}</div>
+                        <div class="recipeTileViewCount">View count: {{recipe.view_count}}</div>
+                    </div>
+                </div>
+                <div id="dishImageWrapper">
+                    <a href="{{url_for('read_recipe', recipe_id=recipe._id)}}">
+                        <img src="{{recipe.img_src}}" alt="picture_of_dish" /></a>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            {% if recipes_by_difficulty %}
+            <div class="headline">
+                <h3>{{count_level}} recipes with level {{form.get("level")}} have been found:</h3>
+            </div>
+            {% for recipe in recipes_by_difficulty %}
+            <div class="recipeTile">
+                <div class="recipeTileStatsWrapper">
+                    <div class="recipeTileStats">
+                        <div class="recipeTileName">
+                            <a href="{{url_for('read_recipe', recipe_id=recipe._id)}}">{{recipe.title}}</a>
+                        </div>
+                        <div class="recipeTileDishType">Category: <a
+                                href="{{url_for('advanced_results', category='dish_type', value=recipe.dish_type)}}">{{recipe.dish_type}}</a></div>
+                        <div class="recipeTileAddedBy">Added by: <a
+                                href="{{url_for('advanced_results', category='user', value=recipe.added_by)}}">{{recipe.added_by}}</a>
+                        </div>
+                        <div class="recipeTileReviewCount">Review count: {{recipe.review_count}}</div>
+                        <div class="recipeTileViewCount">View count: {{recipe.view_count}}</div>
+                    </div>
+                </div>
+                <div id="dishImageWrapper">
+                    <a href="{{url_for('read_recipe', recipe_id=recipe._id)}}">
+                        <img src="{{recipe.img_src}}" alt="picture_of_dish" /></a>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            {% if recipes_by_ingredients %}
+            <div class="headline">
+                <h3>{{count_ingredients}} recipes with title {{form.get("searchfield_ingredients")}} have been found:</h3>
+            </div>
+            {% for recipe in recipes_by_ingredients %}
+            <div class="recipeTile">
+                <div class="recipeTileStatsWrapper">
+                    <div class="recipeTileStats">
+                        <div class="recipeTileName">
+                            <a href="{{url_for('read_recipe', recipe_id=recipe._id)}}">{{recipe.title}}</a>
+                        </div>
+                        <div class="recipeTileDishType">Category: <a
+                                href="{{url_for('advanced_results', category='dish_type', value=recipe.dish_type)}}">{{recipe.dish_type}}</a></div>
+                        <div class="recipeTileAddedBy">Added by: <a
+                                href="{{url_for('advanced_results', category='user', value=recipe.added_by)}}">{{recipe.added_by}}</a>
+                        </div>
+                        <div class="recipeTileReviewCount">Review count: {{recipe.review_count}}</div>
+                        <div class="recipeTileViewCount">View count: {{recipe.view_count}}</div>
+                    </div>
+                </div>
+                <div id="dishImageWrapper">
+                    <a href="{{url_for('read_recipe', recipe_id=recipe._id)}}">
+                        <img src="{{recipe.img_src}}" alt="picture_of_dish" /></a>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            {% if recipes_by_country_name %}
+            <div class="headline">
+                <h3>{{count_country_name}} recipes with title {{form.get("country_name")}} have been found:</h3>
+            </div>
+            {% for recipe in recipes_by_country_name %}
+            <div class="recipeTile">
+                <div class="recipeTileStatsWrapper">
+                    <div class="recipeTileStats">
+                        <div class="recipeTileName">
+                            <a href="{{url_for('read_recipe', recipe_id=recipe._id)}}">{{recipe.title}}</a>
+                        </div>
+                        <div class="recipeTileDishType">Category: <a
+                                href="{{url_for('advanced_results', category='dish_type', value=recipe.dish_type)}}">{{recipe.dish_type}}</a></div>
+                        <div class="recipeTileAddedBy">Added by: <a
+                                href="{{url_for('advanced_results', category='user', value=recipe.added_by)}}">{{recipe.added_by}}</a>
+                        </div>
+                        <div class="recipeTileReviewCount">Review count: {{recipe.review_count}}</div>
+                        <div class="recipeTileViewCount">View count: {{recipe.view_count}}</div>
+                    </div>
+                </div>
+                <div id="dishImageWrapper">
+                    <a href="{{url_for('read_recipe', recipe_id=recipe._id)}}">
+                        <img src="{{recipe.img_src}}" alt="picture_of_dish" /></a>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            {% if reviews_by_rating %}
+            <div class="headline">
+                <h3>{{count_rating}} recipes with title {{form.get("searchfield_rating")}} have been found:</h3>
+            </div>
+            {% for recipe in reviews_by_rating %}
+            <div class="recipeTile">
+                <div class="recipeTileStatsWrapper">
+                    <div class="recipeTileStats">
+                        <div class="recipeTileName">
+                            <a href="{{url_for('read_recipe', recipe_id=recipe._id)}}">{{recipe.title}}</a>
+                        </div>
+                        <div class="recipeTileDishType">Category: <a
+                                href="{{url_for('advanced_results', category='dish_type', value=recipe.dish_type)}}">{{recipe.dish_type}}</a></div>
+                        <div class="recipeTileAddedBy">Added by: <a
+                                href="{{url_for('advanced_results', category='user', value=recipe.added_by)}}">{{recipe.added_by}}</a>
+                        </div>
+                        <div class="recipeTileReviewCount">Review count: {{recipe.review_count}}</div>
+                        <div class="recipeTileViewCount">View count: {{recipe.view_count}}</div>
+                    </div>
+                </div>
+                <div id="dishImageWrapper">
+                    <a href="{{url_for('read_recipe', recipe_id=recipe._id)}}">
+                        <img src="{{recipe.img_src}}" alt="picture_of_dish" /></a>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
         </div>
     </div>
-
-    {% if category=="" %}
-    <div class="headline">
-        <h3>Search results for all Reviews</h3>
-    </div>
-    {% else %}
-    <div class="headline">
-        '{{category}}' has been found in {{reviews_count}} review(s).
-    </div>
-    {% endif %}
 </div>
 {% endblock %}

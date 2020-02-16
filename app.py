@@ -212,10 +212,12 @@ def reviews_today():
 
 @app.route('/advanced_search')
 def advanced_search():
-    return render_template("advancedsearch.html")
+    return render_template("advancedsearch.html", countries=get_countries())
 
 @app.route('/advanced_results/<category>/<value>', methods=["POST", "GET"])
 def advanced_results(category, value):
+    recipes=mongo.db.recipes
+    reviews=mongo.db.reviews
     if request.method=="GET":
         if category=="dish_type":
             recipes_by_category = mongo.db.recipes.find({"dish_type": value})
@@ -223,6 +225,34 @@ def advanced_results(category, value):
         elif category=="user":
             recipes_by_user = mongo.db.recipes.find({"added_by": value})
             return render_template("advancedresults.html", category=category, value=value, recipes_by_user=recipes_by_user)
+
+    if request.method=="POST":
+        recipes_by_title = mongo.db.recipes.find({"title": request.form.get("search_title")})
+        count_title = recipes.count_documents({"title": request.form.get("search_title")})        
+
+        recipes_by_dish_type = mongo.db.recipes.find({"dish_type": request.form.get("dish_type")})
+        count_dish_type = recipes.count_documents({"dish_type": request.form.get("dish_type")})        
+
+        recipes_by_user = mongo.db.recipes.find({"added_by": request.form.get("searchfield_added_by")})
+        count_added_by = recipes.count_documents({"added_by": request.form.get("searchfield_added_by")})        
+
+        recipes_by_difficulty = mongo.db.recipes.find({"level": request.form.get("level")})
+        count_level = recipes.count_documents({"level": request.form.get("level")})        
+
+        recipes_by_ingredients = mongo.db.recipes.find({"ingredients":request.form.get("searchfield_ingredients")})
+        count_ingredients = recipes.count_documents({"ingredients":request.form.get("searchfield_ingredients")})        
+
+        recipes_by_country_name = mongo.db.recipes.find({"country_name": request.form.get("country_name")})
+        count_country_name = recipes.count_documents({"country_name": request.form.get("country_name")})        
+
+        reviews_by_rating = mongo.db.reviews.find({"rating": request.form.get("searchfield_rating")})
+        count_rating = reviews.count_documents({"rating": request.form.get("searchfield_rating")})        
+
+    return render_template("advancedresults.html", recipes_by_title=recipes_by_title, count_title=count_title, recipes_by_dish_type=recipes_by_dish_type, count_dish_type=count_dish_type, recipes_by_user=recipes_by_user, count_added_by=count_added_by, recipes_by_difficulty=recipes_by_difficulty, count_level=count_level, recipes_by_ingredients=recipes_by_ingredients, count_ingredients=count_ingredients, recipes_by_country_name=recipes_by_country_name, count_country_name=count_country_name, reviews_by_rating=reviews_by_rating, count_rating=count_rating, form=request.form)
+
+
+
+
 
 
 @app.route('/quick_results', methods=["POST"])

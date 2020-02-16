@@ -315,7 +315,7 @@
     margin-top: 5px;
     margin-bottom: 10px;
   }
-  #dishImageWrapper {
+  #outerStatsWrapper #dishImageWrapper {
     border: 2px solid none;
     border-radius: 10px;
     overflow: hidden;
@@ -510,6 +510,15 @@
     margin: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
+    font-size: 0.9vw;
+  }
+  .reviewValue {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
   .recipeTile #dishImageWrapper {
     border: 2px solid none;
@@ -519,7 +528,6 @@
     background-color: lightgrey;
     width: 49%;
     height: 11vw;
-    margin-top: 4px;
     margin-left: 5px;
   }
   .recipeTile #dishImageWrapper a img {
@@ -545,7 +553,8 @@
     background-color: #E85A4F;
     padding-bottom: 1vw;
   }
-  #popupCheckForValidFields, #flashesPopup {
+  #popupCheckForValidFields,
+  #flashesPopup {
     z-index: 1000;
     background-color: #E98074;
   }

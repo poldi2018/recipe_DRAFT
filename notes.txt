@@ -42,6 +42,21 @@ testing
 documentation
 
 
+SEARCH CRITERIA
+RECIPES
+title
+dish_type
+added_by
+level
+allergens
+ingredients
+country_name
+
+REVIEWS
+rating
+
+
+
 collection ‘recipes’:
 {
         "_id": <ObjectId>,
@@ -80,7 +95,6 @@ password: <string>
 collection ‘reviews’:
 {
 "_id": <ObjectId>,
-
             "review_title": <string>,
             "review_for": <string>,
             "recipe_id": <string>,
