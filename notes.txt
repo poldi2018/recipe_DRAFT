@@ -10,79 +10,30 @@ ADD:
 - d3 for summary categories?
 - display document count based on category and on searchterm DONE
 
-BASE:
-- styles DONE
-
-ADD-RECIPE:
-- basic styles DONE
-
-EDIT:
-- styles DONE
-
-INDEX:
-- styles DONE
 
 LATEST-ADDED:
 - styles
-
-LOGIN, REGISTER:
-- styles DONE
-- field validation and registration DONE
-
-READ:
-- styles DONE
 
 ADVSEARCH:
 - form layout
 
 ADVSEARCH-RESULTS:
 - recipe tiles
-
-QUICKSEARCH RESULTS:
-- recipe tiles
-- review tiles
-
-TOP-REVIEWS:
-- review tiles DONE
-
-REVIEWS POPUP:
-- styles DONE
-- star selector DONE
-
-RATE POPUP:
-- styles DONE
-- field validation DONE
-
-DELETE-POPUP:
-- styles DONE
-
-USERPAGE:
--  basic styles
 
 MOBILE VERSION:
 - styles
 
 ///////////////////////////////
 
-ADVSEARCH:
-- form layout
-
-ADVSEARCH-RESULTS:
-- recipe tiles
-
-USERPAGE:
--  basic styles
-
-MOBILE VERSION:
-- styles
-
 
 TIMEFRAME:
 TODAY:
 search dialogs
-home
 mobile
-Anthony: schema, mockup, link
+Anthony:
+- schema
+- mockup
+- link
 
 
 SUN16:

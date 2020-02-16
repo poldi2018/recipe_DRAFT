@@ -5,7 +5,7 @@
     {% if session["username"]=="" %}
     <div class="recipeHeader">
         <div id="readRecipeTitle" class="recipeHeaderItem">{{recipe.title}}</div>
-        <div id="dishType" class="recipeHeaderItem width25"><a href="{{url_for('advanced_results', search_term='dish_type', value=recipe.dish_type)}}">{{recipe.dish_type}}</a></div>
+        <div id="dishType" class="recipeHeaderItem width25"><a href="{{url_for('advanced_results', category='dish_type', value=recipe.dish_type)}}">{{recipe.dish_type}}</a></div>
         <div id="showReviewsPopupBtn" class="recipeHeaderItem width25" onclick="showReviewsPopup()">
             <div class="recipeButtonWrapper btn waves-effect waves-light">Reviews</div>
         </div>
@@ -16,7 +16,7 @@
     {% if session["username"]!="" and recipe.user_email_hash!=session["email_address"] %}
     <div class="recipeHeader">
         <div id="readRecipeTitle" class="recipeHeaderItem">{{recipe.title}}</div>
-        <div id="dishType" class="recipeHeaderItem width16"><a href="{{url_for('advanced_results', search_term='dish_type', value=recipe.dish_type)}}">{{recipe.dish_type}}</a></div>
+        <div id="dishType" class="recipeHeaderItem width16"><a href="{{url_for('advanced_results', category='dish_type', value=recipe.dish_type)}}">{{recipe.dish_type}}</a></div>
         <div id="showReviewsPopupBtn" class="recipeHeaderItem width16" onclick="showReviewsPopup()">
             <div class="recipeButtonWrapper btn waves-effect waves-light">Reviews</div>
         </div>
@@ -30,7 +30,7 @@
     {% if session["username"]!="" and recipe.user_email_hash==session["email_address"] %}
     <div class="recipeHeader">
         <div id="readRecipeTitle" class="recipeHeaderItem">{{recipe.title}}</div>
-        <div id="dishType" class="recipeHeaderItem width10"><a href="{{url_for('advanced_results', search_term='dish_type', value=recipe.dish_type)}}">{{recipe.dish_type}}</a></div>
+        <div id="dishType" class="recipeHeaderItem width10"><a href="{{url_for('advanced_results', category='dish_type', value=recipe.dish_type)}}">{{recipe.dish_type}}</a></div>
         <div id="showReviewsPopupBtn" class="recipeHeaderItem width10" onclick="showReviewsPopup()">
             <div class="recipeButtonWrapper btn waves-effect waves-light">Reviews</div>
         </div>

@@ -214,16 +214,15 @@ def reviews_today():
 def advanced_search():
     return render_template("advancedsearch.html")
 
-@app.route('/advanced_results/<search_term>/<value>', methods=["POST", "GET"])
-def advanced_results(search_term, value):
+@app.route('/advanced_results/<category>/<value>', methods=["POST", "GET"])
+def advanced_results(category, value):
     if request.method=="GET":
-        if search_term=="dish_type":
+        if category=="dish_type":
             recipes_by_category = mongo.db.recipes.find({"dish_type": value})
-            return render_template("advancedresults.html", search_term="dish type", recipes_by_category=recipes_by_category)
-        elif search_term=="user":
+            return render_template("advancedresults.html", category=category, value=value, recipes_by_category=recipes_by_category)
+        elif category=="user":
             recipes_by_user = mongo.db.recipes.find({"added_by": value})
-            return render_template("advancedresults.html", search_term="user", recipes_by_user=recipes_by_user)
-
+            return render_template("advancedresults.html", category=category, value=value, recipes_by_user=recipes_by_user)
 
 
 @app.route('/quick_results', methods=["POST"])

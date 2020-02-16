@@ -515,21 +515,23 @@
     }
 
     .recipeTileStatsWrapper {
-        width: 50%;
+        width: 49%;
+        border-radius: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
+        background-color: $tiles-bgcolor;
+        margin-right: 5px;
     }
 
 .recipeTileStats {
-    width: 100%;
+    width: 90%;
 }
 
     .recipeTileStats div {
         font-size: 1vw;
     }
-
 
     .recipeTileName {
         display: flex;
@@ -557,11 +559,13 @@
         overflow: hidden;
         font-size: $recipeFontSize;
         background-color: lightgrey;
-        width: 50%;
+        width: 49%;
         height: 11vw;
 
         margin: {
             top: 4px;
+            left: 5px;
+
         }
     }
 

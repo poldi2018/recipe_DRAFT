@@ -472,7 +472,8 @@
     margin-bottom: 1vw;
   }
   .recipeTileStatsWrapper {
-    width: 50%;
+    width: 49%;
+    border-radius: 10px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -484,9 +485,11 @@
             align-items: center;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+    background-color: #D8C3A5;
+    margin-right: 5px;
   }
   .recipeTileStats {
-    width: 100%;
+    width: 90%;
   }
   .recipeTileStats div {
     font-size: 1vw;
@@ -514,9 +517,10 @@
     overflow: hidden;
     font-size: 0.9vw;
     background-color: lightgrey;
-    width: 50%;
+    width: 49%;
     height: 11vw;
     margin-top: 4px;
+    margin-left: 5px;
   }
   .recipeTile #dishImageWrapper a img {
     width: 100%;

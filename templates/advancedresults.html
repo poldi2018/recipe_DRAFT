@@ -3,9 +3,9 @@
 <div class="resultsWapper">
     <div class="outerRecipesWrapper">
         <div class="innerRecipesWrapper">
-            {% if search_term=="dish type" %}
+            {% if category=="dish_type" %}
             <div class="headline">
-                <h3>The following recipes by category {{search_term}} have been found:</h3>
+                <h3>The following recipes by category {{value}} have been found:</h3>
             </div>
             {% for recipe in recipes_by_category %}
             <div class="recipeTile">
@@ -15,9 +15,9 @@
                             <a href="{{url_for('read_recipe', recipe_id=recipe._id)}}">{{recipe.title}}</a>
                         </div>
                         <div class="recipeTileDishType">Category: <a
-                                href="{{url_for('advanced_results', search_term='dish_type', value=recipe.dish_type)}}">{{recipe.dish_type}}</a></div>
+                                href="{{url_for('advanced_results', category='dish_type', value=recipe.dish_type)}}">{{recipe.dish_type}}</a></div>
                         <div class="recipeTileAddedBy">Added by: <a
-                                href="{{url_for('advanced_results', search_term='user', value=recipe.added_by)}}">{{recipe.added_by}}</a>
+                                href="{{url_for('advanced_results', category='user', value=recipe.added_by)}}">{{recipe.added_by}}</a>
                         </div>
                         <div class="recipeTileReviewCount">Review count: {{recipe.review_count}}</div>
                         <div class="recipeTileViewCount">View count: {{recipe.view_count}}</div>
@@ -31,9 +31,9 @@
             {% endfor %}
             {% endif %}
 
-            {% if search_term=="user" %}
+            {% if category=="user" %}
             <div class="headline">
-                <h3>The following recipes by user {{search_term}} have been found:</h3>
+                <h3>The following recipes by user {{value}} have been found:</h3>
             </div>
             {% for recipe in recipes_by_user %}
             <div class="recipeTile">
@@ -43,9 +43,9 @@
                             <a href="{{url_for('read_recipe', recipe_id=recipe._id)}}">{{recipe.title}}</a>
                         </div>
                         <div class="recipeTileDishType">Category: <a
-                                href="{{url_for('advanced_results', search_term='dish_type', value=recipe.dish_type)}}">{{recipe.dish_type}}</a></div>
+                                href="{{url_for('advanced_results', category='dish_type', value=recipe.dish_type)}}">{{recipe.dish_type}}</a></div>
                         <div class="recipeTileAddedBy">Added by: <a
-                                href="{{url_for('advanced_results', search_term='user', value=recipe.added_by)}}">{{recipe.added_by}}</a>
+                                href="{{url_for('advanced_results', category='user', value=recipe.added_by)}}">{{recipe.added_by}}</a>
                         </div>
                         <div class="recipeTileReviewCount">Review count: {{recipe.review_count}}</div>
                         <div class="recipeTileViewCount">View count: {{recipe.view_count}}</div>
@@ -61,13 +61,13 @@
         </div>
     </div>
 
-    {% if search_term=="" %}
+    {% if category=="" %}
     <div class="headline">
         <h3>Search results for all Reviews</h3>
     </div>
     {% else %}
     <div class="headline">
-        '{{search_term}}' has been found in {{reviews_count}} review(s).
+        '{{category}}' has been found in {{reviews_count}} review(s).
     </div>
     {% endif %}
 </div>
