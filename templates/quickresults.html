@@ -37,17 +37,6 @@
             {% endfor %}
         </div>
     </div>
-
-    {% if search_term=="" %}
-    <div class="headline">
-        <h3>Search results for all Reviews</h3>
-    </div>
-    {% else %}
-    <div class="headline">
-        '{{search_term}}' has been found in {{reviews_count}} review(s).
-    </div>
-    {% endif %}
-
     <div class="outerReviewsWrapper">
         <div class="innerReviewsWrapper">
             {% for review in reviews_by_searchterm %}
