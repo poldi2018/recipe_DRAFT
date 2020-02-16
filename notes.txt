@@ -25,36 +25,15 @@ MOBILE VERSION:
 
 ///////////////////////////////
 
-
-TIMEFRAME:
-TODAY:
-search dialogs
-mobile
-Anthony:
-- schema
-- mockup
-- link
-
-
 SUN16:
+mobile
 upload to production
+Anthony:
+- schema DONE
+- mockup
+- link 
 testing
 documentation
-
-
-SEARCH CRITERIA
-RECIPES
-title
-dish_type
-added_by
-level
-allergens
-ingredients
-country_name
-
-REVIEWS
-rating
-
 
 
 collection ‘recipes’:
