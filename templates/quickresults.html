@@ -39,6 +39,9 @@
     </div>
     <div class="outerReviewsWrapper">
         <div class="innerReviewsWrapper">
+            <div class="headline">
+                '{{search_term}}' has been found in {{reviews_count}} review(s).
+            </div>
             {% for review in reviews_by_searchterm %}
             <div class="reviewTile">
                 <div class="reviewKey">Review Title</div>

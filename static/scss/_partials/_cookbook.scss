@@ -22,6 +22,12 @@
         width: 80vw;
     }
 
+    #welcomeWrapper {
+        display: flex;
+        justify-content: center;
+        margin: 2vw;
+    }
+
     .width10 {
         width: 9.7%;
     }
@@ -437,6 +443,7 @@
 
     .ingredientfield {
         width: 90%;
+
     }
 
     .warning {
@@ -454,6 +461,7 @@
     .amountContainer .input-field,
     .ingredientContainer .input-field {
         width: 90%;
+        margin-right: 10px;
     }
 
     #directionsWrapper {
@@ -523,13 +531,17 @@
         width: 90%;
     }
 
-    .recipeTileStats div {
+    .recipeTileDishType,
+    .recipeTileAddedBy,
+    .recipeTileReviewCount,
+    .recipeTileViewCount {
         font-size: 1vw;
     }
 
     .recipeTileName {
         display: flex;
-        font-size: 1.5vw;
+        font-size: 2.5vw;
+        font-family: "Dosis", sans serif;
         width: 100%;
 
     }
@@ -545,9 +557,11 @@
             top: 10px;
             bottom: 10px;
         }
+
         font-size: $recipeFontSize;
 
     }
+
     .reviewValue {
         display: flex;
         align-items: center;
@@ -731,13 +745,34 @@
         flex-wrap: wrap;
         top: 7vw;
         font-size: $recipeFontSize;
-
     }
 
-    .opacityRise {
-        opacity: 1.0;
-        transition: opacity .5s ease-in-out;
+    .searchformOuterWrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 1vw;
     }
+
+    .searchformInnerWrapper {
+        display: flex;
+        flex-wrap: wrap;
+        width: 30%;
+        height: 100%;
+    }
+
+    .searchfieldDescription {
+        width: 30%;
+        display: flex;
+        align-items: center;
+        font-size: $recipeFontSize;
+    }
+
+    .searchformInnerWrapper .input-field {
+        width: 70%;
+    }
+
+    
 }
 
 // special breakpoint for 1.33 ratio, ipad

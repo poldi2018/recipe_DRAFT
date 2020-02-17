@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="resultsWapper">
-    <div class="headline">Recipes entered by {{session["username"]}}</div>
     <div class="outerRecipesWrapper">
         <div class="innerRecipesWrapper">
+            {% if recipes_count==0 %}
+            <div class="headline">No recipes by you have been found.</div>
+            {% else %}
+            <div class="headline">Recipes entered by {{session["username"]}}</div>
             {% for recipe in recipes %}
             <div class="recipeTile">
                 <div class="recipeTileStatsWrapper">
@@ -27,12 +30,16 @@
                 </div>
             </div>
             {% endfor %}
+            {% endif %}
         </div>
     </div>
 
-    <div class="headline">Reviews entered by {{session["username"]}}</div>
     <div class="outerReviewsWrapper">
         <div class="innerReviewsWrapper">
+            {% if reviews_count==0 %}
+            <div class="headline">No reviews by you have been found.</div>
+            {% else %}
+            <div class="headline">Reviews entered by {{session["username"]}}</div>
             {% for review in reviews %}
             <div class="reviewTile">
                 <div class="reviewKey">Review Title</div>
@@ -57,6 +64,7 @@
                 <div class="reviewValue">{{review.comment}}</div>
             </div>
             {% endfor %}
+            {% endif %}
         </div>
     </div>
 </div>
